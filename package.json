@@ -1,0 +1,19 @@
+{
+  "name": "storyline_maker",
+  "version": "1.0.0",
+  "description": "interactive up for writng stories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "story",
+    "line",
+    "react",
+    "app",
+    "scripts",
+    "writing"
+  ],
+  "author": "Vahram A. Jacobs, Ani Stepanyan",
+  "license": "Not Open Source"
+}
