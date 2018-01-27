@@ -1,0 +1,1401 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getAPIDetails"
+			],
+			[
+				"getApi",
+				"getAPIData"
+			],
+			[
+				"add",
+				"addApiDataReducer"
+			],
+			[
+				"Sear",
+				"searchTermReducer"
+			],
+			[
+				"Action",
+				"ActionT"
+			],
+			[
+				"react",
+				"react-router-dom"
+			],
+			[
+				"Set",
+				"SET_SEARCH_TERM"
+			],
+			[
+				"sear",
+				"searchTerm"
+			],
+			[
+				"reder",
+				"renderApp"
+			],
+			[
+				"webpack",
+				"webpack-dev-server"
+			],
+			[
+				"com",
+				"component"
+			],
+			[
+				"je",
+				"jest-serializer-enzyme"
+			],
+			[
+				"pre",
+				"preload"
+			],
+			[
+				"itera",
+				"iterator"
+			],
+			[
+				"uniqu",
+				"uniqueId"
+			],
+			[
+				"x",
+				"xRequestedWith"
+			],
+			[
+				"conte",
+				"contentType"
+			],
+			[
+				"content",
+				"content-type"
+			],
+			[
+				"rest",
+				"restructuring"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"conver",
+				"convertCurrency"
+			],
+			[
+				"coun",
+				"countries"
+			],
+			[
+				"getS",
+				"getStatusAlt"
+			],
+			[
+				"is",
+				"isRealString"
+			],
+			[
+				"newMesse",
+				"newMessageHeight"
+			],
+			[
+				"newM",
+				"newMessageHeight"
+			],
+			[
+				"gen",
+				"generateLocationMessage"
+			],
+			[
+				"jw",
+				"JWT_SECRET"
+			],
+			[
+				"J",
+				"JWT_SECRET"
+			],
+			[
+				"authen",
+				"authenticate"
+			],
+			[
+				"Compete",
+				"completedAt"
+			],
+			[
+				"comp",
+				"completedAt"
+			],
+			[
+				"req",
+				"requestOptions"
+			],
+			[
+				"geoc",
+				"geocodeAddress"
+			],
+			[
+				"weather",
+				"weatherResults"
+			],
+			[
+				"Json",
+				"JSON"
+			],
+			[
+				"or",
+				"originalNoteString"
+			],
+			[
+				"ob",
+				"objString"
+			],
+			[
+				"env",
+				"environment"
+			],
+			[
+				"name",
+				"nameRedEx"
+			],
+			[
+				"sor",
+				"sortProperty"
+			],
+			[
+				"usre",
+				"users"
+			],
+			[
+				"blogPost",
+				"BlogPost"
+			],
+			[
+				"blogpost",
+				"blogpost"
+			],
+			[
+				"Comm",
+				"CommentSchema"
+			],
+			[
+				"Schema",
+				"Scheam"
+			],
+			[
+				"deplo",
+				"deployment"
+			],
+			[
+				"folder",
+				"folderNameToDeploy"
+			],
+			[
+				"webp",
+				"webpack-web-server"
+			],
+			[
+				"web",
+				"webpack-dev-server"
+			],
+			[
+				"requ",
+				"requireAuth"
+			],
+			[
+				"A",
+				"AUTH_USER"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"pass",
+				"passwordConfirm"
+			],
+			[
+				"confirm",
+				"passwordConfirm"
+			],
+			[
+				"Si",
+				"Signup"
+			],
+			[
+				"error",
+				"errorMessage"
+			],
+			[
+				"Auth",
+				"AUTH_ERROR"
+			],
+			[
+				"compo",
+				"ComposedComponent"
+			],
+			[
+				"reqAuth",
+				"requireAuth"
+			],
+			[
+				"someP",
+				"somePropValue"
+			],
+			[
+				"ComposedCompo",
+				"ComposedComponent"
+			],
+			[
+				"ComposedC",
+				"ComposedComp"
+			],
+			[
+				"auth",
+				"authenticated"
+			],
+			[
+				"authe",
+				"authenticate"
+			],
+			[
+				"s",
+				"Switch"
+			],
+			[
+				"header",
+				"Header"
+			],
+			[
+				"C",
+				"CommentBox"
+			],
+			[
+				"test",
+				"TestUtils"
+			],
+			[
+				"comme",
+				"CommentBox"
+			],
+			[
+				"tes",
+				"testingTeam"
+			],
+			[
+				"testT",
+				"testingTeamGen"
+			],
+			[
+				"_",
+				"_predicator_"
+			],
+			[
+				"FET",
+				"FETCH_POST"
+			],
+			[
+				"Ap",
+				"API_KEY"
+			],
+			[
+				"b",
+				"BrowserRouter"
+			],
+			[
+				"googleM",
+				"GoogleMapLoader"
+			],
+			[
+				"k",
+				"KtoF"
+			],
+			[
+				"humi",
+				"humidities"
+			],
+			[
+				"fet",
+				"FETCH_WEATHER"
+			],
+			[
+				"sera",
+				"SearchBar"
+			],
+			[
+				"serch",
+				"SearchBar"
+			],
+			[
+				"ng-",
+				"ng-sparkline"
+			],
+			[
+				"session",
+				"sessionID"
+			],
+			[
+				"sessi",
+				"sessionID"
+			],
+			[
+				"has",
+				"hashPass"
+			],
+			[
+				"loca",
+				"localSession"
+			],
+			[
+				"en",
+				"enqueue"
+			],
+			[
+				"song",
+				"songQueue"
+			],
+			[
+				"songQ",
+				"songQueueEntryView"
+			],
+			[
+				"SongQue",
+				"SongQueueView"
+			],
+			[
+				"SongQ",
+				"SongQueueView"
+			],
+			[
+				"que",
+				"queueEntry"
+			],
+			[
+				"play",
+				"playFirst"
+			],
+			[
+				"curr",
+				"currentSong"
+			],
+			[
+				"son",
+				"songQueue"
+			],
+			[
+				"check",
+				"checkboxView"
+			],
+			[
+				"jqe",
+				"jqueryClicked"
+			],
+			[
+				"todoV",
+				"todoViewInst2_2"
+			],
+			[
+				"todoView",
+				"TodoView2"
+			],
+			[
+				"To",
+				"TodoView2"
+			],
+			[
+				"attri",
+				"attributes"
+			],
+			[
+				"Todo",
+				"TodoView1"
+			],
+			[
+				"T",
+				"TodoValidate1"
+			],
+			[
+				"att",
+				"attributes"
+			],
+			[
+				"initiali",
+				"initialize"
+			],
+			[
+				"title",
+				"title6"
+			],
+			[
+				"at",
+				"attributes"
+			],
+			[
+				"to",
+				"todo6"
+			],
+			[
+				"rep",
+				"reportCustomer"
+			],
+			[
+				"cus",
+				"customers"
+			],
+			[
+				"produ",
+				"productData"
+			],
+			[
+				"orderPr",
+				"orderProductArr"
+			],
+			[
+				"imp",
+				"importedId"
+			],
+			[
+				"orderProd",
+				"orderProdArr"
+			],
+			[
+				"orderP",
+				"orderProductArr"
+			],
+			[
+				"importedP",
+				"importedProductIdArr"
+			],
+			[
+				"sele",
+				"selectProductSQL"
+			],
+			[
+				"imported",
+				"importedProductId"
+			],
+			[
+				"in",
+				"insertProduct"
+			],
+			[
+				"insertP",
+				"insertProductSQL"
+			],
+			[
+				"foun",
+				"foundOrder"
+			],
+			[
+				"insertOrder",
+				"insertOrderDetailSQL"
+			],
+			[
+				"currP",
+				"currProdNum"
+			],
+			[
+				"currProd",
+				"currProdNum"
+			],
+			[
+				"inser",
+				"insertCustomer"
+			],
+			[
+				"impo",
+				"importedID"
+			],
+			[
+				"productD",
+				"productDetailsId"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
+			"settings":
+			{
+				"buffer_size": 10004,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+			"settings":
+			{
+				"buffer_size": 65460,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 191,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/index.jsx",
+			"settings":
+			{
+				"buffer_size": 400,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 373,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "presets: [\n\t\"react\",\n\t\n]",
+			"file": ".babelrc",
+			"file_size": 0,
+			"file_write_time": 131614903360571733,
+			"settings":
+			{
+				"buffer_size": 24,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"prettier",
+				"JsPrettier: Format Code"
+			],
+			[
+				"enable",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"disable",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"ena",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"disab",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"disa",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"enab",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"dis",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"insatll",
+				"Package Control: Install Package"
+			],
+			[
+				"sub",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"sublme",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"sublimeLinter:e",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"sublimelinter: d",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"sublimeLiner",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"sublimelinter",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"list p",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"jsPre",
+				"Preferences: JsPrettier Settings - Default"
+			],
+			[
+				"jsPr",
+				"Preferences: JsPrettier Settings - User"
+			],
+			[
+				"installP",
+				"Package Control: Install Package"
+			],
+			[
+				"package control:",
+				"Package Control: Add Channel"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 432.0
+	},
+	"console":
+	{
+		"height": 255.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Current projects/storylilneMaker",
+		"/Current projects/storylilneMaker/client"
+	],
+	"file_history":
+	[
+		"/Current projects/storylilneMaker/client/package.json",
+		"/Current projects/storylilneMaker/client/.babelrc",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js",
+		"/Current projects/storylilneMaker/client/.eslintrc.json",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.eslintrc.json",
+		"/Current projects/storylilneMaker/client/LICENSE.md",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/package.json",
+		"/Current projects/storylilneMaker/package.json",
+		"/Current projects/storylilneMaker/index.html",
+		"/Current projects/storylilneMaker/index.jsx",
+		"/Current projects/storylilneMaker/.eslintrc.json",
+		"/Current projects/storylilneMaker/client/src/index.jsx.js",
+		"/Current projects/storylilneMaker/.gitignore",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Details.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/actionCreators.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/actions.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/store.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/reducers.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/flow-typed/types.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/actions/index.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_react w redux_udemy.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/components/auth/signin.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/browser notes/html5 history & app states notes.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/App.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ShowCard.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.flowconfig",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ClientApp.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Spinner.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/spinner.jsx",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/Search.spec.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/__snapshots__/Search.spec.jsx.snap",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.babelrc",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/components/app.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/terminal related/terminal UI.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/test.sublime-project",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/utils.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.jsx",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experiment/package.json",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/webpack.config.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/.eslintrc.json",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/js/Search.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search1.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/test/complete-intro-to-react/js/ShowCard.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/Search.spec.jsx.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/mongodb - sGrider/3 - UpStarMusic/.eslintrc",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/data.json",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/index.html",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/landing.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/public/style.css",
+		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/User/JsPrettier.sublime-settings",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/ratingsAPI.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.eslintignore",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/npm/yarn notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/npm/npm notes.js",
+		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Installed Packages/SublimeLinter-eslint.sublime-package",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/template engines/handlebars notes.md",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/es6 notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/html notes.html",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/clientApp.sublime-project",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/terminal related/test.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/test.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/test.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/gitignore.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/git hub notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/misc js notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/es6 notes - Kyle Simpson.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex5/ex5-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex4/ex4-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex3/ex3-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex2/ex2-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex1/ex1-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex0/ex0-v-fixed.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_advance redux_udemy.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/webpack 2/1_js_modules (big & small imgs)/webpack.config.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_middleware (name cards)/src/components/user_list.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_youtube app/src/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_youtube app/index.html",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/reducers/reducer_auth.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/server/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/db/mongoose.js",
+		"/Users/vahramjacobs/Desktop/dev/MKS/week5/day1/-v shortly/MKS-LA-shortly-express-master/server.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_testing (add comments)/test/test_helper.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_new.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/reducers/reducer_active_book.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/actions/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/containers/book_list.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_weather app/src/components/app.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/server realated/node notes by andrew mead from udemy.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/_git hub notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/heroku notes.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/app.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/models/users.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/tests/seed/seed.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/tests/server.tests.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/v-experiments.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/app-promises.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/app(no async-await).js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/currency-convert.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/users.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/server.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/chat.html",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/js/chat.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/users.test.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/validation.test.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/validation.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/index.html",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/index.html",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/js/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/playground/time.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/css/styles.css",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/css",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/message.test.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/message.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/server realated/URL parts.md",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/package.json",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/config/config.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-web-server/package.json",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-web-server/server.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/server.js"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 106.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"testComp",
+			"UNLICENSED",
+			"scale",
+			"store",
+			"actionsCreators",
+			"imdbID",
+			"show",
+			"apiData",
+			"Show",
+			"apiData",
+			"show",
+			"apiData",
+			"show",
+			"rating",
+			"getShow",
+			"apiData",
+			"show",
+			"Details",
+			"rating",
+			"addApiDataReducer",
+			"searchTermReducer",
+			"addApiDataReducer",
+			"map",
+			"bind",
+			"connect",
+			"actions)",
+			"map",
+			"action)",
+			"connect(",
+			"mapDispatch",
+			"middleware",
+			"thunk",
+			"string",
+			"String",
+			"redux-promise",
+			"redux",
+			"createMiddleware",
+			"type",
+			"ref",
+			"mapDispatchToState",
+			"mapDispatchToProps",
+			"mapDispatchToState",
+			"object",
+			"landing",
+			"resetSearchTerm",
+			"git show",
+			"git log",
+			"actionsCreators",
+			"store",
+			"state",
+			"Header",
+			"Search",
+			"handleOnEnter",
+			"props",
+			"but",
+			"reset",
+			"mapDispatchToState",
+			"SET_SEARCH_TERM",
+			"Signout",
+			"signout",
+			"Signout",
+			"Provider",
+			"payload",
+			"setSearchTerm",
+			"const",
+			"state",
+			"SET_SEARCH_TERM",
+			"Store",
+			"rootReducer",
+			"Redux",
+			"includes",
+			"another",
+			"Header",
+			"year",
+			"props",
+			"Componernt",
+			"react",
+			"h2",
+			"response",
+			"img",
+			"Animation",
+			"response",
+			"props",
+			"const",
+			"Image",
+			"styled",
+			"webpack-web-server",
+			"Match",
+			"Every time we",
+			"// Every time we type a key into the search field, \n\t\t\t\t\t// an event fires, so react tries to rerenders the component.\n\t\t\t\t\t// It looks at the diff between before and after the event, \n\t\t\t\t\t// and ends up assigning state.searchTerm value to the input value.\n\t\t\t\t// If we want the value to reflect what we've typed, \n\t\t\t\t\t// we should update the state for the next render.",
+			"shows: Array<Show>",
+			"App",
+			"Function",
+			"function",
+			"this",
+			"handleSearchTermChange",
+			"but",
+			"myComponent",
+			"expects",
+			"props",
+			"class",
+			"props",
+			"<Search />",
+			"Search",
+			"filterShowsBySearchTerm",
+			"preload",
+			":",
+			"\"",
+			"preload",
+			"selectedShow",
+			"Details",
+			"Search",
+			"x",
+			"styled-components",
+			"isRequired",
+			"styled-components",
+			"flow",
+			"webpack",
+			"base",
+			"this",
+			"//",
+			"test",
+			"testing",
+			"expect",
+			"length",
+			"component.find(ShowCard)",
+			"test",
+			"filterShowsBySearchTerm"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10004,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7284,
+								7284
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 65460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9184,
+								9184
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5916.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/index.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 400,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								400,
+								400
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": ".babelrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22,
+								22
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "storylineMaker.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"practice files/package.json"
+			],
+			[
+				"package",
+				"practice files/package.json"
+			],
+			[
+				"sear",
+				"practice files/js/Search.jsx"
+			],
+			[
+				"packa",
+				"practice files/package.json"
+			],
+			[
+				"clien",
+				"practice files/js/ClientApp.jsx"
+			],
+			[
+				"show",
+				"practice files/js/ShowCard.jsx"
+			],
+			[
+				"type",
+				"practice files/flow-typed/types.js"
+			],
+			[
+				"sea",
+				"practice files/js/Search.jsx"
+			],
+			[
+				"app",
+				"practice files/js/App.jsx"
+			],
+			[
+				".flow",
+				"practice files/.flowconfig"
+			],
+			[
+				"babelrc",
+				"practice files/.babelrc"
+			],
+			[
+				"webpa",
+				"practice files/webpack.config.js"
+			],
+			[
+				"babelr",
+				"practice files/.babelrc"
+			],
+			[
+				"packag",
+				"practice files/package.json"
+			],
+			[
+				"search",
+				"Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx"
+			],
+			[
+				"eslintrc",
+				"before individuals repos/mongodb - sGrider/3 - UpStarMusic/.eslintrc"
+			],
+			[
+				"data",
+				"Complete Intro To React -Bian Holt- v3/practice files/data.json"
+			],
+			[
+				"webpack",
+				"Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js"
+			],
+			[
+				"inde",
+				"Complete Intro To React -Bian Holt- v3/practice files/index.html"
+			],
+			[
+				"lan",
+				"Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx"
+			],
+			[
+				"web",
+				"Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js"
+			],
+			[
+				"land",
+				"Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx"
+			],
+			[
+				"w",
+				"Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js"
+			],
+			[
+				"index",
+				"Complete Intro To React -Bian Holt- v3/practice files/index.html"
+			],
+			[
+				"index.html",
+				"Complete Intro To React -Bian Holt- v3/practice files/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 239.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
