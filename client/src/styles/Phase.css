@@ -1,0 +1,15 @@
+.phase {
+	width: 110px;
+	/*height: 95px;*/
+	border: 1px solid red;
+	overflow: hidden;
+}
+
+.phase img {
+	height: 70px;
+}
+
+.phase span {
+	display: block;
+	padding: 5px;
+}
