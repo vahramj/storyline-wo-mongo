@@ -18768,12 +18768,12 @@ var App = function App() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_PhaseContainer_css__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_PhaseContainer_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__styles_PhaseContainer_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_AssetContainer_css__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_AssetContainer_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__styles_AssetContainer_css__);
 
 
 
-var PhaseContainer = function PhaseContainer() {
+var AssetContainer = function AssetContainer() {
 	return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 		"div",
 		{ className: "asset-container" },
@@ -18839,73 +18839,11 @@ var PhaseContainer = function PhaseContainer() {
 	);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (PhaseContainer);
+/* harmony default export */ __webpack_exports__["a"] = (AssetContainer);
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(32);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(6)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/index.js!./PhaseContainer.css", function() {
-		var newContent = require("!!../../node_modules/css-loader/index.js!./PhaseContainer.css");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".asset-container {\n\twidth: 360px;\n\theight: 295px;\n\tborder: 1px red solid;\n\t\n\tbackground: rgb(234,234,234);\n\t/*float: left;*/\n\tdisplay: flex;\n}\n\n.asset-container header{\n\n\tdisplay: flex;\n\tflex-direction: column-reverse;\n\tjustify-content: space-between;\n\talign-items: center;\n\n\tpadding: 5px 1px 5px 0;\n\t\n\twidth: 33px;\n\t\n\tbackground: rgb(78,79,81);\n}\n\n.asset-container header .h2Wrapper{\n\tmargin: 0 1px -10px 0;\n}\n\n.asset-container header h2{\n\ttransform: rotate(-90deg);\n\n\tmargin-bottom: 50%;\n\tcolor: rgb(170,182, 180);\n\n\tfont-size: 18pt;\n\tfont-weight: normal;\n\tfont-family: sans-serif;\n}\n\n\n.asset-container .container-body {\n}\n\n.small-plus-icon {\n\tborder: 2px rgb(253, 144, 105) solid;\n\tborder-radius: 50%;\n\theight: 20px;\n\twidth: 20px;\n\t/*float: right;*/\n}", ""]);
-
-// exports
-
-
-/***/ }),
+/* 31 */,
+/* 32 */,
 /* 33 */
 /***/ (function(module, exports) {
 
@@ -19188,6 +19126,72 @@ exports = module.exports = __webpack_require__(5)(false);
 
 // module
 exports.push([module.i, "body{\n\tbackground: rgba(51,51,51,0.2);\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 40 */,
+/* 41 */,
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(43);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(6)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../node_modules/css-loader/index.js!./AssetContainer.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/index.js!./AssetContainer.css");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".asset-container {\n\tdisplay: flex;\n\t\n\twidth: 360px;\n\theight: 295px;\n\tborder: 1px red solid;\n\t\n\tbackground: rgb(234,234,234);\n}\n\n/*header*/\n.asset-container header{\n\n\tdisplay: flex;\n\tflex-direction: column-reverse;\n\tjustify-content: space-between;\n\talign-items: center;\n\n\tpadding: 5px 1px 5px 0;\n\t\n\twidth: 33px;\n\t\n\tbackground: rgb(78,79,81);\n}\n\n.asset-container header .h2Wrapper{\n\t/* fixes the rotation offset*/\n\tmargin: 0 1px -10px 0;\n}\n\n.asset-container header h2{\n\ttransform: rotate(-90deg);\n\n\tmargin-bottom: 50%;\n\tcolor: rgb(170,182, 180);\n\n\tfont-size: 18pt;\n\tfont-weight: normal;\n\tfont-family: sans-serif;\n}\n\n.small-plus-icon {\n\tborder: 2px rgb(253, 144, 105) solid;\n\tborder-radius: 50%;\n\theight: 20px;\n\twidth: 20px;\n}\n\n/* body */\n.asset-container .container-body {\n\tflex-grow: 1;\n\tpadding: 8px 15px;\n}\n\n.asset-container .container-body input{\n\twidth: 100%;\n\t/*margin-left: 10%;*/\n\theight: 20px;\n\tborder-radius: 4%/50%;\n\tborder: none;\n}\n\n.asset-container .container-body input::placeholder{\n\ttext-align: center;\n}\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

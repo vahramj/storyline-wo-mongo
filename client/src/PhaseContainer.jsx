@@ -1,7 +1,7 @@
 import React from "react";
-import "./styles/PhaseContainer.css";
+import "./styles/AssetContainer.css";
 
-const PhaseContainer = ()=>{
+const AssetContainer = ()=>{
 	return (
 		<div className="asset-container">
 			<header>
@@ -31,4 +31,4 @@ const PhaseContainer = ()=>{
 	);
 };
 
-export default PhaseContainer;
+export default AssetContainer;

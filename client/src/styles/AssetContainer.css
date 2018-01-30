@@ -1,13 +1,14 @@
 .asset-container {
+	display: flex;
+	
 	width: 360px;
 	height: 295px;
 	border: 1px red solid;
 	
 	background: rgb(234,234,234);
-	/*float: left;*/
-	display: flex;
 }
 
+/*header*/
 .asset-container header{
 
 	display: flex;
@@ -23,6 +24,7 @@
 }
 
 .asset-container header .h2Wrapper{
+	/* fixes the rotation offset*/
 	margin: 0 1px -10px 0;
 }
 
@@ -37,14 +39,38 @@
 	font-family: sans-serif;
 }
 
-
-.asset-container .container-body {
-}
-
 .small-plus-icon {
 	border: 2px rgb(253, 144, 105) solid;
 	border-radius: 50%;
 	height: 20px;
 	width: 20px;
-	/*float: right;*/
 }
+
+/* body */
+.asset-container .container-body {
+	flex-grow: 1;
+	padding: 8px 15px;
+}
+
+.asset-container .container-body input{
+	width: 100%;
+	/*margin-left: 10%;*/
+	height: 20px;
+	border-radius: 4%/50%;
+	border: none;
+}
+
+.asset-container .container-body input::placeholder{
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
