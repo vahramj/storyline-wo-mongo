@@ -1,27 +1,32 @@
 import React from "react";
+import "./styles/PhaseContainer.css";
 
 const PhaseContainer = ()=>{
 	return (
-		<div>
+		<div className="asset-container">
 			<header>
-				<h2>phases</h2>
-				<div className="small plus icon"/>
+				<div className="h2Wrapper">
+					<h2>phases</h2>
+				</div>
+				<div className="small-plus-icon" />
 			</header>
-			<input type="text" placeholse="search" />
-			<ul>
-				<li>
-					<div className="phase">phase Name 1</div>
-				</li>
-				<li>
-					<div className="phase">phase Name 2</div>
-				</li>
-				<li>
-					<div className="phase">phase Name 3</div>
-				</li>
-				<li>
-					<div id="addPhase">add phase icon</div>
-				</li>
-			</ul>
+			<section className="container-body">
+				<input type="text" placeholder="search" />
+				<ul>
+					<li>
+						<div className="phase">phase Name 1</div>
+					</li>
+					<li>
+						<div className="phase">phase Name 2</div>
+					</li>
+					<li>
+						<div className="phase">phase Name 3</div>
+					</li>
+					<li>
+						<div id="addPhase">add phase icon</div>
+					</li>
+				</ul>
+			</section>
 		</div>
 	);
 };

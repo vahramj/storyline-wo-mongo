@@ -1,0 +1,50 @@
+.asset-container {
+	width: 360px;
+	height: 295px;
+	border: 1px red solid;
+	
+	background: rgb(234,234,234);
+	/*float: left;*/
+	display: flex;
+}
+
+.asset-container header{
+
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 5px 1px 5px 0;
+	
+	width: 33px;
+	
+	background: rgb(78,79,81);
+}
+
+.asset-container header .h2Wrapper{
+	margin: 0 1px -10px 0;
+}
+
+.asset-container header h2{
+	transform: rotate(-90deg);
+
+	margin-bottom: 50%;
+	color: rgb(170,182, 180);
+
+	font-size: 18pt;
+	font-weight: normal;
+	font-family: sans-serif;
+}
+
+
+.asset-container .container-body {
+}
+
+.small-plus-icon {
+	border: 2px rgb(253, 144, 105) solid;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	/*float: right;*/
+}
