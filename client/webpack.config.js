@@ -7,7 +7,8 @@ module.exports = {
 	entry: "./src/index.jsx",
 	output: {
 		path: path.join(__dirname, "static"),
-		filename: "bundle.js"
+		filename: "bundle.js",
+		publicPath: "/static/"
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".json"]
@@ -23,6 +24,9 @@ module.exports = {
 				test: /\.css$/,
 				use: ["style-loader","css-loader"]
 			}
+
 		]
+	},
+	devServer: {
 	}
 };

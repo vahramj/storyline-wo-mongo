@@ -35,16 +35,26 @@ const phaseData = [
 const AssetContainer = (props)=>{
 	return (
 		<div className="asset-container">
+		
 			<header>
 				<div className="h2Wrapper">
-					<h2>{props.type}</h2>
+					<h2>{props.type.toUpperCase()}</h2>
 				</div>
 				<div className="small-plus-icon">&#43;</div>
 			</header>
+
 			<section className="container-body">
 				<input type="text" placeholder="search" />
 				<ul>
-					{phaseData.map(phase=><li><Phase key={phase.phs_id} name={phase.name} img={phase.img} /></li>)}
+					{
+						phaseData.map(phase => {
+							return (
+								<li key={phase.phaseId}>
+									<Phase  name={phase.name} img={phase.img} />
+								</li>
+							);
+						})
+					}
 					<li>
 						<div id="addPhase">
 							<div className="large-plus-icon">&#43;</div>
@@ -52,6 +62,7 @@ const AssetContainer = (props)=>{
 					</li>
 				</ul>
 			</section>
+
 		</div>
 	);
 };

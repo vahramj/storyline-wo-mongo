@@ -33,9 +33,9 @@
 	margin-bottom: 50%;
 	color: rgb(170,182, 180);
 
+	font-family: 'Quicksand', sans-serif;
 	font-size: 18pt;
-	font-weight: normal;
-	font-family: sans-serif;
+	font-weight: lighter;
 }
 
 .small-plus-icon {
@@ -85,7 +85,7 @@
 #addPhase {
 	width: 135px;
 	height: 95px;
-	border: 1px solid red;
+	border: 1px solid green;
 }
 
 .large-plus-icon {
