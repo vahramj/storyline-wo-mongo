@@ -1,8 +1,9 @@
 .phase {
-	width: 110px;
+	width: 135px;
 	/*height: 95px;*/
 	border: 1px solid red;
 	overflow: hidden;
+	background: white;
 }
 
 .phase img {

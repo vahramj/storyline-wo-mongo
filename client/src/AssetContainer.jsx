@@ -1,4 +1,6 @@
 import React from "react";
+import {string} from "prop-types";
+
 import Phase from "./Phase";
 import "./styles/AssetContainer.css";
 
@@ -13,16 +15,16 @@ const phaseData = [
 		name: "frodo's decision",
 		img: "./static/images/frodo's decision_thumb.png"
 	},
-	// {
-	// 	phaseId: "phs_15",
-	// 	name: "gorlum's journey",
-	// 	img: "./static/images/gorlum's journey_thumb.png"
-	// },
-	// {
-	// 	phaseId: "phs_20",
-	// 	name: "saving Minas Tirith",
-	// 	img: "./static/images/saving Minas Tirith_thumb.png"
-	// },
+	{
+		phaseId: "phs_15",
+		name: "gorlum's journey",
+		img: "./static/images/gorlum's journey_thumb.png"
+	},
+	{
+		phaseId: "phs_20",
+		name: "saving Minas Tirith",
+		img: "./static/images/saving Minas Tirith_thumb.png"
+	},
 	{
 		phaseId: "phs_25",
 		name: "underground_tomb",
@@ -30,14 +32,14 @@ const phaseData = [
 	}
 ]
 
-const AssetContainer = ()=>{
+const AssetContainer = (props)=>{
 	return (
 		<div className="asset-container">
 			<header>
 				<div className="h2Wrapper">
-					<h2>phases</h2>
+					<h2>{props.type}</h2>
 				</div>
-				<div className="small-plus-icon" />
+				<div className="small-plus-icon">&#43;</div>
 			</header>
 			<section className="container-body">
 				<input type="text" placeholder="search" />
@@ -46,13 +48,16 @@ const AssetContainer = ()=>{
 					<li>
 						<div id="addPhase">
 							<div className="large-plus-icon">&#43;</div>
-							{/* <span>&#43;</span> */}
 						</div>
 					</li>
 				</ul>
 			</section>
 		</div>
 	);
+};
+
+AssetContainer.propTypes = {
+	type: string.isRequired
 };
 
 export default AssetContainer;

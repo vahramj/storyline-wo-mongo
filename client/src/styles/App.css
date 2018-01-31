@@ -1,9 +1,24 @@
 #main-header {
 	background: rgb(120, 160, 160);
-	overflow: auto;
+	/*overflow: auto;*/
+	height: 65px;
+	display: flex;
+	align-items: center;
+	padding-left: 10%;
 }
+
 #main-header h1 {
+	/*margin-top: 50%;*/
 	font-size: 1.5em;
 	font-family: sans-serif;
 	color: rgb(255, 255, 253);
+
+
+}
+
+.container-holder{
+	display: flex;
+	justify-content: space-between;
+
+	padding: 35px 10% 0 10%;
 }

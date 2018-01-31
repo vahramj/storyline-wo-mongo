@@ -43,12 +43,20 @@
 	border-radius: 50%;
 	height: 20px;
 	width: 20px;
+
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 18px;
+	color: rgb(253, 144, 105);
 }
 
 /* body */
 .asset-container .container-body {
 	flex-grow: 1;
 	padding: 8px 15px;
+	overflow: auto;
+	/*overflow-y: scroll; */
 }
 
 .asset-container .container-body input{
@@ -60,12 +68,22 @@
 }
 
 .asset-container .container-body input::placeholder{
+	/* centers the search placeholder */
 	text-align: center;
 }
 
+.asset-container .container-body ul{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.asset-container .container-body li{
+	margin-bottom: 25px;
+}
 
 #addPhase {
-	width: 110px;
+	width: 135px;
 	height: 95px;
 	border: 1px solid red;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import PhaseContainer from "./PhaseContainer";
+import AssetContainer from "./AssetContainer";
 import "./styles/App.css";
 
 const App = ()=>{
@@ -8,7 +8,11 @@ const App = ()=>{
 			<header id="main-header">
 				<h1>Storyline Maker</h1>
 			</header>
-			<PhaseContainer />
+			<div className="container-holder">
+				<AssetContainer type="Phases" />
+				<AssetContainer type="Scenes" />
+				<AssetContainer type="Characters" />
+			</div>
 		</div>
 	);
 };
