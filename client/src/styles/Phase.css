@@ -31,11 +31,12 @@
 
 .edit-phase-icon{
 	position: absolute;
-	left: 48px;
+	left: 75px;
 	top: 13px;
 }
 
 .delete-phase-icon{
 	position: absolute;
-	left: -15px;
+	left: 13px;
+	top: 13px;
 }

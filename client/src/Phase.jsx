@@ -14,7 +14,7 @@ class Phase extends Component {
 	}
 
 	onImgLoad({target: img}){
-		const frameWidth = 135; 
+		const frameWidth = 125; 
 		const frameHeight = 75;
 
 		if(img.width/img.height < frameWidth/frameHeight) {
@@ -30,7 +30,7 @@ class Phase extends Component {
 			<div className="phase">
 {				<div className="hover-tint">
 					<img src="/static/icons/edit_icon.png" className="edit-phase-icon" alt="edit icon"/>
-					<img src="/static/icons/delete_phase_icon.png" className="delete-phase-icon" alt="delete phase icon"/>
+					<img src="/static/icons/delete_phase_icon_2.png" className="delete-phase-icon" alt="delete phase icon"/>
 				</div>
 }				<div className="phase-image-cropper">
 					<img 

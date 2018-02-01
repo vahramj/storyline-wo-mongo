@@ -1,7 +1,7 @@
 .asset-container {
 	display: flex;
 	
-	width: 360px;
+	width: 350px;
 	height: 295px;
 
 	margin-right: 25px;
@@ -54,14 +54,14 @@
 }
 
 /* body */
-.asset-container .container-body {
+.container-body {
 	flex-grow: 1;
 	padding: 8px 15px;
 	overflow: auto;
 	/*overflow-y: scroll; */
 }
 
-.asset-container .container-body input{
+.container-body input{
 	width: 100%;
 	height: 20px;
 	border-radius: 4%/50%;
@@ -69,21 +69,21 @@
 	margin-bottom: 25px;
 }
 
-.asset-container .container-body input::placeholder{
+.container-body input::placeholder{
 	/* centers the search placeholder */
 	text-align: center;
 }
 
-.asset-container .container-body ul{
+.container-body ul{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-.asset-container .container-body li{
+.container-body li{
 	margin-bottom: 25px;
 }
-.asset-container .container-body li:nth-of-type(2n+1){
+.container-body li:nth-of-type(2n+1){
 	margin-right: 10px;
 }
 
