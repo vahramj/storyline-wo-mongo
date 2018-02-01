@@ -77,15 +77,18 @@
 .asset-container .container-body ul{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .asset-container .container-body li{
 	margin-bottom: 25px;
 }
+.asset-container .container-body li:nth-of-type(2n+1){
+	margin-right: 10px;
+}
 
 #addPhase {
-	width: 135px;
+	width: 125px;
 	height: 95px;
 	border: 1px solid green;
 }
@@ -103,6 +106,15 @@
 	color: rgb(120, 160, 160);
 }
 
-
+@media (max-width: 1235px) {
+	.asset-container .container-body ul{
+		max-width: 200px;
+		margin: auto;
+		justify-content: space-around;
+	}
+	.asset-container .container-body li:nth-of-type(2n+1){
+		margin-right: 0;
+	}
+}
 
 

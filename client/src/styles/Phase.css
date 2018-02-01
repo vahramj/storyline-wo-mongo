@@ -1,6 +1,7 @@
 .phase {
 	position: relative;
-	width: 135px;
+	width: 125px;
+	height: 95px;
 	border: 1px solid green;
 	background: white;
 }
@@ -12,7 +13,7 @@
 
 .phase span {
 	display: block;
-	padding: 5px;
+	padding: 7px 5px 5px 5px;
 
 	font-family: 'Quicksand', sans-serif;
 	font-size: 12px;
@@ -24,7 +25,7 @@
 }
 
 .phase .hover-tint{
-	width: 135px;
+	width: 125px;
 	height: 70px;
 }
 
