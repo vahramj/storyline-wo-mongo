@@ -10,8 +10,7 @@ class Phase extends Component {
 	}
 
 	componentDidUpdate(){
-		// console.log(this.state.width);
-		this.img.width = this.state.width;
+		this.phaseImg.width = this.state.phaseImgWidth;
 	}
 
 	onImgLoad({target: img}){
@@ -19,20 +18,24 @@ class Phase extends Component {
 		const frameHeight = 75;
 
 		if(img.width/img.height < frameWidth/frameHeight) {
-			this.setState({width: frameWidth});
+			this.setState({phaseImgWidth: frameWidth});
 		}
 		else {
-			this.setState({width: frameHeight/img.height*img.width});
+			this.setState({phaseImgWidth: frameHeight/img.height*img.width});
 		}
 	}
 
 	render(){
 		return (
 			<div className="phase">
-				<div className="phase-image-cropper">
+{				<div className="hover-tint">
+					<img src="/static/icons/edit_icon.png" className="edit-phase-icon" alt="edit icon"/>
+					<img src="/static/icons/delete_phase_icon.png" className="delete-phase-icon" alt="delete phase icon"/>
+				</div>
+}				<div className="phase-image-cropper">
 					<img 
 						onLoad={this.onImgLoad} 
-						ref={img => {this.img = img}}
+						ref={phaseImg => {this.phaseImg = phaseImg}}
 						src={this.props.img} 
 						alt={`thumbnail for ${this.props.name}`} 
 					/>

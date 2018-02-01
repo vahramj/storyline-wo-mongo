@@ -20,3 +20,13 @@
 
 	padding: 35px 7% 0 7%;
 }
+
+.hover-tint:hover{
+	opacity: 1;
+}
+
+.hover-tint{
+	opacity: 0;
+	position: absolute;
+	background: rgba(51,51,51,0.6); 
+}

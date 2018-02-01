@@ -1,8 +1,7 @@
 .phase {
+	position: relative;
 	width: 135px;
-	/*height: 95px;*/
 	border: 1px solid green;
-	/*overflow: hidden;*/
 	background: white;
 }
 
@@ -21,4 +20,21 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+
+}
+
+.phase .hover-tint{
+	width: 135px;
+	height: 70px;
+}
+
+.edit-phase-icon{
+	position: absolute;
+	left: 48px;
+	top: 13px;
+}
+
+.delete-phase-icon{
+	position: absolute;
+	left: -15px;
 }
