@@ -22,6 +22,7 @@
     },
     "rules": {
         "no-var": "off",
+        "vars-on-top": "off",
     	"no-console": "off",
     	"arrow-body-style": "off"
     }

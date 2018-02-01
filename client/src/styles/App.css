@@ -4,7 +4,7 @@
 	height: 65px;
 	display: flex;
 	align-items: center;
-	padding-left: 10%;
+	padding-left: 7%;
 }
 
 #main-header h1 {
@@ -12,13 +12,11 @@
 	font-size: 1.5em;
 	font-family: sans-serif;
 	color: rgb(255, 255, 253);
-
-
 }
 
 .container-holder{
 	display: flex;
 	justify-content: space-between;
 
-	padding: 35px 10% 0 10%;
+	padding: 35px 7% 0 7%;
 }

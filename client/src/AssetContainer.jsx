@@ -22,7 +22,7 @@ const phaseData = [
 	},
 	{
 		phaseId: "phs_20",
-		name: "saving Minas Tirith",
+		name: "saving Minas Tirith_saving Minas Tirith",
 		img: "./static/images/saving Minas Tirith_thumb.png"
 	},
 	{

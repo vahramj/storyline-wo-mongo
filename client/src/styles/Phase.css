@@ -2,15 +2,23 @@
 	width: 135px;
 	/*height: 95px;*/
 	border: 1px solid green;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	background: white;
 }
 
-.phase img {
+.phase-image-cropper {
 	height: 70px;
+	overflow: hidden;
 }
 
 .phase span {
 	display: block;
 	padding: 5px;
+
+	font-family: 'Quicksand', sans-serif;
+	font-size: 12px;
+	font-weight: lighter;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
