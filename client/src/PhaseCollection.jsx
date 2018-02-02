@@ -29,14 +29,24 @@ const PhaseCollection = () => {
 export default PhaseCollection;
 
 phaseData = [
+	// {
+	// 	phaseId: "phs_2",
+	// 	name: "prologue",
+	// 	img: ""
+	// },
+	// {
+	// 	phaseId: "phs_5",
+	// 	name: "shire",
+	// 	img: ""
+	// },
 	{
-		phaseId: "phs_5",
+		phaseId: "phs_7",
 		name: "fellowship begins",
 		img: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 	},
 	{
 		phaseId: "phs_10",
-		name: "frodo's decision",
+		name: "frodo's final decision",
 		img: "./static/images/phase_thumbnails/frodo's decision_thumb.png"
 	},
 	{

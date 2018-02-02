@@ -10,7 +10,7 @@ const componetes = {
 	phases: PhaseCollection,
 	scenes: PhaseCollection,
 	characters: CharacterCollection
-}
+};
 
 const AssetContainer = (props)=>{
 	const RequestedCollection = componetes[props.type.toLowerCase()];
@@ -25,10 +25,11 @@ const AssetContainer = (props)=>{
 				<div className="small-plus-icon">&#43;</div>
 			</header>
 			<section className="container-body">
-				<input type="text" placeholder="search" />
+				<div className="search-bg-fader">
+					<input type="text" placeholder="search" />
+				</div>
 				<RequestedCollection />
 			</section>
-
 		</div>
 	);
 };

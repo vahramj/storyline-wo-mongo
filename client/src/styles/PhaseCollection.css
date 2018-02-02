@@ -1,3 +1,8 @@
+.phase-collection {
+	flex-grow: 1;
+	overflow: auto;
+}
+
 .phase-collection ul{
 	display: flex;
 	flex-wrap: wrap;
@@ -5,7 +10,7 @@
 }
 
 .phase-collection li{
-	margin-bottom: 25px;
+	margin-top: 25px;
 	margin-right: 10px;
 }
 .phase-collection li:nth-of-type(2n){

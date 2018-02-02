@@ -3,17 +3,11 @@ import {string} from "prop-types";
 import "./styles/Phase.css";
 
 class Phase extends Component {
-	constructor(props){
-		super(props);
-
-		this.fitImgToFrame = this.fitImgToFrame.bind(this);
-	}
-
 	componentDidUpdate(){
 		this.thumbImgElem.width = this.state.fittedImgWidth;
 	}
 
-	fitImgToFrame({target: img}){
+	fitImgToFrame = ({target: img})=>{
 		const frameWidth = 125; 
 		const frameHeight = 75;
 
@@ -29,8 +23,16 @@ class Phase extends Component {
 		return (
 			<div className="phase">
 				<div className="hover-tint">
-					<img src="/static/icons/edit_icon.png" className="edit-phase-icon" alt="edit icon"/>
-					<img src="/static/icons/delete_phase_icon_2.png" className="delete-phase-icon" alt="delete phase icon"/>
+					<img 
+						src="/static/icons/edit_icon.png" 
+						className="edit-phase-icon" 
+						alt="edit icon"
+					/>
+					<img 
+						src="/static/icons/delete_phase_icon_2.png" 
+						className="delete-phase-icon" 
+						alt="delete phase icon"
+					/>
 				</div>
 				<div className="phase-image-cropper">
 					<img 
