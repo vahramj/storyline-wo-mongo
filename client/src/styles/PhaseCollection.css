@@ -1,0 +1,45 @@
+.phase-collection ul{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.phase-collection li{
+	margin-bottom: 25px;
+	margin-right: 10px;
+}
+.phase-collection li:nth-of-type(2n){
+	margin-right: 0px;
+}
+
+@media (max-width: 1235px) {
+	.phase-collection ul{
+		max-width: 200px;
+		margin: auto;
+		justify-content: space-around;
+	}
+	.phase-collection li{
+		margin-right: 0;
+	}
+}
+
+#add-phase {
+	width: 125px;
+	height: 95px;
+	/*border: 1px solid green;*/
+}
+
+#add-phase .large-plus-icon {
+	border: 4px rgb(120, 160, 160) solid;
+	width: 65px;
+	height: 65px;
+	margin: auto;
+
+	font-size: 60px;
+	text-align: center;
+	color: rgb(120, 160, 160);
+	/*style above is same as add-character icon*/
+
+	margin-top: 11px;
+	/*border-radius: 50%;*/
+}

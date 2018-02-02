@@ -1,0 +1,61 @@
+.character-collection ul{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.character-collection li{
+	margin-bottom: 25px;
+	margin-right: 10px;
+}
+.character-collection li:nth-of-type(3n){
+	margin-right: 0px;
+}
+
+@media (max-width: 1235px) {
+	.character-collection ul{
+		max-width: 240px;
+		margin: auto;
+		justify-content: space-around;
+	}
+	.character-collection li:nth-of-type(3n){
+		margin-right: 10px;
+	}
+	.character-collection li:nth-of-type(2n){
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 905px) {
+	.character-collection ul{
+		max-width: 150px;
+		margin: auto;
+		justify-content: space-around;
+	}
+
+	.character-collection li:nth-of-type(3n){
+		margin-right: 0px;
+	}
+	.character-collection li{
+		margin-right: 0;
+	}
+}
+
+#add-character{
+	width: 78px;
+	height: 78px;
+	/*border: 1px solid green;*/
+}
+#add-character .large-plus-icon {
+	border: 4px rgb(120, 160, 160) solid;
+	width: 65px;
+	height: 65px;
+	margin: auto;
+
+	font-size: 60px;
+	text-align: center;
+	color: rgb(120, 160, 160);
+	/*style below is same as add-phase icon*/
+
+	border-radius: 50%;
+}

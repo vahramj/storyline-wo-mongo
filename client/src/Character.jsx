@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {string} from "prop-types";
-import "./styles/Phase.css";
+import "./styles/Character.css";
 
-class Phase extends Component {
+class Character extends Component {
 	constructor(props){
 		super(props);
 
@@ -27,12 +27,20 @@ class Phase extends Component {
 
 	render(){
 		return (
-			<div className="phase">
+			<div className="character">
 				<div className="hover-tint">
-					<img src="/static/icons/edit_icon.png" className="edit-phase-icon" alt="edit icon"/>
-					<img src="/static/icons/delete_phase_icon_2.png" className="delete-phase-icon" alt="delete phase icon"/>
+					<img 
+						src="/static/icons/edit_icon.png" 
+						className="edit-character-icon" 
+						alt="edit icon"
+					/>
+					<img 
+						src="/static/icons/delete_phase_icon_2.png" 
+						className="delete-character-icon" 
+						alt="delete character icon"
+					/>
 				</div>
-				<div className="phase-image-cropper">
+				<div className="character-image-cropper">
 					<img 
 						onLoad={this.fitImgToFrame} 
 						ref={thumbImgElem => {this.thumbImgElem = thumbImgElem}}
@@ -46,9 +54,9 @@ class Phase extends Component {
 	}
 };
 
-Phase.propTypes = {
+Character.propTypes = {
 	img: string.isRequired,
 	name: string.isRequired
 };
 
-export default Phase;
+export default Character;
