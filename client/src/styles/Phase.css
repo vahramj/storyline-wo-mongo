@@ -39,3 +39,7 @@
 	left: 13px;
 	top: 13px;
 }
+
+.edit-phase-icon:hover, .delete-phase-icon:hover{
+	cursor: pointer;
+}

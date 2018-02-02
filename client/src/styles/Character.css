@@ -38,3 +38,7 @@
 	left: -7px;
 	top: 21px;
 }
+
+.edit-character-icon:hover, .delete-character-icon:hover{
+	cursor: pointer;
+}
