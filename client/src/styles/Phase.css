@@ -43,3 +43,49 @@
 .edit-phase-icon:hover, .delete-phase-icon:hover{
 	cursor: pointer;
 }
+
+
+/*_________default tumbnail_____*/
+.default-thumbnail{
+	overflow: hidden;
+	position: relative;
+	height: 95px;
+	width: 125px;
+	display: flex;
+}
+
+.default-thumbnail img{
+	position: absolute;
+}
+.default-thumbnail-tint{
+	position: absolute;
+	background: rgba(51,51,51,0.8);
+	width: 125px;
+	height: 95px;
+}
+
+.phase .name-frame{
+	position: absolute;
+	width: 105px;
+	height: 75px;
+	padding: 10px;
+	display: flex;
+}
+.phase .name-frame .name-crop{
+	overflow: hidden;
+	flex-grow: 1;
+	display: flex;
+}
+
+.phase .name-frame span {
+	padding: 0px;
+	font-size: 18px;
+	font-weight: bold;
+	white-space: normal;
+	color: white;
+	margin: auto;
+	text-align: center;
+}
+
+
+

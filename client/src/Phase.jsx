@@ -3,8 +3,43 @@ import {string} from "prop-types";
 import "./styles/Phase.css";
 
 class Phase extends Component {
+	componentWillMount(){
+		// console.log(this.props.image);
+		let thumbnail;
+
+		if(this.props.image){
+			thumbnail = (
+				<div>
+					<div className="phase-image-cropper">
+						<img 
+							onLoad={this.fitImgToFrame} 
+							ref={thumbImageElem => {this.thumbImageElem = thumbImageElem}}
+							src={this.props.image} 
+							alt={`thumbnail for ${this.props.name}`} 
+						/>
+					</div>
+					<span>{this.props.name}</span>
+				</div>
+			);
+		}
+		else {
+			thumbnail = (
+				<div className="default-thumbnail">
+					<img src="./static/images/phase_thumbnails/phase_default_04_thumb.png" alt=""/>
+					<div className="default-thumbnail-tint" />
+					<div className="name-frame">
+						<div className="name-crop">
+							<span>{this.props.name}</span>
+						</div>
+					</div>
+				</div>
+			);
+		}
+		this.setState({thumbnail})
+	}
+
 	componentDidUpdate(){
-		this.thumbImgElem.width = this.state.fittedImgWidth;
+		this.thumbImageElem.width = this.state.fittedImgWidth;
 	}
 
 	fitImgToFrame = ({target: img})=>{
@@ -34,23 +69,18 @@ class Phase extends Component {
 						alt="delete phase icon"
 					/>
 				</div>
-				<div className="phase-image-cropper">
-					<img 
-						onLoad={this.fitImgToFrame} 
-						ref={thumbImgElem => {this.thumbImgElem = thumbImgElem}}
-						src={this.props.img} 
-						alt={`thumbnail for ${this.props.name}`} 
-					/>
-				</div>
-				<span>{this.props.name}</span>
+				{this.state.thumbnail}
 			</div>
 		);
 	}
 };
 
 Phase.propTypes = {
-	img: string.isRequired,
+	image: string,
 	name: string.isRequired
 };
 
+Phase.defaultProps = {
+	image: ""
+}
 export default Phase;
