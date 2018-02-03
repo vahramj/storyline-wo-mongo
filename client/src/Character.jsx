@@ -3,17 +3,17 @@ import {string} from "prop-types";
 import "./styles/Character.css";
 
 class Character extends Component {
-	constructor(props){
-		super(props);
+	// constructor(props){
+	// 	super(props);
 
-		this.fitImgToFrame = this.fitImgToFrame.bind(this);
-	}
+	// 	this.fitImgToFrame = this.fitImgToFrame.bind(this);
+	// }
 
 	componentDidUpdate(){
 		this.thumbImgElem.width = this.state.fittedImgWidth;
 	}
 
-	fitImgToFrame({target: img}){
+	fitImgToFrame = ({target: img})=>{
 		const frameWidth = 125; 
 		const frameHeight = 75;
 

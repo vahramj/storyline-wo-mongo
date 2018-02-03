@@ -4,12 +4,26 @@ import "./styles/Phase.css";
 
 class Phase extends Component {
 	componentWillMount(){
-		// console.log(this.props.image);
 		let thumbnail;
-
+		const editTint = (
+				<div className="hover-tint">
+					<img 
+						src="/static/icons/edit_icon.png" 
+						className="edit-phase-icon" 
+						alt="edit icon"
+					/>
+					<img 
+						src="/static/icons/delete_phase_icon_2.png" 
+						className="delete-phase-icon" 
+						alt="delete phase icon"
+					/>
+				</div>
+			);
+		
 		if(this.props.image){
 			thumbnail = (
 				<div>
+					{editTint}
 					<div className="phase-image-cropper">
 						<img 
 							onLoad={this.fitImgToFrame} 
@@ -25,8 +39,11 @@ class Phase extends Component {
 		else {
 			thumbnail = (
 				<div className="default-thumbnail">
-					<img src="./static/images/phase_thumbnails/phase_default_04_thumb.png" alt=""/>
-					<div className="default-thumbnail-tint" />
+					{editTint}
+					<div className="phase-image-cropper">
+						{ <img src="./static/images/phase_thumbnails/phase_default_04_thumb.png" alt=""/> }
+						{ <div className="default-thumbnail-tint" /> }
+					</div>
 					<div className="name-frame">
 						<div className="name-crop">
 							<span>{this.props.name}</span>
@@ -57,18 +74,6 @@ class Phase extends Component {
 	render(){
 		return (
 			<div className="phase">
-				<div className="hover-tint">
-					<img 
-						src="/static/icons/edit_icon.png" 
-						className="edit-phase-icon" 
-						alt="edit icon"
-					/>
-					<img 
-						src="/static/icons/delete_phase_icon_2.png" 
-						className="delete-phase-icon" 
-						alt="delete phase icon"
-					/>
-				</div>
 				{this.state.thumbnail}
 			</div>
 		);

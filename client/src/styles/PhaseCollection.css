@@ -1,29 +1,31 @@
 .phase-collection {
 	flex-grow: 1;
 	overflow: auto;
+	margin: 0 -50px;
+	padding: 0 50px;
 }
 
-.phase-collection ul{
+.phase-collection ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-.phase-collection li{
+.phase-collection li {
 	margin-top: 25px;
 	margin-right: 10px;
 }
-.phase-collection li:nth-of-type(2n){
+.phase-collection li:nth-of-type(2n) {
 	margin-right: 0px;
 }
 
 @media (max-width: 1235px) {
-	.phase-collection ul{
+	.phase-collection ul {
 		max-width: 200px;
 		margin: auto;
 		justify-content: space-around;
 	}
-	.phase-collection li{
+	.phase-collection li {
 		margin-right: 0;
 	}
 }
