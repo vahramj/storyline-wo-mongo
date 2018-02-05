@@ -2,9 +2,6 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	// // come back to this when running webpack builds in subdirectories, 
-		// // multiple entry outputs
-	// context: __dirname,
 	entry: "./src/index.jsx",
 	output: {
 		path: path.join(__dirname, "static"),
@@ -31,7 +28,7 @@ module.exports = {
 		]
 	},
 	devServer: {
-		inline: true
+		// inline: false
 	},
 	plugins: [ 
 		new ExtractTextPlugin("styles.css") 

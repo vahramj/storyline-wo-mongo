@@ -519,24 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
-			"settings":
-			{
-				"buffer_size": 26016,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
-			"settings":
-			{
-				"buffer_size": 65460,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -699,6 +681,8 @@
 	],
 	"file_history":
 	[
+		"/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 		"/Current projects/storylilneMaker/dev/client/src/styles/PhaseContainer.css",
 		"/Current projects/storylilneMaker/dev/client/src/PhaseContainer.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/styles/App.css",
@@ -745,7 +729,6 @@
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ClientApp.jsx",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Spinner.jsx",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/spinner.jsx",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/Search.spec.jsx",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/__snapshots__/Search.spec.jsx.snap",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.babelrc",
@@ -755,7 +738,6 @@
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/utils.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.jsx",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experiment/package.json",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/webpack.config.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/.eslintrc.json",
@@ -989,75 +971,14 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 26016,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5152,
-								5152
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 65460,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9184,
-								9184
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -1098,7 +1019,7 @@
 	"project": "storylineMaker.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
