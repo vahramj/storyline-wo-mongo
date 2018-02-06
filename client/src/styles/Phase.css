@@ -6,7 +6,7 @@
 	background: white;
 }
 
-.phase-image-cropper {
+.phase .image-cropper {
 	height: 70px;
 	overflow: hidden;
 }
@@ -44,72 +44,6 @@
 
 .edit-phase-icon:hover, .delete-phase-icon:hover{
 	cursor: pointer;
-}
-
-
-/*
- __   ___  ___                ___    ___                  __                   
-|  \ |__  |__   /\  |  | |     |      |  |__| |  |  |\/| |__) |\ |  /\  | |    
-|__/ |___ |    /~~\ \__/ |___  |      |  |  | \__/  |  | |__) | \| /~~\ | |___ 
-*/
-.default-thumbnail{
-	/*overflow: hidden;*/
-	/*position: relative;*/
-	/*height: 95px;*/
-	/*width: 125px;*/
-	display: flex;
-}
-
-.default-thumbnail .phase-image-cropper{
-	position: absolute;
-	height: 95px;
-	width: 125px;
-
-}
-
-.default-thumbnail img{
-	position: absolute;
-}
-.default-thumbnail-tint{
-	position: absolute;
-	background: rgba(51,51,51,0.8);
-	width: 125px;
-	height: 95px;
-}
-
-.phase .name-frame{
-	/*position: absolute;*/
-	z-index: 1;
-	width: 105px;
-	height: 75px;
-	padding: 10px;
-	display: flex;
-}
-.phase .name-frame .name-crop{
-	overflow: hidden;
-	flex-grow: 1;
-	display: flex;
-}
-
-.phase .name-frame span {
-	padding: 0px;
-	font-size: 18px;
-	font-weight: bold;
-	white-space: normal;
-	color: white;
-	margin: auto;
-	text-align: center;
-}
-
-.phase .default-thumbnail .hover-tint{
-	width: 125px;
-	height: 95px;
-	background: rgba(51,51,51,0.8); 
-
-}
-
-.default-thumbnail .delete-phase-icon, .default-thumbnail .edit-phase-icon{
-	top: 28px;
 }
 
 

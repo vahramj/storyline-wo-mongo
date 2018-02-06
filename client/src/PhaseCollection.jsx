@@ -44,14 +44,10 @@ phaseData = [
 		name: "fellowship begins",
 		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 	},
-	{
-		phaseId: "phs_8",
-		name: "frodo's final decision"
-	},
-	{
-		phaseId: "phs_0",
-		name: "fellowship begins"
-	},
+	// {
+	// 	phaseId: "phs_8",
+	// 	name: "frodo's final decision"
+	// },
 	{
 		phaseId: "phs_10",
 		name: "frodo's final decision",
@@ -61,6 +57,10 @@ phaseData = [
 		phaseId: "phs_15",
 		name: "gorlum's journey",
 		image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png"
+	},
+	{
+		phaseId: "phs_0",
+		name: "fellowship begins"
 	},
 	{
 		phaseId: "phs_20",

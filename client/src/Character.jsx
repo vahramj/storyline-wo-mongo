@@ -3,12 +3,6 @@ import {string} from "prop-types";
 import "./styles/Character.css";
 
 class Character extends Component {
-	// constructor(props){
-	// 	super(props);
-
-	// 	this.fitImgToFrame = this.fitImgToFrame.bind(this);
-	// }
-
 	componentDidUpdate(){
 		this.thumbImgElem.width = this.state.fittedImgWidth;
 	}
