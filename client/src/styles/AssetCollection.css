@@ -1,0 +1,31 @@
+.asset-collection {
+	flex-grow: 1;
+	overflow: auto;
+	margin: 0 -50px;
+	padding: 0 50px;
+}
+
+.asset-collection ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.asset-collection li {
+	margin-top: 25px;
+}
+
+#add-asset {
+	/*border: 1px solid green;*/
+}
+
+#add-asset .large-plus-icon {
+	border: 4px rgb(120, 160, 160) solid;
+	width: 65px;
+	height: 65px;
+	margin: auto;
+
+	font-size: 60px;
+	text-align: center;
+	color: rgb(120, 160, 160);
+	/*style above is same as add-character icon*/
+}

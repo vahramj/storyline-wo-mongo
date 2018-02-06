@@ -9,9 +9,9 @@ const App = ()=>{
 				<h1>Storyline Maker</h1>
 			</header>
 			<div className="container-holder">
-				<AssetContainer type="phases" />
-				<AssetContainer type="scenes" />
-				<AssetContainer type="characters" />
+				<AssetContainer type="phase" />
+				<AssetContainer type="scene" />
+				<AssetContainer type="character" />
 			</div>
 		</div>
 	);

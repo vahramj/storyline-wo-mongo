@@ -1,0 +1,37 @@
+.asset {
+	position: relative;
+	/*border: 1px solid green;*/
+
+}
+
+.asset .image-cropper {
+	overflow: hidden;
+}
+
+.asset span {
+	display: block;
+	padding: 7px 5px 5px 5px;
+
+	font-family: 'Quicksand', sans-serif;
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.asset .hover-tint{
+	z-index: 2;
+}
+
+.asset .edit-icon{
+	position: absolute;
+}
+
+.asset .delete-icon{
+	position: absolute;
+}
+
+.asset .edit-icon:hover, .asset .delete-icon:hover{
+	cursor: pointer;
+}
+
+
+

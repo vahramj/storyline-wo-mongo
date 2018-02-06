@@ -1,26 +1,17 @@
 import React from "react";
 import {string} from "prop-types";
 
-import PhaseCollection from "./PhaseCollection";
-import CharacterCollection from "./CharacterCollection";
+import AssetCollection from "./AssetCollection";
 
 import "./styles/AssetContainer.css";
 
-const componetes = {
-	phases: PhaseCollection,
-	scenes: PhaseCollection,
-	characters: CharacterCollection
-};
-
 const AssetContainer = (props)=>{
-	const RequestedCollection = componetes[props.type.toLowerCase()];
-
 	return (
 		<div className="asset-container">
 		
 			<header>
 				<div className="h2Wrapper">
-					<h2>{props.type.toUpperCase()}</h2>
+					<h2>{`${props.type}s`.toUpperCase()}</h2>
 				</div>
 				<div className="small-plus-icon">&#43;</div>
 			</header>
@@ -28,7 +19,7 @@ const AssetContainer = (props)=>{
 				<div className="search-bg-fader">
 					<input type="text" placeholder="search" />
 				</div>
-				<RequestedCollection />
+				<AssetCollection type={props.type} />
 			</section>
 		</div>
 	);

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { string } from "prop-types";
-import "./styles/Phase.css";
+import "./styles/Asset.css";
+import "./styles/Asset-character.css";
+import "./styles/Asset-phase.css";
 
-class Phase extends Component {
+class Asset extends Component {
 	constructor(props){
 		super(props);
 
@@ -10,10 +12,6 @@ class Phase extends Component {
 		this.state = {
 			image: this.props.image || defaultImage
 		}
-	};
-
-	componentDidMount(){
-		// this.fitImgToFrame({target: this.thumbImageElem})
 	};
 
 	fitImgToFrame = ({target: img}) => {
@@ -31,17 +29,17 @@ class Phase extends Component {
 
 	render() {
 		return (
-			<div className="phase">
+			<div className={`asset ${this.props.type}`}>
 				<div className="hover-tint">
 					<img
 						src="/static/icons/edit_icon.png"
-						className="edit-phase-icon"
-						alt="edit icon"
+						className="edit-icon"
+						alt={`edit ${this.props.type} icon`}
 					/>
 					<img
 						src="/static/icons/delete_phase_icon_2.png"
-						className="delete-phase-icon"
-						alt="delete phase icon"
+						className="delete-icon"
+						alt={`delete ${this.props.type} icon`}
 					/>
 				</div>
 				<div className="image-cropper">
@@ -59,12 +57,13 @@ class Phase extends Component {
 	}
 }
 
-Phase.propTypes = {
+Asset.propTypes = {
 	image: string,
-	name: string.isRequired
+	name: string.isRequired,
+	type: string.isRequired
 };
 
-Phase.defaultProps = {
-	image: "./static/images/phase_thumbnails/phase_default_04_thumb.png"
+Asset.defaultProps = {
+	image: ""
 };
-export default Phase;
+export default Asset;

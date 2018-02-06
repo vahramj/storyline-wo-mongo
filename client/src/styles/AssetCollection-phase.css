@@ -1,0 +1,32 @@
+.asset-collection.phase-collection ul{
+	justify-content: space-between;
+}
+
+.asset-collection.phase-collection li{
+	margin-right: 10px;
+}
+.asset-collection.phase-collection li:nth-of-type(2n) {
+	margin-right: 0px;
+}
+
+@media (max-width: 1235px) {
+	.asset-collection.phase-collection ul {
+		max-width: 200px;
+		margin: auto;
+		justify-content: space-around;
+	}
+	.asset-collection.phase-collection li {
+		margin-right: 0;
+	}
+}
+
+.phase-collection #add-asset {
+	width: 125px;
+	height: 95px;
+	/*border: 1px solid green;*/
+}
+
+.phase-collection #add-asset .large-plus-icon {
+	margin-top: 11px;
+}
+
