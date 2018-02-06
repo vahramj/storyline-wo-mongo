@@ -14,8 +14,9 @@
 	margin-top: 25px;
 }
 
-#add-asset {
-	/*border: 1px solid green;*/
+#add-asset .large-plus-icon:hover {
+	cursor: pointer;
+	background: white;
 }
 
 #add-asset .large-plus-icon {
@@ -27,5 +28,4 @@
 	font-size: 60px;
 	text-align: center;
 	color: rgb(120, 160, 160);
-	/*style above is same as add-character icon*/
 }
