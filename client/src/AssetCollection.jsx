@@ -21,10 +21,7 @@ class AssetCollection extends Component {
 	}
 
 	componentDidMount(){
-
 		this.checkScrollBars();
-		// window.addEventListener("resize", ()=>{
-		// })
 	};
 
 	getCollectionElem = collection => {this.collection = collection};
@@ -40,7 +37,6 @@ class AssetCollection extends Component {
 			scrollBarsOn = "scroll-bars-on";
 		}
 		this.setState({scrollBarsOn})
-
 	};
 
 	render(){
@@ -57,6 +53,7 @@ class AssetCollection extends Component {
 							</li>
 						);
 					})}
+
 					<li>
 						<div id="add-asset">
 							<div className="large-plus-icon">&#43;</div>

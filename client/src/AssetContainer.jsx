@@ -20,6 +20,7 @@ const AssetContainer = (props)=>{
 					<input type="text" placeholder="search" />
 				</div>
 				<AssetCollection type={props.type} />
+				
 			</section>
 		</div>
 	);
