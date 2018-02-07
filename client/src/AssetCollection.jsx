@@ -19,9 +19,36 @@ class AssetCollection extends Component {
 		super(props);
 		this.state = {data: data[this.props.type], type: assetTypes[this.props.type]}
 	}
+
+	componentDidMount(){
+
+		this.checkScrollBars();
+		// window.addEventListener("resize", ()=>{
+		// })
+	};
+
+	getCollectionElem = collection => {this.collection = collection};
+
+	checkScrollBars = () => {
+		let scrollBarsOn;
+		if(this.collection.clientWidth === this.collection.offsetWidth){
+			console.log("scroll bars are off");
+			scrollBarsOn = "scroll-bars-off";
+		}
+		else{
+			console.log("scroll bars are on");
+			scrollBarsOn = "scroll-bars-on";
+		}
+		this.setState({scrollBarsOn})
+
+	};
+
 	render(){
 		return (
-			<div className={`asset-collection ${this.state.type}-collection`}>
+			<div 
+				className={`asset-collection ${this.state.type}-collection ${this.state.scrollBarsOn}`}
+				ref={this.getCollectionElem}
+			>
 				<ul>
 					{this.state.data.map(asset => {
 						return (
@@ -63,10 +90,6 @@ const phaseData = [
 		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 		image: ""
 	},
-	// {
-	// 	id: "phs_8",
-	// 	name: "frodo's final decision"
-	// },
 	{
 		id: "phs_10",
 		name: "frodo's final decision",
