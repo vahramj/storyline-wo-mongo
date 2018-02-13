@@ -1,0 +1,18 @@
+#toolbox {
+	display: flex;
+	padding: 5px 5px;
+}
+
+#toolbox div {
+	margin-right: 20px;
+}
+
+#toolbox input {
+	border-radius: 9%/45%;
+	border: none;
+	height: 20px;
+}
+
+#toolbox input::placeholder {
+	text-align: center;
+}

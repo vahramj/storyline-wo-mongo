@@ -1,0 +1,49 @@
+#timeline-container {
+	display: flex;
+	height: 250px;
+	margin-top: 35px;
+}
+
+/*header*/
+#timeline-container header{
+
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 5px 1px 5px 0;
+	
+	width: 33px;
+	/*min-width is for safari*/
+	min-width: 33px;
+	
+	background: rgb(78,79,81);
+}
+
+#timeline-container header .h2Wrapper{
+	/* fixes the rotation offset*/
+	margin: 0 1px -10px 0;
+}
+
+#timeline-container header h2{
+	transform: rotate(-90deg);
+
+	margin-bottom: 50%;
+	color: rgb(253, 144, 105);
+
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18pt;
+	font-weight: lighter;
+}
+
+/* work area */
+#work-area {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+
+
+

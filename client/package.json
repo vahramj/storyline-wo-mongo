@@ -44,6 +44,8 @@
     "image-webpack-loader": "^4.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
     "react-dom": "^16.2.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
