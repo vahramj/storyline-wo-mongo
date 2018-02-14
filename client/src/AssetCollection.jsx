@@ -121,7 +121,7 @@ const characterData = [
 	{
 		id: "chr_10",
 		name: "Arwen",
-		image: "./static/images/characters_thumbnails/arwen_01.png"
+		// image: "./static/images/characters_thumbnails/arwen_01.png"
 	},
 	{
 		id: "chr_15",

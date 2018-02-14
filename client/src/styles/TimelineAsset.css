@@ -1,0 +1,9 @@
+.timeline-asset{
+	display: flex;
+}
+
+.timeline-asset .header{
+	width: 125px;
+	height: 100%;
+	
+}
