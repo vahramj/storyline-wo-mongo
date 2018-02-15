@@ -1,6 +1,7 @@
 #timeline-container {
 	display: flex;
 	height: 180px;
+	min-width: 620px;
 	margin-top: 35px;
 }
 

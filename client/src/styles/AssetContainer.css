@@ -11,6 +11,10 @@
 	background: rgb(234,234,234);
 }
 
+.asset-container:last-of-type{
+	margin-right: 0;
+}
+
 /*header*/
 .asset-container header{
 

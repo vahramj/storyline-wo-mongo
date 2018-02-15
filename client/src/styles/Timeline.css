@@ -3,4 +3,5 @@
 	position: relative;
 	background: rgb(100,115,115);
 	padding: 20px 5px;
+	overflow: scroll;
 }

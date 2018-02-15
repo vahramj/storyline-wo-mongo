@@ -15,7 +15,6 @@ function getWidth(props) {
 	if (props.data.type === "scene") {
 		assetWidth = "";
 	} else if (!assetWidth) {
-		// const childAssets = props.childAsset.filter(childAsset => {return props.id in childAsset.parents})
 		assetWidth = headWidth + initialOpening;
 	}
 
