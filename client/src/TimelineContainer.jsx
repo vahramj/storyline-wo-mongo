@@ -6,7 +6,7 @@ import Toolbox from "./Toolbox";
 
 import "./styles/TimelineContainer.css";
 
-const TimelineContainer = ()=>{
+const TimelineContainer = (props)=>{
 	return (
 		<div id="timeline-container">
 		
@@ -17,7 +17,7 @@ const TimelineContainer = ()=>{
 			</header>
 			<div id="work-area">
 				<Toolbox />
-				<Timeline />
+				<Timeline {...props}/>
 			</div>
 		</div>
 	);

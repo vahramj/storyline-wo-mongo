@@ -72,5 +72,3 @@ AssetCollection.propTypes = {
 };
 
 export default AssetCollection;
-
-

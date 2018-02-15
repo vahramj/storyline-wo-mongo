@@ -17,7 +17,7 @@ const App = ()=>{
 					<AssetContainer type="scene" data={data.phase} />
 					<AssetContainer type="character" data={data.character} />
 				</div>
-				<TimelineContainer />
+				<TimelineContainer data={data}/>
 			</div>
 		</div>
 	);
@@ -30,7 +30,15 @@ const phaseData = [
 		id: "phs_7",
 		name: "fellowship begins",
 		type: "phase",
-		parents: {},
+		parents: {
+			timeline: {
+				widthInParent: 0,
+				positionInParent: {
+					x: 0,
+					y: 0,
+				}
+			}
+		},
 		childAssets: [],
 		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 	},

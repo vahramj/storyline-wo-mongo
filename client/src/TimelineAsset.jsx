@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import { arrayOf, shape, object, string, number } from "prop-types";
+import { arrayOf, shape, object, string } from "prop-types";
 
 import Asset from "./Asset";
+import { renderChildren } from "./TimelineUtils";
+
 import "./styles/TimelineAsset.css";
 
 const headerWidth = 125;
 const initialOpening = 30;
 // const childWidth = 125;
 
-function getWidth(props){
+function getWidth(props) {
 	let assetWidth = props.data.parents[props.parentId].widthInParent;
-	if(props.data.type === "scene"){
+	if (props.data.type === "scene") {
 		assetWidth = "";
-	}
-	else if(!assetWidth){
+	} else if (!assetWidth) {
 		// const childAssets = props.childAsset.filter(childAsset => {return props.id in childAsset.parents})
-		assetWidth =  headerWidth + initialOpening;
+		assetWidth = headerWidth + initialOpening;
 	}
 
 	return assetWidth;
 }
-
 
 class TimelineAsset extends Component {
 	constructor(props) {
@@ -31,52 +31,32 @@ class TimelineAsset extends Component {
 		};
 	}
 
-	renderChildren = () => {
-		const {data} = this.props;
-
-		function renderChild(childData) {
-			const {positionInParent, widthInParent} = childData.parents[data.id];
-			
-			return (
-				<div key={childData.id} style={{position: "absolute", width: widthInParent, left: positionInParent.x}}>
-					<TimelineAsset data={childData} parentId={data.id}/>
-				</div>
-			);
-		}
-
-		return data.childAssets.map(renderChild);
-	}
-
 	render() {
 		const { data } = this.props;
-			// console.log(data);
-
 		return (
-			<div className="timeline-asset" style={{width: this.state.assetWidth}}>
+			<div className="timeline-asset" style={{ width: this.state.assetWidth }}>
 				<div
 					className="header"
 					ref={header => {
 						this.header = header;
 					}}
 				>
-					<Asset name={data.name} type={data.type} image={data.image}  />
-				</div>
-				<div className="body">
-					{
-						this.renderChildren()
-					} 
+					<Asset name={data.name} type={data.type} image={data.image} />
 				</div>
 
-				<div className="tail" style={{ 
-					left: this.state.assetWidth, 
-					visibility: data.type === "scene" ? "hidden" : ""
-				}} />
+				<div className="body">{renderChildren(data)}</div>
+
+				<div
+					className="tail"
+					style={{
+						left: this.state.assetWidth,
+						visibility: data.type === "scene" ? "hidden" : ""
+					}}
+				/>
 			</div>
 		);
 	}
 }
-
-
 
 TimelineAsset.propTypes = {
 	data: shape({
