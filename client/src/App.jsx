@@ -27,31 +27,72 @@ export default App;
 
 const phaseData = [
 	{
-		id: "phs_7",
+		id: "phs_07",
 		name: "fellowship begins",
 		type: "phase",
 		parents: {
 			timeline: {
-				widthInParent: 0,
+				widthInParent: 450,
 				positionInParent: {
 					x: 0,
 					y: 0,
 				}
 			}
 		},
-		childAssets: [],
+		childAssets: [
+			{
+				id: "scn_01",
+				name: "scene for timeline asset",
+				type: "scene",
+				image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png",
+				parents: {
+					"phs_07": {
+						widthInParent: 0,
+						positionInParent: {
+							x: 15,
+							y: 0,
+						}
+					}
+				},
+				childAssets: []
+			},
+			{
+				id: "scn_02",
+				name: "scene 02",
+				type: "scene",
+				image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png",
+				parents: {
+					"phs_07": {
+						widthInParent: 0,
+						positionInParent: {
+							x: 145,
+							y: 0,
+						}
+					}
+				},
+				childAssets: []
+			}
+		],
 		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 	},
 	{
-		id: "phs_2",
+		id: "phs_02",
 		name: "prologue",
 		type: "phase",
-		parents: {},
+		parents: {
+			timeline: {
+				widthInParent: 0,
+				positionInParent: {
+					x: 550,
+					y: 0,
+				}
+			}
+		},
 		childAssets: [],
 		// image: ""
 	},
 	{
-		id: "phs_5",
+		id: "phs_05",
 		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 		type: "phase",
 		parents: {},

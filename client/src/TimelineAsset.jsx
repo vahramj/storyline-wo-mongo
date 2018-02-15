@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { arrayOf, shape, object, string } from "prop-types";
 
 import Asset from "./Asset";
-import { renderChildren } from "./TimelineUtils";
+import TimelineBody from "./TimelineBody";
 
 import "./styles/TimelineAsset.css";
 
-const headerWidth = 125;
+const headWidth = 135;
 const initialOpening = 30;
 // const childWidth = 125;
 
@@ -16,7 +16,7 @@ function getWidth(props) {
 		assetWidth = "";
 	} else if (!assetWidth) {
 		// const childAssets = props.childAsset.filter(childAsset => {return props.id in childAsset.parents})
-		assetWidth = headerWidth + initialOpening;
+		assetWidth = headWidth + initialOpening;
 	}
 
 	return assetWidth;
@@ -35,16 +35,11 @@ class TimelineAsset extends Component {
 		const { data } = this.props;
 		return (
 			<div className="timeline-asset" style={{ width: this.state.assetWidth }}>
-				<div
-					className="header"
-					ref={header => {
-						this.header = header;
-					}}
-				>
+				<div className="head">
 					<Asset name={data.name} type={data.type} image={data.image} />
 				</div>
 
-				<div className="body">{renderChildren(data)}</div>
+				<TimelineBody data={data} />
 
 				<div
 					className="tail"
