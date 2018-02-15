@@ -1,6 +1,7 @@
 #toolbox {
 	display: flex;
-	padding: 5px 5px;
+	padding: 5px;
+	background: rgba(234,234,234,.5);
 }
 
 #toolbox div {

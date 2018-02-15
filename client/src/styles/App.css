@@ -27,6 +27,7 @@
 }
 
 .hover-tint{
+	visibility: hidden;
 	opacity: 0;
 	position: absolute;
 	background: rgba(51,51,51,0.6); 

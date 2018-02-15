@@ -29,11 +29,11 @@ class AssetCollection extends Component {
 	checkScrollBars = () => {
 		let scrollBarsOn;
 		if(this.collection.clientWidth === this.collection.offsetWidth){
-			console.log("scroll bars are off");
+			// console.log("scroll bars are off");
 			scrollBarsOn = "scroll-bars-off";
 		}
 		else{
-			console.log("scroll bars are on");
+			// console.log("scroll bars are on");
 			scrollBarsOn = "scroll-bars-on";
 		}
 		this.setState({scrollBarsOn})

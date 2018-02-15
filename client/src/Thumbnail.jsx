@@ -5,6 +5,7 @@ import "./styles/thumbnail.css";
 
 const frameSizes = {
 	phase: {frameWidth: 125, frameHeight: 70},
+	// scene: {frameWidth: 125, frameHeight: 70},
 	character: {frameWidth: 78, frameHeight: 78},
 }
 

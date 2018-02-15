@@ -1,5 +1,6 @@
 .image-cropper {
 	overflow: hidden;
+	/*temp for dev*/
 	background: pink;
 }
 
@@ -10,8 +11,4 @@
 
 .phase .image-cropper {
 	height: 70px;
-}
-
-.timeline-asset .image-cropper {
-	/*height: 75px;*/
 }
