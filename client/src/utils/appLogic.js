@@ -1,29 +1,3 @@
-import React from "react";
-import AssetContainer from "./AssetContainer";
-import TimelineContainer from "./TimelineContainer";
-import "./styles/App.css";
-
-let data;
-
-const App = ()=>{
-	return (
-		<div>
-			<header id="main-header">
-				<h1>Storyline Maker</h1>
-			</header>
-			<div className="container-holder">
-				<div className="asset-containers">
-					<AssetContainer type="phase" data={data.phase} />
-					<AssetContainer type="scene" data={data.phase} />
-					<AssetContainer type="character" data={data.character} />
-				</div>
-				<TimelineContainer data={data}/>
-			</div>
-		</div>
-	);
-};
-
-export default App;
 
 const phaseData = [
 	{
@@ -229,6 +203,43 @@ const characterData = [
 		parents: {},
 		childAssets: [],
 	},
-	
 ];
-data = { phase: phaseData, character: characterData };
+let data = { phase: phaseData, character: characterData };
+
+export function getData(){
+	return data;
+}
+
+export function addAsset(source, target){
+	// if doesn't have children
+		// add source to target's children
+		// add target(id) to source's parents, widhtInParent: 0, positionInParent: {0,0}
+	// if has children
+		// calculate source's position based on requested position
+		// offset children to the right of the source based on it's calculated position and width
+		// set new target width
+	console.log(`adding ${source} to ${target}`);
+}
+
+export function hello(){
+	console.log("hello");
+}
+
+// // asset mock
+// {
+// 	id: "asset_id_01",
+// 	name: "asset description 01",
+// 	type: "assetType01",
+// 	parents: {
+// 		parentId: {
+// 			widthInParent: 0,
+// 			positionInParent: {
+// 				x: 15,
+// 				y: 0,
+// 			}
+// 		}
+// 	},
+// // childAssets are sorting based on x coordinate
+// 	childAssets: [{asset01}, {asset02},...{assetN}],
+// 	image: ""
+// },

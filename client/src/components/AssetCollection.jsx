@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {string, object, arrayOf} from "prop-types";
+import {string, shape, object, arrayOf} from "prop-types";
+import {connect} from "react-redux";
 
 import Asset from "./Asset";
 
@@ -7,7 +8,7 @@ import "./styles/AssetCollection.css";
 import "./styles/AssetCollection-character.css";
 import "./styles/AssetCollection-phase.css";
 
-let data;
+// let data;
 const assetTypes = {
 	phase: "phase",
 	scene: "phase",
@@ -40,16 +41,18 @@ class AssetCollection extends Component {
 	};
 
 	render(){
+		const {data} = this.props;
+		// console.log(data)
 		return (
 			<div 
 				className={`asset-collection ${this.state.type}-collection ${this.state.scrollBarsOn}`}
 				ref={this.getCollectionElem}
 			>
 				<ul>
-					{this.props.data.map(asset => {
+					{data[this.state.type].map(assetData => {
 						return (
-							<li key={asset.id}>
-								<Asset name={asset.name} image={asset.image} type={this.state.type} />
+							<li key={assetData.id}>
+								<Asset data={assetData} />
 							</li>
 						);
 					})}
@@ -67,8 +70,20 @@ class AssetCollection extends Component {
 
 AssetCollection.propTypes = {
 	type: string.isRequired,
-	data: arrayOf(object.isRequired).isRequired
+	data: shape({
+		phase: arrayOf(object.isRequired).isRequired,
+		character: arrayOf(object.isRequired).isRequired
+	}).isRequired,
+	// assets: arrayOf(object.isRequired).isRequired,
 
 };
 
-export default AssetCollection;
+function mapStateToProps(state){
+	// console.log(state.assets);
+	return {
+		data: state.assets
+		// assets: state.assets.
+	}
+}
+
+export default connect(mapStateToProps)(AssetCollection);

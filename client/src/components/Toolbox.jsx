@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./styles/toolbox.css";
+import "./styles/Toolbox.css";
 
 const Toolbox = () => {
 	return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { string } from "prop-types";
 
-import "./styles/thumbnail.css";
+import "./styles/Thumbnail.css";
 
 const frameSizes = {
 	phase: {frameWidth: 125, frameHeight: 70},

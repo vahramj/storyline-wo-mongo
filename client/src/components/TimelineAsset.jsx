@@ -35,7 +35,7 @@ class TimelineAsset extends Component {
 		return (
 			<div className="timeline-asset" style={{ width: this.state.assetWidth }}>
 				<div className="head">
-					<Asset name={data.name} type={data.type} image={data.image} />
+					<Asset data={data} />
 				</div>
 
 				<TimelineBody data={data} />
