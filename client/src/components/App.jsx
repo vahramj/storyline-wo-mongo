@@ -1,7 +1,7 @@
 import React from "react";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { getData } from "../utils/appLogic";
+import { getData, handleSelectAsset } from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
@@ -14,11 +14,11 @@ const App = ()=>{
 			</header>
 			<div className="container-holder">
 				<div className="asset-containers">
-					<AssetContainer type="phase" data={data.phase} />
-					<AssetContainer type="scene" data={data.phase} />
-					<AssetContainer type="character" data={data.character} />
+					<AssetContainer type="phase" data={data} handleSelectAsset={handleSelectAsset} />
+					<AssetContainer type="scene" data={data} handleSelectAsset={handleSelectAsset} />
+					<AssetContainer type="character" data={data} handleSelectAsset={handleSelectAsset} />
 				</div>
-				<TimelineContainer data={data}/>
+				<TimelineContainer data={data} handleSelectAsset={handleSelectAsset} />
 			</div>
 		</div>
 	);

@@ -8,7 +8,7 @@ import "./styles/Timeline.css";
 const Timeline = props => {
 	return (
 		<div className="timeline">
-			<TimelineBody data={{childAssets: props.data.phase, id: "timeline"}} />
+			<TimelineBody {...props} data={{childAssets: props.data.phase, id: "timeline"}} />
 		</div>
 	);
 };

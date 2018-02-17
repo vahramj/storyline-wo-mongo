@@ -1,9 +1,9 @@
 import React from "react";
 import { shape, object, arrayOf, string, func } from "prop-types";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import Thumbnail from "./Thumbnail";
-import { selectAsset } from "../actions/actionCreators";
+// import { selectAsset } from "../actions/actionCreators";
 
 import "./styles/Asset.css";
 import "./styles/Asset-character.css";
@@ -17,7 +17,11 @@ const Asset = (props) => {
 		type = "phase";
 	}
 	return (
-		<div className={`asset ${type}`} role="none" onClick={()=>{props.handleSelectAsset(props.data)}}>
+		<div 
+			className={`asset ${type}`} 
+			role="none" 
+			onClick={ ()=>{props.handleSelectAsset(props.data)} }>
+			
 			<div className="hover-tint">
 				<img
 					src="/static/icons/edit_icon.png"
@@ -49,18 +53,19 @@ Asset.propTypes = {
 };
 
 Asset.defaultProps = {
-	handleSelectAsset: ()=>{console.log("Vahram, asset's dispatch to props hasn't been linked ")}
+	handleSelectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")}
 }
 
-function mapDispatchToProps(dispatch){
-	return {
-		handleSelectAsset(asset){
-			dispatch(selectAsset(asset))
-		}
-	}
-}
+// function mapDispatchToProps(dispatch){
+// 	return {
+// 		handleSelectAsset(asset){
+// 			dispatch(selectAsset(asset))
+// 		}
+// 	}
+// }
 
-export default connect(null, mapDispatchToProps)(Asset);
+// export default connect(null, mapDispatchToProps)(Asset);
+export default Asset;
 
 
 

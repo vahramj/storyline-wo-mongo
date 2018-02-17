@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {string, shape, object, arrayOf} from "prop-types";
-import {connect} from "react-redux";
+// import {connect} from "react-redux";
 
 import Asset from "./Asset";
 
@@ -52,7 +52,7 @@ class AssetCollection extends Component {
 					{data[this.state.type].map(assetData => {
 						return (
 							<li key={assetData.id}>
-								<Asset data={assetData} />
+								<Asset {...this.props} data={assetData} />
 							</li>
 						);
 					})}
@@ -78,12 +78,16 @@ AssetCollection.propTypes = {
 
 };
 
-function mapStateToProps(state){
-	// console.log(state.assets);
-	return {
-		data: state.assets
-		// assets: state.assets.
-	}
-}
+// function mapStateToProps(state){
+// 	// console.log(state.assets);
+// 	return {
+// 		data: state.assets
+// 		// assets: state.assets.
+// 	}
+// }
 
-export default connect(mapStateToProps)(AssetCollection);
+// export default connect(mapStateToProps)(AssetCollection);
+export default AssetCollection;
+
+
+

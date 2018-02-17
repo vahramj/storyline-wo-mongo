@@ -1,4 +1,41 @@
 
+let selectedAsset = null;
+
+export function addAsset(source, target){
+	// if doesn't have children
+		// add source to target's children
+		// add target(id) to source's parents, widhtInParent: 0, positionInParent: {0,0}
+	// if has children
+		// calculate source's position based on requested position
+		// offset children to the right of the source based on it's calculated position and width
+		// set new target width
+	console.log(`adding ${source} to ${target}`);
+}
+
+export function handleSelectAsset(asset){
+	selectedAsset = asset;
+	console.log("asset selected: ", selectedAsset);
+}
+
+// // asset mock
+// {
+// 	id: "asset_id_01",
+// 	name: "asset description 01",
+// 	type: "assetType01",
+// 	parents: {
+// 		parentId: {
+// 			widthInParent: 0,
+// 			positionInParent: {
+// 				x: 15,
+// 				y: 0,
+// 			}
+// 		}
+// 	},
+// // childAssets are sorting based on x coordinate
+// 	childAssets: [{asset01}, {asset02},...{assetN}],
+// 	image: ""
+// },
+
 const phaseData = [
 	{
 		id: "phs_07",
@@ -209,37 +246,3 @@ let data = { phase: phaseData, character: characterData };
 export function getData(){
 	return data;
 }
-
-export function addAsset(source, target){
-	// if doesn't have children
-		// add source to target's children
-		// add target(id) to source's parents, widhtInParent: 0, positionInParent: {0,0}
-	// if has children
-		// calculate source's position based on requested position
-		// offset children to the right of the source based on it's calculated position and width
-		// set new target width
-	console.log(`adding ${source} to ${target}`);
-}
-
-export function hello(){
-	console.log("hello");
-}
-
-// // asset mock
-// {
-// 	id: "asset_id_01",
-// 	name: "asset description 01",
-// 	type: "assetType01",
-// 	parents: {
-// 		parentId: {
-// 			widthInParent: 0,
-// 			positionInParent: {
-// 				x: 15,
-// 				y: 0,
-// 			}
-// 		}
-// 	},
-// // childAssets are sorting based on x coordinate
-// 	childAssets: [{asset01}, {asset02},...{assetN}],
-// 	image: ""
-// },
