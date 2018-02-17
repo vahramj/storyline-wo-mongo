@@ -10,17 +10,23 @@ import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
 
 const Asset = (props) => {
-	// console.log(props);
-	const {name, image} = props.data;
+	const { selectedAsset } = props;
+	const { name, image } = props.data;
 	let { type } = props.data;
 	if(type === "scene"){
 		type = "phase";
 	}
+	const selectedStyle = selectedAsset === props.data ? "selected" : "";
+	// if(selectedStyle){
+	// 	console.log(props);
+	// }
 	return (
 		<div 
-			className={`asset ${type}`} 
+			className={`asset ${type} ${selectedStyle}`} 
 			role="none" 
-			onClick={ ()=>{props.handleSelectAsset(props.data)} }>
+			onClick={ ()=>{
+				props.handleSelectAsset(props.data)} 
+			}>
 			
 			<div className="hover-tint">
 				<img
@@ -49,11 +55,13 @@ Asset.propTypes = {
 		parents: object.isRequired,
 		childAssets: arrayOf(object).isRequired
 	}).isRequired,
-	handleSelectAsset: func
+	handleSelectAsset: func,
+	selectedAsset: shape()
 };
 
 Asset.defaultProps = {
-	handleSelectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")}
+	handleSelectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
+	selectedAsset: {id:null}
 }
 
 // function mapDispatchToProps(dispatch){

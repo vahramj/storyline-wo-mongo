@@ -43,6 +43,7 @@ class AssetCollection extends Component {
 	render(){
 		const {data} = this.props;
 		// console.log(data)
+		// console.log("asset selected in AssetCollection: ", this.props.selectedAsset);
 		return (
 			<div 
 				className={`asset-collection ${this.state.type}-collection ${this.state.scrollBarsOn}`}

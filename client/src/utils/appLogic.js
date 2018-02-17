@@ -1,6 +1,15 @@
 
 let selectedAsset = null;
 
+export function getSelectedAsset(){
+	return selectedAsset;
+}
+
+// export function handleSelectAsset(asset){
+// 	selectedAsset = asset;
+// 	console.log("asset selected: ", selectedAsset);
+// }
+
 export function addAsset(source, target){
 	// if doesn't have children
 		// add source to target's children
@@ -12,10 +21,6 @@ export function addAsset(source, target){
 	console.log(`adding ${source} to ${target}`);
 }
 
-export function handleSelectAsset(asset){
-	selectedAsset = asset;
-	console.log("asset selected: ", selectedAsset);
-}
 
 // // asset mock
 // {
