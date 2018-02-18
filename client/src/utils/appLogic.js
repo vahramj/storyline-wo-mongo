@@ -44,7 +44,7 @@ export function addAsset(source, target){
 const phaseData = [
 	{
 		id: "phs_07",
-		name: "fellowship begins",
+		name: "opeining image",
 		type: "phase",
 		parents: {
 			timeline: {
@@ -57,10 +57,9 @@ const phaseData = [
 		},
 		childAssets: [
 			{
-				id: "scn_01",
-				name: "scene for timeline asset",
+				id: "scn_05",
+				name: "fellowship begins",
 				type: "scene",
-				image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png",
 				parents: {
 					"phs_07": {
 						widthInParent: 0,
@@ -70,13 +69,13 @@ const phaseData = [
 						}
 					}
 				},
-				childAssets: []
+				childAssets: [],
+				image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 			},
 			{
-				id: "scn_02",
-				name: "scene 02",
+				id: "scn_08",
+				name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 				type: "scene",
-				image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png",
 				parents: {
 					"phs_07": {
 						widthInParent: 0,
@@ -86,14 +85,15 @@ const phaseData = [
 						}
 					}
 				},
-				childAssets: []
-			}
+				childAssets: [],
+				image: ""
+			},
 		],
 		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
 	},
 	{
 		id: "phs_02",
-		name: "prologue",
+		name: "setup",
 		type: "phase",
 		parents: {
 			timeline: {
@@ -109,7 +109,7 @@ const phaseData = [
 	},
 	{
 		id: "phs_05",
-		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
+		name: "catalist",
 		type: "phase",
 		parents: {},
 		childAssets: [],
@@ -117,7 +117,7 @@ const phaseData = [
 	},
 	{
 		id: "phs_10",
-		name: "frodo's final decision",
+		name: "debate",
 		type: "phase",
 		parents: {},
 		childAssets: [],
@@ -125,7 +125,7 @@ const phaseData = [
 	},
 	{
 		id: "phs_15",
-		name: "gorlum's journey",
+		name: "breaking into 2",
 		type: "phase",
 		parents: {},
 		childAssets: [],
@@ -133,7 +133,7 @@ const phaseData = [
 	},
 	{
 		id: "phs_0",
-		name: "fellowship begins",
+		name: "fun and games",
 		type: "phase",
 		parents: {},
 		childAssets: [],
@@ -141,7 +141,7 @@ const phaseData = [
 	},
 	{
 		id: "phs_20",
-		name: "saving Minas Tirith_saving Minas Tirith",
+		name: "bad guys close in",
 		type: "phase",
 		parents: {},
 		childAssets: [],
@@ -149,68 +149,43 @@ const phaseData = [
 	},
 	{
 		id: "phs_25",
-		name: "underground_tomb",
+		name: "finaly",
 		type: "phase",
 		parents: {},
 		childAssets: [],
 		image: "./static/images/phase_thumbnails/underground_thumb.png"
-	}
+	},
 ];
 const sceneData = [
 	{
-		id: "scn_07",
+		id: "scn_05",
 		name: "fellowship begins",
 		type: "scene",
 		parents: {
-			timeline: {
-				widthInParent: 450,
+			"phs_07": {
+				widthInParent: 0,
 				positionInParent: {
-					x: 0,
+					x: 15,
 					y: 0,
 				}
 			}
 		},
-		childAssets: [
-			{
-				id: "scn_01",
-				name: "scene for timeline asset",
-				type: "scene",
-				image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png",
-				parents: {
-					"phs_07": {
-						widthInParent: 0,
-						positionInParent: {
-							x: 15,
-							y: 0,
-						}
-					}
-				},
-				childAssets: []
-			},
-			{
-				id: "scn_02",
-				name: "scene 02",
-				type: "scene",
-				image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png",
-				parents: {
-					"phs_07": {
-						widthInParent: 0,
-						positionInParent: {
-							x: 145,
-							y: 0,
-						}
-					}
-				},
-				childAssets: []
-			}
-		],
-		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
+		childAssets: [],
+		image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"
 	},
 	{
-		id: "scn_05",
+		id: "scn_08",
 		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 		type: "scene",
-		parents: {},
+		parents: {
+			"phs_07": {
+				widthInParent: 0,
+				positionInParent: {
+					x: 145,
+					y: 0,
+				}
+			}
+		},
 		childAssets: [],
 		image: ""
 	},
@@ -220,7 +195,7 @@ const sceneData = [
 		type: "scene",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/frodo's decision_thumb.png"
+		image: "./static/images/scene_thumbnails/frodo's decision_thumb.png"
 	},
 	{
 		id: "scn_15",
@@ -228,7 +203,7 @@ const sceneData = [
 		type: "scene",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png"
+		image: "./static/images/scene_thumbnails/gorlum's journey_thumb.png"
 	},
 	{
 		id: "scn_0",
@@ -244,7 +219,7 @@ const sceneData = [
 		type: "scene",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png"
+		image: "./static/images/scene_thumbnails/saving Minas Tirith_thumb.png"
 	},
 	{
 		id: "scn_25",
@@ -252,7 +227,7 @@ const sceneData = [
 		type: "scene",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/underground_thumb.png"
+		image: "./static/images/scene_thumbnails/underground_thumb.png"
 	}
 ];
 const characterData = [
@@ -260,7 +235,7 @@ const characterData = [
 		id: "chr_5",
 		name: "Aragorn",
 		type: "character",
-		image: "./static/images/characters_thumbnails/Aragorn_01.png",
+		image: "./static/images/character_thumbnails/Aragorn_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -268,7 +243,7 @@ const characterData = [
 		id: "chr_10",
 		name: "Arwen",
 		type: "character",
-		// image: "./static/images/characters_thumbnails/arwen_01.png",
+		// image: "./static/images/character_thumbnails/arwen_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -276,7 +251,7 @@ const characterData = [
 		id: "chr_15",
 		name: "Eowyn",
 		type: "character",
-		image: "./static/images/characters_thumbnails/Eowyn_01.png",
+		image: "./static/images/character_thumbnails/Eowyn_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -284,7 +259,7 @@ const characterData = [
 		id: "chr_20",
 		name: "Frodo",
 		type: "character",
-		image: "./static/images/characters_thumbnails/frodo_01.png",
+		image: "./static/images/character_thumbnails/frodo_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -292,7 +267,7 @@ const characterData = [
 		id: "chr_25",
 		name: "Gandalf the gray",
 		type: "character",
-		image: "./static/images/characters_thumbnails/gandalf_01.png",
+		image: "./static/images/character_thumbnails/gandalf_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -300,7 +275,7 @@ const characterData = [
 		id: "chr_30",
 		name: "gollum",
 		type: "character",
-		image: "./static/images/characters_thumbnails/gollum_01.png",
+		image: "./static/images/character_thumbnails/gollum_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -308,7 +283,7 @@ const characterData = [
 		id: "chr_35",
 		name: "legolas",
 		type: "character",
-		image: "./static/images/characters_thumbnails/legolas_01.png",
+		image: "./static/images/character_thumbnails/legolas_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -316,7 +291,7 @@ const characterData = [
 		id: "chr_40",
 		name: "samwise gamgee",
 		type: "character",
-		image: "./static/images/characters_thumbnails/sam_01.png",
+		image: "./static/images/character_thumbnails/sam_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -324,7 +299,7 @@ const characterData = [
 		id: "chr_45",
 		name: "saruman",
 		type: "character",
-		image: "./static/images/characters_thumbnails/saruman_01.png",
+		image: "./static/images/character_thumbnails/saruman_01.png",
 		parents: {},
 		childAssets: [],
 	},	
@@ -332,7 +307,7 @@ const characterData = [
 		id: "chr_50",
 		name: "sauron the terrible",
 		type: "character",
-		image: "./static/images/characters_thumbnails/sauron_01.png",
+		image: "./static/images/character_thumbnails/sauron_01.png",
 		parents: {},
 		childAssets: [],
 	},
@@ -340,7 +315,7 @@ const characterData = [
 		id: "chr_51",
 		name: "theoden",
 		type: "character",
-		image: "./static/images/characters_thumbnails/theoden_01.png",
+		image: "./static/images/character_thumbnails/theoden_01.png",
 		parents: {},
 		childAssets: [],
 	},

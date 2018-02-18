@@ -9,18 +9,21 @@ const frameSizes = {
 	character: {frameWidth: 78, frameHeight: 78},
 }
 
+const defaultImages = {
+	phase: "./static/images/phase_thumbnails/phase_default_04_thumb.png",
+	character: "./static/images/character_thumbnails/character_default-02.png",
+	scene: "./static/images/scene_thumbnails/scene_default_01.png",
+};
 class Thumbnail extends Component{
 	constructor(props){
 		super(props);
 
-		const defaultImage = "./static/images/phase_thumbnails/phase_default_04_thumb.png";
 		this.state = {
-			image: this.props.image || defaultImage
+			image: this.props.image || defaultImages[props.type]
 		}
 	};
 
 	fitImgToFrame = ({target: img}) => {
-		// console.log(this.props.type)
 		const { frameWidth, frameHeight } = frameSizes[this.props.type];
 
 		if (img.width / img.height < frameWidth / frameHeight) {

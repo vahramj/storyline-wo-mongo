@@ -4,6 +4,11 @@
 	background: pink;
 }
 
+.image-cropper img {
+	background: white;
+	/*background: rgb(78,79,81);*/
+}
+
 .character .image-cropper {
 	height: 78px;
 	border-radius: 50%;
@@ -14,6 +19,6 @@
 }
 
 .scene .image-cropper {
-	height: 75px;
+	height: 70px;
 	border-radius: 20%;
 }
