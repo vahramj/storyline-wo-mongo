@@ -8,17 +8,10 @@ import "./styles/AssetCollection.css";
 import "./styles/AssetCollection-character.css";
 import "./styles/AssetCollection-phase.css";
 
-// let data;
-const assetTypes = {
-	phase: "phase",
-	scene: "phase",
-	character: "character"
-};
-
 class AssetCollection extends Component {
 	constructor(props){
 		super(props);
-		this.state = {type: assetTypes[this.props.type]}
+		this.state = {scrollBarsStatus: "scroll-bars-off"}
 	}
 
 	componentDidMount(){
@@ -28,27 +21,29 @@ class AssetCollection extends Component {
 	getCollectionElem = collection => {this.collection = collection};
 
 	checkScrollBars = () => {
-		let scrollBarsOn;
+		let scrollBarsStatus;
 		if(this.collection.clientWidth === this.collection.offsetWidth){
 			// console.log("scroll bars are off");
-			scrollBarsOn = "scroll-bars-off";
+			scrollBarsStatus = "scroll-bars-off";
 		}
 		else{
 			// console.log("scroll bars are on");
-			scrollBarsOn = "scroll-bars-on";
+			scrollBarsStatus = "scroll-bars-on";
 		}
-		this.setState({scrollBarsOn})
+		this.setState({scrollBarsStatus})
 	};
 
 	render(){
-		const {data} = this.props;
+		const {data, type} = this.props;
+		const styleType = type === "character" ? "character" : "phase";
+
 		return (
 			<div 
-				className={`asset-collection ${this.state.type}-collection ${this.state.scrollBarsOn}`}
+				className={`asset-collection ${styleType}-collection ${this.state.scrollBarsStatus}`}
 				ref={this.getCollectionElem}
 			>
 				<ul>
-					{data[this.state.type].map(assetData => {
+					{data[type].map(assetData => {
 						return (
 							<li key={assetData.id}>
 								<Asset {...this.props} data={assetData} />

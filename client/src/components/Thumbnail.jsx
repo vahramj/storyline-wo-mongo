@@ -5,7 +5,7 @@ import "./styles/Thumbnail.css";
 
 const frameSizes = {
 	phase: {frameWidth: 125, frameHeight: 70},
-	// scene: {frameWidth: 125, frameHeight: 70},
+	scene: {frameWidth: 125, frameHeight: 70},
 	character: {frameWidth: 78, frameHeight: 78},
 }
 
@@ -23,9 +23,6 @@ class Thumbnail extends Component{
 		// console.log(this.props.type)
 		const { frameWidth, frameHeight } = frameSizes[this.props.type];
 
-		// const frameWidth = 125;
-		// const frameHeight = 75;
-
 		if (img.width / img.height < frameWidth / frameHeight) {
 			this.thumbImageElem.width = frameWidth ;
 		} 
@@ -42,8 +39,8 @@ class Thumbnail extends Component{
 					className="hidden"
 					onLoad={this.fitImgToFrame}
 					ref={ thumbImageElem => {this.thumbImageElem = thumbImageElem} }
-					src={this.state.image}
-					alt={`thumbnail for ${this.props.name}`}
+					src={ this.state.image }
+					alt={ `thumbnail for ${this.props.name}` }
 				/>
 			</div>
 		);

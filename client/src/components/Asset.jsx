@@ -8,14 +8,12 @@ import Thumbnail from "./Thumbnail";
 import "./styles/Asset.css";
 import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
+import "./styles/Asset-scene.css";
 
 const Asset = (props) => {
 	const { selectedAsset } = props;
-	const { name, image } = props.data;
-	let { type } = props.data;
-	if(type === "scene"){
-		type = "phase";
-	}
+	const { name, image, type } = props.data;
+
 	const selectedStyle = selectedAsset === props.data ? "selected" : "";
 	const containerAssetAttributes = {
 			role: "none",

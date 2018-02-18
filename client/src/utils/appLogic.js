@@ -156,6 +156,105 @@ const phaseData = [
 		image: "./static/images/phase_thumbnails/underground_thumb.png"
 	}
 ];
+const sceneData = [
+	{
+		id: "scn_07",
+		name: "fellowship begins",
+		type: "scene",
+		parents: {
+			timeline: {
+				widthInParent: 450,
+				positionInParent: {
+					x: 0,
+					y: 0,
+				}
+			}
+		},
+		childAssets: [
+			{
+				id: "scn_01",
+				name: "scene for timeline asset",
+				type: "scene",
+				image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png",
+				parents: {
+					"phs_07": {
+						widthInParent: 0,
+						positionInParent: {
+							x: 15,
+							y: 0,
+						}
+					}
+				},
+				childAssets: []
+			},
+			{
+				id: "scn_02",
+				name: "scene 02",
+				type: "scene",
+				image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png",
+				parents: {
+					"phs_07": {
+						widthInParent: 0,
+						positionInParent: {
+							x: 145,
+							y: 0,
+						}
+					}
+				},
+				childAssets: []
+			}
+		],
+		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
+	},
+	{
+		id: "scn_05",
+		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		image: ""
+	},
+	{
+		id: "scn_10",
+		name: "frodo's final decision",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/frodo's decision_thumb.png"
+	},
+	{
+		id: "scn_15",
+		name: "gorlum's monologue",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png"
+	},
+	{
+		id: "scn_0",
+		name: "fellowship begins",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		// image: ""
+	},
+	{
+		id: "scn_20",
+		name: "saving Minas Tirith_saving Minas Tirith",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png"
+	},
+	{
+		id: "scn_25",
+		name: "underground_tomb",
+		type: "scene",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/underground_thumb.png"
+	}
+];
 const characterData = [
 	{
 		id: "chr_5",
@@ -246,7 +345,7 @@ const characterData = [
 		childAssets: [],
 	},
 ];
-let data = { phase: phaseData, character: characterData };
+let data = { phase: phaseData, character: characterData, scene: sceneData };
 
 export function getData(){
 	return data;

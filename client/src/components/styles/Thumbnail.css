@@ -12,3 +12,8 @@
 .phase .image-cropper {
 	height: 70px;
 }
+
+.scene .image-cropper {
+	height: 75px;
+	border-radius: 20%;
+}
