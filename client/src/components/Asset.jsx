@@ -1,5 +1,5 @@
 import React from "react";
-import { shape, object, arrayOf, string, func } from "prop-types";
+import { shape, /* object, arrayOf, */ bool, string, func } from "prop-types";
 // import { connect } from "react-redux";
 
 import Thumbnail from "./Thumbnail";
@@ -17,16 +17,15 @@ const Asset = (props) => {
 		type = "phase";
 	}
 	const selectedStyle = selectedAsset === props.data ? "selected" : "";
-	// if(selectedStyle){
-	// 	console.log(props);
-	// }
+	const containerAssetAttributes = {
+			role: "none",
+			onClick: ()=>{props.handleSelectAsset(props.data)} 			
+		};
+
+	const assetAttributes = props.onTimeline ? {} : containerAssetAttributes; 
+
 	return (
-		<div 
-			className={`asset ${type} ${selectedStyle}`} 
-			role="none" 
-			onClick={ ()=>{
-				props.handleSelectAsset(props.data)} 
-			}>
+		<div className={`asset ${type} ${selectedStyle}`} {...assetAttributes}>
 			
 			<div className="hover-tint">
 				<img
@@ -52,16 +51,18 @@ Asset.propTypes = {
 		name: string.isRequired,
 		type: string.isRequired,
 		image: string,
-		parents: object.isRequired,
-		childAssets: arrayOf(object).isRequired
+		// parents: object.isRequired,
+		// childAssets: arrayOf(object).isRequired
 	}).isRequired,
 	handleSelectAsset: func,
-	selectedAsset: shape()
+	selectedAsset: shape(),
+	onTimeline: bool
 };
 
 Asset.defaultProps = {
 	handleSelectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
-	selectedAsset: {id:null}
+	selectedAsset: null,
+	onTimeline: false
 }
 
 // function mapDispatchToProps(dispatch){

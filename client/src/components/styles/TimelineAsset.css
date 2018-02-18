@@ -5,6 +5,10 @@
 	/*padding: 5px;*/
 }
 
+.timeline-asset.selected{
+	box-shadow: 0 0 0 3px blue;
+}
+
 .timeline-asset .body {
 	position: relative;
 	background: rgba(234,234,234,0.5);

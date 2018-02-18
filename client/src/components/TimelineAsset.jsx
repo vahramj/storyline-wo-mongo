@@ -33,13 +33,13 @@ class TimelineAsset extends Component {
 
 	render() {
 		const { data } = this.props;
+		const selectedStyle = this.props.data === this.props.selectedAsset ? "selected" : "";
 		return (
 			<div 
-				className="timeline-asset test mest" 
+				className={`timeline-asset ${selectedStyle}`}
 				style={{ width: this.state.assetWidth }} 
 				role="none" 
 				onClick={(event)=>{
-					// console.log(data);
 					event.stopPropagation();
 					this.props.handleSelectAsset(data);
 					// const { classList } = event.currentTarget;
@@ -49,7 +49,7 @@ class TimelineAsset extends Component {
 				}}
 			>
 				<div className="head">
-					<Asset data={data} />
+					<Asset data={data} onTimeline />
 				</div>
 
 				<TimelineBody {...this.props} data={data} />
@@ -76,11 +76,13 @@ TimelineAsset.propTypes = {
 		childAssets: arrayOf(object).isRequired
 	}).isRequired,
 	parentId: string.isRequired,
-	handleSelectAsset: func
+	handleSelectAsset: func,
+	selectedAsset: shape()
 };
 
 TimelineAsset.defaultProps = {
-	handleSelectAsset: ()=>{console.log("Vahram, TimelineAsset click handler hasn't been setup ")}
+	handleSelectAsset: ()=>{console.log("Vahram, TimelineAsset click handler hasn't been setup ")},
+	selectedAsset: null
 }
 
 export default TimelineAsset;
