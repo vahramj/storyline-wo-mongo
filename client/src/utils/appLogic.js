@@ -70,8 +70,7 @@ const phaseData = [
 					}
 				},
 				childAssets: [],
-				image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
-			},
+				image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"			},
 			{
 				id: "scn_08",
 				name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
@@ -80,7 +79,7 @@ const phaseData = [
 					"phs_07": {
 						widthInParent: 0,
 						positionInParent: {
-							x: 145,
+							x: 150,
 							y: 0,
 						}
 					}
@@ -89,7 +88,7 @@ const phaseData = [
 				image: ""
 			},
 		],
-		image: "./static/images/phase_thumbnails/fellowship begins_thumb.png"
+		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
 	},
 	{
 		id: "phs_02",
@@ -113,7 +112,7 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		image: ""
+		image: "./static/images/phase_thumbnails/catalist 01_thumb.png"
 	},
 	{
 		id: "phs_10",
@@ -121,7 +120,7 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/frodo's decision_thumb.png"
+		image: ""
 	},
 	{
 		id: "phs_15",
@@ -129,7 +128,7 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/gorlum's journey_thumb.png"
+		image: "./static/images/phase_thumbnails/breaking into two 03_thumb.png"
 	},
 	{
 		id: "phs_0",
@@ -137,7 +136,7 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		// image: ""
+		image: "./static/images/phase_thumbnails/fun and games 03_thumb.png"
 	},
 	{
 		id: "phs_20",
@@ -145,7 +144,15 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/saving Minas Tirith_thumb.png"
+		image: "./static/images/phase_thumbnails/bad guys close in 05_thumb.png"
+	},
+	{
+		id: "phs_23",
+		name: "breaking into three",
+		type: "phase",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/breaking into three 01_thumb.png"
 	},
 	{
 		id: "phs_25",
@@ -153,7 +160,15 @@ const phaseData = [
 		type: "phase",
 		parents: {},
 		childAssets: [],
-		image: "./static/images/phase_thumbnails/underground_thumb.png"
+		image: "./static/images/phase_thumbnails/fanale 03_thumb.png"
+	},	
+	{
+		id: "phs_30",
+		name: "closing image",
+		type: "phase",
+		parents: {},
+		childAssets: [],
+		image: "./static/images/phase_thumbnails/closing image 02_thumb.png"
 	},
 ];
 const sceneData = [
@@ -181,7 +196,7 @@ const sceneData = [
 			"phs_07": {
 				widthInParent: 0,
 				positionInParent: {
-					x: 145,
+					x: 150,
 					y: 0,
 				}
 			}
