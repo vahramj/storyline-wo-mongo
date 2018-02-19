@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {string, shape, object, arrayOf} from "prop-types";
+import {string, shape, object} from "prop-types";
 // import {connect} from "react-redux";
 
 import Asset from "./Asset";
@@ -35,6 +35,7 @@ class AssetCollection extends Component {
 
 	render(){
 		const {data, type} = this.props;
+		const collectionData = Object.keys(data[type]).map(id => data[type][id]);
 		const styleType = type === "character" ? "character" : "phase";
 
 		return (
@@ -43,7 +44,7 @@ class AssetCollection extends Component {
 				ref={this.getCollectionElem}
 			>
 				<ul>
-					{data[type].map(assetData => {
+					{collectionData.map(assetData => {
 						return (
 							<li key={assetData.id}>
 								<Asset {...this.props} assetData={assetData} />
@@ -65,8 +66,10 @@ class AssetCollection extends Component {
 AssetCollection.propTypes = {
 	type: string.isRequired,
 	data: shape({
-		phase: arrayOf(object.isRequired).isRequired,
-		character: arrayOf(object.isRequired).isRequired
+		// timeline: shape(object.isRequired).isRequired,
+		// phase: shape(object.isRequired).isRequired,
+		// scene: shape(object.isRequired).isRequired,
+		// character: shape(object.isRequired).isRequired
 	}).isRequired,
 	// assets: arrayOf(object.isRequired).isRequired,
 

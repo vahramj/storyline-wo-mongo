@@ -6,12 +6,7 @@ import TimelineAsset from "./TimelineAsset";
 const TimelineBody = (props) => {
 	const {data, childAssetsIds, id} = props;
 
-	// vahram, later, do convert assets in app data from arrays to objects w/ id as key
-	const childAssetsData = childAssetsIds.map( childAsset =>  {
-		const fullAsset = data[childAsset.type].find(asset => asset.id === childAsset.id);
-		// console.log( fullAsset )
-		return fullAsset 
-	});
+	const childAssetsData = childAssetsIds.map( childAsset =>  data[childAsset.type][childAsset.id] );
 
 	function renderChild(assetData, parentId) {
 		const { positionInParent } = assetData.parents[parentId];

@@ -1,5 +1,5 @@
 import React from "react";
-import { arrayOf, shape, object } from "prop-types";
+import { shape, object } from "prop-types";
 
 import TimelineBody from "./TimelineBody";
 
@@ -7,19 +7,21 @@ import "./styles/Timeline.css";
 
 const Timeline = props => {
 
-	const childAssetsIds = props.data.timeline[0].children;
-
+	const timelineId = "tmln_01";
+	const childAssetsIds = props.data.timeline[timelineId].children;
+	// console.log(props.data)
 	return (
 		<div className="timeline">
-			<TimelineBody {...props} childAssetsIds = {childAssetsIds} id="timeline" />
+			<TimelineBody {...props} childAssetsIds={childAssetsIds} id={timelineId} />
 		</div>
 	);
 };
 
 Timeline.propTypes = {
 	data: shape({
-		phase: arrayOf(object).isRequired,
-		// character: arrayOf(object).isRequired
+		timeline: shape({object}).isRequired,
+		// phase: shape({object}).isRequired,
+		// character: shape({object}).isRequired
 	}).isRequired
 };
 
