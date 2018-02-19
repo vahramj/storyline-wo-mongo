@@ -10,7 +10,7 @@ const TimelineBody = props => {
 		const { id, type, position, width } = assetDataRef;
 		const assetData = data[type][id];
 		return (
-			<div key={id} style={{ position: "absolute", left: position.x }}>
+			<div key={id} style={{ position: "absolute", left: position }}>
 				<TimelineAsset {...props} assetData={assetData} width={width} />
 			</div>
 		);
@@ -24,9 +24,7 @@ TimelineBody.propTypes = {
 		shape({
 			id: string.isRequired,
 			type: string.isRequired,
-			position: shape({
-				x: number.isRequired
-			}),
+			position: number.isRequired,
 			width: number.isRequired
 		})
 	).isRequired,
