@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { getData, handleSelectAsset } from "../utils/appLogic";
+import { getData } from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
@@ -27,7 +27,7 @@ class App extends Component {
 		const propsToPass = {
 			data: this.state.data,
 			handleSelectAsset: this.handleSelectAsset,
-			selectedAsset: this.state.selectedAsset
+			selectedAsset: this.state.selectedAsset,
 		}
 		return (
 			<div>

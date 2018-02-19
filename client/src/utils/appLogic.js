@@ -21,6 +21,11 @@ export function addAsset(source, target){
 	console.log(`adding ${source} to ${target}`);
 }
 
+// export const assetHierarchy = {
+// 		timeline: "phase",
+// 		phase: "scene",
+// 		scene: "character"
+// };
 
 // // asset mock
 // {
@@ -36,10 +41,27 @@ export function addAsset(source, target){
 // 			}
 // 		}
 // 	},
-// // childAssets are sorting based on x coordinate
-// 	childAssets: [{asset01}, {asset02},...{assetN}],
+// // children are sorting based on x coordinate
+// 	children: [{asset01}, {asset02},...{assetN}],
 // 	image: ""
 // },
+
+const timelineData = [
+	{
+		id: "tmln_01",
+		type: "timeline",
+		children: [
+			{
+				id: "phs_07",
+				type: "phase",
+			},
+			{
+				id: "phs_02",
+				type: "phase",
+			},
+		],
+	}
+]
 
 const phaseData = [
 	{
@@ -55,37 +77,14 @@ const phaseData = [
 				}
 			}
 		},
-		childAssets: [
+		children: [
 			{
 				id: "scn_05",
-				name: "fellowship begins",
 				type: "scene",
-				parents: {
-					"phs_07": {
-						widthInParent: 0,
-						positionInParent: {
-							x: 15,
-							y: 0,
-						}
-					}
-				},
-				childAssets: [],
-				image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"			},
+			},
 			{
 				id: "scn_08",
-				name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 				type: "scene",
-				parents: {
-					"phs_07": {
-						widthInParent: 0,
-						positionInParent: {
-							x: 150,
-							y: 0,
-						}
-					}
-				},
-				childAssets: [],
-				image: ""
 			},
 		],
 		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
@@ -103,7 +102,7 @@ const phaseData = [
 				}
 			}
 		},
-		childAssets: [],
+		children: [],
 		// image: ""
 	},
 	{
@@ -111,7 +110,7 @@ const phaseData = [
 		name: "catalist",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/catalist 01_thumb.png"
 	},
 	{
@@ -119,7 +118,7 @@ const phaseData = [
 		name: "debate",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: ""
 	},
 	{
@@ -127,7 +126,7 @@ const phaseData = [
 		name: "breaking into 2",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/breaking into two 03_thumb.png"
 	},
 	{
@@ -135,7 +134,7 @@ const phaseData = [
 		name: "fun and games",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/fun and games 03_thumb.png"
 	},
 	{
@@ -143,7 +142,7 @@ const phaseData = [
 		name: "bad guys close in",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/bad guys close in 05_thumb.png"
 	},
 	{
@@ -151,7 +150,7 @@ const phaseData = [
 		name: "breaking into three",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/breaking into three 01_thumb.png"
 	},
 	{
@@ -159,7 +158,7 @@ const phaseData = [
 		name: "finaly",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/fanale 03_thumb.png"
 	},	
 	{
@@ -167,7 +166,7 @@ const phaseData = [
 		name: "closing image",
 		type: "phase",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/phase_thumbnails/closing image 02_thumb.png"
 	},
 ];
@@ -185,7 +184,7 @@ const sceneData = [
 				}
 			}
 		},
-		childAssets: [],
+		children: [],
 		image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"
 	},
 	{
@@ -201,7 +200,7 @@ const sceneData = [
 				}
 			}
 		},
-		childAssets: [],
+		children: [],
 		image: ""
 	},
 	{
@@ -209,7 +208,7 @@ const sceneData = [
 		name: "frodo's final decision",
 		type: "scene",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/scene_thumbnails/frodo's decision_thumb.png"
 	},
 	{
@@ -217,7 +216,7 @@ const sceneData = [
 		name: "gorlum's monologue",
 		type: "scene",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/scene_thumbnails/gorlum's journey_thumb.png"
 	},
 	{
@@ -225,7 +224,7 @@ const sceneData = [
 		name: "fellowship begins",
 		type: "scene",
 		parents: {},
-		childAssets: [],
+		children: [],
 		// image: ""
 	},
 	{
@@ -233,7 +232,7 @@ const sceneData = [
 		name: "saving Minas Tirith_saving Minas Tirith",
 		type: "scene",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/scene_thumbnails/saving Minas Tirith_thumb.png"
 	},
 	{
@@ -241,7 +240,7 @@ const sceneData = [
 		name: "underground_tomb",
 		type: "scene",
 		parents: {},
-		childAssets: [],
+		children: [],
 		image: "./static/images/scene_thumbnails/underground_thumb.png"
 	}
 ];
@@ -252,7 +251,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/Aragorn_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_10",
@@ -260,7 +259,7 @@ const characterData = [
 		type: "character",
 		// image: "./static/images/character_thumbnails/arwen_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_15",
@@ -268,7 +267,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/Eowyn_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_20",
@@ -276,7 +275,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/frodo_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_25",
@@ -284,7 +283,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/gandalf_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_30",
@@ -292,7 +291,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/gollum_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_35",
@@ -300,7 +299,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/legolas_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_40",
@@ -308,7 +307,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/sam_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_45",
@@ -316,7 +315,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/saruman_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},	
 	{
 		id: "chr_50",
@@ -324,7 +323,7 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/sauron_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 	{
 		id: "chr_51",
@@ -332,10 +331,10 @@ const characterData = [
 		type: "character",
 		image: "./static/images/character_thumbnails/theoden_01.png",
 		parents: {},
-		childAssets: [],
+		children: [],
 	},
 ];
-let data = { phase: phaseData, character: characterData, scene: sceneData };
+let data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
 
 export function getData(){
 	return data;

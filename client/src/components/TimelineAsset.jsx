@@ -21,8 +21,8 @@ class TimelineAsset extends Component {
 	}
 
 	getAssetWidth() {
-		let assetWidth = this.props.data.parents[this.props.parentId].widthInParent;
-		if (this.props.data.type === "scene") {
+		let assetWidth = this.props.assetData.parents[this.props.parentId].widthInParent;
+		if (this.props.assetData.type === "scene") {
 			assetWidth = "";
 		} else if (!assetWidth) {
 			assetWidth = headWidth + initialOpening;
@@ -32,8 +32,8 @@ class TimelineAsset extends Component {
 	}
 
 	render() {
-		const { data } = this.props;
-		const selectedStyle = this.props.data === this.props.selectedAsset ? "selected" : "";
+		const { assetData, selectedAsset } = this.props;
+		const selectedStyle = selectedAsset && assetData.id === selectedAsset.id  ? "selected" : "";
 		return (
 			<div 
 				className={`timeline-asset ${selectedStyle}`}
@@ -41,24 +41,21 @@ class TimelineAsset extends Component {
 				role="none" 
 				onClick={(event)=>{
 					event.stopPropagation();
-					this.props.handleSelectAsset(data);
-					// const { classList } = event.currentTarget;
-					// if( [...classList].some(className => className === "timeline-asset") ){
-					// 	// event.stopPropagation();
-					// }
+					this.props.handleSelectAsset(assetData);
 				}}
 			>
 				<div className="head">
-					<Asset data={data} onTimeline />
+					<Asset assetData={assetData} onTimeline />
 				</div>
-
-				<TimelineBody {...this.props} data={data} />
+				{
+				<TimelineBody {...this.props} childAssetsIds={assetData.children} id={assetData.id} />
+				}
 
 				<div
 					className="tail"
 					style={{
 						left: this.state.assetWidth,
-						visibility: data.type === "scene" ? "hidden" : ""
+						visibility: assetData.type === "scene" ? "hidden" : ""
 					}}
 				/>
 			</div>
@@ -67,13 +64,13 @@ class TimelineAsset extends Component {
 }
 
 TimelineAsset.propTypes = {
-	data: shape({
-		id: string.isRequired,
-		name: string.isRequired,
+	assetData: shape({
+		// id: string.isRequired,
+		// name: string.isRequired,
 		type: string.isRequired,
-		image: string,
+		// image: string,
 		parents: object.isRequired,
-		childAssets: arrayOf(object).isRequired
+		// childAssetsData: arrayOf(object).isRequired
 	}).isRequired,
 	parentId: string.isRequired,
 	handleSelectAsset: func,

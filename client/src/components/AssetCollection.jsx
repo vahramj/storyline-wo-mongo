@@ -46,7 +46,7 @@ class AssetCollection extends Component {
 					{data[type].map(assetData => {
 						return (
 							<li key={assetData.id}>
-								<Asset {...this.props} data={assetData} />
+								<Asset {...this.props} assetData={assetData} />
 							</li>
 						);
 					})}

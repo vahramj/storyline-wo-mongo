@@ -12,12 +12,12 @@ import "./styles/Asset-scene.css";
 
 const Asset = (props) => {
 	const { selectedAsset } = props;
-	const { name, image, type } = props.data;
+	const { name, image, type } = props.assetData;
 
-	const selectedStyle = selectedAsset === props.data ? "selected" : "";
+	const selectedStyle = selectedAsset === props.assetData ? "selected" : "";
 	const containerAssetAttributes = {
 			role: "none",
-			onClick: ()=>{props.handleSelectAsset(props.data)} 			
+			onClick: ()=>{props.handleSelectAsset(props.assetData)} 			
 		};
 
 	const assetAttributes = props.onTimeline ? {} : containerAssetAttributes; 
@@ -44,7 +44,7 @@ const Asset = (props) => {
 }
 
 Asset.propTypes = {
-	data: shape({
+	assetData: shape({
 		id: string.isRequired,
 		name: string.isRequired,
 		type: string.isRequired,
