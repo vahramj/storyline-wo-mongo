@@ -1,41 +1,37 @@
 import React from "react";
-import { shape, object, arrayOf, string } from "prop-types";
+import { shape, arrayOf, string, number } from "prop-types";
 
 import TimelineAsset from "./TimelineAsset";
 
-const TimelineBody = (props) => {
-	const {data, childAssetsIds, id} = props;
+const TimelineBody = props => {
+	const { data, assetsDataRefs } = props;
 
-	const childAssetsData = childAssetsIds.map( childAsset =>  data[childAsset.type][childAsset.id] );
-
-	function renderChild(assetData, parentId) {
-		const { positionInParent } = assetData.parents[parentId];
+	function renderChild(assetDataRef) {
+		const { id, type, position, width } = assetDataRef;
+		const assetData = data[type][id];
 		return (
-			<div key={assetData.id} style={{ position: "absolute", left: positionInParent.x }}>
-				{
-					<TimelineAsset {...props} assetData={assetData} parentId={parentId} />
-				}
+			<div key={id} style={{ position: "absolute", left: position.x }}>
+				<TimelineAsset {...props} assetData={assetData} width={width} />
 			</div>
 		);
 	}
 
-	return (
-		<div className="body">
-			{
-				childAssetsData.map( childAssetData => renderChild(childAssetData, id) )
-			}
-		</div>
-	);
-}
+	return <div className="body">{assetsDataRefs.map(renderChild)}</div>;
+};
 
 TimelineBody.propTypes = {
-	id: string.isRequired,
-	childAssetsIds: arrayOf(shape({
-		id: string.isRequired,
-		type: string.isRequired
-	})).isRequired,
-	data: shape({}).isRequired,
+	assetsDataRefs: arrayOf(
+		shape({
+			id: string.isRequired,
+			type: string.isRequired,
+			position: shape({
+				x: number.isRequired
+			}),
+			width: number.isRequired
+		})
+	).isRequired,
+	data: shape().isRequired
 	// timelineAssetType: string.isRequired
-}
+};
 
 export default TimelineBody;

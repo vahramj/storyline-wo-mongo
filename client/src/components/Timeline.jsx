@@ -8,11 +8,11 @@ import "./styles/Timeline.css";
 const Timeline = props => {
 
 	const timelineId = "tmln_01";
-	const childAssetsIds = props.data.timeline[timelineId].children;
+	const assetsDataRefs = props.data.timeline[timelineId].children;
 	// console.log(props.data)
 	return (
 		<div className="timeline">
-			<TimelineBody {...props} childAssetsIds={childAssetsIds} id={timelineId} />
+			<TimelineBody {...props} assetsDataRefs={assetsDataRefs} id={timelineId} />
 		</div>
 	);
 };
@@ -20,8 +20,6 @@ const Timeline = props => {
 Timeline.propTypes = {
 	data: shape({
 		timeline: shape({object}).isRequired,
-		// phase: shape({object}).isRequired,
-		// character: shape({object}).isRequired
 	}).isRequired
 };
 
