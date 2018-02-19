@@ -40,7 +40,7 @@ class TimelineAsset extends Component {
 				role="none"
 				onClick={event => {
 					event.stopPropagation();
-					this.props.handleSelectAsset(assetData);
+					this.props.handleClick(event, assetData);
 				}}
 			>
 				<div className="head">
@@ -68,12 +68,12 @@ TimelineAsset.propTypes = {
 		type: string.isRequired,
 		children: arrayOf(object).isRequired
 	}).isRequired,
-	handleSelectAsset: func,
+	handleClick: func,
 	selectedAsset: shape()
 };
 
 TimelineAsset.defaultProps = {
-	handleSelectAsset: () => {
+	handleClick: () => {
 		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
 	},
 	selectedAsset: null

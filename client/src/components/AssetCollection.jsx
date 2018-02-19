@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {string, shape, object} from "prop-types";
+import {string, shape} from "prop-types";
 // import {connect} from "react-redux";
 
 import Asset from "./Asset";

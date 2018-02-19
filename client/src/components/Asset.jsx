@@ -17,7 +17,10 @@ const Asset = (props) => {
 	const selectedStyle = selectedAsset === props.assetData ? "selected" : "";
 	const containerAssetAttributes = {
 			role: "none",
-			onClick: ()=>{props.handleSelectAsset(props.assetData)} 			
+			onClick: event => {
+				event.stopPropagation();
+				props.handleClick(event, props.assetData)
+			} 			
 		};
 
 	const assetAttributes = props.onTimeline ? {} : containerAssetAttributes; 
@@ -49,23 +52,21 @@ Asset.propTypes = {
 		name: string.isRequired,
 		type: string.isRequired,
 		image: string,
-		// parents: object.isRequired,
-		// childAssets: arrayOf(object).isRequired
 	}).isRequired,
-	handleSelectAsset: func,
+	handleClick: func,
 	selectedAsset: shape(),
 	onTimeline: bool
 };
 
 Asset.defaultProps = {
-	handleSelectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
+	handleClick: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
 	selectedAsset: null,
 	onTimeline: false
 }
 
 // function mapDispatchToProps(dispatch){
 // 	return {
-// 		handleSelectAsset(asset){
+// 		handleClick(asset){
 // 			dispatch(selectAsset(asset))
 // 		}
 // 	}

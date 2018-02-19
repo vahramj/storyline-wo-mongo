@@ -5,7 +5,6 @@ import { getData } from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
-// let selectedAsset = getSelectedAsset();
 
 class App extends Component {
 	constructor(props){
@@ -17,20 +16,44 @@ class App extends Component {
 
 	}
 
-	handleSelectAsset = (asset) => {
-		this.setState({selectedAsset: asset});
-		// handleSelectAsset(asset)
+	deSelectAsset(){
+		this.setState({selectedAsset: null})
+	}
+
+	selectAsset(asset){
+		this.setState({selectedAsset: asset})
+	}
+
+	handleClick = (event, asset) => {
+		// clientX is the click position rel to viewport
+		const clickPosRelToViewport = event.clientX;
+		const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left)
+		const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
+		console.log(
+			event.currentTarget,
+			"\npageX: ", event.pageX, 
+			"\nboudningRect: ", elemPosRelToViewport,
+			"\nrelative coordinate: ", clickPosition
+		);
+
+		if(asset){
+			this.selectAsset(asset);
+		}
+		else {
+			this.deSelectAsset();
+		}
+
 	}
 
 	render(){
-		// console.log("asset selected in App: ", this.state.selectedAsset);
+		console.log("asset selected in App: ", this.state.selectedAsset);
 		const propsToPass = {
 			data: this.state.data,
-			handleSelectAsset: this.handleSelectAsset,
+			handleClick: this.handleClick,
 			selectedAsset: this.state.selectedAsset,
 		}
 		return (
-			<div>
+			<div onClick={this.handleClick}>
 				<header id="main-header">
 					<h1>Storyline Maker</h1>
 				</header>

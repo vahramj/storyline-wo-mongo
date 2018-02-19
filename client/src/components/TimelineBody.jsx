@@ -29,7 +29,6 @@ TimelineBody.propTypes = {
 		})
 	).isRequired,
 	data: shape().isRequired
-	// timelineAssetType: string.isRequired
 };
 
 export default TimelineBody;
