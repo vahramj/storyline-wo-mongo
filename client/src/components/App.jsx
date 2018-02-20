@@ -38,12 +38,8 @@ class App extends Component {
 			position: inBodyPosition
 		};
 
-		const newChildren = [...target.children]
-		newChildren.push(newChild);
-
-		// const updatedTarget = Object.assign({}, target, {children: newChildren});
-		// const updatedTypeGroup = Object.assign({}, this.state.data[target.type], {[target.id]:updatedTarget});
-		// const updatedData = Object.assign({}, this.state.data, {[target.type]:updatedTypeGroup});
+		const newChildren = [...target.children, newChild]
+		newChildren.sort((a,b)=>a.position - b.position)
 
 		const updatedData = update(this.state.data, {
 			[target.type]:{

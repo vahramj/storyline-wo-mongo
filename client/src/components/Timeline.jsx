@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { shape, object, func } from "prop-types";
+import { shape, number, bool, func } from "prop-types";
 
 import TimelineBody from "./TimelineBody";
 
@@ -9,14 +9,12 @@ const timelineId = "tmln_01";
 
 class Timeline extends Component {
 	componentDidMount() {
-		const timelineData = this.props.data.timeline[timelineId];
+		this.setDefaultWidth();
+		window.addEventListener("resize", this.setDefaultWidth)
+	}
 
-		const timelineWidth = this.timelineElem.getBoundingClientRect().width;
-		// this.setState({timelineWidth})
-		if(timelineData.width === 0){
-			this.props.updateTimelineWidth(timelineWidth, timelineId)
-		}
-		// console.log(timelineWidth);
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.setDefaultWidth)
 	}
 
 	onClickHandler = (event) => {
@@ -26,9 +24,17 @@ class Timeline extends Component {
 		this.props.handleClick(event, timelineData, true);
 	};
 
+	setDefaultWidth = () => {
+		const timelineData = this.props.data.timeline[timelineId];
+
+		if(timelineData.defaultWidth){
+			const timelineFrameWidth = this.timelineElem.getBoundingClientRect().width;
+			this.props.updateTimelineWidth(timelineFrameWidth, timelineId)
+		}		
+	}
+
 	render() {
 		const timelineData = this.props.data.timeline[timelineId];
-		// console.log(timelineData)
 		const assetsDataRefs = timelineData.children;
 
 		return (
@@ -59,7 +65,7 @@ class Timeline extends Component {
 
 Timeline.propTypes = {
 	data: shape({
-		timeline: shape({ object }).isRequired
+		timeline: shape().isRequired
 	}).isRequired,
 	handleClick: func,
 	updateTimelineWidth: func.isRequired

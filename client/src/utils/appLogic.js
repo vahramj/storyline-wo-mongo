@@ -51,6 +51,7 @@ const timelineData = {
 		id: "tmln_01",
 		type: "timeline",
 		width: 0,
+		defaultWidth: true,
 		children: [
 			{
 				id: "phs_07",
