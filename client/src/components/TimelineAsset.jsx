@@ -32,7 +32,7 @@ class TimelineAsset extends Component {
 
 	render() {
 		const { assetData, selectedAsset } = this.props;
-		const selectedStyle = selectedAsset && assetData.id === selectedAsset.id ? "selected" : "";
+		const selectedStyle = selectedAsset && assetData.id === selectedAsset.asset.id ? "selected" : "";
 		return (
 			<div
 				className={`timeline-asset ${selectedStyle}`}
@@ -40,7 +40,7 @@ class TimelineAsset extends Component {
 				role="none"
 				onClick={event => {
 					event.stopPropagation();
-					this.props.handleClick(event, assetData);
+					this.props.handleClick(event, assetData, true);
 				}}
 			>
 				<div className="head">

@@ -11,10 +11,11 @@ import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
 const Asset = (props) => {
-	const { selectedAsset } = props;
-	const { name, image, type } = props.assetData;
+	const { selectedAsset, assetData } = props;
+	const { name, image, type } = assetData;
 
-	const selectedStyle = selectedAsset === props.assetData ? "selected" : "";
+	const selectedStyle = selectedAsset && assetData.id === selectedAsset.asset.id ? "selected" : "";
+	
 	const containerAssetAttributes = {
 			role: "none",
 			onClick: event => {

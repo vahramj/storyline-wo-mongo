@@ -11,14 +11,16 @@ const Timeline = props => {
 	const assetsDataRefs = timelineData.children;
 	// console.log(props.data)
 	return (
-		<div
-			className="timeline"
-			role="none"
-			onClick={ event => {
-				props.handleClick(event, timelineData);
-			}}
-		>
-			<TimelineBody {...props} assetsDataRefs={assetsDataRefs} id={timelineId} />
+		<div className="timeline"
+
+				role="none"
+				onClick={ event => {
+					event.stopPropagation();
+					props.handleClick(event, timelineData, true);
+				}}
+			>
+				<TimelineBody {...props} assetsDataRefs={assetsDataRefs} id={timelineId} />
+
 		</div>
 	);
 };

@@ -17,36 +17,66 @@ class App extends Component {
 	}
 
 	deSelectAsset(){
-		this.setState({selectedAsset: null})
+		this.setState({selectedAsset: null});
 	}
 
-	selectAsset(asset){
-		this.setState({selectedAsset: asset})
+	selectAsset(asset, onTimeline){
+		this.setState({selectedAsset: {asset, onTimeline}});
 	}
 
-	handleClick = (event, asset) => {
-		// clientX is the click position rel to viewport
-		const clickPosRelToViewport = event.clientX;
-		const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left)
-		const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
-		console.log(
-			event.currentTarget,
-			"\npageX: ", event.pageX, 
-			"\nboudningRect: ", elemPosRelToViewport,
-			"\nrelative coordinate: ", clickPosition
-		);
+	insertAsset(source, target, position){
+		console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
 
-		if(asset){
-			this.selectAsset(asset);
-		}
-		else {
+		const newChild = {
+			id: source.id, 
+			type: source.type, 
+			width: 0, 
+			position
+		};
+
+		// this.state.data[target.type][target.id].children.push(newChild)
+
+		const newChildren = [...target.children]
+		newChildren.push(newChild);
+
+		const updatedTarget = Object.assign({}, target, {children: newChildren});
+
+		const updatedTypeGroup = Object.assign({}, this.state.data[target.type], {[target.id]:updatedTarget});
+
+		const updatedData = Object.assign({}, this.state.data, {[target.type]:updatedTypeGroup});
+
+		this.setState({data: updatedData});
+	}
+
+	handleClick = (event, asset, onTimeline) => {
+
+		if(!asset){
 			this.deSelectAsset();
+			return;
 		}
+
+
+			const clickPosRelToViewport = event.clientX;
+			const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left)
+			const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
+			
+			console.log(
+				event.currentTarget,
+				"\npageX: ", event.pageX, 
+				"\nboudningRect: ", elemPosRelToViewport,
+				"\nrelative coordinate: ", clickPosition
+			);
+		const {selectedAsset} = this.state;
+		if(selectedAsset && !selectedAsset.onTimeline && onTimeline){
+			this.insertAsset(selectedAsset.asset, asset, clickPosition);
+		}
+
+		this.selectAsset(asset, onTimeline);
 
 	}
 
 	render(){
-		console.log("asset selected in App: ", this.state.selectedAsset);
+		// console.log("asset selected in App: ", this.state.selectedAsset);
 		const propsToPass = {
 			data: this.state.data,
 			handleClick: this.handleClick,
