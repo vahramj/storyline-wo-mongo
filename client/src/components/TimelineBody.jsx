@@ -40,6 +40,7 @@ const TimelineBody = props => {
 };
 
 TimelineBody.propTypes = {
+	width: number.isRequired,
 	assetsDataRefs: arrayOf(
 		shape({
 			id: string.isRequired,
@@ -48,7 +49,9 @@ TimelineBody.propTypes = {
 			width: number.isRequired
 		})
 	).isRequired,
-	data: shape().isRequired
+	assetData: shape().isRequired,
+	data: shape().isRequired,
+	// width: number.isRequired
 };
 
 export default TimelineBody;

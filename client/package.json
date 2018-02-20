@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "image-webpack-loader": "^4.0.0",
+    "immutability-helper": "^2.6.5",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dnd": "^2.5.4",

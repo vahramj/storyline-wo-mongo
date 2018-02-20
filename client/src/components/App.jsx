@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import update from "immutability-helper";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
 import { getData } from "../utils/appLogic";
@@ -37,17 +38,22 @@ class App extends Component {
 			position: inBodyPosition
 		};
 
-		// this.state.data[target.type][target.id].children.push(newChild)
-
 		const newChildren = [...target.children]
 		newChildren.push(newChild);
 
-		const updatedTarget = Object.assign({}, target, {children: newChildren});
+		// const updatedTarget = Object.assign({}, target, {children: newChildren});
+		// const updatedTypeGroup = Object.assign({}, this.state.data[target.type], {[target.id]:updatedTarget});
+		// const updatedData = Object.assign({}, this.state.data, {[target.type]:updatedTypeGroup});
 
-		const updatedTypeGroup = Object.assign({}, this.state.data[target.type], {[target.id]:updatedTarget});
-
-		const updatedData = Object.assign({}, this.state.data, {[target.type]:updatedTypeGroup});
-
+		const updatedData = update(this.state.data, {
+			[target.type]:{
+				[target.id]:{
+					children: {
+						$set: newChildren
+					}
+				}
+			}
+		})
 		this.setState({data: updatedData});
 	}
 
@@ -58,35 +64,47 @@ class App extends Component {
 			return;
 		}
 
-
 			const clickPosRelToViewport = event.clientX;
 			const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left)
 			const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
 			
-			console.log(
-				event.currentTarget,
-				"\npageX: ", event.pageX, 
-				"\nboudningRect: ", elemPosRelToViewport,
-				"\nrelative coordinate: ", clickPosition
-			);
+			// console.log(
+			// 	event.currentTarget,
+			// 	"\npageX: ", event.pageX, 
+			// 	"\nboudningRect: ", elemPosRelToViewport,
+			// 	"\nrelative coordinate: ", clickPosition
+			// );
 		const {selectedAsset} = this.state;
 		if(selectedAsset && !selectedAsset.onTimeline && onTimeline){
 			this.insertAsset(selectedAsset.asset, asset, clickPosition);
 		}
 
 		this.selectAsset(asset, onTimeline);
+	}
 
+	updateTimelineWidth = (timelineWidth, timelineId) => {
+		const updatedData = update(this.state.data, {
+			timeline: {
+				[timelineId]: {
+					width: {$set: timelineWidth}
+				}
+			}
+		});
+
+		this.setState({data: updatedData})
 	}
 
 	render(){
 		// console.log("asset selected in App: ", this.state.selectedAsset);
+		// console.log(this.state)
 		const propsToPass = {
 			data: this.state.data,
 			handleClick: this.handleClick,
+			updateTimelineWidth: this.updateTimelineWidth,
 			selectedAsset: this.state.selectedAsset,
 		}
 		return (
-			<div onClick={this.handleClick}>
+			<div role="none" onClick={this.handleClick}>
 				<header id="main-header">
 					<h1>Storyline Maker</h1>
 				</header>
