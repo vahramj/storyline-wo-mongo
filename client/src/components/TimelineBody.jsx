@@ -3,8 +3,24 @@ import { shape, arrayOf, string, number } from "prop-types";
 
 import TimelineAsset from "./TimelineAsset";
 
+// const headWidth = 135;
+const initialOpening = 30;
+
 const TimelineBody = props => {
+	// vahram, come back and rename assetsDataRefs to childAssets, maybe even get it from assetData
 	const { data, assetsDataRefs } = props;
+
+	function getBodyWidth() {
+		let assetWidth = props.width;
+
+		if (props.assetData.type === "scene") {
+			assetWidth = "";
+		} else if (assetWidth === 0) {
+			assetWidth = initialOpening;
+		}
+
+		return assetWidth;
+	}
 
 	function renderChild(assetDataRef) {
 		const { id, type, position, width } = assetDataRef;
@@ -16,7 +32,11 @@ const TimelineBody = props => {
 		);
 	}
 
-	return <div className="body">{assetsDataRefs.map(renderChild)}</div>;
+	return (
+		<div className="body" style={{ width: getBodyWidth() }}>
+			{assetsDataRefs.map(renderChild)}
+		</div>
+	);
 };
 
 TimelineBody.propTypes = {

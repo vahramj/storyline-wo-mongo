@@ -6,29 +6,28 @@ import TimelineBody from "./TimelineBody";
 
 import "./styles/TimelineAsset.css";
 
-const headWidth = 135;
-const initialOpening = 30;
-// const childWidth = 125;
+// const headWidth = 135;
+// const initialOpening = 30;
 
 class TimelineAsset extends Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 
-		this.state = {
-			assetWidth: this.getAssetWidth()
-		};
-	}
+	// 	this.state = {
+	// 		assetWidth: this.getAssetWidth()
+	// 	};
+	// }
 
-	getAssetWidth() {
-		let assetWidth = this.props.width;
-		if (this.props.assetData.type === "scene") {
-			assetWidth = "";
-		} else if (assetWidth === 0) {
-			assetWidth = headWidth + initialOpening;
-		}
+	// getAssetWidth() {
+	// 	let assetWidth = this.props.width;
+	// 	if (this.props.assetData.type === "scene") {
+	// 		assetWidth = "";
+	// 	} else if (assetWidth === 0) {
+	// 		assetWidth = headWidth + initialOpening;
+	// 	}
 
-		return assetWidth;
-	}
+	// 	return assetWidth;
+	// }
 
 	render() {
 		const { assetData, selectedAsset } = this.props;
@@ -36,7 +35,7 @@ class TimelineAsset extends Component {
 		return (
 			<div
 				className={`timeline-asset ${selectedStyle}`}
-				style={{ width: this.state.assetWidth }}
+				// style={{ width: this.state.assetWidth }}
 				role="none"
 				onClick={event => {
 					event.stopPropagation();
@@ -52,7 +51,7 @@ class TimelineAsset extends Component {
 				<div
 					className="tail"
 					style={{
-						left: this.state.assetWidth,
+						// left: this.state.assetWidth,
 						visibility: assetData.type === "scene" ? "hidden" : ""
 					}}
 				/>

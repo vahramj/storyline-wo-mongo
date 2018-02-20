@@ -11,16 +11,17 @@ const Timeline = props => {
 	const assetsDataRefs = timelineData.children;
 	// console.log(props.data)
 	return (
-		<div className="timeline"
-
+		<div className="timeline">
+			<div
+				className="scroll-body"
 				role="none"
-				onClick={ event => {
+				onClick={event => {
 					event.stopPropagation();
 					props.handleClick(event, timelineData, true);
 				}}
 			>
-				<TimelineBody {...props} assetsDataRefs={assetsDataRefs} id={timelineId} />
-
+				<TimelineBody {...props} assetData={timelineData} assetsDataRefs={assetsDataRefs} id={timelineId} />
+			</div>
 		</div>
 	);
 };

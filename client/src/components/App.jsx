@@ -27,11 +27,14 @@ class App extends Component {
 	insertAsset(source, target, position){
 		console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
 
+		const headWidth = 135;
+		const inBodyPosition = target.type === "timeline" ? position : position - headWidth;
+		
 		const newChild = {
 			id: source.id, 
 			type: source.type, 
 			width: 0, 
-			position
+			position: inBodyPosition
 		};
 
 		// this.state.data[target.type][target.id].children.push(newChild)

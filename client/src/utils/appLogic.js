@@ -60,8 +60,8 @@ const timelineData = {
 			{
 				id: "phs_30",
 				type: "phase",
-				width: 400,
-				position: 550,
+				width: 300,
+				position: 650,
 			},
 		],
 	}
@@ -73,18 +73,18 @@ const phaseData = {
 		name: "opeining image",
 		type: "phase",
 		children: [
-			// {
-			// 	id: "scn_05",
-			// 	type: "scene",
-			// 	width: 0,
-			// 	position: 140,
-			// },
-			// {
-			// 	id: "scn_08",
-			// 	type: "scene",
-			// 	width: 0,
-			// 	position: 280,
-			// },
+			{
+				id: "scn_05",
+				type: "scene",
+				width: 0,
+				position: 10,
+			},
+			{
+				id: "scn_08",
+				type: "scene",
+				width: 0,
+				position: 280,
+			},
 		],
 		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
 	},

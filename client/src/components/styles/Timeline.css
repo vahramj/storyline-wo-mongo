@@ -1,7 +1,17 @@
 .timeline{
+	/*display: flex;*/
 	flex-grow: 1;
 	position: relative;
 	background: rgb(100,115,115);
-	padding: 20px 5px;
+	/*padding: 0px 5px;*/
 	overflow: scroll;
+	height: 150px;
+}
+
+.timeline .scroll-body{
+	position: absolute;
+	width: 1000px;
+	height: 110px;
+	padding: 20px 5px;
+	background: red;
 }
