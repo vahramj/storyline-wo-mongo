@@ -51,12 +51,15 @@ class App extends Component {
 		};	
 
 		const newChildren = [...target.children];
-		// newChildren.sort((a,b)=>a.position - b.position)
-
 		// vahram, find a way to update target width.
 		// Probably will need to move position & width from child ref data into asset's main data
-		if (newChildren.length > 0 && newChildren[newChildren.length-1].position>newChild.position) {
+
+
+		if (newChildren.length > 0 ) {
+			// console.log("hello")
 			let rightNeighbourIndex;
+			let leftNeighbour; 
+			let leftNeighbourIndex;
 			let rightNeighbour = newChildren.find((child, index) => {
 				if (child.position > newChild.position) {
 					rightNeighbourIndex = index;
@@ -65,34 +68,47 @@ class App extends Component {
 				return false;
 			});
 
-			// console.log("rightNeighbourIndex: ", rightNeighbourIndex)
+			// has both left & right
+			if(rightNeighbour && rightNeighbourIndex>0){
+				leftNeighbourIndex = rightNeighbourIndex-1;
+				leftNeighbour = newChildren[leftNeighbourIndex];
+			}
+			// has only left
+			else if(!rightNeighbour) {
+				leftNeighbourIndex = newChildren.length-1;
+				leftNeighbour = newChildren[leftNeighbourIndex];
+			}
 
-			if(rightNeighbourIndex>0){
-				const leftNeighbour = newChildren[rightNeighbourIndex-1];
+			if(leftNeighbour){
+				// console.log("has left", leftNeighbour)
 				const leftNeighbourWidth = leftNeighbour.width + headWidthList[leftNeighbour.type];
 
 				if(leftNeighbour.position + leftNeighbourWidth > newChild.position){
 					const positionDiff = newChild.position - leftNeighbour.position;
-					console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
+					// console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
 					if(positionDiff > leftNeighbourWidth/2){
 						newChild.position = leftNeighbour.position + leftNeighbourWidth;
 					}
 					else {
 						newChild.position = leftNeighbour.position;
-						rightNeighbourIndex --;
 						rightNeighbour = leftNeighbour;
+						rightNeighbourIndex = leftNeighbourIndex;
 					}
 				}
 			}
 
-			const pushAmount = newChild.position + sourceHeadWidth + newChild.width - rightNeighbour.position;
-			if (pushAmount > 0) {
-				for (let i = rightNeighbourIndex; i < newChildren.length; i++) {
-					newChildren[i] = Object.assign({}, newChildren[i], {
-						position: newChildren[i].position + pushAmount
-					});
+			if(rightNeighbour){
+				const pushAmount = newChild.position + sourceHeadWidth + newChild.width - rightNeighbour.position;
+				if (pushAmount > 0) {
+					for (let i = rightNeighbourIndex; i < newChildren.length; i++) {
+						newChildren[i] = Object.assign({}, newChildren[i], {
+							position: newChildren[i].position + pushAmount
+						});
+					}
 				}
 			}
+
+			console.log("rightNeighbourIndex: ",rightNeighbourIndex)
 			newChildren.splice(rightNeighbourIndex, 0, newChild);
 		} 
 		else {
