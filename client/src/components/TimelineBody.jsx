@@ -13,11 +13,11 @@ const TimelineBody = props => {
 	function getBodyWidth() {
 		let assetWidth = props.width;
 
-		if (props.assetData.type === "scene") {
-			assetWidth = "";
-		} else if (assetWidth === 0) {
-			assetWidth = initialOpening;
-		}
+		// if (props.assetData.type === "scene") {
+		// 	assetWidth = 0;
+		// } else if (assetWidth === 0) {
+		// 	assetWidth = initialOpening;
+		// }
 
 		return assetWidth;
 	}

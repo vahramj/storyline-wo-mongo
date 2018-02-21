@@ -10,6 +10,11 @@
 	z-index: 2;
 }
 
+.timeline-asset.timeline-phase {
+	padding: 20px 0;
+	height: 110px;
+}
+
 .timeline-asset .body {
 	position: relative;
 	background: rgba(234,234,234,0.5);

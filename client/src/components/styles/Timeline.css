@@ -5,13 +5,13 @@
 	background: rgb(100,115,115);
 	/*padding: 0px 5px;*/
 	overflow: scroll;
-	height: 150px;
+	height: 190px;
 }
 
 .timeline .scroll-body{
 	position: absolute;
 	/*width: 1000px;*/
-	height: 110px;
+	height: 150px;
 	padding: 20px 0px;
 	background: red;
 }

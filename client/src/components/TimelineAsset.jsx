@@ -34,7 +34,7 @@ class TimelineAsset extends Component {
 		const selectedStyle = selectedAsset && assetData.id === selectedAsset.asset.id ? "selected" : "";
 		return (
 			<div
-				className={`timeline-asset ${selectedStyle}`}
+				className={`timeline-asset ${selectedStyle} timeline-${assetData.type}`}
 				// style={{ width: this.state.assetWidth }}
 				role="none"
 				onClick={event => {

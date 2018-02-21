@@ -50,8 +50,8 @@ const timelineData = {
 	tmln_01: {
 		id: "tmln_01",
 		type: "timeline",
-		width: 0,
-		defaultWidth: true,
+		width: 1500,
+		defaultWidth: false,
 		children: [
 			{
 				id: "phs_07",
@@ -59,12 +59,12 @@ const timelineData = {
 				width: 450,
 				position: 0,
 			},
-			// {
-			// 	id: "phs_30",
-			// 	type: "phase",
-			// 	width: 300,
-			// 	position: 650,
-			// },
+			{
+				id: "phs_30",
+				type: "phase",
+				width: 300,
+				position: 650,
+			},
 		],
 	}
 }
