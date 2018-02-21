@@ -1,19 +1,40 @@
+// const assetHierarchy = {
+// 		timeline: "phase",
+// 		phase: "scene",
+// 		scene: "character"
+// };
 
-let selectedAsset = null;
-
-export function getSelectedAsset(){
-	return selectedAsset;
+const headWidthList = {
+	timeline: 0,
+	phase: 135,
+	scene: 135
 }
 
-// export function handleSelectAsset(asset){
-// 	selectedAsset = asset;
-// 	console.log("asset selected: ", selectedAsset);
-// }
+const initialOpeningList = {
+	phase: 30,
+	scene: 0
+}
 
-export function addAsset(assetOrig, assetArrOrig, headWidth ){
+export function buildNewChildRef(child, parent, position){
+	const parentHeadWidth = headWidthList[parent.type];
+
+	const initialOpening = initialOpeningList[child.type];
+
+	const inBodyPosition = position - parentHeadWidth;
+
+	return {
+		id: child.id,
+		type: child.type,
+		width: initialOpening,
+		position: inBodyPosition
+	};
+}
+
+export function insertAssetByPosition(assetOrig, assetArrOrig ){
 
 	const asset = assetOrig;
 	const assetArr = [...assetArrOrig];
+	const headWidth = headWidthList[asset.type];
 
 	if (assetArr.length === 0 ) {
 		console.log("first asset")
@@ -91,30 +112,34 @@ export function addAsset(assetOrig, assetArrOrig, headWidth ){
 	return assetArr;
 }
 
-// export const assetHierarchy = {
-// 		timeline: "phase",
-// 		phase: "scene",
-// 		scene: "character"
-// };
+export function removeAssetById(assetId, assetArrOrig) {
+	const assetArr = [...assetArrOrig];
+	// const children = parent.children;
+	let assetIndex = null;
+	assetArr.find((asset, index) => {
+		if (asset.id === assetId) {
+			assetIndex = index;
+			return true;
+		}
+		return false;
+	});
+	if (assetIndex === null) {
+		throw new Error(`couldn't find asset with id: ${assetId} in ${JSON.stringify(assetArr)}`);
+	}
+	assetArr.splice(assetIndex, 1);
+	return assetArr;
+}
 
 // // asset mock
 // {
 // 	id: "asset_id_01",
 // 	name: "asset description 01",
 // 	type: "assetType01",
-// 	parents: {
-// 		parentId: {
-// 			widthInParent: 0,
-// 			positionInParent: {
-// 				x: 15,
-// 				y: 0,
-// 			}
-// 		}
-// 	},
+// 	parents: "someId",
 // // children are sorting based on position
 // 	children: [{asset01}, {asset02},...{assetN}],
-// 	image: ""
-// },
+// 	image: "some/path/to/image.png"
+// }
 
 const timelineData = {
 	tmln_01: {
@@ -122,15 +147,16 @@ const timelineData = {
 		type: "timeline",
 		width: 1500,
 		defaultWidth: false,
+		parent: null,
 		children: [
 			{
-				id: "phs_07",
+				id: "phs_01",
 				type: "phase",
 				width: 450,
 				position: 0,
 			},
 			{
-				id: "phs_30",
+				id: "phs_03",
 				type: "phase",
 				width: 300,
 				position: 650,
@@ -140,10 +166,11 @@ const timelineData = {
 }
 
 const phaseData = {
-	phs_07: {
-		id: "phs_07",
+	phs_01: {
+		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
+		parent: {id: "tmln_01", type: "timeline"},
 		children: [
 			// {
 			// 	id: "scn_05",
@@ -160,17 +187,18 @@ const phaseData = {
 		],
 		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
 	},
-	phs_02: {
-		id: "phs_02",
+	phs_03: {
+		id: "phs_03",
 		name: "setup",
 		type: "phase",
+		parent: {id: "tmln_01", type: "timeline"},
 		children: [
-			{
-				id: "scn_20",
-				type: "scene",
-				width: 0,
-				position: 160,
-			}
+			// {
+			// 	id: "scn_20",
+			// 	type: "scene",
+			// 	width: 0,
+			// 	position: 160,
+			// }
 		],
 		// image: ""
 	},
@@ -178,6 +206,7 @@ const phaseData = {
 		id: "phs_05",
 		name: "catalist",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/catalist 01_thumb.png"
 	},
@@ -185,6 +214,7 @@ const phaseData = {
 		id: "phs_10",
 		name: "debate",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: ""
 	},
@@ -192,6 +222,7 @@ const phaseData = {
 		id: "phs_15",
 		name: "breaking into 2",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/breaking into two 03_thumb.png"
 	},
@@ -199,6 +230,7 @@ const phaseData = {
 		id: "phs_17",
 		name: "fun and games",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/fun and games 03_thumb.png"
 	},
@@ -206,6 +238,7 @@ const phaseData = {
 		id: "phs_20",
 		name: "bad guys close in",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/bad guys close in 05_thumb.png"
 	},
@@ -213,6 +246,7 @@ const phaseData = {
 		id: "phs_23",
 		name: "breaking into three",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/breaking into three 01_thumb.png"
 	},
@@ -220,6 +254,7 @@ const phaseData = {
 		id: "phs_25",
 		name: "finaly",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/fanale 03_thumb.png"
 	},	
@@ -227,6 +262,7 @@ const phaseData = {
 		id: "phs_30",
 		name: "closing image",
 		type: "phase",
+		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/closing image 02_thumb.png"
 	},
@@ -237,6 +273,7 @@ const sceneData = {
 		id: "scn_05",
 		name: "fellowship begins",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"
 	},
@@ -244,6 +281,7 @@ const sceneData = {
 		id: "scn_08",
 		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: ""
 	},
@@ -251,6 +289,7 @@ const sceneData = {
 		id: "scn_10",
 		name: "frodo's final decision",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/frodo's decision_thumb.png"
 	},
@@ -258,6 +297,7 @@ const sceneData = {
 		id: "scn_15",
 		name: "gorlum's monologue",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/gorlum's journey_thumb.png"
 	},
@@ -265,6 +305,7 @@ const sceneData = {
 		id: "scn_17",
 		name: "fellowship begins",
 		type: "scene",
+		parent: null,
 		children: [],
 		// image: ""
 	},
@@ -272,6 +313,7 @@ const sceneData = {
 		id: "scn_20",
 		name: "saving Minas Tirith_saving Minas Tirith",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/saving Minas Tirith_thumb.png"
 	},
@@ -279,6 +321,7 @@ const sceneData = {
 		id: "scn_25",
 		name: "underground_tomb",
 		type: "scene",
+		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/underground_thumb.png"
 	}
@@ -290,6 +333,7 @@ const characterData = {
 		name: "Aragorn",
 		type: "character",
 		image: "./static/images/character_thumbnails/Aragorn_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_10: {
@@ -297,6 +341,7 @@ const characterData = {
 		name: "Arwen",
 		type: "character",
 		// image: "./static/images/character_thumbnails/arwen_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_15: {
@@ -304,6 +349,7 @@ const characterData = {
 		name: "Eowyn",
 		type: "character",
 		image: "./static/images/character_thumbnails/Eowyn_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_20: {
@@ -311,6 +357,7 @@ const characterData = {
 		name: "Frodo",
 		type: "character",
 		image: "./static/images/character_thumbnails/frodo_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_25: {
@@ -318,6 +365,7 @@ const characterData = {
 		name: "Gandalf the gray",
 		type: "character",
 		image: "./static/images/character_thumbnails/gandalf_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_30: {
@@ -325,6 +373,7 @@ const characterData = {
 		name: "gollum",
 		type: "character",
 		image: "./static/images/character_thumbnails/gollum_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_35: {
@@ -332,6 +381,7 @@ const characterData = {
 		name: "legolas",
 		type: "character",
 		image: "./static/images/character_thumbnails/legolas_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_40: {
@@ -339,6 +389,7 @@ const characterData = {
 		name: "samwise gamgee",
 		type: "character",
 		image: "./static/images/character_thumbnails/sam_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_45: {
@@ -346,6 +397,7 @@ const characterData = {
 		name: "saruman",
 		type: "character",
 		image: "./static/images/character_thumbnails/saruman_01.png",
+		parent: null,
 		children: [],
 	},	
 	chr_50: {
@@ -353,6 +405,7 @@ const characterData = {
 		name: "sauron the terrible",
 		type: "character",
 		image: "./static/images/character_thumbnails/sauron_01.png",
+		parent: null,
 		children: [],
 	},
 	chr_51: {
@@ -360,6 +413,7 @@ const characterData = {
 		name: "theoden",
 		type: "character",
 		image: "./static/images/character_thumbnails/theoden_01.png",
+		parent: null,
 		children: [],
 	},
 };

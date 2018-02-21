@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { getData, addAsset } from "../utils/appLogic";
+import { getData, insertAssetByPosition, buildNewChildRef, removeAssetById } from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
@@ -27,42 +27,49 @@ class App extends Component {
 	insertAsset(source, target, position) {
 		console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
 
-		const headWidthList = {
-			timeline: 0,
-			phase: 135,
-			scene: 135
-		}
-		const sourceHeadWidth = headWidthList[source.type];
-		const targetHeadWidth = headWidthList[target.type];
+		const newChild = buildNewChildRef(source, target, position);
+		const newChildren = insertAssetByPosition(newChild, [...target.children]);
 
-		const initialOpeningList = {
-			phase: 30,
-			scene: 0
-		}
-		const initialOpening = initialOpeningList[source.type];
+		// const updatedSource = Object.assign({}, source, { parent: { id: target.id, type: target.type } });
+		const updatedSource = update(source, {
+			parent: {
+				$set: { id: target.id, type: target.type }
+			}
+		});
 
-		const inBodyPosition = position - targetHeadWidth;
-
-		const newChild = {
-			id: source.id,
-			type: source.type,
-			width: initialOpening,
-			position: inBodyPosition
-		};	
-
-		// vahram, find a way to update target width.
-		// Probably will need to move position & width from child ref data into asset's main data		
-		const newChildren = addAsset(newChild, [...target.children], sourceHeadWidth);
-
-		const updatedData = update(this.state.data, {
+		let updatedData = update(this.state.data, {
 			[target.type]: {
 				[target.id]: {
 					children: {
 						$set: newChildren
 					}
 				}
+			},
+			[source.type]: {
+				[source.id]: {
+					$set: updatedSource
+				}
 			}
 		});
+
+		// vahram, find a way to update target width.
+		// Probably will need to move position & width from child ref data into asset's main data
+		if (source.parent) {
+			const sourceOldParent = this.state.data[source.parent.type][source.parent.id];
+			const sourceOldSiblings = sourceOldParent.children;
+			const updatedSourceOldSiblings = removeAssetById(source.id, sourceOldSiblings);
+
+			updatedData = update(updatedData, {
+				[source.parent.type]: {
+					[source.parent.id]: {
+						children: {
+							$set: updatedSourceOldSiblings 
+						}
+					}
+				}
+			});
+		}
+
 		this.setState({ data: updatedData });
 	}
 
