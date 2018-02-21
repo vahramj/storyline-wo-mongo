@@ -57,9 +57,9 @@ class App extends Component {
 
 		if (newChildren.length > 0 ) {
 			// console.log("hello")
-			let rightNeighbourIndex;
 			let leftNeighbour; 
 			let leftNeighbourIndex;
+			let rightNeighbourIndex;
 			let rightNeighbour = newChildren.find((child, index) => {
 				if (child.position > newChild.position) {
 					rightNeighbourIndex = index;
@@ -69,18 +69,22 @@ class App extends Component {
 			});
 
 			// has both left & right
+			// console.log("rightNeighbour: ",rightNeighbour)
+			// console.log("rightNeighbourIndex: ",rightNeighbourIndex)
+			// console.log("newChildren: ", newChildren);
 			if(rightNeighbour && rightNeighbourIndex>0){
 				leftNeighbourIndex = rightNeighbourIndex-1;
 				leftNeighbour = newChildren[leftNeighbourIndex];
+				// console.log("has left & right", leftNeighbour)
 			}
 			// has only left
 			else if(!rightNeighbour) {
 				leftNeighbourIndex = newChildren.length-1;
 				leftNeighbour = newChildren[leftNeighbourIndex];
+				// console.log("has only left", leftNeighbour)
 			}
 
 			if(leftNeighbour){
-				// console.log("has left", leftNeighbour)
 				const leftNeighbourWidth = leftNeighbour.width + headWidthList[leftNeighbour.type];
 
 				if(leftNeighbour.position + leftNeighbourWidth > newChild.position){
@@ -97,7 +101,9 @@ class App extends Component {
 				}
 			}
 
+			let insertIndex;
 			if(rightNeighbour){
+				// console.log("has right", rightNeighbour);
 				const pushAmount = newChild.position + sourceHeadWidth + newChild.width - rightNeighbour.position;
 				if (pushAmount > 0) {
 					for (let i = rightNeighbourIndex; i < newChildren.length; i++) {
@@ -106,12 +112,18 @@ class App extends Component {
 						});
 					}
 				}
+
+				insertIndex = rightNeighbourIndex;
+			}
+			else{
+				insertIndex = leftNeighbourIndex+1;
 			}
 
-			console.log("rightNeighbourIndex: ",rightNeighbourIndex)
-			newChildren.splice(rightNeighbourIndex, 0, newChild);
+			// console.log("newChildren: ", newChildren, "newChild: ", newChild)
+			newChildren.splice(insertIndex, 0, newChild);
 		} 
 		else {
+			console.log("first asset")
 			newChildren.push(newChild);
 		}
 
