@@ -10,15 +10,85 @@ export function getSelectedAsset(){
 // 	console.log("asset selected: ", selectedAsset);
 // }
 
-export function addAsset(source, target){
-	// if doesn't have children
-		// add source to target's children
-		// add target(id) to source's parents, widhtInParent: 0, positionInParent: {0,0}
-	// if has children
-		// calculate source's position based on requested position
-		// offset children to the right of the source based on it's calculated position and width
-		// set new target width
-	console.log(`adding ${source} to ${target}`);
+export function addAsset(assetOrig, assetArrOrig, headWidth ){
+
+	const asset = assetOrig;
+	const assetArr = [...assetArrOrig];
+
+	if (assetArr.length === 0 ) {
+		console.log("first asset")
+		assetArr.push(asset);
+
+		return assetArr;
+	}
+
+	// console.log("hello")
+	let leftNeighbour; 
+	let leftNeighbourIndex;
+	let rightNeighbourIndex;
+	let rightNeighbour = assetArr.find((child, index) => {
+		if (child.position > asset.position) {
+			rightNeighbourIndex = index;
+			return true;
+		}
+		return false;
+	});
+
+	// has both left & right
+	// console.log("rightNeighbour: ",rightNeighbour)
+	// console.log("rightNeighbourIndex: ",rightNeighbourIndex)
+	// console.log("assetArr: ", assetArr);
+	if(rightNeighbour && rightNeighbourIndex>0){
+		leftNeighbourIndex = rightNeighbourIndex-1;
+		leftNeighbour = assetArr[leftNeighbourIndex];
+		// console.log("has left & right", leftNeighbour)
+	}
+	// has only left
+	else if(!rightNeighbour) {
+		leftNeighbourIndex = assetArr.length-1;
+		leftNeighbour = assetArr[leftNeighbourIndex];
+		// console.log("has only left", leftNeighbour)
+	}
+
+	if(leftNeighbour){
+		const leftNeighbourWidth = leftNeighbour.width + headWidth;
+
+		if(leftNeighbour.position + leftNeighbourWidth > asset.position){
+			const positionDiff = asset.position - leftNeighbour.position;
+			// console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
+			if(positionDiff > leftNeighbourWidth/2){
+				asset.position = leftNeighbour.position + leftNeighbourWidth;
+			}
+			else {
+				asset.position = leftNeighbour.position;
+				rightNeighbour = leftNeighbour;
+				rightNeighbourIndex = leftNeighbourIndex;
+			}
+		}
+	}
+
+	let insertIndex;
+	if(rightNeighbour){
+		// console.log("has right", rightNeighbour);
+		const pushAmount = asset.position + headWidth + asset.width - rightNeighbour.position;
+		if (pushAmount > 0) {
+			for (let i = rightNeighbourIndex; i < assetArr.length; i++) {
+				assetArr[i] = Object.assign({}, assetArr[i], {
+					position: assetArr[i].position + pushAmount
+				});
+			}
+		}
+
+		insertIndex = rightNeighbourIndex;
+	}
+	else{
+		insertIndex = leftNeighbourIndex+1;
+	}
+
+	// console.log("assetArr: ", assetArr, "asset: ", asset)
+	assetArr.splice(insertIndex, 0, asset); 
+
+	return assetArr;
 }
 
 // export const assetHierarchy = {
@@ -41,7 +111,7 @@ export function addAsset(source, target){
 // 			}
 // 		}
 // 	},
-// // children are sorting based on x coordinate
+// // children are sorting based on position
 // 	children: [{asset01}, {asset02},...{assetN}],
 // 	image: ""
 // },

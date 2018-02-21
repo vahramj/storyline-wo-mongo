@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { getData } from "../utils/appLogic";
+import { getData, addAsset } from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
@@ -50,82 +50,9 @@ class App extends Component {
 			position: inBodyPosition
 		};	
 
-		const newChildren = [...target.children];
 		// vahram, find a way to update target width.
-		// Probably will need to move position & width from child ref data into asset's main data
-
-
-		if (newChildren.length > 0 ) {
-			// console.log("hello")
-			let leftNeighbour; 
-			let leftNeighbourIndex;
-			let rightNeighbourIndex;
-			let rightNeighbour = newChildren.find((child, index) => {
-				if (child.position > newChild.position) {
-					rightNeighbourIndex = index;
-					return true;
-				}
-				return false;
-			});
-
-			// has both left & right
-			// console.log("rightNeighbour: ",rightNeighbour)
-			// console.log("rightNeighbourIndex: ",rightNeighbourIndex)
-			// console.log("newChildren: ", newChildren);
-			if(rightNeighbour && rightNeighbourIndex>0){
-				leftNeighbourIndex = rightNeighbourIndex-1;
-				leftNeighbour = newChildren[leftNeighbourIndex];
-				// console.log("has left & right", leftNeighbour)
-			}
-			// has only left
-			else if(!rightNeighbour) {
-				leftNeighbourIndex = newChildren.length-1;
-				leftNeighbour = newChildren[leftNeighbourIndex];
-				// console.log("has only left", leftNeighbour)
-			}
-
-			if(leftNeighbour){
-				const leftNeighbourWidth = leftNeighbour.width + headWidthList[leftNeighbour.type];
-
-				if(leftNeighbour.position + leftNeighbourWidth > newChild.position){
-					const positionDiff = newChild.position - leftNeighbour.position;
-					// console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
-					if(positionDiff > leftNeighbourWidth/2){
-						newChild.position = leftNeighbour.position + leftNeighbourWidth;
-					}
-					else {
-						newChild.position = leftNeighbour.position;
-						rightNeighbour = leftNeighbour;
-						rightNeighbourIndex = leftNeighbourIndex;
-					}
-				}
-			}
-
-			let insertIndex;
-			if(rightNeighbour){
-				// console.log("has right", rightNeighbour);
-				const pushAmount = newChild.position + sourceHeadWidth + newChild.width - rightNeighbour.position;
-				if (pushAmount > 0) {
-					for (let i = rightNeighbourIndex; i < newChildren.length; i++) {
-						newChildren[i] = Object.assign({}, newChildren[i], {
-							position: newChildren[i].position + pushAmount
-						});
-					}
-				}
-
-				insertIndex = rightNeighbourIndex;
-			}
-			else{
-				insertIndex = leftNeighbourIndex+1;
-			}
-
-			// console.log("newChildren: ", newChildren, "newChild: ", newChild)
-			newChildren.splice(insertIndex, 0, newChild);
-		} 
-		else {
-			console.log("first asset")
-			newChildren.push(newChild);
-		}
+		// Probably will need to move position & width from child ref data into asset's main data		
+		const newChildren = addAsset(newChild, [...target.children], sourceHeadWidth);
 
 		const updatedData = update(this.state.data, {
 			[target.type]: {
