@@ -35,7 +35,6 @@ class Timeline extends Component {
 
 	render() {
 		const timelineData = this.props.data.timeline[timelineId];
-		const assetsDataRefs = timelineData.children;
 
 		return (
 			<div
@@ -53,9 +52,6 @@ class Timeline extends Component {
 					<TimelineBody
 						{...this.props}
 						assetData={timelineData}
-						assetsDataRefs={assetsDataRefs}
-						id={timelineId}
-						width={timelineData.width}
 					/>
 				</div>
 			</div>
