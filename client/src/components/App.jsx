@@ -18,18 +18,18 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedAsset: null,
+			selectedAssetId: null,
 			data
 		};
 	}
 
 	deSelectAsset() {
-		this.setState({ selectedAsset: null });
+		this.setState({ selectedAssetId: null });
 	}
 
 	selectAsset(asset) {
-		const latestAsset = this.state.data[asset.type][asset.id]
-		this.setState({ selectedAsset: latestAsset });
+		// const latestAsset = this.state.data[asset.type][asset.id]
+		this.setState({ selectedAssetId: asset.id });
 	}
 
 	insertAsset(source, target, position) {
@@ -49,37 +49,31 @@ class App extends Component {
 
 		const newChild = setInitialAssetPosition(source, target, position);
 		// map target's ref children to real ones using updatedData 
-		let newChildren = updatedData[target.type][target.id].children.map(child=>{
-			return updatedData[child.type][child.id]
+		let newChildren = updatedData[target.id].children.map(child=>{
+			return updatedData[child.id]
 		});
 		newChildren = insertAssetByPosition(newChild, newChildren);
 
 		newChildren.forEach(child => {
 			updatedData = update(updatedData, {
-				[child.type]: {
-					[child.id]: {
-						$set: child
-					}
+				[child.id]: {
+					$set: child
 				}
 			})
 		});
 
 		const newChildrenRefs = newChildren.map(child=>{
-			return {id: child.id, type: child.type}
+			return {id: child.id }
 		})
 		updatedData = update(updatedData, {
-			[target.type]: {
-				[target.id]: {
-					children: {
-						$set: newChildrenRefs
-					}
+			[target.id]: {
+				children: {
+					$set: newChildrenRefs
 				}
 			},
-			[source.type]: {
-				[source.id]: {
-					parent: {
-						$set: { id: target.id, type: target.type }
-					}
+			[source.id]: {
+				parent: {
+					$set: { id: target.id }
 				}
 			}
 		});
@@ -87,9 +81,7 @@ class App extends Component {
 		// vahram, find a way to update target width.
 		// Probably will need to move position & width from child ref data into asset's main data
 
-		this.setState({ data: updatedData }
-			// , ()=>{this.selectAsset(source)}
-			);
+		this.setState({ data: updatedData });
 	}
 
 
@@ -109,12 +101,13 @@ class App extends Component {
 		// 	"\nboudningRect: ", elemPosRelToViewport,
 		// 	"\nrelative coordinate: ", clickPosition
 		// );
-		const { selectedAsset } = this.state;
+		const { selectedAssetId } = this.state;
+		console.log(selectedAssetId);
 
-		if (selectedAsset && asset.id !== selectedAsset.id && onTimeline) {
-			// console.log("asset", asset, "selectedAsset", selectedAsset, asset === selectedAsset.asset)
+		if (selectedAssetId && asset.id !== selectedAssetId && onTimeline) {
+			const selectedAsset = this.state.data[selectedAssetId];
 			this.insertAsset(selectedAsset, asset, clickPosition);
-			this.deSelectAsset();
+			// this.deSelectAsset();
 			return;
 		}
 
@@ -134,13 +127,13 @@ class App extends Component {
 	};
 
 	render() {
-		// console.log("asset selected in App: ", this.state.selectedAsset);
+		// console.log("asset selected in App: ", this.state.selectedAssetId);
 		// console.log(this.state)
 		const propsToPass = {
 			data: this.state.data,
 			handleClick: this.handleClick,
 			updateTimelineWidth: this.updateTimelineWidth,
-			selectedAsset: this.state.selectedAsset
+			selectedAssetId: this.state.selectedAssetId
 		};
 		return (
 			<div role="none" onClick={this.handleClick}>

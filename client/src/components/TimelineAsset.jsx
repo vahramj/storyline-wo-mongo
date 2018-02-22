@@ -7,9 +7,9 @@ import TimelineBody from "./TimelineBody";
 import "./styles/TimelineAsset.css";
 
 const TimelineAsset = props => {
-	const { assetData, selectedAsset } = props;
-	// vahram, convert selectedAsset to just the asset id, no onTimline property needed there
-	const selected = selectedAsset && assetData.id === selectedAsset.id;
+	const { assetData, selectedAssetId } = props;
+	// vahram, convert selectedAssetId to just the asset id, no onTimline property needed there
+	const selected = selectedAssetId && assetData.id === selectedAssetId;
 	const selectedStyle = selected ? "selected" : "";
 	return (
 		<div
@@ -44,14 +44,14 @@ TimelineAsset.propTypes = {
 		position: number.isRequired
 	}).isRequired,
 	handleClick: func,
-	selectedAsset: shape()
+	selectedAssetId: string
 };
 
 TimelineAsset.defaultProps = {
 	handleClick: () => {
 		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
 	},
-	selectedAsset: null
+	selectedAssetId: null
 };
 
 export default TimelineAsset;

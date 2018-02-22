@@ -11,10 +11,10 @@ import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
 const Asset = (props) => {
-	const { selectedAsset, assetData } = props;
+	const { selectedAssetId, assetData } = props;
 	const { name, image, type } = assetData;
 
-	const selectedStyle = selectedAsset && assetData.id === selectedAsset.id ? "selected" : "";
+	const selectedStyle = selectedAssetId && assetData.id === selectedAssetId ? "selected" : "";
 	
 	const containerAssetAttributes = {
 			role: "none",
@@ -55,13 +55,13 @@ Asset.propTypes = {
 		image: string,
 	}).isRequired,
 	handleClick: func,
-	selectedAsset: shape(),
+	selectedAssetId: string,
 	onTimeline: bool
 };
 
 Asset.defaultProps = {
 	handleClick: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
-	selectedAsset: null,
+	selectedAssetId: null,
 	onTimeline: false
 }
 

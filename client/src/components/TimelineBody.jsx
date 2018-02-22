@@ -8,8 +8,8 @@ const TimelineBody = props => {
 	const { data, assetData: {children, width} } = props;
 
 	function renderChild(childRef) {
-		const { id, type } = childRef;
-		const childAssetData = data[type][id];
+		const { id } = childRef;
+		const childAssetData = data[id];
 		return <TimelineAsset key={id} {...props} assetData={childAssetData} /> ;
 	}
 
@@ -25,7 +25,7 @@ TimelineBody.propTypes = {
 			width: number.isRequired,
 			children: arrayOf(shape({
 				id: string.isRequired,
-				type: string.isRequired
+				// type: string.isRequired
 			})).isRequired
 		}).isRequired,
 	data: shape().isRequired,

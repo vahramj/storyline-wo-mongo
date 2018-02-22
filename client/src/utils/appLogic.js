@@ -32,12 +32,6 @@ export function setInitialAssetPosition(child, parent, position){
 	});
 
 	return updatedChild;
-	// return {
-	// 	id: child.id,
-	// 	type: child.type,
-	// 	width: initialWidth,
-	// 	position: inBodyPosition
-	// };
 }
 
 export function insertAssetByPosition( assetOrig, assetArrOrig ){
@@ -143,22 +137,18 @@ export function removeAssetById(assetId, assetArrOrig) {
 }
 
 export function removeAssetFromItsParent(asset, data){
-	const parent = data[asset.parent.type][asset.parent.id];
+	const parent = data[asset.parent.id];
 	const updatedChildren = removeAssetById(asset.id, parent.children);
 
 	const updatedData = update(data, {
-		[asset.parent.type]: {
-			[asset.parent.id]: {
-				children: {
-					$set: updatedChildren
-				}
+		[asset.parent.id]: {
+			children: {
+				$set: updatedChildren
 			}
 		},
-		[asset.type]: {
-			[asset.id]: {
-				parent: {
-					$set: null
-				}
+		[asset.id]: {
+			parent: {
+				$set: null
 			}
 		}
 	});
@@ -202,13 +192,13 @@ const timelineData = {
 		children: [
 			{
 				id: "phs_01",
-				type: "phase",
+				// type: "phase",
 				// width: 450,
 				// position: 0,
 			},
 			{
 				id: "phs_03",
-				type: "phase",
+				// type: "phase",
 				// width: 300,
 				// position: 650,
 			},
@@ -223,7 +213,10 @@ const phaseData = {
 		type: "phase",
 		width: 450,
 		position: 0,
-		parent: {id: "tmln_01", type: "timeline"},
+		parent: {
+			id: "tmln_01", 
+			// type: "timeline"
+		},
 		children: [
 			// {
 			// 	id: "scn_05",
@@ -247,7 +240,10 @@ const phaseData = {
 		width: 300,
 		position: 650,
 		// width: null,
-		parent: {id: "tmln_01", type: "timeline"},
+		parent: {
+			id: "tmln_01",
+			// type: "timeline"
+		},
 		children: [
 			// {
 			// 	id: "scn_20",
@@ -489,7 +485,10 @@ const characterData = {
 	},
 };
 // vahram, remove general data division by type. Should be just data: { id: <asset>, ...}
-let data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
+// const data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
+// const data = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
+const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);
+// console.log(data);
 
 export function getData(){
 	return data;

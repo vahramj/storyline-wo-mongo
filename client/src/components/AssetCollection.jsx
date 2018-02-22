@@ -35,7 +35,7 @@ class AssetCollection extends Component {
 
 	render(){
 		const {data, type} = this.props;
-		const collectionData = Object.keys(data[type]).map(id => data[type][id]);
+		const collectionData = Object.keys(data).filter(id => data[id].type===type).map(id => data[id]);
 		const styleType = type === "character" ? "character" : "phase";
 
 		return (
