@@ -35,7 +35,7 @@ class AssetCollection extends Component {
 
 	render(){
 		const {data, type} = this.props;
-		const collectionData = Object.keys(data).filter(id => data[id].type===type).map(id => data[id]);
+		const collectionAssetIds = Object.keys(data).filter(id => data[id].type===type);
 		const styleType = type === "character" ? "character" : "phase";
 
 		return (
@@ -44,9 +44,10 @@ class AssetCollection extends Component {
 				ref={this.getCollectionElem}
 			>
 				<ul>
-					{collectionData.map(assetData => {
+					{collectionAssetIds.map(assetId => {
+						const assetData = data[assetId];
 						return (
-							<li key={assetData.id}>
+							<li key={assetId}>
 								<Asset {...this.props} assetData={assetData} />
 							</li>
 						);

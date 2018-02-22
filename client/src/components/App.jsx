@@ -47,7 +47,7 @@ class App extends Component {
 			updatedData = removeAssetFromItsParent(source, updatedData);
 		}
 
-		const newChild = setInitialAssetPosition(source, target, position);
+		const newChild = setInitialAssetPosition(source, position);
 		// map target's ref children to real ones using updatedData 
 		let newChildren = updatedData[target.id].children.map(child=>{
 			return updatedData[child.id]

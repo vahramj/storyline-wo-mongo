@@ -60,11 +60,7 @@ class Timeline extends Component {
 }
 
 Timeline.propTypes = {
-	data: shape(
-	// {
-	// 	timeline: shape().isRequired
-	// }
-	).isRequired,
+	data: shape().isRequired,
 	handleClick: func,
 	updateTimelineWidth: func.isRequired
 };

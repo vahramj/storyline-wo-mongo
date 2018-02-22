@@ -18,9 +18,9 @@ const initialWidthList = {
 	scene: 0
 }
 
-export function setInitialAssetPosition(child, parent, position){
-	// vahram. don't use parent, use assetTypeHierarchy to get parentHeadWidth
-	const parentHeadWidth = headWidthList[parent.type];
+export function setInitialAssetPosition(child, position){
+	const parentType = assetTypeHierarchy[child.type].parent;
+	const parentHeadWidth = headWidthList[parentType];
 
 	const initialWidth = child.width || initialWidthList[child.type];
 
@@ -192,15 +192,9 @@ const timelineData = {
 		children: [
 			{
 				id: "phs_01",
-				// type: "phase",
-				// width: 450,
-				// position: 0,
 			},
 			{
 				id: "phs_03",
-				// type: "phase",
-				// width: 300,
-				// position: 650,
 			},
 		],
 	}
@@ -215,20 +209,13 @@ const phaseData = {
 		position: 0,
 		parent: {
 			id: "tmln_01", 
-			// type: "timeline"
 		},
 		children: [
 			// {
 			// 	id: "scn_05",
-			// 	type: "scene",
-			// 	width: 0,
-			// 	position: 10,
 			// },
 			// {
 			// 	id: "scn_08",
-			// 	type: "scene",
-			// 	width: 0,
-			// 	position: 280,
 			// },
 		],
 		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
@@ -242,14 +229,10 @@ const phaseData = {
 		// width: null,
 		parent: {
 			id: "tmln_01",
-			// type: "timeline"
 		},
 		children: [
 			// {
 			// 	id: "scn_20",
-			// 	type: "scene",
-			// 	width: 0,
-			// 	position: 160,
 			// }
 		],
 		// image: ""
@@ -484,12 +467,11 @@ const characterData = {
 		children: [],
 	},
 };
-// vahram, remove general data division by type. Should be just data: { id: <asset>, ...}
 // const data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
 // const data = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
 const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);
-// console.log(data);
 
 export function getData(){
 	return data;
 }
+
