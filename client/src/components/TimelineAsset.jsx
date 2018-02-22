@@ -8,7 +8,9 @@ import "./styles/TimelineAsset.css";
 
 const TimelineAsset = props => {
 	const { assetData, selectedAsset } = props;
-	const selectedStyle = selectedAsset && assetData.id === selectedAsset.asset.id ? "selected" : "";
+	// vahram, convert selectedAsset to just the asset id, no onTimline property needed there
+	const selected = selectedAsset && assetData.id === selectedAsset.asset.id;
+	const selectedStyle = selected ? "selected" : "";
 	return (
 		<div
 			className={`timeline-asset ${selectedStyle} timeline-${assetData.type}`}
@@ -28,7 +30,7 @@ const TimelineAsset = props => {
 			<div
 				className="tail"
 				style={{
-					visibility: assetData.type === "scene" ? "hidden" : ""
+					visibility: assetData.type === "scene" || !selected ? "hidden" : ""
 				}}
 			/>
 		</div>
