@@ -9,7 +9,7 @@ import "./styles/TimelineAsset.css";
 const TimelineAsset = props => {
 	const { assetData, selectedAsset } = props;
 	// vahram, convert selectedAsset to just the asset id, no onTimline property needed there
-	const selected = selectedAsset && assetData.id === selectedAsset.asset.id;
+	const selected = selectedAsset && assetData.id === selectedAsset.id;
 	const selectedStyle = selected ? "selected" : "";
 	return (
 		<div

@@ -27,8 +27,9 @@ class App extends Component {
 		this.setState({ selectedAsset: null });
 	}
 
-	selectAsset(asset, onTimeline) {
-		this.setState({ selectedAsset: { asset, onTimeline } });
+	selectAsset(asset) {
+		const latestAsset = this.state.data[asset.type][asset.id]
+		this.setState({ selectedAsset: latestAsset });
 	}
 
 	insertAsset(source, target, position) {
@@ -86,7 +87,9 @@ class App extends Component {
 		// vahram, find a way to update target width.
 		// Probably will need to move position & width from child ref data into asset's main data
 
-		this.setState({ data: updatedData });
+		this.setState({ data: updatedData }
+			// , ()=>{this.selectAsset(source)}
+			);
 	}
 
 
@@ -108,12 +111,14 @@ class App extends Component {
 		// );
 		const { selectedAsset } = this.state;
 
-		if (selectedAsset && asset.id !== selectedAsset.asset.id && onTimeline) {
+		if (selectedAsset && asset.id !== selectedAsset.id && onTimeline) {
 			// console.log("asset", asset, "selectedAsset", selectedAsset, asset === selectedAsset.asset)
-			this.insertAsset(selectedAsset.asset, asset, clickPosition);
+			this.insertAsset(selectedAsset, asset, clickPosition);
+			this.deSelectAsset();
+			return;
 		}
 
-		this.selectAsset(asset, onTimeline);
+		this.selectAsset(asset);
 	};
 
 	updateTimelineWidth = (timelineWidth, timelineId) => {

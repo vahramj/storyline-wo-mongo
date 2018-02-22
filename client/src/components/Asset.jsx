@@ -14,7 +14,7 @@ const Asset = (props) => {
 	const { selectedAsset, assetData } = props;
 	const { name, image, type } = assetData;
 
-	const selectedStyle = selectedAsset && assetData.id === selectedAsset.asset.id ? "selected" : "";
+	const selectedStyle = selectedAsset && assetData.id === selectedAsset.id ? "selected" : "";
 	
 	const containerAssetAttributes = {
 			role: "none",
