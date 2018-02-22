@@ -13,7 +13,7 @@ const headWidthList = {
 	scene: 135
 }
 
-const initialOpeningList = {
+const initialWidthList = {
 	phase: 30,
 	scene: 0
 }
@@ -21,14 +21,14 @@ const initialOpeningList = {
 export function buildNewChildRef(child, parent, position){
 	const parentHeadWidth = headWidthList[parent.type];
 
-	const initialOpening = initialOpeningList[child.type];
+	const initialWidth = initialWidthList[child.type];
 
-	const inBodyPosition = position - parentHeadWidth;
+	const inBodyPosition = Math.max(position - parentHeadWidth, 0);
 
 	return {
 		id: child.id,
 		type: child.type,
-		width: initialOpening,
+		width: initialWidth,
 		position: inBodyPosition
 	};
 }
@@ -58,16 +58,17 @@ export function insertAssetByPosition(assetOrig, assetArrOrig ){
 		return false;
 	});
 
-	// has both left & right
 	// console.log("rightNeighbour: ",rightNeighbour)
 	// console.log("rightNeighbourIndex: ",rightNeighbourIndex)
 	// console.log("assetArr: ", assetArr);
+	
+	// has both left & right neighbours
 	if(rightNeighbour && rightNeighbourIndex>0){
 		leftNeighbourIndex = rightNeighbourIndex-1;
 		leftNeighbour = assetArr[leftNeighbourIndex];
 		// console.log("has left & right", leftNeighbour)
 	}
-	// has only left
+	// has only left neighbour
 	else if(!rightNeighbour) {
 		leftNeighbourIndex = assetArr.length-1;
 		leftNeighbour = assetArr[leftNeighbourIndex];
@@ -213,6 +214,7 @@ const phaseData = {
 		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
+		// width: null,
 		parent: {id: "tmln_01", type: "timeline"},
 		children: [
 			// {
@@ -234,6 +236,7 @@ const phaseData = {
 		id: "phs_03",
 		name: "setup",
 		type: "phase",
+		// width: null,
 		parent: {id: "tmln_01", type: "timeline"},
 		children: [
 			// {
@@ -249,6 +252,7 @@ const phaseData = {
 		id: "phs_05",
 		name: "catalist",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/catalist 01_thumb.png"
@@ -257,6 +261,7 @@ const phaseData = {
 		id: "phs_10",
 		name: "debate",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: ""
@@ -265,6 +270,7 @@ const phaseData = {
 		id: "phs_15",
 		name: "breaking into 2",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/breaking into two 03_thumb.png"
@@ -273,6 +279,7 @@ const phaseData = {
 		id: "phs_17",
 		name: "fun and games",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/fun and games 03_thumb.png"
@@ -281,6 +288,7 @@ const phaseData = {
 		id: "phs_20",
 		name: "bad guys close in",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/bad guys close in 05_thumb.png"
@@ -289,6 +297,7 @@ const phaseData = {
 		id: "phs_23",
 		name: "breaking into three",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/breaking into three 01_thumb.png"
@@ -297,6 +306,7 @@ const phaseData = {
 		id: "phs_25",
 		name: "finaly",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/fanale 03_thumb.png"
@@ -305,6 +315,7 @@ const phaseData = {
 		id: "phs_30",
 		name: "closing image",
 		type: "phase",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/phase_thumbnails/closing image 02_thumb.png"
@@ -316,6 +327,7 @@ const sceneData = {
 		id: "scn_05",
 		name: "fellowship begins",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"
@@ -324,6 +336,7 @@ const sceneData = {
 		id: "scn_08",
 		name: "shire mire hire Gendalf cames gets frodo_to_go_with him and Frodo_goes_on_a_Journey",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: ""
@@ -332,6 +345,7 @@ const sceneData = {
 		id: "scn_10",
 		name: "frodo's final decision",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/frodo's decision_thumb.png"
@@ -340,6 +354,7 @@ const sceneData = {
 		id: "scn_15",
 		name: "gorlum's monologue",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/gorlum's journey_thumb.png"
@@ -348,6 +363,7 @@ const sceneData = {
 		id: "scn_17",
 		name: "fellowship begins",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		// image: ""
@@ -356,6 +372,7 @@ const sceneData = {
 		id: "scn_20",
 		name: "saving Minas Tirith_saving Minas Tirith",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/saving Minas Tirith_thumb.png"
@@ -364,6 +381,7 @@ const sceneData = {
 		id: "scn_25",
 		name: "underground_tomb",
 		type: "scene",
+		// width: null,
 		parent: null,
 		children: [],
 		image: "./static/images/scene_thumbnails/underground_thumb.png"
