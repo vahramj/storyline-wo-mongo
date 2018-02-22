@@ -18,22 +18,29 @@ const initialWidthList = {
 	scene: 0
 }
 
-export function buildNewChildRef(child, parent, position){
+export function setInitialAssetPosition(child, parent, position){
+	// vahram. don't use parent, use assetTypeHierarchy to get parentHeadWidth
 	const parentHeadWidth = headWidthList[parent.type];
 
-	const initialWidth = initialWidthList[child.type];
+	const initialWidth = child.width || initialWidthList[child.type];
 
 	const inBodyPosition = Math.max(position - parentHeadWidth, 0);
 
-	return {
-		id: child.id,
-		type: child.type,
-		width: initialWidth,
-		position: inBodyPosition
-	};
+	const updatedChild = update(child, {
+		width: {$set: initialWidth},
+		position: {$set: inBodyPosition}
+	});
+
+	return updatedChild;
+	// return {
+	// 	id: child.id,
+	// 	type: child.type,
+	// 	width: initialWidth,
+	// 	position: inBodyPosition
+	// };
 }
 
-export function insertAssetByPosition(assetOrig, assetArrOrig ){
+export function insertAssetByPosition( assetOrig, assetArrOrig ){
 
 	const asset = assetOrig;
 	const assetArr = [...assetArrOrig];
@@ -196,14 +203,14 @@ const timelineData = {
 			{
 				id: "phs_01",
 				type: "phase",
-				width: 450,
-				position: 0,
+				// width: 450,
+				// position: 0,
 			},
 			{
 				id: "phs_03",
 				type: "phase",
-				width: 300,
-				position: 650,
+				// width: 300,
+				// position: 650,
 			},
 		],
 	}
@@ -214,7 +221,8 @@ const phaseData = {
 		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
-		// width: null,
+		width: 450,
+		position: 0,
 		parent: {id: "tmln_01", type: "timeline"},
 		children: [
 			// {
@@ -236,6 +244,8 @@ const phaseData = {
 		id: "phs_03",
 		name: "setup",
 		type: "phase",
+		width: 300,
+		position: 650,
 		// width: null,
 		parent: {id: "tmln_01", type: "timeline"},
 		children: [
@@ -478,6 +488,7 @@ const characterData = {
 		children: [],
 	},
 };
+// vahram, remove general data division by type. Should be just data: { id: <asset>, ...}
 let data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
 
 export function getData(){

@@ -17,8 +17,9 @@ const TimelineBody = props => {
 	// }
 
 	function renderChild(assetDataRef) {
-		const { id, type, position, width } = assetDataRef;
+		const { id, type } = assetDataRef;
 		const assetData = data[type][id];
+		const { position, width } = assetData;
 		return (
 			<div key={id} style={{ position: "absolute", left: position }}>
 				<TimelineAsset {...props} assetData={assetData} width={width} />

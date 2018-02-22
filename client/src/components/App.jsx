@@ -5,7 +5,7 @@ import TimelineContainer from "./TimelineContainer";
 import { 
 	getData, 
 	insertAssetByPosition, 
-	buildNewChildRef, 
+	setInitialAssetPosition, 
 	// removeAssetById, 
 	isInsertLegal,
 	removeAssetFromItsParent
@@ -46,14 +46,31 @@ class App extends Component {
 			updatedData = removeAssetFromItsParent(source, updatedData);
 		}
 
-		const newChild = buildNewChildRef(source, target, position);
-		const newChildren = insertAssetByPosition(newChild, [...updatedData[target.type][target.id].children]);
+		const newChild = setInitialAssetPosition(source, target, position);
+		// map target's ref children to real ones using updatedData 
+		let newChildren = updatedData[target.type][target.id].children.map(child=>{
+			return updatedData[child.type][child.id]
+		});
+		newChildren = insertAssetByPosition(newChild, newChildren);
 
+		newChildren.forEach(child => {
+			updatedData = update(updatedData, {
+				[child.type]: {
+					[child.id]: {
+						$set: child
+					}
+				}
+			})
+		});
+
+		const newChildrenRefs = newChildren.map(child=>{
+			return {id: child.id, type: child.type}
+		})
 		updatedData = update(updatedData, {
 			[target.type]: {
 				[target.id]: {
 					children: {
-						$set: newChildren
+						$set: newChildrenRefs
 					}
 				}
 			},
