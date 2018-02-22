@@ -1,8 +1,11 @@
-// const assetHierarchy = {
-// 		timeline: "phase",
-// 		phase: "scene",
-// 		scene: "character"
-// };
+import update from "immutability-helper";
+
+const assetTypeHierarchy = {
+		timeline: {child: "phase", parent: "none"},
+		phase: {child: "scene", parent: "timeline"},
+		scene: {child: "character", parent: "phase"},
+		character: {child: null, parent: "scene"}
+};
 
 const headWidthList = {
 	timeline: 0,
@@ -114,7 +117,7 @@ export function insertAssetByPosition(assetOrig, assetArrOrig ){
 
 export function removeAssetById(assetId, assetArrOrig) {
 	const assetArr = [...assetArrOrig];
-	// const children = parent.children;
+
 	let assetIndex = null;
 	assetArr.find((asset, index) => {
 		if (asset.id === assetId) {
@@ -126,8 +129,48 @@ export function removeAssetById(assetId, assetArrOrig) {
 	if (assetIndex === null) {
 		throw new Error(`couldn't find asset with id: ${assetId} in ${JSON.stringify(assetArr)}`);
 	}
+
 	assetArr.splice(assetIndex, 1);
 	return assetArr;
+}
+
+export function removeAssetFromItsParent(asset, data){
+	const parent = data[asset.parent.type][asset.parent.id];
+	const updatedChildren = removeAssetById(asset.id, parent.children);
+
+	const updatedData = update(data, {
+		[asset.parent.type]: {
+			[asset.parent.id]: {
+				children: {
+					$set: updatedChildren
+				}
+			}
+		},
+		[asset.type]: {
+			[asset.id]: {
+				parent: {
+					$set: null
+				}
+			}
+		}
+	});
+
+	return updatedData;
+}
+
+export function isInsertLegal(sourceType, targetType){
+	const legalTargetType = assetTypeHierarchy[sourceType].parent;
+	if (legalTargetType === targetType){
+		return {
+			result: true,
+			message: `${sourceType} can be inserted onto a ${targetType}`
+		}
+	}
+
+	return {
+		result: false,
+		message: `${sourceType} can be inserted only into ${legalTargetType}`
+	}
 }
 
 // // asset mock

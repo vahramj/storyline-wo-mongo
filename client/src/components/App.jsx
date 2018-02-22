@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { getData, insertAssetByPosition, buildNewChildRef, removeAssetById } from "../utils/appLogic";
+import { 
+	getData, 
+	insertAssetByPosition, 
+	buildNewChildRef, 
+	// removeAssetById, 
+	isInsertLegal,
+	removeAssetFromItsParent
+} from "../utils/appLogic";
 import "./styles/App.css";
 
 const data = getData();
@@ -27,17 +34,22 @@ class App extends Component {
 	insertAsset(source, target, position) {
 		console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
 
+		const legalCheck = isInsertLegal(source.type, target.type);
+		if (!legalCheck.result) {
+			alert(legalCheck.message);
+			return;
+		}
+
+		let updatedData = this.state.data;
+
+		if (source.parent) {
+			updatedData = removeAssetFromItsParent(source, updatedData);
+		}
+
 		const newChild = buildNewChildRef(source, target, position);
-		const newChildren = insertAssetByPosition(newChild, [...target.children]);
+		const newChildren = insertAssetByPosition(newChild, [...updatedData[target.type][target.id].children]);
 
-		// const updatedSource = Object.assign({}, source, { parent: { id: target.id, type: target.type } });
-		const updatedSource = update(source, {
-			parent: {
-				$set: { id: target.id, type: target.type }
-			}
-		});
-
-		let updatedData = update(this.state.data, {
+		updatedData = update(updatedData, {
 			[target.type]: {
 				[target.id]: {
 					children: {
@@ -47,31 +59,19 @@ class App extends Component {
 			},
 			[source.type]: {
 				[source.id]: {
-					$set: updatedSource
+					parent: {
+						$set: { id: target.id, type: target.type }
+					}
 				}
 			}
 		});
 
 		// vahram, find a way to update target width.
 		// Probably will need to move position & width from child ref data into asset's main data
-		if (source.parent) {
-			const sourceOldParent = this.state.data[source.parent.type][source.parent.id];
-			const sourceOldSiblings = sourceOldParent.children;
-			const updatedSourceOldSiblings = removeAssetById(source.id, sourceOldSiblings);
-
-			updatedData = update(updatedData, {
-				[source.parent.type]: {
-					[source.parent.id]: {
-						children: {
-							$set: updatedSourceOldSiblings 
-						}
-					}
-				}
-			});
-		}
 
 		this.setState({ data: updatedData });
 	}
+
 
 	handleClick = (event, asset, onTimeline) => {
 		if (!asset) {
@@ -90,7 +90,9 @@ class App extends Component {
 		// 	"\nrelative coordinate: ", clickPosition
 		// );
 		const { selectedAsset } = this.state;
-		if (selectedAsset && !selectedAsset.onTimeline && onTimeline) {
+
+		if (selectedAsset && asset.id !== selectedAsset.asset.id && onTimeline) {
+			// console.log("asset", asset, "selectedAsset", selectedAsset, asset === selectedAsset.asset)
 			this.insertAsset(selectedAsset.asset, asset, clickPosition);
 		}
 
