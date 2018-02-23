@@ -139,7 +139,6 @@ export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 		return siblingArr;
 	}
 
-	// console.log("hello")
 	let leftNeighbour; 
 	let leftNeighbourIndex;
 	let rightNeighbourIndex;
@@ -189,8 +188,7 @@ export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 	if(rightNeighbour){
 		// console.log("has right", rightNeighbour);
 
-		// vahram, use get push amount
-		const pushAmount = asset.position + headWidth + asset.width - rightNeighbour.position;
+		const pushAmount = getPushAmount(asset, rightNeighbour);
 		if (pushAmount > 0) {
 			siblingArr = moveAssets(siblingArr, pushAmount, rightNeighbourIndex)
 		}
@@ -221,7 +219,8 @@ export function removeAssetById(assetId, assetArrOrig) {
 }
 
 // vahram, change the parameter asset to assetId
-export function removeAssetFromItsParent(asset, data){
+export function removeAssetFromItsParent(assetId, data){
+	const asset = data[assetId];
 	const parent = data[asset.parent.id];
 	const updatedChildren = removeAssetById(asset.id, parent.children);
 
@@ -273,7 +272,7 @@ export function insertAssetIntoParent(asset, parentId, data){
 }
 
 export function resizeAssetToFitTimeline(assetId, dataOrig){
-	// vahram, write another resizeAssetToPoint function, that's similar to this
+	// vahram, later, write another resizeAssetToPoint function, that's similar to this
 		// but accomodates drag to resize operations
 	let data = dataOrig;
 	let asset = data[assetId];
@@ -312,17 +311,6 @@ export function resizeAssetToFitTimeline(assetId, dataOrig){
 	// console.log("asset after resize: ", asset.type, asset.position, asset.width);
 	return data;	
 }
-
-// // asset mock
-// {
-// 	id: "asset_id_01",
-// 	name: "asset description 01",
-// 	type: "assetType01",
-// 	parents: "someId",
-// // children are sorting based on position
-// 	children: [{asset01}, {asset02},...{assetN}],
-// 	image: "some/path/to/image.png"
-// }
 
 const timelineData = {
 	tmln_01: {
@@ -609,8 +597,6 @@ const characterData = {
 		children: [],
 	},
 };
-// const data = { timeline: timelineData, phase: phaseData, character: characterData, scene: sceneData };
-// const data = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
 const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);
 
 export function getData(){
