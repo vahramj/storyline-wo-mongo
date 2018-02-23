@@ -46,7 +46,7 @@ class App extends Component {
 		let updatedData = this.state.data;
 
 		if (source.parent) {
-			updatedData = removeAssetFromItsParent(source, updatedData);
+			updatedData = removeAssetFromItsParent(source.id, updatedData);
 		}
 
 		const initiallyPositionedAsset = setInitialAssetPosition(source, position);
