@@ -67,7 +67,8 @@ function resizeAssetToFitItsChildren(assetId, data){
 		const lastChild = data[lastChildId];
 
 		const childHeadWidth = headWidthList[lastChild.type];
-		const lastChildEnd = lastChild.position + childHeadWidth + lastChild.width;
+		const tailWidth = asset.type === "timeline" ? 50 : 0;
+		const lastChildEnd = lastChild.position + childHeadWidth + lastChild.width + tailWidth;
 
 		const resizeAmount = lastChildEnd - asset.width;
 		if(resizeAmount > 0){
@@ -272,11 +273,11 @@ export function insertAssetIntoParent(asset, parentId, data){
 }
 
 export function resizeAssetToFitTimeline(assetId, dataOrig){
-// vahram, write another resizeAssetToPoint function, that's similar to this
-	// but accomodates drag to resize operations
+	// vahram, write another resizeAssetToPoint function, that's similar to this
+		// but accomodates drag to resize operations
 	let data = dataOrig;
 	let asset = data[assetId];
-
+	// console.log("asset before resize: ", asset.type, asset.position, asset.width);
 	const resizedAsset = resizeAssetToFitItsChildren(asset.id, data)
 
 	if(resizedAsset === asset){
@@ -293,20 +294,22 @@ export function resizeAssetToFitTimeline(assetId, dataOrig){
 	if(asset.parent){
 		const parent = data[asset.parent.id];
 		let siblings = parent.children;
+
 		if(assetId !== siblings[siblings.length-1].id){
 			siblings = siblings.map(sibling => data[sibling.id]);
 			const assetIndex = findAssetIndexById(asset.id, siblings);
 
 			const pushAmount = getPushAmount(siblings[assetIndex], siblings[assetIndex+1]);
+			
 			if(pushAmount > 0){
 				siblings = moveAssets(siblings, pushAmount, assetIndex+1);
 				data = updateDataFromArray(data, siblings);
-				// recursively check all parents untill reaching timeline's null parent
-				resizeAssetToFitTimeline(parent.id, data);
 			}
 		}
+		// recursively check all parents until reaching timeline's null parent
+		data = resizeAssetToFitTimeline(parent.id, data);
 	}
-
+	// console.log("asset after resize: ", asset.type, asset.position, asset.width);
 	return data;	
 }
 
