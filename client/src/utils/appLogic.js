@@ -18,6 +18,21 @@ const initialWidthList = {
 	scene: 0
 }
 
+export function isInsertLegal(sourceType, targetType){
+	const legalTargetType = assetTypeHierarchy[sourceType].parent;
+	if (legalTargetType === targetType){
+		return {
+			result: true,
+			message: `${sourceType} can be inserted onto a ${targetType}`
+		}
+	}
+
+	return {
+		result: false,
+		message: `${sourceType} can be inserted only into ${legalTargetType}`
+	}
+}
+
 export function setInitialAssetPosition(child, position){
 	const parentType = assetTypeHierarchy[child.type].parent;
 	const parentHeadWidth = headWidthList[parentType];
@@ -34,24 +49,42 @@ export function setInitialAssetPosition(child, position){
 	return updatedChild;
 }
 
-export function insertAssetByPosition( assetOrig, assetArrOrig ){
+export function moveAssets(assetArrOrig, amount=0, startIndex=0){
+	if(startIndex>=assetArrOrig.length || !amount){
+		return assetArrOrig;
+	}
+
+	const assetArr = [...assetArrOrig];
+
+	for (let i = startIndex; i < assetArr.length; i++) {
+		assetArr[i] = update(assetArr[i], {
+			position: {
+				$set: assetArr[i].position + amount
+			}
+		});
+	}
+
+	return assetArr;
+}
+
+export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 
 	const asset = assetOrig;
-	const assetArr = [...assetArrOrig];
+	let siblingArr = [...siblingArrOrig];
 	const headWidth = headWidthList[asset.type];
 
-	if (assetArr.length === 0 ) {
+	if (siblingArr.length === 0 ) {
 		console.log("first asset")
-		assetArr.push(asset);
+		siblingArr.push(asset);
 
-		return assetArr;
+		return siblingArr;
 	}
 
 	// console.log("hello")
 	let leftNeighbour; 
 	let leftNeighbourIndex;
 	let rightNeighbourIndex;
-	let rightNeighbour = assetArr.find((child, index) => {
+	let rightNeighbour = siblingArr.find((child, index) => {
 		if (child.position > asset.position) {
 			rightNeighbourIndex = index;
 			return true;
@@ -61,18 +94,18 @@ export function insertAssetByPosition( assetOrig, assetArrOrig ){
 
 	// console.log("rightNeighbour: ",rightNeighbour)
 	// console.log("rightNeighbourIndex: ",rightNeighbourIndex)
-	// console.log("assetArr: ", assetArr);
+	// console.log("siblingArr: ", siblingArr);
 	
 	// has both left & right neighbours
 	if(rightNeighbour && rightNeighbourIndex>0){
 		leftNeighbourIndex = rightNeighbourIndex-1;
-		leftNeighbour = assetArr[leftNeighbourIndex];
+		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has left & right", leftNeighbour)
 	}
 	// has only left neighbour
 	else if(!rightNeighbour) {
-		leftNeighbourIndex = assetArr.length-1;
-		leftNeighbour = assetArr[leftNeighbourIndex];
+		leftNeighbourIndex = siblingArr.length-1;
+		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has only left", leftNeighbour)
 	}
 
@@ -98,11 +131,7 @@ export function insertAssetByPosition( assetOrig, assetArrOrig ){
 		// console.log("has right", rightNeighbour);
 		const pushAmount = asset.position + headWidth + asset.width - rightNeighbour.position;
 		if (pushAmount > 0) {
-			for (let i = rightNeighbourIndex; i < assetArr.length; i++) {
-				assetArr[i] = Object.assign({}, assetArr[i], {
-					position: assetArr[i].position + pushAmount
-				});
-			}
+			siblingArr = moveAssets(siblingArr, pushAmount, rightNeighbourIndex)
 		}
 
 		insertIndex = rightNeighbourIndex;
@@ -111,10 +140,10 @@ export function insertAssetByPosition( assetOrig, assetArrOrig ){
 		insertIndex = leftNeighbourIndex+1;
 	}
 
-	// console.log("assetArr: ", assetArr, "asset: ", asset)
-	assetArr.splice(insertIndex, 0, asset); 
+	// console.log("siblingArr: ", siblingArr, "asset: ", asset)
+	siblingArr.splice(insertIndex, 0, asset); 
 
-	return assetArr;
+	return siblingArr;
 }
 
 export function removeAssetById(assetId, assetArrOrig) {
@@ -136,6 +165,7 @@ export function removeAssetById(assetId, assetArrOrig) {
 	return assetArr;
 }
 
+// vahram, change the parameter asset to assetId
 export function removeAssetFromItsParent(asset, data){
 	const parent = data[asset.parent.id];
 	const updatedChildren = removeAssetById(asset.id, parent.children);
@@ -156,19 +186,83 @@ export function removeAssetFromItsParent(asset, data){
 	return updatedData;
 }
 
-export function isInsertLegal(sourceType, targetType){
-	const legalTargetType = assetTypeHierarchy[sourceType].parent;
-	if (legalTargetType === targetType){
-		return {
-			result: true,
-			message: `${sourceType} can be inserted onto a ${targetType}`
+export function insertAssetIntoParent(asset, parentId, data){
+	// map parent's ref children to real ones using updatedData 
+	let children = data[parentId].children.map(child=>{
+		return data[child.id]
+	});
+	children = insertAssetIntoSiblings(asset, children);
+	// console.log("asset: ", asset, "children: ", children)
+	
+	let updatedData = data;
+	// update all assets that might have new positions
+	children.forEach(child => {
+		updatedData = update(updatedData, {
+			[child.id]: {
+				$set: child
+			}
+		})
+	});
+
+	const childrenRefs = children.map(child=>{
+		return {id: child.id }
+	});
+	updatedData = update(updatedData, {
+		[parentId]: {
+			children: {
+				$set: childrenRefs
+			}
+		},
+		[asset.id]: {
+			parent: {
+				$set: { id: parentId }
+			}
 		}
+	});
+
+	return updatedData;
+}
+
+export function resizeAssetToPosition(assetId, data, position){
+
+	let updatedData = data;
+	const asset = data[assetId];
+
+	let moveAmount = 0;
+	if(!position && asset.children.length>0){
+		const lastChildId = asset.children[asset.children.length-1].id;
+		const lastChild = data[lastChildId];
+		const childHeadWidth = headWidthList[lastChild.type];
+		const lastChildEnd = lastChild.position + childHeadWidth + lastChild.width;
+		moveAmount = lastChildEnd - asset.width;
 	}
 
-	return {
-		result: false,
-		message: `${sourceType} can be inserted only into ${legalTargetType}`
+	let updatedAsset = data;
+	if(moveAmount > 0){
+		updatedAsset = update(asset, {
+			width: {
+				$set: asset.width + moveAmount
+			}
+		});
+
+		// vahram, don't use remove and insert parent technique, use pushSiblings technique
+		// const rightNeighbour = data[asset.parent.id].children.find(child=>child.id === asset.id)
+		if(asset.parent){
+			updatedData = removeAssetFromItsParent(asset, updatedData);
+			updatedData = insertAssetIntoParent(updatedAsset, updatedAsset.parent.id, updatedData);
+		}
+		else {
+			updatedData = update(updatedData, {
+				[updatedAsset.id]: {
+					$set: updatedAsset
+				}
+			})
+		}
+		// console.log(updatedData[asset.id])
 	}
+
+	
+	return updatedData;	
 }
 
 // // asset mock

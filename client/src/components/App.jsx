@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import update from "immutability-helper";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
-import { 
-	getData, 
-	insertAssetByPosition, 
-	setInitialAssetPosition, 
-	// removeAssetById, 
+import {
+	getData,
+	// insertAssetIntoSiblings,
+	setInitialAssetPosition,
+	// removeAssetById,
 	isInsertLegal,
-	removeAssetFromItsParent
+	removeAssetFromItsParent,
+	insertAssetIntoParent,
+	resizeAssetToPosition
 } from "../utils/appLogic";
 import "./styles/App.css";
 
@@ -37,7 +39,7 @@ class App extends Component {
 
 		const legalCheck = isInsertLegal(source.type, target.type);
 		if (!legalCheck.result) {
-			alert(legalCheck.message);
+			// alert(legalCheck.message);
 			return;
 		}
 
@@ -47,43 +49,19 @@ class App extends Component {
 			updatedData = removeAssetFromItsParent(source, updatedData);
 		}
 
-		const newChild = setInitialAssetPosition(source, position);
-		// map target's ref children to real ones using updatedData 
-		let newChildren = updatedData[target.id].children.map(child=>{
-			return updatedData[child.id]
-		});
-		newChildren = insertAssetByPosition(newChild, newChildren);
+		const initiallyPositionedAsset = setInitialAssetPosition(source, position);
 
-		newChildren.forEach(child => {
-			updatedData = update(updatedData, {
-				[child.id]: {
-					$set: child
-				}
-			})
-		});
+		updatedData = insertAssetIntoParent(initiallyPositionedAsset, target.id, updatedData);
 
-		const newChildrenRefs = newChildren.map(child=>{
-			return {id: child.id }
-		})
-		updatedData = update(updatedData, {
-			[target.id]: {
-				children: {
-					$set: newChildrenRefs
-				}
-			},
-			[source.id]: {
-				parent: {
-					$set: { id: target.id }
-				}
-			}
-		});
+		updatedData = resizeAssetToPosition(updatedData[source.id].parent.id, updatedData);
+		// console.log(updatedData)
+
 
 		// vahram, find a way to update target width.
 		// Probably will need to move position & width from child ref data into asset's main data
 
 		this.setState({ data: updatedData });
 	}
-
 
 	handleClick = (event, asset, onTimeline) => {
 		if (!asset) {
@@ -102,12 +80,11 @@ class App extends Component {
 		// 	"\nrelative coordinate: ", clickPosition
 		// );
 		const { selectedAssetId } = this.state;
-		console.log(selectedAssetId);
+		// console.log(selectedAssetId);
 
 		if (selectedAssetId && asset.id !== selectedAssetId && onTimeline) {
 			const selectedAsset = this.state.data[selectedAssetId];
 			this.insertAsset(selectedAsset, asset, clickPosition);
-			// this.deSelectAsset();
 			return;
 		}
 
