@@ -1,5 +1,8 @@
 import update from "immutability-helper";
 
+// Vahram, in the function that need it, change data to dataOrig in params
+	// and change updatedData to data for ease of read
+
 const assetTypeHierarchy = {
 		timeline: {child: "phase", parent: "none"},
 		phase: {child: "scene", parent: "timeline"},
@@ -16,6 +19,79 @@ const headWidthList = {
 const initialWidthList = {
 	phase: 30,
 	scene: 0
+}
+
+function getPushAmount(asset, rightNeighbour){
+	const headWidth = headWidthList[asset.type];
+	return asset.position + headWidth + asset.width - rightNeighbour.position
+}
+
+function moveAssets(assetArrOrig, amount=0, startIndex=0){
+	if(startIndex>=assetArrOrig.length || !amount){
+		return assetArrOrig;
+	}
+
+	const assetArr = [...assetArrOrig];
+
+	for (let i = startIndex; i < assetArr.length; i++) {
+		assetArr[i] = update(assetArr[i], {
+			position: {
+				$set: assetArr[i].position + amount
+			}
+		});
+	}
+
+	return assetArr;
+}
+
+function updateDataFromArray(dataOrig, assetArr){
+	let data = dataOrig;
+	assetArr.forEach(asset => {
+		data = update(data, {
+			[asset.id]: {
+				$set: asset
+			}
+		})
+	});
+	return data;
+}
+
+function resizeAssetToFitItsChildren(assetId, data){
+	// vahram, later implement tight mode, 
+		// where the asset always ends where it last chaild does or initial width
+		// have a button on toolbar that turns this on and off
+	let asset = data[assetId];
+
+	if(asset.children.length>0){
+		const lastChildId = asset.children[asset.children.length-1].id;
+		const lastChild = data[lastChildId];
+
+		const childHeadWidth = headWidthList[lastChild.type];
+		const lastChildEnd = lastChild.position + childHeadWidth + lastChild.width;
+
+		const resizeAmount = lastChildEnd - asset.width;
+		if(resizeAmount > 0){
+			asset = update(asset, {
+				width: { 
+					$set: asset.width + resizeAmount
+				}
+			})
+		}
+	}
+
+	return asset;	
+}
+
+function findAssetIndexById(assetId, assetArr){
+	let assetIndex = null;
+	assetArr.find((asset, index) => {
+		if (asset.id === assetId) {
+			assetIndex = index;
+			return true;
+		}
+		return false;
+	});
+	return assetIndex;
 }
 
 export function isInsertLegal(sourceType, targetType){
@@ -47,24 +123,6 @@ export function setInitialAssetPosition(child, position){
 	});
 
 	return updatedChild;
-}
-
-export function moveAssets(assetArrOrig, amount=0, startIndex=0){
-	if(startIndex>=assetArrOrig.length || !amount){
-		return assetArrOrig;
-	}
-
-	const assetArr = [...assetArrOrig];
-
-	for (let i = startIndex; i < assetArr.length; i++) {
-		assetArr[i] = update(assetArr[i], {
-			position: {
-				$set: assetArr[i].position + amount
-			}
-		});
-	}
-
-	return assetArr;
 }
 
 export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
@@ -129,6 +187,8 @@ export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 	let insertIndex;
 	if(rightNeighbour){
 		// console.log("has right", rightNeighbour);
+
+		// vahram, use get push amount
 		const pushAmount = asset.position + headWidth + asset.width - rightNeighbour.position;
 		if (pushAmount > 0) {
 			siblingArr = moveAssets(siblingArr, pushAmount, rightNeighbourIndex)
@@ -149,14 +209,8 @@ export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 export function removeAssetById(assetId, assetArrOrig) {
 	const assetArr = [...assetArrOrig];
 
-	let assetIndex = null;
-	assetArr.find((asset, index) => {
-		if (asset.id === assetId) {
-			assetIndex = index;
-			return true;
-		}
-		return false;
-	});
+	const assetIndex = findAssetIndexById(assetId, assetArr);
+
 	if (assetIndex === null) {
 		throw new Error(`couldn't find asset with id: ${assetId} in ${JSON.stringify(assetArr)}`);
 	}
@@ -196,13 +250,7 @@ export function insertAssetIntoParent(asset, parentId, data){
 	
 	let updatedData = data;
 	// update all assets that might have new positions
-	children.forEach(child => {
-		updatedData = update(updatedData, {
-			[child.id]: {
-				$set: child
-			}
-		})
-	});
+	updatedData = updateDataFromArray(updatedData, children)
 
 	const childrenRefs = children.map(child=>{
 		return {id: child.id }
@@ -223,46 +271,43 @@ export function insertAssetIntoParent(asset, parentId, data){
 	return updatedData;
 }
 
-export function resizeAssetToPosition(assetId, data, position){
+export function resizeAssetToFitTimeline(assetId, dataOrig){
+// vahram, write another resizeAssetToPoint function, that's similar to this
+	// but accomodates drag to resize operations
+	let data = dataOrig;
+	let asset = data[assetId];
 
-	let updatedData = data;
-	const asset = data[assetId];
+	const resizedAsset = resizeAssetToFitItsChildren(asset.id, data)
 
-	let moveAmount = 0;
-	if(!position && asset.children.length>0){
-		const lastChildId = asset.children[asset.children.length-1].id;
-		const lastChild = data[lastChildId];
-		const childHeadWidth = headWidthList[lastChild.type];
-		const lastChildEnd = lastChild.position + childHeadWidth + lastChild.width;
-		moveAmount = lastChildEnd - asset.width;
+	if(resizedAsset === asset){
+		return data;
 	}
 
-	let updatedAsset = data;
-	if(moveAmount > 0){
-		updatedAsset = update(asset, {
-			width: {
-				$set: asset.width + moveAmount
+	asset = resizedAsset;
+	data = update(data, {
+		[asset.id]: {
+			$set: asset
+		}
+	});
+
+	if(asset.parent){
+		const parent = data[asset.parent.id];
+		let siblings = parent.children;
+		if(assetId !== siblings[siblings.length-1].id){
+			siblings = siblings.map(sibling => data[sibling.id]);
+			const assetIndex = findAssetIndexById(asset.id, siblings);
+
+			const pushAmount = getPushAmount(siblings[assetIndex], siblings[assetIndex+1]);
+			if(pushAmount > 0){
+				siblings = moveAssets(siblings, pushAmount, assetIndex+1);
+				data = updateDataFromArray(data, siblings);
+				// recursively check all parents untill reaching timeline's null parent
+				resizeAssetToFitTimeline(parent.id, data);
 			}
-		});
-
-		// vahram, don't use remove and insert parent technique, use pushSiblings technique
-		// const rightNeighbour = data[asset.parent.id].children.find(child=>child.id === asset.id)
-		if(asset.parent){
-			updatedData = removeAssetFromItsParent(asset, updatedData);
-			updatedData = insertAssetIntoParent(updatedAsset, updatedAsset.parent.id, updatedData);
 		}
-		else {
-			updatedData = update(updatedData, {
-				[updatedAsset.id]: {
-					$set: updatedAsset
-				}
-			})
-		}
-		// console.log(updatedData[asset.id])
 	}
 
-	
-	return updatedData;	
+	return data;	
 }
 
 // // asset mock

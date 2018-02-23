@@ -10,7 +10,7 @@ import {
 	isInsertLegal,
 	removeAssetFromItsParent,
 	insertAssetIntoParent,
-	resizeAssetToPosition
+	resizeAssetToFitTimeline
 } from "../utils/appLogic";
 import "./styles/App.css";
 
@@ -53,7 +53,7 @@ class App extends Component {
 
 		updatedData = insertAssetIntoParent(initiallyPositionedAsset, target.id, updatedData);
 
-		updatedData = resizeAssetToPosition(updatedData[source.id].parent.id, updatedData);
+		updatedData = resizeAssetToFitTimeline(updatedData[source.id].parent.id, updatedData);
 		// console.log(updatedData)
 
 
