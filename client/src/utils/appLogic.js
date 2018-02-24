@@ -15,7 +15,8 @@ const headWidthList = {
 
 const initialWidthList = {
 	phase: 30,
-	scene: 0
+	scene: 0,
+	character: 0
 }
 
 function getPushAmount(asset, rightNeighbour){

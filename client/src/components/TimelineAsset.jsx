@@ -22,7 +22,7 @@ const TimelineAsset = props => {
 			style={{ left: assetData.position }}
 		>
 			<div className="head">
-				<Asset assetData={assetData} onTimeline />
+				<Asset assetData={assetData} decorative />
 			</div>
 
 			<TimelineBody {...props} />

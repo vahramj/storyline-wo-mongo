@@ -33,6 +33,15 @@ class AssetCollection extends Component {
 		this.setState({scrollBarsStatus})
 	};
 
+	checkIfAssetOnTimeline(assetId){
+		const {data} = this.props;
+		let ancestor = data[assetId];
+		while(ancestor.parent){
+			ancestor = data[ancestor.parent.id]
+		}
+		return ancestor.type === "timeline";
+	}
+
 	render(){
 		const {data, type} = this.props;
 		const collectionAssetIds = Object.keys(data).filter(id => data[id].type===type);
@@ -46,9 +55,10 @@ class AssetCollection extends Component {
 				<ul>
 					{collectionAssetIds.map(assetId => {
 						const assetData = data[assetId];
+						const onTimeline = this.checkIfAssetOnTimeline(assetId)
 						return (
 							<li key={assetId}>
-								<Asset {...this.props} assetData={assetData} />
+								<Asset {...this.props} assetData={assetData} onTimeline={onTimeline} />
 							</li>
 						);
 					})}

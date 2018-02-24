@@ -11,10 +11,11 @@ import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
 const Asset = (props) => {
-	const { selectedAssetId, assetData } = props;
+	const { selectedAssetId, onTimeline, assetData } = props;
 	const { name, image, type } = assetData;
 
 	const selectedStyle = selectedAssetId && assetData.id === selectedAssetId ? "selected" : "";
+	const onTimelineStyle = onTimeline ? "onTimeline" : "";
 	
 	const containerAssetAttributes = {
 			role: "none",
@@ -24,10 +25,10 @@ const Asset = (props) => {
 			} 			
 		};
 
-	const assetAttributes = props.onTimeline ? {} : containerAssetAttributes; 
+	const assetAttributes = props.decorative ? {} : containerAssetAttributes; 
 
 	return (
-		<div className={`asset ${type} ${selectedStyle}`} {...assetAttributes}>
+		<div className={`asset ${type} ${selectedStyle} ${onTimelineStyle}` } {...assetAttributes}>
 			
 			<div className="hover-tint">
 				<img
@@ -56,13 +57,15 @@ Asset.propTypes = {
 	}).isRequired,
 	handleClick: func,
 	selectedAssetId: string,
-	onTimeline: bool
+	onTimeline: bool,
+	decorative: bool
 };
 
 Asset.defaultProps = {
 	handleClick: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
 	selectedAssetId: null,
-	onTimeline: false
+	onTimeline: false,
+	decorative: false
 }
 
 // function mapDispatchToProps(dispatch){
