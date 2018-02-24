@@ -56,10 +56,6 @@ class App extends Component {
 		updatedData = resizeAssetToFitTimeline(updatedData[source.id].parent.id, updatedData);
 		// console.log(updatedData)
 
-
-		// vahram, find a way to update target width.
-		// Probably will need to move position & width from child ref data into asset's main data
-
 		this.setState({ data: updatedData });
 	}
 

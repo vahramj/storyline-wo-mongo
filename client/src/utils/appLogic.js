@@ -1,8 +1,5 @@
 import update from "immutability-helper";
 
-// Vahram, in the function that need it, change data to dataOrig in params
-	// and change updatedData to data for ease of read
-
 const assetTypeHierarchy = {
 		timeline: {child: "phase", parent: "none"},
 		phase: {child: "scene", parent: "timeline"},
@@ -218,13 +215,13 @@ export function removeAssetById(assetId, assetArrOrig) {
 	return assetArr;
 }
 
-// vahram, change the parameter asset to assetId
-export function removeAssetFromItsParent(assetId, data){
+export function removeAssetFromItsParent(assetId, dataOrig){
+	let data = dataOrig;
 	const asset = data[assetId];
 	const parent = data[asset.parent.id];
 	const updatedChildren = removeAssetById(asset.id, parent.children);
 
-	const updatedData = update(data, {
+	data = update(data, {
 		[asset.parent.id]: {
 			children: {
 				$set: updatedChildren
@@ -237,10 +234,11 @@ export function removeAssetFromItsParent(assetId, data){
 		}
 	});
 
-	return updatedData;
+	return data;
 }
 
-export function insertAssetIntoParent(asset, parentId, data){
+export function insertAssetIntoParent(asset, parentId, dataOrig){
+	let data = dataOrig;
 	// map parent's ref children to real ones using updatedData 
 	let children = data[parentId].children.map(child=>{
 		return data[child.id]
@@ -248,14 +246,13 @@ export function insertAssetIntoParent(asset, parentId, data){
 	children = insertAssetIntoSiblings(asset, children);
 	// console.log("asset: ", asset, "children: ", children)
 	
-	let updatedData = data;
 	// update all assets that might have new positions
-	updatedData = updateDataFromArray(updatedData, children)
+	data = updateDataFromArray(data, children)
 
 	const childrenRefs = children.map(child=>{
 		return {id: child.id }
 	});
-	updatedData = update(updatedData, {
+	data = update(data, {
 		[parentId]: {
 			children: {
 				$set: childrenRefs
@@ -268,7 +265,7 @@ export function insertAssetIntoParent(asset, parentId, data){
 		}
 	});
 
-	return updatedData;
+	return data;
 }
 
 export function resizeAssetToFitTimeline(assetId, dataOrig){
