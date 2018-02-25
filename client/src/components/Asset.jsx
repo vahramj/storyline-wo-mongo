@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component, PureComponent} from "react";
 import { shape, /* object, arrayOf, */ bool, string, func } from "prop-types";
 // import { connect } from "react-redux";
 
@@ -10,42 +10,44 @@ import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
-const Asset = (props) => {
-	const { selectedAssetId, onTimeline, assetData } = props;
-	const { name, image, type } = assetData;
-
-	const selectedStyle = selectedAssetId && assetData.id === selectedAssetId ? "selected" : "";
-	const onTimelineStyle = onTimeline ? "onTimeline" : "";
-	
-	const containerAssetAttributes = {
+class Asset extends PureComponent {
+	containerAssetAttributes = {
 			role: "none",
 			onClick: event => {
 				event.stopPropagation();
-				props.handleClick(event, props.assetData)
+				this.props.handleClick(event, this.props.assetData)
 			} 			
-		};
+		}
 
-	const assetAttributes = props.decorative ? {} : containerAssetAttributes; 
+	render(){	
+		const { selected, onTimeline, assetData } = this.props;
+		const { name, image, type } = assetData;
 
-	return (
-		<div className={`asset ${type} ${selectedStyle} ${onTimelineStyle}` } {...assetAttributes}>
-			
-			<div className="hover-tint">
-				<img
-					src="/static/icons/edit_icon.png"
-					className="edit-icon"
-					alt={`edit ${type} icon`}
-				/>
-				<img
-					src="/static/icons/delete_phase_icon_2.png"
-					className="delete-icon"
-					alt={`delete ${type} icon`}
-				/>
+		const selectedStyle = selected ? "selected" : "";
+		const onTimelineStyle = onTimeline ? "onTimeline" : "";
+		
+		const assetAttributes = this.props.decorative ? {} : this.containerAssetAttributes; 
+
+		return (
+			<div className={`asset ${type} ${selectedStyle} ${onTimelineStyle}` } {...assetAttributes}>
+				
+				<div className="hover-tint">
+					<img
+						src="/static/icons/edit_icon.png"
+						className="edit-icon"
+						alt={`edit ${type} icon`}
+					/>
+					<img
+						src="/static/icons/delete_phase_icon_2.png"
+						className="delete-icon"
+						alt={`delete ${type} icon`}
+					/>
+				</div>
+				<Thumbnail { ...{image, name, type}} />
+				<span>{name}</span>
 			</div>
-			<Thumbnail { ...{image, name, type}} />
-			<span>{name}</span>
-		</div>
-	);
+		);
+	}
 }
 
 Asset.propTypes = {
@@ -56,16 +58,16 @@ Asset.propTypes = {
 		image: string,
 	}).isRequired,
 	handleClick: func,
-	selectedAssetId: string,
+	selected: bool,
 	onTimeline: bool,
 	decorative: bool
 };
 
 Asset.defaultProps = {
 	handleClick: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
-	selectedAssetId: null,
 	onTimeline: false,
-	decorative: false
+	decorative: false,
+	selected: false
 }
 
 // function mapDispatchToProps(dispatch){
