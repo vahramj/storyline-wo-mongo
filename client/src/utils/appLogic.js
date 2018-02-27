@@ -93,7 +93,17 @@ function findAssetIndexById(assetId, assetArr){
 	return assetIndex;
 }
 
-export function isInsertLegal(sourceType, targetType){
+export function selectAsset(id, data){
+	if(!id){
+		return null;
+	}
+	if(data[id].type === "timeline"){
+		return null;
+	}
+	return id;
+}
+
+function isInsertLegal(sourceType, targetType){
 	const legalTargetType = assetTypeHierarchy[sourceType].parent;
 	if (legalTargetType === targetType){
 		return {
@@ -108,7 +118,7 @@ export function isInsertLegal(sourceType, targetType){
 	}
 }
 
-export function setInitialAssetPosition(child, position){
+function setInitialAssetPosition(child, position){
 	const parentType = assetTypeHierarchy[child.type].parent;
 	const parentHeadWidth = headWidthList[parentType];
 
@@ -124,7 +134,7 @@ export function setInitialAssetPosition(child, position){
 	return updatedChild;
 }
 
-export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
+function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 
 	const asset = assetOrig;
 	let siblingArr = [...siblingArrOrig];
@@ -203,7 +213,7 @@ export function insertAssetIntoSiblings( assetOrig, siblingArrOrig ){
 	return siblingArr;
 }
 
-export function removeAssetById(assetId, assetArrOrig) {
+function removeAssetById(assetId, assetArrOrig) {
 	const assetArr = [...assetArrOrig];
 
 	const assetIndex = findAssetIndexById(assetId, assetArr);
@@ -216,7 +226,7 @@ export function removeAssetById(assetId, assetArrOrig) {
 	return assetArr;
 }
 
-export function removeAssetFromItsParent(assetId, dataOrig){
+function removeAssetFromItsParent(assetId, dataOrig){
 	let data = dataOrig;
 	const asset = data[assetId];
 	const parent = data[asset.parent.id];
@@ -238,7 +248,7 @@ export function removeAssetFromItsParent(assetId, dataOrig){
 	return data;
 }
 
-export function insertAssetIntoParent(asset, parentId, dataOrig){
+function insertAssetIntoParent(asset, parentId, dataOrig){
 	let data = dataOrig;
 	// map parent's ref children to real ones using updatedData 
 	let children = data[parentId].children.map(child=>{
@@ -269,7 +279,7 @@ export function insertAssetIntoParent(asset, parentId, dataOrig){
 	return data;
 }
 
-export function resizeAssetToFitTimeline(assetId, dataOrig){
+function resizeAssetToFitTimeline(assetId, dataOrig){
 	// vahram, later, write another resizeAssetToPoint function, that's similar to this
 		// but accomodates drag to resize operations
 	let data = dataOrig;
@@ -310,20 +320,46 @@ export function resizeAssetToFitTimeline(assetId, dataOrig){
 	return data;	
 }
 
+export function insertAsset(sourceId, targetId, position, dataOrig) {
+	let data = dataOrig;
+	const source = data[sourceId];
+	const target = data[targetId];
+
+	console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
+
+	const legalCheck = isInsertLegal(source.type, target.type);
+	if (!legalCheck.result) {
+		// alert(legalCheck.message);
+		return data;
+	}
+
+	if (source.parent) {
+		data = removeAssetFromItsParent(source.id, data);
+	}
+
+	const initiallyPositionedAsset = setInitialAssetPosition(source, position);
+
+	data = insertAssetIntoParent(initiallyPositionedAsset, target.id, data);
+
+	data = resizeAssetToFitTimeline(data[source.id].parent.id, data);
+
+	return data;
+}
+
 const timelineData = {
 	tmln_01: {
 		id: "tmln_01",
 		type: "timeline",
 		width: 1500,
-		defaultWidth: false,
+		defaultWidth: true,
 		parent: null,
 		children: [
 			{
 				id: "phs_01",
 			},
-			{
-				id: "phs_03",
-			},
+			// {
+			// 	id: "phs_03",
+			// },
 		],
 	}
 }
@@ -355,9 +391,9 @@ const phaseData = {
 		width: 300,
 		position: 650,
 		// width: null,
-		parent: {
-			id: "tmln_01",
-		},
+		// parent: {
+		// 	id: "tmln_01",
+		// },
 		children: [
 			// {
 			// 	id: "scn_20",
@@ -595,7 +631,8 @@ const characterData = {
 		children: [],
 	},
 };
-const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);
+const data = {...timelineData, ...phaseData, ...characterData, ...sceneData};
+// const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);
 
 export function getData(){
 	return data;

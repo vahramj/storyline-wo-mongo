@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { string } from "prop-types";
 
 import "./styles/Thumbnail.css";
@@ -14,7 +14,7 @@ const defaultImages = {
 	character: "./static/images/character_thumbnails/character_default-02.png",
 	scene: "./static/images/scene_thumbnails/scene_default_01.png",
 };
-class Thumbnail extends Component{
+class Thumbnail extends PureComponent{
 	constructor(props){
 		super(props);
 

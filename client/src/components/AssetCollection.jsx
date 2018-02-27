@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { string, shape } from "prop-types";
-// import {connect} from "react-redux";
+import { string, arrayOf } from "prop-types";
+import {connect} from "react-redux";
 
 import Asset from "./Asset";
+import shallowEqual from "../utils/shallowEqual";
 
 import "./styles/AssetCollection.css";
 import "./styles/AssetCollection-character.css";
@@ -17,16 +18,6 @@ class AssetCollection extends Component {
 	componentDidMount() {
 		this.checkScrollBars();
 	}
-
-	// shouldComponentUpdate(nextProps){
-	// 	if(this.props.data !== nextProps.data){
-	// 		return true;
-	// 	}
-	// 	if(nextProps.selectedAssetId && nextProps.data[nextProps.selectedAssetId].type === nextProps.type){
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
 
 	getCollectionElem = collection => {
 		this.collection = collection;
@@ -44,18 +35,8 @@ class AssetCollection extends Component {
 		this.setState({ scrollBarsStatus });
 	};
 
-	checkIfAssetOnTimeline(assetId) {
-		const { data } = this.props;
-		let ancestor = data[assetId];
-		while (ancestor.parent) {
-			ancestor = data[ancestor.parent.id];
-		}
-		return ancestor.type === "timeline";
-	}
-
 	render() {
-		const { data, type } = this.props;
-		const collectionAssetIds = Object.keys(data).filter(id => data[id].type === type);
+		const { collectionAssetIds, type } = this.props;
 		const styleType = type === "character" ? "character" : "phase";
 
 		return (
@@ -65,17 +46,9 @@ class AssetCollection extends Component {
 			>
 				<ul>
 					{collectionAssetIds.map(assetId => {
-						const assetData = data[assetId];
-						const onTimeline = this.checkIfAssetOnTimeline(assetId);
-						const selected = assetId === this.props.selectedAssetId;
 						return (
 							<li key={assetId}>
-								<Asset
-									handleClick = {this.props.handleClick}
-									assetData={assetData}
-									onTimeline={onTimeline}
-									selected={selected}
-								/>
+								<Asset assetId={assetId} />
 							</li>
 						);
 					})}
@@ -93,27 +66,28 @@ class AssetCollection extends Component {
 
 AssetCollection.propTypes = {
 	type: string.isRequired,
-	data: shape({
-		// timeline: shape(object.isRequired).isRequired,
-		// phase: shape(object.isRequired).isRequired,
-		// scene: shape(object.isRequired).isRequired,
-		// character: shape(object.isRequired).isRequired
-	}).isRequired,
-	// assets: arrayOf(object.isRequired).isRequired,
-	selectedAssetId: string
+	collectionAssetIds: arrayOf(string.isRequired).isRequired,
 };
 
 AssetCollection.defaultProps = {
-	selectedAssetId: null
 }
 
-// function mapStateToProps(state){
-// 	// console.log(state.assets);
-// 	return {
-// 		data: state.assets
-// 		// assets: state.assets.
-// 	}
-// }
+const options = {
+	areStatesEqual(next, prev){
+		return next.data === prev.data;
+	},
+	areStatePropsEqual(next, prev){
+		return shallowEqual(next.collectionAssetIds, prev.collectionAssetIds)
+	}
+}
 
-// export default connect(mapStateToProps)(AssetCollection);
-export default AssetCollection;
+function mapStateToProps({data}, {type}){
+	const collectionAssetIds = Object.keys(data).filter(id => data[id].type === type);
+
+	return {
+		collectionAssetIds
+	}
+}
+
+export default connect(mapStateToProps, null, null, options)(AssetCollection);
+// export default AssetCollection;
