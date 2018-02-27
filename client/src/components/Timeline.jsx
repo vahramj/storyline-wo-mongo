@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { shape, func } from "prop-types";
+import { number, string, func, bool, arrayOf, shape } from "prop-types";
+import { connect } from "react-redux";
 
 import TimelineBody from "./TimelineBody";
+import { handleTimelineClick, fitTimelineToFrame } from "../actions/actionCreators";
 
 import "./styles/Timeline.css";
-
-const timelineId = "tmln_01";
 
 class Timeline extends Component {
 	componentDidMount() {
@@ -18,23 +18,26 @@ class Timeline extends Component {
 	}
 
 	onClickHandler = (event) => {
-		const timelineData = this.props.data[timelineId];
+		const { timelineId } = this.props;;
 
 		event.stopPropagation();
-		this.props.handleClick(event, timelineData, true);
+		this.props.handleTimelineClick(event, timelineId );
 	};
 
 	setDefaultWidth = () => {
-		const timelineData = this.props.data[timelineId];
+		const { defaultWidth, width, timelineId } = this.props;
 
-		if(timelineData.defaultWidth){
+		if(defaultWidth){
 			const timelineFrameWidth = this.timelineElem.getBoundingClientRect().width;
-			this.props.updateTimelineWidth(timelineFrameWidth, timelineId)
+			// vahram, this check is for tight resize, which we will come back to later
+			if(timelineFrameWidth > width){
+				this.props.fitTimelineToFrame(timelineFrameWidth, timelineId);
+			}
 		}		
 	}
 
 	render() {
-		const timelineData = this.props.data[timelineId];
+		const { width, childAssets } = this.props;
 
 		return (
 			<div
@@ -47,12 +50,9 @@ class Timeline extends Component {
 					className="scroll-body"
 					role="none"
 					onClick={ this.onClickHandler }
-					style={{ width: timelineData.width }}
+					style={{ width }}
 				>
-					<TimelineBody
-						{...this.props}
-						assetData={timelineData}
-					/>
+					<TimelineBody childAssets={ childAssets } width={ width } />
 				</div>
 			</div>
 		);
@@ -60,15 +60,50 @@ class Timeline extends Component {
 }
 
 Timeline.propTypes = {
-	data: shape().isRequired,
-	handleClick: func,
-	updateTimelineWidth: func.isRequired
+	timelineId: string.isRequired,
+	width: number.isRequired,
+	defaultWidth: bool,
+	handleTimelineClick: func,
+	fitTimelineToFrame: func,
+	childAssets: arrayOf(
+		shape({
+			id:string
+		})
+	).isRequired
 };
 
 Timeline.defaultProps = {
-	handleClick: () => {
+	handleTimelineClick: () => {
 		console.log("Vahram, Timeline scroll-body click handler hasn't been setup ");
-	}
+	},
+	fitTimelineToFrame: () => {
+		console.log("Vahram, update timeline width to fit the frame");
+	},
+	defaultWidth: false,
 };
 
-export default Timeline;
+function mapDispatchToProps(dispatch){
+	return {
+		handleTimelineClick(event, assetId){
+			return dispatch(handleTimelineClick(event, assetId));
+		},
+		fitTimelineToFrame(timelineFrameWidth, timelineId){
+			return dispatch(fitTimelineToFrame(timelineFrameWidth, timelineId));
+		}
+	}
+}
+
+function mapStateToProps({data}){
+	const timelineId = "tmln_01";
+	const timelineAsset = data[timelineId];
+	const { width, defaultWidth, children } = timelineAsset;
+
+	return {
+		timelineId,
+		width, 
+		defaultWidth, 
+		childAssets: children
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timeline);

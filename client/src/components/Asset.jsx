@@ -1,21 +1,21 @@
-import React, {Component, PureComponent} from "react";
-import { shape, /* object, arrayOf, */ bool, string, func } from "prop-types";
-// import { connect } from "react-redux";
+import React, {Component} from "react";
+import { shape, bool, string, func } from "prop-types";
+import { connect } from "react-redux";
 
 import Thumbnail from "./Thumbnail";
-// import { selectAsset } from "../actions/actionCreators";
+import { selectAsset } from "../actions/actionCreators";
 
 import "./styles/Asset.css";
 import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
-class Asset extends PureComponent {
+class Asset extends Component {
 	containerAssetAttributes = {
 			role: "none",
 			onClick: event => {
 				event.stopPropagation();
-				this.props.handleClick(event, this.props.assetData)
+				this.props.selectAsset(this.props.assetData)			
 			} 			
 		}
 
@@ -57,29 +57,43 @@ Asset.propTypes = {
 		type: string.isRequired,
 		image: string,
 	}).isRequired,
-	handleClick: func,
-	selected: bool,
+	selectAsset: func,
+	selected: bool.isRequired,
 	onTimeline: bool,
 	decorative: bool
 };
 
 Asset.defaultProps = {
-	handleClick: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
+	selectAsset: ()=>{console.log("Vahram, Asset click handler hasn't been setup ")},
 	onTimeline: false,
 	decorative: false,
-	selected: false
 }
 
-// function mapDispatchToProps(dispatch){
-// 	return {
-// 		handleClick(asset){
-// 			dispatch(selectAsset(asset))
-// 		}
-// 	}
-// }
 
-// export default connect(null, mapDispatchToProps)(Asset);
-export default Asset;
+function mapStateToProps({selectedAssetId, data}, {assetId, decorative}){
+	const selected = !!selectedAssetId && assetId === selectedAssetId && !decorative;
+	
+	const assetData = data[assetId];
+
+	let ancestor = assetData;
+	while (ancestor.parent) {
+		ancestor = data[ancestor.parent.id];
+	}
+	const onTimeline = ancestor.type === "timeline" && !decorative;
+
+	return {selected, onTimeline, assetData}
+}
+
+function mapDispatchToProps(dispatch){
+	return {
+		selectAsset(asset){
+			dispatch(selectAsset(asset))
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Asset);
+// export default Asset;
 
 
 

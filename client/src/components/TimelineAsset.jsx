@@ -1,36 +1,36 @@
 import React from "react";
-import { number, shape, string, func } from "prop-types";
+import { number, bool, string, func, arrayOf, shape } from "prop-types";
+import {connect} from "react-redux";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
+import {handleTimelineClick} from "../actions/actionCreators";
 
 import "./styles/TimelineAsset.css";
 
 const TimelineAsset = props => {
-	const { assetData, selectedAssetId } = props;
-	// vahram, convert selectedAssetId to just the asset id, no onTimline property needed there
-	const selected = selectedAssetId && assetData.id === selectedAssetId;
+	const { selected, assetId, type, position, width, childAssets } = props;
 	const selectedStyle = selected ? "selected" : "";
 	return (
 		<div
-			className={`timeline-asset ${selectedStyle} timeline-${assetData.type}`}
+			className={`timeline-asset ${selectedStyle} timeline-${type}`}
 			role="none"
 			onClick={event => {
 				event.stopPropagation();
-				props.handleClick(event, assetData, true);
+				props.handleTimelineClick(event, assetId);
 			}}
-			style={{ left: assetData.position }}
+			style={{ left: position }}
 		>
 			<div className="head">
-				<Asset assetData={assetData} decorative />
+				<Asset assetId={assetId} decorative />
 			</div>
 
-			<TimelineBody {...props} />
+			<TimelineBody childAssets={ childAssets } width={ width } />
 
 			<div
 				className="tail"
 				style={{
-					visibility: assetData.type === "scene" || !selected ? "hidden" : ""
+					visibility: type === "scene" || !selected ? "hidden" : ""
 				}}
 			/>
 		</div>
@@ -38,20 +38,46 @@ const TimelineAsset = props => {
 };
 
 TimelineAsset.propTypes = {
-	assetData: shape({
-		id: string.isRequired,
-		type: string.isRequired,
-		position: number.isRequired
-	}).isRequired,
-	handleClick: func,
-	selectedAssetId: string
+	assetId: string.isRequired,
+	type: string.isRequired,
+	position: number.isRequired,
+	width: number.isRequired,
+	handleTimelineClick: func,
+	selected: bool,
+	childAssets: arrayOf(
+		shape({
+			id:string
+		})
+	).isRequired
 };
 
-TimelineAsset.defaultProps = {
-	handleClick: () => {
+TimelineAsset.defaultProps = {	
+	handleTimelineClick: () => {
 		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
 	},
-	selectedAssetId: null
+	selected: false
 };
 
-export default TimelineAsset;
+function mapDispatchToProps(dispatch){
+	return {
+		handleTimelineClick(event, assetData){
+			return dispatch(handleTimelineClick(event, assetData));
+		}
+	};
+}
+
+function mapStateToProps({ data, selectedAssetId }, { assetId }){
+	const { type, position, width, children } = data[assetId];
+
+	const selected = selectedAssetId && assetId === selectedAssetId;
+	return {
+		selected,
+		type,
+		position,
+		width,
+		childAssets: children
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimelineAsset);
+// export default TimelineAsset;

@@ -5,30 +5,22 @@ import TimelineAsset from "./TimelineAsset";
 
 
 const TimelineBody = props => {
-	const { data, assetData: {children, width} } = props;
-
-	function renderChild(childRef) {
-		const { id } = childRef;
-		const childAssetData = data[id];
-		return <TimelineAsset key={id} {...props} assetData={childAssetData} /> ;
-	}
+	const { childAssets, width } = props;
 
 	return (
 		<div className="body" style={{ width }}>
-			{children.map(renderChild)}
+			{childAssets.map( child => <TimelineAsset key={child.id} assetId={child.id} /> )}
 		</div>
 	);
 };
 
 TimelineBody.propTypes = {
-	assetData: shape({
-			width: number.isRequired,
-			children: arrayOf(shape({
-				id: string.isRequired,
-				// type: string.isRequired
-			})).isRequired
-		}).isRequired,
-	data: shape().isRequired,
+	width: number.isRequired,
+	childAssets: arrayOf(
+		shape({
+			id: string.isRequired,
+		}).isRequired
+	).isRequired
 };
 
 export default TimelineBody;

@@ -19,7 +19,7 @@ const AssetContainer = (props)=>{
 				<div className="search-bg-fader">
 					<input type="text" placeholder="search" />
 				</div>
-				<AssetCollection {...props} />
+				<AssetCollection type={props.type} />
 				
 			</section>
 		</div>

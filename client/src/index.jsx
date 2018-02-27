@@ -8,8 +8,14 @@ import rootReducer from "./reducers/rootReducer";
 import "./styles/reset.css";
 import "./styles/index.css";
 
+/* eslint-disable no-underscore-dangle */
+const store = createStore(rootReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+/* eslint-enable */
+
 render(
-	<Provider store={ createStore(rootReducer) }>
+	<Provider store={ store }>
 		<App />
 	</Provider> 
 	, document.getElementById("app"));
