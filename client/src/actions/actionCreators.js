@@ -1,4 +1,6 @@
-import { SELECT_ASSET, DESELECT_ASSET, CLICK_TIMELINE, FIT_TIMELINE_TO_FRAME } from "./actionTypes";
+import { actionTypes } from "../constants";
+
+const { SELECT_ASSET, DESELECT_ASSET, CLICK_TIMELINE, FIT_TIMELINE_TO_FRAME, REMOVE_ASSET_FROM_PARENT } = actionTypes;
 
 export function selectAsset(asset){
 	return {
@@ -34,4 +36,11 @@ export function fitTimelineToFrame(timelineFrameWidth, timelineId){
 		type: FIT_TIMELINE_TO_FRAME,
 		payload: { timelineFrameWidth, timelineId }
 	};
+}
+
+export function removeAssetFromParent(assetId){
+	return {
+		type: REMOVE_ASSET_FROM_PARENT,
+		payload: {assetId}
+	}
 }

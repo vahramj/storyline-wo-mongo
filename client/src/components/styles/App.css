@@ -16,6 +16,7 @@
 
 .container-holder{
 	padding: 35px 7% 0 7%;
+	height: 100%;
 }
 .asset-containers{
 	display: flex;

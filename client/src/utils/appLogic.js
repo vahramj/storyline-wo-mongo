@@ -226,8 +226,9 @@ function removeAssetById(assetId, assetArrOrig) {
 	return assetArr;
 }
 
-function removeAssetFromItsParent(assetId, dataOrig){
+export function removeAssetFromParent(assetId, dataOrig){
 	let data = dataOrig;
+	// console.log(data, assetId);
 	const asset = data[assetId];
 	const parent = data[asset.parent.id];
 	const updatedChildren = removeAssetById(asset.id, parent.children);
@@ -334,7 +335,7 @@ export function insertAsset(sourceId, targetId, position, dataOrig) {
 	}
 
 	if (source.parent) {
-		data = removeAssetFromItsParent(source.id, data);
+		data = removeAssetFromParent(source.id, data);
 	}
 
 	const initiallyPositionedAsset = setInitialAssetPosition(source, position);

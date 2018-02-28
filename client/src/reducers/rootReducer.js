@@ -3,10 +3,13 @@ import update from "immutability-helper";
 import {
 	getData,
 	selectAsset,
-	insertAsset
+	insertAsset,
+	removeAssetFromParent
 } from "../utils/appLogic";
 
-import { SELECT_ASSET, CLICK_TIMELINE, DESELECT_ASSET, FIT_TIMELINE_TO_FRAME } from "../actions/actionTypes";
+import { actionTypes } from "../constants";
+
+const { SELECT_ASSET, DESELECT_ASSET, CLICK_TIMELINE, FIT_TIMELINE_TO_FRAME, REMOVE_ASSET_FROM_PARENT } = actionTypes
 
 const initialData = {
 	data: getData(), 
@@ -37,6 +40,12 @@ function rootReducer(state=initialData, action){
 
 			selectedAssetId = selectAsset(assetId, state.data);
 			return { ...state, selectedAssetId };
+		}
+
+		case REMOVE_ASSET_FROM_PARENT: {
+			console.log("action.payload: ", action.payload)
+			const data = removeAssetFromParent(action.payload.assetId, state.data);
+			return { ...state, data};
 		}
 
 		case FIT_TIMELINE_TO_FRAME: {

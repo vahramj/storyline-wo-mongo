@@ -1,17 +1,44 @@
 import React from "react";
 import { number, bool, string, func, arrayOf, shape } from "prop-types";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { DragSource } from "react-dnd";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
-import {handleTimelineClick} from "../actions/actionCreators";
+import { handleTimelineClick } from "../actions/actionCreators";
+import { dndTypes } from "../constants";
 
 import "./styles/TimelineAsset.css";
 
+const { ASSET } = dndTypes;
+
+const TimelineAssetSource = {
+	beginDrag(props) {
+		const { assetId } = props;
+		// console.log("beginDrag: ", assetId);
+		return { assetId };
+	}
+};
+
+const collectDnD = connectDnD => {
+	return {
+		connectDragSource: connectDnD.dragSource()
+	};
+};
+
 const TimelineAsset = props => {
-	const { selected, assetId, type, position, width, childAssets } = props;
+	const { 
+		selected, 
+		assetId, 
+		type, 
+		position, 
+		width, 
+		childAssets, 
+		connectDragSource 
+	} = props;
+
 	const selectedStyle = selected ? "selected" : "";
-	return (
+	return connectDragSource(
 		<div
 			className={`timeline-asset ${selectedStyle} timeline-${type}`}
 			role="none"
@@ -25,7 +52,7 @@ const TimelineAsset = props => {
 				<Asset assetId={assetId} decorative />
 			</div>
 
-			<TimelineBody childAssets={ childAssets } width={ width } />
+			<TimelineBody childAssets={childAssets} width={width} />
 
 			<div
 				className="tail"
@@ -46,27 +73,27 @@ TimelineAsset.propTypes = {
 	selected: bool,
 	childAssets: arrayOf(
 		shape({
-			id:string
+			id: string
 		})
 	).isRequired
 };
 
-TimelineAsset.defaultProps = {	
+TimelineAsset.defaultProps = {
 	handleTimelineClick: () => {
 		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
 	},
 	selected: false
 };
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return {
-		handleTimelineClick(event, assetData){
+		handleTimelineClick(event, assetData) {
 			return dispatch(handleTimelineClick(event, assetData));
 		}
 	};
 }
 
-function mapStateToProps({ data, selectedAssetId }, { assetId }){
+function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
 
 	const selected = selectedAssetId && assetId === selectedAssetId;
@@ -79,5 +106,8 @@ function mapStateToProps({ data, selectedAssetId }, { assetId }){
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimelineAsset);
+const dragableTimelineAsset = DragSource(ASSET, TimelineAssetSource, collectDnD)(TimelineAsset);
+const connectedTimelineAsset = connect(mapStateToProps, mapDispatchToProps)(dragableTimelineAsset);
+
+export default connectedTimelineAsset;
 // export default TimelineAsset;
