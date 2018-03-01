@@ -12,7 +12,7 @@ import "./styles/TimelineAsset.css";
 
 const { ASSET } = dndTypes;
 
-const TimelineAssetSource = {
+const TimelineAssetSourceSpec = {
 	beginDrag(props) {
 		const { assetId } = props;
 		// console.log("beginDrag: ", assetId);
@@ -27,15 +27,7 @@ const collectDnD = connectDnD => {
 };
 
 const TimelineAsset = props => {
-	const { 
-		selected, 
-		assetId, 
-		type, 
-		position, 
-		width, 
-		childAssets, 
-		connectDragSource 
-	} = props;
+	const { selected, assetId, type, position, width, childAssets, connectDragSource } = props;
 
 	const selectedStyle = selected ? "selected" : "";
 	return connectDragSource(
@@ -106,7 +98,11 @@ function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	};
 }
 
-const dragableTimelineAsset = DragSource(ASSET, TimelineAssetSource, collectDnD)(TimelineAsset);
+const dragableTimelineAsset = DragSource(
+	dndTypes.TIMELINE_ASSET,
+	TimelineAssetSourceSpec,
+	collectDnD
+)(TimelineAsset);
 const connectedTimelineAsset = connect(mapStateToProps, mapDispatchToProps)(dragableTimelineAsset);
 
 export default connectedTimelineAsset;

@@ -1,23 +1,25 @@
 import update from "immutability-helper";
 
-import {
-	getData,
-	selectAsset,
-	insertAsset,
-	removeAssetFromParent
-} from "../utils/appLogic";
+import { getData, selectAsset, insertAsset, removeAssetFromParent } from "../utils/appLogic";
 
 import { actionTypes } from "../constants";
 
-const { SELECT_ASSET, DESELECT_ASSET, CLICK_TIMELINE, FIT_TIMELINE_TO_FRAME, REMOVE_ASSET_FROM_PARENT } = actionTypes
+const {
+	SELECT_ASSET,
+	DESELECT_ASSET,
+	CLICK_TIMELINE,
+	FIT_TIMELINE_TO_FRAME,
+	REMOVE_ASSET_FROM_PARENT,
+	DROP_ASSET
+} = actionTypes;
 
 const initialData = {
-	data: getData(), 
+	data: getData(),
 	selectedAssetId: null
 };
 
-function rootReducer(state=initialData, action){
-	switch (action.type){
+function rootReducer(state = initialData, action) {
+	switch (action.type) {
 		case SELECT_ASSET: {
 			const { assetId } = action.payload;
 			const selectedAssetId = selectAsset(assetId, state.data);
@@ -26,7 +28,7 @@ function rootReducer(state=initialData, action){
 
 		case DESELECT_ASSET: {
 			const selectedAssetId = selectAsset();
-			return { ...state, selectedAssetId }
+			return { ...state, selectedAssetId };
 		}
 
 		case CLICK_TIMELINE: {
@@ -42,26 +44,32 @@ function rootReducer(state=initialData, action){
 			return { ...state, selectedAssetId };
 		}
 
+		case DROP_ASSET: {
+			// console.log("asset is being dropped");			
+			const { sourceId, targetId, dropPosition } = action.payload;
+			const data = insertAsset(sourceId, targetId, dropPosition, state.data);
+			return { ...state, data };
+		}
+
 		case REMOVE_ASSET_FROM_PARENT: {
-			console.log("action.payload: ", action.payload)
+			// console.log("action.payload: ", action.payload)
 			const data = removeAssetFromParent(action.payload.assetId, state.data);
-			return { ...state, data};
+			return { ...state, data };
 		}
 
 		case FIT_TIMELINE_TO_FRAME: {
 			const { timelineId, timelineFrameWidth } = action.payload;
-			console.log(timelineFrameWidth, timelineId)
+			// console.log(timelineFrameWidth, timelineId)
 			const updatedData = update(state.data, {
 				[timelineId]: {
 					width: { $set: timelineFrameWidth }
-					
 				}
 			});
 
-			return{ ...state, data: updatedData };
+			return { ...state, data: updatedData };
 		}
 
-		default: 
+		default:
 			return state;
 	}
 }

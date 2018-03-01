@@ -11,19 +11,16 @@ import { dndTypes } from "../constants";
 
 import "./styles/App.css";
 
-const { ASSET } = dndTypes;
-
-const appTarget = {
+const appTargetSpec = {
 	drop(props, monitor) {
 		const { assetId } = monitor.getItem();
-		console.log("drop props: ", assetId);
-		const { removeAssetFromParent } = props;
+		// console.log("drop props: ", assetId);
 		// props.deSelectAsset();
-		removeAssetFromParent(assetId);
+		props.removeAssetFromParent(assetId);
 	}
 };
 
-const collect = connectDnD => {
+const collectDnD = connectDnD => {
 	return {
 		connectDropTarget: connectDnD.dropTarget()
 	};
@@ -60,13 +57,18 @@ function mapDispatchToProps(dispatch) {
 			dispatch(deSelectAsset());
 		},
 		removeAssetFromParent(assetId) {
-			dispatch(removeAssetFromParent(assetId))
+			dispatch(removeAssetFromParent(assetId));
 		}
 	};
 }
 
-const DropTargetApp = DropTarget(ASSET, appTarget, collect)(App);
-const ConnectedApp = connect(null, mapDispatchToProps)(DropTargetApp);
+const DropableApp = DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD)(App);
+const ConnectedApp = connect(null, mapDispatchToProps)(DropableApp);
 const ContextApp = DragDropContext(HTML5Backend)(ConnectedApp);
-
 export default ContextApp;
+
+// export default DragDropContext(HTML5Backend)(
+// 	connect(null, mapDispatchToProps)(
+// 		DropTarget(ASSET, appTargetSpec, collectDnD)(App)
+// 	)
+// );
