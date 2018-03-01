@@ -12,18 +12,7 @@ import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
-const AssetSourceSpec = {
-	beginDrag(props) {
-		const { assetId } = props;
-		return { assetId };
-	}
-};
-
-const collectDnD = connectDnD => {
-	return {
-		connectDragSource: connectDnD.dragSource()
-	};
-};
+// ####### React #######################################
 
 class Asset extends Component {
 	containerAssetAttributes = {
@@ -60,6 +49,8 @@ class Asset extends Component {
 	}
 }
 
+// ####### propTypes #######################################
+
 Asset.propTypes = {
 	assetData: shape({
 		id: string.isRequired,
@@ -81,6 +72,26 @@ Asset.defaultProps = {
 	onTimeline: false,
 	decorative: false
 };
+
+// ####### React-DnD code #######################################
+
+const AssetSourceSpec = {
+	beginDrag(props) {
+		const { assetId } = props;
+		return { assetId };
+	},
+	canDrag(props){
+		return !props.decorative
+	}
+};
+
+const collectDnD = connectDnD => {
+	return {
+		connectDragSource: connectDnD.dragSource()
+	};
+};
+
+// ####### Redux connect code #######################################
 
 function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	const selected = !!selectedAssetId && assetId === selectedAssetId && !decorative;
@@ -104,8 +115,8 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const dragableAsset = DragSource(dndTypes.ASSET, AssetSourceSpec, collectDnD)(Asset);
-const connectedAsset = connect(mapStateToProps, mapDispatchToProps)(dragableAsset);
+const dragableAsset = DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD )(Asset);
+const connectedAsset = connect( mapStateToProps, mapDispatchToProps )(dragableAsset);
 export default connectedAsset;
 
 // export default Asset;

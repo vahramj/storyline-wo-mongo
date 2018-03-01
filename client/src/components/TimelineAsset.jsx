@@ -10,8 +10,6 @@ import { dndTypes } from "../constants";
 
 import "./styles/TimelineAsset.css";
 
-const { ASSET } = dndTypes;
-
 const TimelineAssetSourceSpec = {
 	beginDrag(props) {
 		const { assetId } = props;

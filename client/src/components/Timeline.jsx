@@ -12,10 +12,10 @@ import "./styles/Timeline.css";
 const timelineTargetSpec = {
 	drop(props, monitor, component) {
 		const targetId = props.timelineId;
-		const { assetId } = monitor.getItem();
+		const { assetId: sourceId } = monitor.getItem();
 		const dropPosition = monitor.getClientOffset().x;
 		// console.log(position, component.dropElem);
-		props.handleDropAsset(assetId, targetId, dropPosition, component.dropElem);
+		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem);
 	}
 };
 

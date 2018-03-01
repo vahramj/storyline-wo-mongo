@@ -27,14 +27,14 @@ export function handleTimelineClick(event, assetId) {
 	const clickPosRelToViewport = event.clientX;
 	const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left);
 	const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
-	console.log(
-		"clickPosRelToViewport: ",
-		clickPosRelToViewport,
-		"elemPosRelToViewport: ",
-		elemPosRelToViewport,
-		// "clickPosition: ",
-		// clickPosition
-	);
+	// console.log(
+	// 	"clickPosRelToViewport: ",
+	// 	clickPosRelToViewport,
+	// 	"elemPosRelToViewport: ",
+	// 	elemPosRelToViewport,
+	// 	"clickPosition: ",
+	// 	clickPosition
+	// );
 	// console.log("target elem: ", event.currentTarget);
 	return {
 		type: CLICK_TIMELINE,
@@ -46,7 +46,7 @@ export function handleTimelineClick(event, assetId) {
 }
 
 export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, dropElem){
-	console.log(dropPositionRelToViewport)
+	// console.log(dropPositionRelToViewport)
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const dropPosition = dropPositionRelToViewport - elemPosRelToViewport;
 	return {

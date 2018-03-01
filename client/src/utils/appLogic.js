@@ -326,7 +326,7 @@ export function insertAsset(sourceId, targetId, position, dataOrig) {
 	const source = data[sourceId];
 	const target = data[targetId];
 
-	console.log("source: ", source, "\ntarget: ", target, "\n: ", position);
+	console.log("source: ", source, "\ntarget: ", target, "\nposition: ", position);
 
 	const legalCheck = isInsertLegal(source.type, target.type);
 	if (!legalCheck.result) {
