@@ -1,50 +1,72 @@
-import React from "react";
+import React, { Component } from "react";
 import { number, bool, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
-import { DragSource } from "react-dnd";
+import { DragSource, DropTarget } from "react-dnd";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
-import { handleTimelineClick } from "../actions/actionCreators";
+import { handleTimelineClick, handleDropAsset } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
 
 import "./styles/TimelineAsset.css";
 
-
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║   
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
-const TimelineAsset = props => {
-	const { selected, assetId, type, position, width, childAssets, connectDragSource } = props;
+// ██████╔╝█████╗  ███████║██║        ██║
+// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
+// ██║  ██║███████╗██║  ██║╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
+class TimelineAsset extends Component {
+	render(){
 
-	const selectedStyle = selected ? "selected" : "";
-	return connectDragSource(
-		<div
-			className={`timeline-asset ${selectedStyle} timeline-${type}`}
-			role="none"
-			onClick={event => {
-				event.stopPropagation();
-				props.handleTimelineClick(event, assetId);
-			}}
-			style={{ left: position }}
-		>
-			<div className="head">
-				<Asset assetId={assetId} decorative />
-			</div>
+		const {
+			selected,
+			assetId,
+			type,
+			position,
+			width,
+			childAssets,
+			connectDragSource,
+			isDragging,
+			connectDropTarget
+		} = this.props;
 
-			<TimelineBody childAssets={childAssets} width={width} />
+		const selectedStyle = selected ? "selected" : "";
 
-			<div
-				className="tail"
-				style={{
-					visibility: type === "scene" || !selected ? "hidden" : ""
-				}}
-			/>
-		</div>
-	);
+		if (isDragging) {
+			return null;
+		}
+
+		return connectDragSource(
+			connectDropTarget(
+				<div
+					className={`timeline-asset ${selectedStyle} timeline-${type}`}
+					role="none"
+					onClick={event => {
+						event.stopPropagation();
+						this.props.handleTimelineClick(event, assetId);
+					}}	
+					style={{ left: position }}
+					ref={elem => {
+						this.dropElem = elem;
+					}}
+				>
+					<div className="head">
+						<Asset assetId={assetId} decorative />
+					</div>
+
+					<TimelineBody childAssets={childAssets} width={width} />
+
+					<div
+						className="tail"
+						style={{
+							visibility: type === "scene" || !selected ? "hidden" : ""
+						}}
+					/>
+				</div>
+			)
+		);
+	}
 };
 
 // ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
@@ -65,7 +87,10 @@ TimelineAsset.propTypes = {
 		shape({
 			id: string
 		})
-	).isRequired
+	).isRequired,
+	connectDragSource: func.isRequired,
+	isDragging: bool.isRequired,
+	connectDropTarget: func.isRequired
 };
 
 TimelineAsset.defaultProps = {
@@ -75,13 +100,13 @@ TimelineAsset.defaultProps = {
 	selected: false
 };
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗ 
+// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗
 // ██████╔╝█████╗  ███████║██║        ██║       ██║  ██║██╔██╗ ██║██║  ██║
 // ██╔══██╗██╔══╝  ██╔══██║██║        ██║       ██║  ██║██║╚██╗██║██║  ██║
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║       ██████╔╝██║ ╚████║██████╔╝
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝ 
-const TimelineAssetSourceSpec = {
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+const dragSpec = {
 	beginDrag(props) {
 		const { assetId } = props;
 		// console.log("beginDrag: ", assetId);
@@ -89,22 +114,48 @@ const TimelineAssetSourceSpec = {
 	}
 };
 
-const collectDnD = connectDnD => {
+const dropSpec = {
+	drop(props, monitor, component) {
+		if(monitor.didDrop()){
+			return;
+		}
+
+		const targetId = props.assetId;
+		const { assetId: sourceId } = monitor.getItem();
+		const dropPosition = monitor.getClientOffset().x;
+		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
+		// console.log("component: ", component);
+		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem, moveAmount);
+	}
+};
+
+const collectDrag = (connectDnD, monitor) => {
 	return {
-		connectDragSource: connectDnD.dragSource()
+		connectDragSource: connectDnD.dragSource(),
+		isDragging: monitor.isDragging()
 	};
 };
 
+const collectDrop = connectDnD => {
+	return {
+		connectDropTarget: connectDnD.dropTarget()
+	};
+};
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝    ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║   
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║
+// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
 function mapDispatchToProps(dispatch) {
 	return {
 		handleTimelineClick(event, assetData) {
-			return dispatch(handleTimelineClick(event, assetData));
+			return dispatch( handleTimelineClick(event, assetData) );
+		},
+		handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount) {
+			return dispatch(
+				handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount)
+			);
 		}
 	};
 }
@@ -122,12 +173,13 @@ function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	};
 }
 
-const dragableTimelineAsset = DragSource(
-	dndTypes.TIMELINE_ASSET,
-	TimelineAssetSourceSpec,
-	collectDnD
-)(TimelineAsset);
-const connectedTimelineAsset = connect(mapStateToProps, mapDispatchToProps)(dragableTimelineAsset);
+const droppableTimelineAsset = DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDrop)(
+	TimelineAsset
+);
+const draggableTimelineAsset = DragSource(dndTypes.TIMELINE_ASSET, dragSpec, collectDrag)(
+	droppableTimelineAsset
+);
+const connectedTimelineAsset = connect(mapStateToProps, mapDispatchToProps)(draggableTimelineAsset);
 
 export default connectedTimelineAsset;
 // export default TimelineAsset;

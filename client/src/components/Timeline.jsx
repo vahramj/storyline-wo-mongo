@@ -15,10 +15,10 @@ import "./styles/Timeline.css";
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║   
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
+// ██████╔╝█████╗  ███████║██║        ██║
+// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
+// ██║  ██║███████╗██║  ██║╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 
 class Timeline extends Component {
 	componentDidMount() {
@@ -106,20 +106,23 @@ Timeline.defaultProps = {
 	defaultWidth: false
 };
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗ 
+// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗
 // ██████╔╝█████╗  ███████║██║        ██║       ██║  ██║██╔██╗ ██║██║  ██║
 // ██╔══██╗██╔══╝  ██╔══██║██║        ██║       ██║  ██║██║╚██╗██║██║  ██║
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║       ██████╔╝██║ ╚████║██████╔╝
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝ 
-const timelineTargetSpec = {
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+const dropSpec = {
 	drop(props, monitor, component) {
-
+		if(monitor.didDrop()){
+			return;
+		}
 		const targetId = props.timelineId;
 		const { assetId: sourceId } = monitor.getItem();
 		const dropPosition = monitor.getClientOffset().x;
-		// console.log(position, component.dropElem);
-		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem);
+		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
+		// console.log("component: ", component);
+		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem, moveAmount);
 	}
 };
 
@@ -131,10 +134,10 @@ const collectDnD = connectDnD => {
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝    ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║   
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║
+// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
 function mapDispatchToProps(dispatch) {
 	return {
 		handleTimelineClick(event, assetId) {
@@ -143,8 +146,10 @@ function mapDispatchToProps(dispatch) {
 		fitTimelineToFrame(timelineFrameWidth, timelineId) {
 			return dispatch(fitTimelineToFrame(timelineFrameWidth, timelineId));
 		},
-		handleDropAsset(sourceId, targetId, dropPosition, dropElem) {
-			return dispatch(handleDropAsset(sourceId, targetId, dropPosition, dropElem));
+		handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount) {
+			return dispatch(
+				handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount)
+			);
 		}
 	};
 }
@@ -164,7 +169,7 @@ function mapStateToProps({ data }) {
 
 const DropableTimeline = DropTarget(
 	[dndTypes.ASSET, dndTypes.TIMELINE_ASSET],
-	timelineTargetSpec,
+	dropSpec,
 	collectDnD
 )(Timeline);
 const ConnectedTimeline = connect(mapStateToProps, mapDispatchToProps)(DropableTimeline);

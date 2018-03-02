@@ -24,7 +24,7 @@ class Asset extends Component {
 		role: "none",
 		onClick: event => {
 			event.stopPropagation();
-			this.props.selectAsset(this.props.assetData);
+			this.props.selectAsset(this.props.assetData.id);
 		}
 	};
 

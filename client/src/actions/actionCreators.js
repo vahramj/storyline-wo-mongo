@@ -9,10 +9,10 @@ const {
 	DROP_ASSET
 } = actionTypes;
 
-export function selectAsset(asset) {
+export function selectAsset(assetId) {
 	return {
 		type: SELECT_ASSET,
-		payload: { assetId: asset.id }
+		payload: { assetId }
 	};
 }
 
@@ -45,8 +45,9 @@ export function handleTimelineClick(event, assetId) {
 	};
 }
 
-export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, dropElem){
+export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, dropElem, moveAmount){
 	// console.log(dropPositionRelToViewport)
+	// console.log("moveAmount: ", moveAmount);
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const dropPosition = dropPositionRelToViewport - elemPosRelToViewport;
 	return {
@@ -54,7 +55,8 @@ export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, d
 		payload: {
 			sourceId,
 			targetId,
-			dropPosition
+			dropPosition,
+			moveAmount
 		}
 	}
 }
