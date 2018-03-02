@@ -2,7 +2,7 @@ import update from "immutability-helper";
 
 import { getData, selectAsset, insertAsset, removeAssetFromParent, moveAsset } from "../utils/appLogic";
 
-import { actionTypes } from "../constants";
+import { actionTypes, dndTypes } from "../constants";
 
 const {
 	SELECT_ASSET,
@@ -46,11 +46,11 @@ function rootReducer(state = initialData, action) {
 
 		case DROP_ASSET: {
 			// console.log("asset is being dropped");			
-			const { sourceId, targetId, dropPosition, moveAmount } = action.payload;
+			const { sourceId, targetId, dropPosition, moveAmount, sourceDnDType } = action.payload;
 			// console.log("moveAmount: ", moveAmount);
 			let { data } = state;
 			const { parent } = data[sourceId];
-			if(parent && parent.id === targetId){
+			if(parent && parent.id === targetId && sourceDnDType === dndTypes.TIMELINE_ASSET){
 				data = moveAsset(sourceId, moveAmount, data);
 			}
 			else {

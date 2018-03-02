@@ -35,9 +35,9 @@ class TimelineAsset extends Component {
 		const selectedStyle = selected ? "selected" : "";
 		const draggingStyle = isDragging ? "dragging" : "";
 
-		if (isDragging) {
-			return null;
-		}
+		// if (isDragging) {
+		// 	return null;
+		// }
 
 		return _.flowRight([
 				connectDragSource, 
@@ -119,7 +119,7 @@ const dragSpec = {
 };
 
 const dropSpec = {
-	drop(props, monitor, component) {
+	drop(props, monitor, {dropElem}) {
 		if (monitor.didDrop()) {
 			return;
 		}
@@ -128,8 +128,18 @@ const dropSpec = {
 		const { assetId: sourceId } = monitor.getItem();
 		const dropPosition = monitor.getClientOffset().x;
 		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
-		// console.log("component: ", component);
-		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem, moveAmount);
+		const sourceDnDType = monitor.getItemType();
+		// console.log("sourceDnDType: ", sourceDnDType);
+		const params = {
+			sourceId,
+			targetId,
+			dropPosition,
+			dropElem,
+			moveAmount,
+			sourceDnDType
+		};
+
+		props.handleDropAsset(params);
 	},
 	canDrop(props, monitor){
 		const {type: sourceType} = monitor.getItem();

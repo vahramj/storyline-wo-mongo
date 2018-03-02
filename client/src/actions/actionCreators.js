@@ -45,7 +45,15 @@ export function handleTimelineClick(event, assetId) {
 	};
 }
 
-export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, dropElem, moveAmount){
+export function handleDropAsset(params) {
+	const {
+		sourceId,
+		targetId,
+		dropPosition: dropPositionRelToViewport,
+		dropElem,
+		moveAmount,
+		sourceDnDType
+	} = params;
 	// console.log(dropPositionRelToViewport)
 	// console.log("moveAmount: ", moveAmount);
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
@@ -56,9 +64,10 @@ export function handleDropAsset(sourceId, targetId, dropPositionRelToViewport, d
 			sourceId,
 			targetId,
 			dropPosition,
-			moveAmount
+			moveAmount,
+			sourceDnDType
 		}
-	}
+	};
 }
 
 export function fitTimelineToFrame(timelineFrameWidth, timelineId) {
