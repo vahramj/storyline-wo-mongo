@@ -86,24 +86,10 @@ const collectDnD = (connectDnD, monitor) => {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
-function mapDispatchToProps(dispatch) {
-	return {
-		deSelectAsset() {
-			dispatch(deSelectAsset());
-		},
-		removeAssetFromParent(assetId) {
-			dispatch(removeAssetFromParent(assetId));
-		}
-	};
-}
+const actions = {deSelectAsset, removeAssetFromParent};
 
 const DropableApp = DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD)(App);
-const ConnectedApp = connect(null, mapDispatchToProps)(DropableApp);
+const ConnectedApp = connect(null, actions)(DropableApp);
 const ContextApp = DragDropContext(HTML5Backend)(ConnectedApp);
 export default ContextApp;
 
-// export default DragDropContext(HTML5Backend)(
-// 	connect(null, mapDispatchToProps)(
-// 		DropTarget(ASSET, appTargetSpec, collectDnD)(App)
-// 	)
-// );

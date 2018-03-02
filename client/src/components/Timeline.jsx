@@ -114,7 +114,7 @@ Timeline.defaultProps = {
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const dropSpec = {
 	drop(props, monitor, component) {
-		if(monitor.didDrop()){
+		if (monitor.didDrop()) {
 			return;
 		}
 		const targetId = props.timelineId;
@@ -138,21 +138,7 @@ const collectDnD = connectDnD => {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
-function mapDispatchToProps(dispatch) {
-	return {
-		handleTimelineClick(event, assetId) {
-			return dispatch(handleTimelineClick(event, assetId));
-		},
-		fitTimelineToFrame(timelineFrameWidth, timelineId) {
-			return dispatch(fitTimelineToFrame(timelineFrameWidth, timelineId));
-		},
-		handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount) {
-			return dispatch(
-				handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount)
-			);
-		}
-	};
-}
+const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset };
 
 function mapStateToProps({ data }) {
 	const timelineId = "tmln_01";
@@ -172,5 +158,5 @@ const DropableTimeline = DropTarget(
 	dropSpec,
 	collectDnD
 )(Timeline);
-const ConnectedTimeline = connect(mapStateToProps, mapDispatchToProps)(DropableTimeline);
+const ConnectedTimeline = connect(mapStateToProps, actions)(DropableTimeline);
 export default ConnectedTimeline;

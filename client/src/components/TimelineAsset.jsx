@@ -17,8 +17,7 @@ import "./styles/TimelineAsset.css";
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 class TimelineAsset extends Component {
-	render(){
-
+	render() {
 		const {
 			selected,
 			assetId,
@@ -45,7 +44,7 @@ class TimelineAsset extends Component {
 					onClick={event => {
 						event.stopPropagation();
 						this.props.handleTimelineClick(event, assetId);
-					}}	
+					}}
 					style={{ left: position }}
 					ref={elem => {
 						this.dropElem = elem;
@@ -67,7 +66,7 @@ class TimelineAsset extends Component {
 			)
 		);
 	}
-};
+}
 
 // ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
 // ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗   ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
@@ -116,7 +115,7 @@ const dragSpec = {
 
 const dropSpec = {
 	drop(props, monitor, component) {
-		if(monitor.didDrop()){
+		if (monitor.didDrop()) {
 			return;
 		}
 
@@ -147,18 +146,7 @@ const collectDrop = connectDnD => {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
-function mapDispatchToProps(dispatch) {
-	return {
-		handleTimelineClick(event, assetData) {
-			return dispatch( handleTimelineClick(event, assetData) );
-		},
-		handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount) {
-			return dispatch(
-				handleDropAsset(sourceId, targetId, dropPosition, dropElem, moveAmount)
-			);
-		}
-	};
-}
+const actions = { handleTimelineClick, handleDropAsset };
 
 function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
@@ -173,13 +161,18 @@ function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	};
 }
 
-const droppableTimelineAsset = DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDrop)(
-	TimelineAsset
-);
+const droppableTimelineAsset = DropTarget(
+	[dndTypes.ASSET, dndTypes.TIMELINE_ASSET],
+	dropSpec,
+	collectDrop
+)(TimelineAsset);
+
 const draggableTimelineAsset = DragSource(dndTypes.TIMELINE_ASSET, dragSpec, collectDrag)(
 	droppableTimelineAsset
 );
-const connectedTimelineAsset = connect(mapStateToProps, mapDispatchToProps)(draggableTimelineAsset);
+const connectedTimelineAsset = connect(mapStateToProps, actions)(
+	draggableTimelineAsset
+);
 
 export default connectedTimelineAsset;
 // export default TimelineAsset;

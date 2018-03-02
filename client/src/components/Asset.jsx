@@ -110,6 +110,8 @@ const collectDnD = connectDnD => {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
+const actions = {selectAsset};
+
 function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	const selected = !!selectedAssetId && assetId === selectedAssetId && !decorative;
 
@@ -124,16 +126,8 @@ function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	return { selected, onTimeline, assetData };
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		selectAsset(asset) {
-			dispatch(selectAsset(asset));
-		}
-	};
-}
-
 const dragableAsset = DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD )(Asset);
-const connectedAsset = connect( mapStateToProps, mapDispatchToProps )(dragableAsset);
+const connectedAsset = connect( mapStateToProps, actions )(dragableAsset);
 export default connectedAsset;
 
 // export default Asset;
