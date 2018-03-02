@@ -90,6 +90,7 @@ Asset.defaultProps = {
 // ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const AssetSourceSpec = {
 	beginDrag(props) {
+		props.selectAsset(props.assetId);
 		console.log(props);
 		const { assetId, assetData: {type} } = props;
 		return { assetId, type };

@@ -11,7 +11,6 @@ import {
 	handleDropAsset
 } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
-import { assetTypeHierarchy } from "../utils/appLogic";
 
 import "./styles/Timeline.css";
 
@@ -95,8 +94,7 @@ Timeline.propTypes = {
 			id: string
 		})
 	).isRequired,
-	connectDropTarget: func.isRequired,
-	type: string.isRequired
+	connectDropTarget: func.isRequired
 };
 
 Timeline.defaultProps = {
@@ -126,16 +124,6 @@ const dropSpec = {
 		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
 		// console.log("component: ", component);
 		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem, moveAmount);
-	},
-
-	canDrop(props, monitor){
-		const {type: sourceType} = monitor.getItem();
-		const {type: targetType} = props;
-		console.log("sourceType: ", sourceType, "targetType: ", targetType);
-		if(sourceType === assetTypeHierarchy[targetType].child){
-			return true;
-		}
-		return false;
 	}
 };
 
@@ -163,7 +151,6 @@ function mapStateToProps({ data }) {
 		width,
 		defaultWidth,
 		childAssets: children,
-		type: "timeline"
 	};
 }
 

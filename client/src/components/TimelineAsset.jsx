@@ -6,7 +6,7 @@ import _ from "lodash";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
-import { handleTimelineClick, handleDropAsset } from "../actions/actionCreators";
+import { handleTimelineClick, handleDropAsset, selectAsset } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
 import { assetTypeHierarchy } from "../utils/appLogic";
 
@@ -110,6 +110,8 @@ TimelineAsset.defaultProps = {
 const dragSpec = {
 	beginDrag(props) {
 		const { assetId, type } = props;
+
+		props.selectAsset(assetId);
 		// console.log("beginDrag: ", assetId);
 		return { assetId, type };
 	}
@@ -158,7 +160,7 @@ const collectDrop = connectDnD => {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { handleTimelineClick, handleDropAsset };
+const actions = { handleTimelineClick, handleDropAsset, selectAsset };
 
 function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
