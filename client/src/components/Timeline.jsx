@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { number, string, func, bool, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
 import { DropTarget } from "react-dnd";
+import _ from "lodash";
 
 import TimelineBody from "./TimelineBody";
 import {
@@ -10,6 +11,7 @@ import {
 	handleDropAsset
 } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
+import { assetTypeHierarchy } from "../utils/appLogic";
 
 import "./styles/Timeline.css";
 
@@ -93,7 +95,8 @@ Timeline.propTypes = {
 			id: string
 		})
 	).isRequired,
-	connectDropTarget: func.isRequired
+	connectDropTarget: func.isRequired,
+	type: string.isRequired
 };
 
 Timeline.defaultProps = {
@@ -106,12 +109,12 @@ Timeline.defaultProps = {
 	defaultWidth: false
 };
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗
-// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗
-// ██████╔╝█████╗  ███████║██║        ██║       ██║  ██║██╔██╗ ██║██║  ██║
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║       ██║  ██║██║╚██╗██║██║  ██║
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║       ██████╔╝██║ ╚████║██████╔╝
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const dropSpec = {
 	drop(props, monitor, component) {
 		if (monitor.didDrop()) {
@@ -123,6 +126,16 @@ const dropSpec = {
 		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
 		// console.log("component: ", component);
 		props.handleDropAsset(sourceId, targetId, dropPosition, component.dropElem, moveAmount);
+	},
+
+	canDrop(props, monitor){
+		const {type: sourceType} = monitor.getItem();
+		const {type: targetType} = props;
+		console.log("sourceType: ", sourceType, "targetType: ", targetType);
+		if(sourceType === assetTypeHierarchy[targetType].child){
+			return true;
+		}
+		return false;
 	}
 };
 
@@ -132,12 +145,12 @@ const collectDnD = connectDnD => {
 	};
 };
 
-// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗
-// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝    ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝
+// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
+// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
+// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset };
 
 function mapStateToProps({ data }) {
@@ -149,14 +162,15 @@ function mapStateToProps({ data }) {
 		timelineId,
 		width,
 		defaultWidth,
-		childAssets: children
+		childAssets: children,
+		type: "timeline"
 	};
 }
 
-const DropableTimeline = DropTarget(
-	[dndTypes.ASSET, dndTypes.TIMELINE_ASSET],
-	dropSpec,
-	collectDnD
-)(Timeline);
-const ConnectedTimeline = connect(mapStateToProps, actions)(DropableTimeline);
-export default ConnectedTimeline;
+const decorator = _.flowRight([
+	connect(mapStateToProps, actions),
+	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDnD)
+]);
+export default decorator(Timeline);
+
+

@@ -1,6 +1,6 @@
 import update from "immutability-helper";
 
-const assetTypeHierarchy = {
+export const assetTypeHierarchy = {
 	timeline: { child: "phase", parent: "none" },
 	phase: { child: "scene", parent: "timeline" },
 	scene: { child: "character", parent: "phase" },

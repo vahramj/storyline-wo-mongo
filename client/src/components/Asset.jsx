@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { shape, bool, string, func } from "prop-types";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
+import _ from "lodash";
 
 import Thumbnail from "./Thumbnail";
 import { selectAsset } from "../actions/actionCreators";
@@ -18,7 +19,6 @@ import "./styles/Asset-scene.css";
 // ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
-
 class Asset extends Component {
 	containerAssetAttributes = {
 		role: "none",
@@ -82,16 +82,17 @@ Asset.defaultProps = {
 	decorative: false
 };
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗ 
-// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗
-// ██████╔╝█████╗  ███████║██║        ██║       ██║  ██║██╔██╗ ██║██║  ██║
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║       ██║  ██║██║╚██╗██║██║  ██║
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║       ██████╔╝██║ ╚████║██████╔╝
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝ 
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const AssetSourceSpec = {
 	beginDrag(props) {
-		const { assetId } = props;
-		return { assetId };
+		console.log(props);
+		const { assetId, assetData: {type} } = props;
+		return { assetId, type };
 	},
 	canDrag(props){
 		return !props.decorative
@@ -104,12 +105,12 @@ const collectDnD = connectDnD => {
 	};
 };
 
-// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗
-// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝    ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║   
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
+// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
+// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
+// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = {selectAsset};
 
 function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
@@ -126,8 +127,12 @@ function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	return { selected, onTimeline, assetData };
 }
 
-const dragableAsset = DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD )(Asset);
-const connectedAsset = connect( mapStateToProps, actions )(dragableAsset);
-export default connectedAsset;
+// const dragableAsset = DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD )(Asset);
+// const connectedAsset = connect( mapStateToProps, actions )(dragableAsset);
+const decorator = _.flowRight([
+	connect( mapStateToProps, actions ),
+	DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD ),
+])
+export default decorator(Asset);
 
 // export default Asset;

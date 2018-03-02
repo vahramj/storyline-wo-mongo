@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { func } from "prop-types";
 import { DropTarget, DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import _ from "lodash";
 
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
@@ -53,12 +54,12 @@ App.propTypes = {
 	connectDropTarget: func.isRequired
 };
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗    ██████╗ ███╗   ██╗██████╗ 
-// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗
-// ██████╔╝█████╗  ███████║██║        ██║       ██║  ██║██╔██╗ ██║██║  ██║
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║       ██║  ██║██║╚██╗██║██║  ██║
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║       ██████╔╝██║ ╚████║██████╔╝
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═══╝╚═════╝ 
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const appTargetSpec = {
 	drop(props, monitor) {
 
@@ -80,16 +81,18 @@ const collectDnD = (connectDnD, monitor) => {
 	};
 };
 
-// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███╗   ██╗███████╗ ██████╗████████╗
-// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝    ██╔════╝██╔═══██╗████╗  ██║████╗  ██║██╔════╝██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝     ██║     ██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██║        ██║   
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗     ██║     ██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██║        ██║   
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   
+// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
+// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
+// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = {deSelectAsset, removeAssetFromParent};
 
-const DropableApp = DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD)(App);
-const ConnectedApp = connect(null, actions)(DropableApp);
-const ContextApp = DragDropContext(HTML5Backend)(ConnectedApp);
-export default ContextApp;
+const decorator = _.flowRight([
+	DragDropContext(HTML5Backend),
+	connect(null, actions),
+	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD),
+]);
+export default decorator(App);
 
