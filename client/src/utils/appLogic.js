@@ -348,7 +348,7 @@ export function moveAsset(assetId, moveAmount, dataOrig) {
 	const asset = data[assetId];
 	const parent = data[asset.parent.id];
 
-	const newPosition = asset.position + moveAmount;
+	const newPosition = Math.max(asset.position + moveAmount, 0);
 	// console.log("moveAmount: ", moveAmount);
 	const repositionedAsset = update(asset, {
 		position: { $set: newPosition }

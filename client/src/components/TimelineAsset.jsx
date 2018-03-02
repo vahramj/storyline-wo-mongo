@@ -33,6 +33,7 @@ class TimelineAsset extends Component {
 		} = this.props;
 
 		const selectedStyle = selected ? "selected" : "";
+		const draggingStyle = isDragging ? "dragging" : "";
 
 		if (isDragging) {
 			return null;
@@ -43,7 +44,7 @@ class TimelineAsset extends Component {
 				connectDropTarget
 			])(
 				<div
-					className={`timeline-asset ${selectedStyle} timeline-${type}`}
+					className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
 					role="none"
 					onClick={event => {
 						event.stopPropagation();
@@ -133,7 +134,7 @@ const dropSpec = {
 	canDrop(props, monitor){
 		const {type: sourceType} = monitor.getItem();
 		const {type: targetType} = props;
-		console.log("sourceType: ", sourceType, "targetType: ", targetType);
+		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
 		if(sourceType === assetTypeHierarchy[targetType].child){
 			return true;
 		}
