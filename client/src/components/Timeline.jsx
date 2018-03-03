@@ -11,8 +11,60 @@ import {
 	handleDropAsset
 } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
+import { assetTypeHierarchy } from "../utils/appLogic";
 
 import "./styles/Timeline.css";
+
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+const dropSpec = {
+	drop(props, monitor, { dropElem }) {
+		if (monitor.didDrop()) {
+			return;
+		}
+		const targetId = props.timelineId;
+		const { assetId: sourceId } = monitor.getItem();
+		const dropPosition = monitor.getClientOffset().x;
+		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
+		const sourceDnDType = monitor.getItemType();
+		// console.log("sourceDnDType: ", sourceDnDType);
+		const params = {
+			sourceId,
+			targetId,
+			dropPosition,
+			dropElem,
+			moveAmount,
+			sourceDnDType
+		};
+
+		props.handleDropAsset(params);
+	},
+	canDrop(props, monitor){
+		console.log("isOver timeline: ", monitor.isOver())
+
+		const {type: sourceType} = monitor.getItem();
+		const {type: targetType} = props;
+		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
+		if(sourceType === assetTypeHierarchy[targetType].child){
+			return true;
+		}
+		return false;
+		// return true;
+	}
+};
+
+const collectDnD = (connectDnD, monitor) => {
+	return {
+		connectDropTarget: connectDnD.dropTarget(),
+		isHovering: monitor.isOver(),
+		canDrop: monitor.canDrop()
+	};
+};
+
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
@@ -51,7 +103,8 @@ class Timeline extends Component {
 	};
 
 	render() {
-		const { width, childAssets, connectDropTarget } = this.props;
+		const { width, childAssets, connectDropTarget, isHovering, canDrop } = this.props;
+		const hoverDisplay = (isHovering && canDrop) ? "block" : "none";
 
 		return connectDropTarget(
 			<div
@@ -69,6 +122,9 @@ class Timeline extends Component {
 						this.dropElem = elem;
 					}}
 				>
+					{				
+					<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
+					}
 					<TimelineBody childAssets={childAssets} width={width} />
 				</div>
 			</div>
@@ -94,7 +150,9 @@ Timeline.propTypes = {
 			id: string
 		})
 	).isRequired,
-	connectDropTarget: func.isRequired
+	connectDropTarget: func.isRequired,
+	isHovering: bool.isRequired,
+	canDrop: bool.isRequired
 };
 
 Timeline.defaultProps = {
@@ -107,46 +165,11 @@ Timeline.defaultProps = {
 	defaultWidth: false
 };
 
-// ██████╗ ███╗   ██╗██████╗
-// ██╔══██╗████╗  ██║██╔══██╗
-// ██║  ██║██╔██╗ ██║██║  ██║
-// ██║  ██║██║╚██╗██║██║  ██║
-// ██████╔╝██║ ╚████║██████╔╝
-// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
-const dropSpec = {
-	drop(props, monitor, {dropElem}) {
-		if (monitor.didDrop()) {
-			return;
-		}
-		const targetId = props.timelineId;
-		const { assetId: sourceId } = monitor.getItem();
-		const dropPosition = monitor.getClientOffset().x;
-		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
-		const sourceDnDType = monitor.getItemType();
-		// console.log("sourceDnDType: ", sourceDnDType);
-		const params = {
-			sourceId,
-			targetId,
-			dropPosition,
-			dropElem,
-			moveAmount,
-			sourceDnDType
-		};
-
-		props.handleDropAsset(params);
-	}
-};
-
-const collectDnD = connectDnD => {
-	return {
-		connectDropTarget: connectDnD.dropTarget()
-	};
-};
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset };
@@ -161,6 +184,7 @@ function mapStateToProps({ data }) {
 		width,
 		defaultWidth,
 		childAssets: children,
+		type: "timeline"
 	};
 }
 
@@ -169,5 +193,3 @@ const decorator = _.flowRight([
 	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDnD)
 ]);
 export default decorator(Timeline);
-
-

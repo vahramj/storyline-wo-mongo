@@ -12,6 +12,32 @@ import { dndTypes } from "../constants";
 
 import "./styles/App.css";
 
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+const appTargetSpec = {
+	drop(props, monitor) {
+
+		if(monitor.didDrop()){
+			return	
+		}
+		const { assetId } = monitor.getItem();
+		// console.log("drop props: ", assetId);
+		// props.deSelectAsset();
+		props.removeAssetFromParent(assetId);
+	}
+};
+
+const collectDnD = (connectDnD, monitor) => {
+	return {
+		connectDropTarget: connectDnD.dropTarget(),
+		isOver: monitor.isOver(),
+		isOverShallow: monitor.isOver({shallow: true})
+	};
+};
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
@@ -52,33 +78,6 @@ const App = props => {
 App.propTypes = {
 	deSelectAsset: func.isRequired,
 	connectDropTarget: func.isRequired
-};
-
-// ██████╗ ███╗   ██╗██████╗
-// ██╔══██╗████╗  ██║██╔══██╗
-// ██║  ██║██╔██╗ ██║██║  ██║
-// ██║  ██║██║╚██╗██║██║  ██║
-// ██████╔╝██║ ╚████║██████╔╝
-// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
-const appTargetSpec = {
-	drop(props, monitor) {
-
-		if(monitor.didDrop()){
-			return	
-		}
-		const { assetId } = monitor.getItem();
-		// console.log("drop props: ", assetId);
-		// props.deSelectAsset();
-		props.removeAssetFromParent(assetId);
-	}
-};
-
-const collectDnD = (connectDnD, monitor) => {
-	return {
-		connectDropTarget: connectDnD.dropTarget(),
-		isOver: monitor.isOver(),
-		isOverShallow: monitor.isOver({shallow: true})
-	};
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗

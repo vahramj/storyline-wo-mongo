@@ -12,96 +12,6 @@ import { assetTypeHierarchy } from "../utils/appLogic";
 
 import "./styles/TimelineAsset.css";
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗
-// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
-class TimelineAsset extends Component {
-	render() {
-		const {
-			selected,
-			assetId,
-			type,
-			position,
-			width,
-			childAssets,
-			connectDragSource,
-			isDragging,
-			connectDropTarget
-		} = this.props;
-
-		const selectedStyle = selected ? "selected" : "";
-		const draggingStyle = isDragging ? "dragging" : "";
-
-		// if (isDragging) {
-		// 	return null;
-		// }
-
-		return _.flowRight([
-				connectDragSource, 
-				connectDropTarget
-			])(
-				<div
-					className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
-					role="none"
-					onClick={event => {
-						event.stopPropagation();
-						this.props.handleTimelineClick(event, assetId);
-					}}
-					style={{ left: position }}
-					ref={elem => {
-						this.dropElem = elem;
-					}}
-				>
-					<div className="head">
-						<Asset assetId={assetId} decorative />
-					</div>
-
-					<TimelineBody childAssets={childAssets} width={width} />
-
-					<div
-						className="tail"
-						style={{
-							visibility: type === "scene" || !selected ? "hidden" : ""
-						}}
-					/>
-				</div>
-			);
-	}
-}
-
-// ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
-// ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗   ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
-// ██████╔╝██████╔╝██║   ██║██████╔╝█████╗██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
-// ██╔═══╝ ██╔══██╗██║   ██║██╔═══╝ ╚════╝██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
-// ██║     ██║  ██║╚██████╔╝██║           ██║      ██║   ██║     ███████╗███████║
-// ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝           ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
-TimelineAsset.propTypes = {
-	assetId: string.isRequired,
-	type: string.isRequired,
-	position: number.isRequired,
-	width: number.isRequired,
-	handleTimelineClick: func,
-	selected: bool,
-	childAssets: arrayOf(
-		shape({
-			id: string
-		})
-	).isRequired,
-	connectDragSource: func.isRequired,
-	isDragging: bool.isRequired,
-	connectDropTarget: func.isRequired
-};
-
-TimelineAsset.defaultProps = {
-	handleTimelineClick: () => {
-		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
-	},
-	selected: false
-};
-
 // ██████╗ ███╗   ██╗██████╗
 // ██╔══██╗████╗  ██║██╔══██╗
 // ██║  ██║██╔██╗ ██║██║  ██║
@@ -142,6 +52,8 @@ const dropSpec = {
 		props.handleDropAsset(params);
 	},
 	canDrop(props, monitor){
+		console.log("isOver asset: ", monitor.isOver())
+
 		const {type: sourceType} = monitor.getItem();
 		const {type: targetType} = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
@@ -155,14 +67,116 @@ const dropSpec = {
 const collectDrag = (connectDnD, monitor) => {
 	return {
 		connectDragSource: connectDnD.dragSource(),
-		isDragging: monitor.isDragging()
+		isDragging: monitor.isDragging(),
 	};
 };
 
-const collectDrop = connectDnD => {
+const collectDrop = (connectDnD, monitor) => {
 	return {
-		connectDropTarget: connectDnD.dropTarget()
+		connectDropTarget: connectDnD.dropTarget(),
+		isHovering: monitor.isOver(),
+		canDrop: monitor.canDrop()
 	};
+};
+
+// ██████╗ ███████╗ █████╗  ██████╗████████╗
+// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
+// ██████╔╝█████╗  ███████║██║        ██║
+// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
+// ██║  ██║███████╗██║  ██║╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
+class TimelineAsset extends Component {
+	render() {
+		const {
+			selected,
+			assetId,
+			type,
+			position,
+			width,
+			childAssets,
+			connectDragSource,
+			isDragging,
+			connectDropTarget,
+			isHovering,
+			canDrop
+		} = this.props;
+
+		const selectedStyle = selected ? "selected" : "";
+		const draggingStyle = isDragging ? "dragging" : "";
+		const hoverDisplay = isHovering && canDrop ? "block" : "none";
+
+		// if (isDragging) {
+		// 	return null;
+		// }
+
+		return _.flowRight([
+				connectDragSource, 
+				connectDropTarget
+			])(
+					
+				<div
+					className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
+					role="none"
+					onClick={event => {
+						event.stopPropagation();
+						this.props.handleTimelineClick(event, assetId);
+					}}
+					style={{ left: position }}
+					ref={elem => {
+						this.dropElem = elem;
+					}}
+				>
+					{
+					<div className="drag-hover" style={{display:`${hoverDisplay}`}} />
+					}
+					<div className="head">
+						<Asset assetId={assetId} decorative />
+					</div>
+					
+
+					<TimelineBody childAssets={childAssets} width={width} />
+
+					<div
+						className="tail"
+						style={{
+							visibility: type === "scene" || !selected ? "hidden" : ""
+						}}
+					/>
+				</div>
+			);
+	}
+}
+
+// ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
+// ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗   ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
+// ██████╔╝██████╔╝██║   ██║██████╔╝█████╗██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
+// ██╔═══╝ ██╔══██╗██║   ██║██╔═══╝ ╚════╝██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
+// ██║     ██║  ██║╚██████╔╝██║           ██║      ██║   ██║     ███████╗███████║
+// ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝           ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
+TimelineAsset.propTypes = {
+	assetId: string.isRequired,
+	type: string.isRequired,
+	position: number.isRequired,
+	width: number.isRequired,
+	handleTimelineClick: func,
+	selected: bool,
+	childAssets: arrayOf(
+		shape({
+			id: string
+		})
+	).isRequired,
+	connectDragSource: func.isRequired,
+	isDragging: bool.isRequired,
+	connectDropTarget: func.isRequired,
+	isHovering: bool.isRequired,
+	canDrop: bool.isRequired,
+};
+
+TimelineAsset.defaultProps = {
+	handleTimelineClick: () => {
+		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
+	},
+	selected: false
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
@@ -182,7 +196,7 @@ function mapStateToProps({ data, selectedAssetId }, { assetId }) {
 		type,
 		position,
 		width,
-		childAssets: children
+		childAssets: children,
 	};
 }
 

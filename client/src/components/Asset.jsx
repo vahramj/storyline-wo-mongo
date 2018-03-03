@@ -13,6 +13,30 @@ import "./styles/Asset-character.css";
 import "./styles/Asset-phase.css";
 import "./styles/Asset-scene.css";
 
+// ██████╗ ███╗   ██╗██████╗
+// ██╔══██╗████╗  ██║██╔══██╗
+// ██║  ██║██╔██╗ ██║██║  ██║
+// ██║  ██║██║╚██╗██║██║  ██║
+// ██████╔╝██║ ╚████║██████╔╝
+// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
+const AssetSourceSpec = {
+	beginDrag(props) {
+		props.selectAsset(props.assetId);
+		console.log(props);
+		const { assetId, assetData: {type} } = props;
+		return { assetId, type };
+	},
+	canDrag(props){
+		return !props.decorative
+	}
+};
+
+const collectDnD = connectDnD => {
+	return {
+		connectDragSource: connectDnD.dragSource()
+	};
+};
+
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
 // ██████╔╝█████╗  ███████║██║        ██║   
@@ -80,30 +104,6 @@ Asset.defaultProps = {
 	},
 	onTimeline: false,
 	decorative: false
-};
-
-// ██████╗ ███╗   ██╗██████╗
-// ██╔══██╗████╗  ██║██╔══██╗
-// ██║  ██║██╔██╗ ██║██║  ██║
-// ██║  ██║██║╚██╗██║██║  ██║
-// ██████╔╝██║ ╚████║██████╔╝
-// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
-const AssetSourceSpec = {
-	beginDrag(props) {
-		props.selectAsset(props.assetId);
-		console.log(props);
-		const { assetId, assetData: {type} } = props;
-		return { assetId, type };
-	},
-	canDrag(props){
-		return !props.decorative
-	}
-};
-
-const collectDnD = connectDnD => {
-	return {
-		connectDragSource: connectDnD.dragSource()
-	};
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
