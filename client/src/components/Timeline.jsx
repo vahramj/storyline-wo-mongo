@@ -8,7 +8,8 @@ import TimelineBody from "./TimelineBody";
 import {
 	handleTimelineClick,
 	fitTimelineToFrame,
-	handleDropAsset
+	handleDropAsset,
+	calcInsertPosition
 } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
 import { assetTypeHierarchy } from "../utils/appLogic";
@@ -43,9 +44,20 @@ const dropSpec = {
 
 		props.handleDropAsset(params);
 	},
+	hover(props, monitor, { dropElem }){
+		const {timelineId: targetId} = props;
+		const hoverPosition = monitor.getClientOffset().x;
+		// console.log(hoverPosition);
+		const params = {
+			hoverPosition, 
+			dropElem,
+			targetId
+		}
+		props.calcInsertPosition(params);
+		// return true;
+	},
 	canDrop(props, monitor){
-		console.log("isOver timeline: ", monitor.isOver())
-
+		// console.log("isOver timeline: ", monitor.isOver())
 		const {type: sourceType} = monitor.getItem();
 		const {type: targetType} = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
@@ -53,15 +65,16 @@ const dropSpec = {
 			return true;
 		}
 		return false;
-		// return true;
 	}
 };
 
 const collectDnD = (connectDnD, monitor) => {
+	// const hoverPosition = monitor.getClientOffset() ? monitor.getClientOffset().x : null;
+	// console.log("hoverPosition: ", hoverPosition);
 	return {
 		connectDropTarget: connectDnD.dropTarget(),
 		isHovering: monitor.isOver(),
-		canDrop: monitor.canDrop()
+		canDrop: monitor.canDrop(),
 	};
 };
 
@@ -103,8 +116,10 @@ class Timeline extends Component {
 	};
 
 	render() {
-		const { width, childAssets, connectDropTarget, isHovering, canDrop } = this.props;
+		const { width, childAssets, connectDropTarget, isHovering, canDrop, insertPosition } = this.props;
+		console.log("insertPosition: ", insertPosition);
 		const hoverDisplay = (isHovering && canDrop) ? "block" : "none";
+		// const insertPosition = 30;
 
 		return connectDropTarget(
 			<div
@@ -122,9 +137,8 @@ class Timeline extends Component {
 						this.dropElem = elem;
 					}}
 				>
-					{				
+					<div id="insert-indicator" style={{left: insertPosition+10}} />
 					<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
-					}
 					<TimelineBody childAssets={childAssets} width={width} />
 				</div>
 			</div>
@@ -152,7 +166,8 @@ Timeline.propTypes = {
 	).isRequired,
 	connectDropTarget: func.isRequired,
 	isHovering: bool.isRequired,
-	canDrop: bool.isRequired
+	canDrop: bool.isRequired,
+	insertPosition: number
 };
 
 Timeline.defaultProps = {
@@ -162,7 +177,8 @@ Timeline.defaultProps = {
 	fitTimelineToFrame: () => {
 		console.log("Vahram, update timeline width to fit the frame");
 	},
-	defaultWidth: false
+	defaultWidth: false,
+	insertPosition: null
 };
 
 
@@ -172,9 +188,9 @@ Timeline.defaultProps = {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset };
+const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset, calcInsertPosition };
 
-function mapStateToProps({ data }) {
+function mapStateToProps({ data, insertPosition }) {
 	const timelineId = "tmln_01";
 	const timelineAsset = data[timelineId];
 	const { width, defaultWidth, children } = timelineAsset;
@@ -184,7 +200,8 @@ function mapStateToProps({ data }) {
 		width,
 		defaultWidth,
 		childAssets: children,
-		type: "timeline"
+		type: "timeline",
+		insertPosition
 	};
 }
 

@@ -52,7 +52,7 @@ const dropSpec = {
 		props.handleDropAsset(params);
 	},
 	canDrop(props, monitor){
-		console.log("isOver asset: ", monitor.isOver())
+		// console.log("isOver asset: ", monitor.isOver())
 
 		const {type: sourceType} = monitor.getItem();
 		const {type: targetType} = props;

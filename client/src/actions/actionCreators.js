@@ -6,7 +6,8 @@ const {
 	CLICK_TIMELINE,
 	FIT_TIMELINE_TO_FRAME,
 	REMOVE_ASSET_FROM_PARENT,
-	DROP_ASSET
+	DROP_ASSET,
+	CALC_INSERT_POSITION,
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -83,4 +84,24 @@ export function removeAssetFromParent(assetId) {
 		type: REMOVE_ASSET_FROM_PARENT,
 		payload: { assetId }
 	};
+}
+
+export function calcInsertPosition(params){
+	const {
+		hoverPosition, 
+		dropElem,
+		targetId
+	} = params;
+
+	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
+	const hoverPositionRelToTarget = hoverPosition - elemPosRelToViewport;
+	// console.log(hoverPositionRelToTarget);
+
+	return {
+		type: CALC_INSERT_POSITION,
+		payload: {
+			targetId,
+			hoverPositionRelToTarget
+		}
+	}
 }

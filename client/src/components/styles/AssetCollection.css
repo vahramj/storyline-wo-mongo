@@ -1,8 +1,8 @@
 .asset-collection {
 	flex-grow: 1;
 	overflow: auto;
-	/*margin: 0 -50px -20px -50px;*/
-	/*padding: 0 50px 20px 50px;*/
+	margin: 0 -50px -20px -50px;
+	padding: 0 50px 20px 50px;
 }
 
 .asset-collection ul {

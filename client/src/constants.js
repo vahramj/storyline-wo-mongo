@@ -9,7 +9,9 @@ export const actionTypes = {
 	
 	REMOVE_ASSET_FROM_PARENT: "REMOVE_ASSET_FROM_PARENT",
 
-	DROP_ASSET: "DROP_ASSET"
+	DROP_ASSET: "DROP_ASSET",
+
+	CALC_INSERT_POSITION: "CALC_INSERT_POSITION"
 };
 
 export const dndTypes = {

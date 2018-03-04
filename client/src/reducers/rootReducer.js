@@ -10,12 +10,14 @@ const {
 	CLICK_TIMELINE,
 	FIT_TIMELINE_TO_FRAME,
 	REMOVE_ASSET_FROM_PARENT,
-	DROP_ASSET
+	DROP_ASSET,
+	CALC_INSERT_POSITION
 } = actionTypes;
 
 const initialData = {
 	data: getData(),
-	selectedAssetId: null
+	selectedAssetId: null,
+	insertPosition: null
 };
 
 function rootReducer(state = initialData, action) {
@@ -75,6 +77,16 @@ function rootReducer(state = initialData, action) {
 			});
 
 			return { ...state, data: updatedData };
+		}
+
+		case CALC_INSERT_POSITION: {
+			const {
+				// targetId, 
+				hoverPositionRelToTarget
+			} = action.payload;
+			console.log("hello", hoverPositionRelToTarget);
+
+			return { ...state, insertPosition: hoverPositionRelToTarget}
 		}
 
 		default:
