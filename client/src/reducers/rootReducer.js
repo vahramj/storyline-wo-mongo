@@ -8,7 +8,8 @@ import {
 	moveAsset,
 	setInitialAssetPosition,
 	calcInsertPositionIntoSiblings,
-	getChildren
+	getChildren,
+	removeAssetById
 } from "../utils/appLogic";
 
 import { actionTypes, dndTypes } from "../constants";
@@ -99,7 +100,10 @@ function rootReducer(state = initialState, action) {
 				state.data[sourceId],
 				hoverPositionRelToTarget
 			);
-			const siblings = getChildren(targetId, state.data);
+			let siblings = getChildren(targetId, state.data);
+			if(sourceAsset.parent){
+				siblings = removeAssetById(sourceId, siblings);
+			}
 			// const insertPosition = sourceAsset.position;
 			const {insertPosition} = calcInsertPositionIntoSiblings(sourceAsset, siblings);
 			// console.log(insertPosition)

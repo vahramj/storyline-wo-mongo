@@ -237,7 +237,7 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 	return siblingArr;
 }
 
-function removeAssetById(assetId, assetArrOrig) {
+export function removeAssetById(assetId, assetArrOrig) {
 	const assetArr = [...assetArrOrig];
 
 	const assetIndex = findAssetIndexById(assetId, assetArr);

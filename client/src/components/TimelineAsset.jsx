@@ -236,7 +236,7 @@ function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }
 
 	const selected = selectedAssetId && assetId === selectedAssetId;
 	// console.log("insertIndicator.targetId: ", insertIndicator.targetId, "assetId: ", assetId);
-	console.log("insertIndicator.position: ", insertIndicator.position);
+	// console.log("insertIndicator.position: ", insertIndicator.position);
 	const insertPosition = insertIndicator.targetId === assetId ? insertIndicator.position : null; 
 
 	return {
