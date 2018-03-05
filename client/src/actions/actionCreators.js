@@ -91,17 +91,19 @@ export function calcInsertPosition(params){
 	const {
 		hoverPosition, 
 		dropElem,
-		targetId
+		targetId,
+		sourceId,
 	} = params;
 
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const hoverPositionRelToTarget = hoverPosition - elemPosRelToViewport;
-	// console.log("targetId: ", targetId);
+	// console.log("sourceId: ", sourceId);
 
 	return {
 		type: CALC_INSERT_POSITION,
 		payload: {
 			targetId,
+			sourceId,
 			hoverPositionRelToTarget
 		}
 	}

@@ -8,7 +8,7 @@ const TimelineBody = props => {
 	const { childAssets, width, insertPosition } = props;
 	// console.log("insertPosition: ", insertPosition, "childAssets: ", childAssets);
 	let insertPositionStyle = { display: "none" };
-	if (insertPosition) {
+	if (insertPosition !== null) {
 		insertPositionStyle = {
 			left: insertPosition - 5,
 			display: "block"
@@ -17,7 +17,7 @@ const TimelineBody = props => {
 
 	return (
 		<div className="body" style={{ width }}>
-			<div id="insert-indicator" style={insertPositionStyle} />
+			<div className="insert-indicator" style={insertPositionStyle} />
 			{childAssets.map( child => <TimelineAsset key={child.id} assetId={child.id} /> )}
 		</div>
 	);

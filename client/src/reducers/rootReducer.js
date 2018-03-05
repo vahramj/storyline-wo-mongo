@@ -1,6 +1,15 @@
 import update from "immutability-helper";
 
-import { getData, selectAsset, insertAsset, removeAssetFromParent, moveAsset } from "../utils/appLogic";
+import {
+	getData,
+	selectAsset,
+	insertAsset,
+	removeAssetFromParent,
+	moveAsset,
+	setInitialAssetPosition,
+	calcInsertPositionIntoSiblings,
+	getChildren
+} from "../utils/appLogic";
 
 import { actionTypes, dndTypes } from "../constants";
 
@@ -12,10 +21,10 @@ const {
 	REMOVE_ASSET_FROM_PARENT,
 	DROP_ASSET,
 	CALC_INSERT_POSITION,
-	HIDE_INSERT_POSITION,
+	HIDE_INSERT_POSITION
 } = actionTypes;
 
-const initialData = {
+const initialState = {
 	data: getData(),
 	selectedAssetId: null,
 	insertIndicator: {
@@ -24,7 +33,7 @@ const initialData = {
 	}
 };
 
-function rootReducer(state = initialData, action) {
+function rootReducer(state = initialState, action) {
 	switch (action.type) {
 		case SELECT_ASSET: {
 			const { assetId } = action.payload;
@@ -51,15 +60,14 @@ function rootReducer(state = initialData, action) {
 		}
 
 		case DROP_ASSET: {
-			// console.log("asset is being dropped");			
+			// console.log("asset is being dropped");
 			const { sourceId, targetId, dropPosition, moveAmount, sourceDnDType } = action.payload;
 			// console.log("moveAmount: ", moveAmount);
 			let { data } = state;
 			const { parent } = data[sourceId];
-			if(parent && parent.id === targetId && sourceDnDType === dndTypes.TIMELINE_ASSET){
+			if (parent && parent.id === targetId && sourceDnDType === dndTypes.TIMELINE_ASSET) {
 				data = moveAsset(sourceId, moveAmount, data);
-			}
-			else {
+			} else {
 				data = insertAsset(sourceId, targetId, dropPosition, data);
 			}
 			return { ...state, data };
@@ -84,25 +92,29 @@ function rootReducer(state = initialData, action) {
 		}
 
 		case CALC_INSERT_POSITION: {
-			const {
-				targetId, 
-				hoverPositionRelToTarget
-			} = action.payload;
+			const { targetId, sourceId, hoverPositionRelToTarget } = action.payload;
+			// console.log("sourceId: ", sourceId)
 
-			const targetAsset = state.data[targetId]
-		
-		
+			const sourceAsset = setInitialAssetPosition(
+				state.data[sourceId],
+				hoverPositionRelToTarget
+			);
+			const siblings = getChildren(targetId, state.data);
+			// const insertPosition = sourceAsset.position;
+			const {insertPosition} = calcInsertPositionIntoSiblings(sourceAsset, siblings);
+			// console.log(insertPosition)
+
 			// return { ...state, insertPosition: hoverPositionRelToTarget + targetAsset.position}
 			const insertIndicator = {
 				targetId,
-				position: hoverPositionRelToTarget,
+				position: insertPosition
 			};
-			console.log("insertIndicator from rootReducer: ", insertIndicator);
-			return { ...state, insertIndicator }
+			// console.log("insertIndicator from rootReducer: ", insertIndicator);
+			return { ...state, insertIndicator };
 		}
 
 		case HIDE_INSERT_POSITION: {
-			return { ...state, insertPosition: null}
+			return { ...state, insertPosition: null };
 		}
 
 		default:

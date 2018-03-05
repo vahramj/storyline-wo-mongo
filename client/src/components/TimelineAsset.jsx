@@ -63,11 +63,13 @@ const dropSpec = {
 		if (monitor.canDrop()) {
 			// console.log("hovering & can drop")
 			const { assetId: targetId } = props;
+			const sourceId = monitor.getItem().assetId;
 			const hoverPosition = monitor.getClientOffset().x;
 			const params = {
 				hoverPosition,
 				dropElem,
-				targetId
+				targetId,
+				sourceId
 			};
 			props.calcInsertPosition(params);
 		}
@@ -233,6 +235,8 @@ function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }
 	const { type, position, width, children } = data[assetId];
 
 	const selected = selectedAssetId && assetId === selectedAssetId;
+	// console.log("insertIndicator.targetId: ", insertIndicator.targetId, "assetId: ", assetId);
+	console.log("insertIndicator.position: ", insertIndicator.position);
 	const insertPosition = insertIndicator.targetId === assetId ? insertIndicator.position : null; 
 
 	return {

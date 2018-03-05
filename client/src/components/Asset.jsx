@@ -22,7 +22,7 @@ import "./styles/Asset-scene.css";
 const AssetSourceSpec = {
 	beginDrag(props) {
 		props.selectAsset(props.assetId);
-		console.log(props);
+		// console.log(props);
 		const { assetId, assetData: {type} } = props;
 		return { assetId, type };
 	},

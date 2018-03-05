@@ -49,12 +49,14 @@ const dropSpec = {
 	hover(props, monitor, { dropElem }) {
 		if (monitor.canDrop()) {
 			const { timelineId: targetId } = props;
+			const sourceId = monitor.getItem().assetId;
 			const hoverPosition = monitor.getClientOffset().x;
-			// console.log( "isOver: ", monitor.isOver({shallow: true}), "canDrop: ", monitor.canDrop() );
+			// console.log( "sourceId: ", sourceId );
 			const params = {
 				hoverPosition,
 				dropElem,
-				targetId
+				targetId,
+				sourceId
 			};
 			props.calcInsertPosition(params);
 		}

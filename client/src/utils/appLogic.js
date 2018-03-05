@@ -119,7 +119,7 @@ function isInsertLegal(sourceType, targetType) {
 }
 
 // vahram, change this to setInitiallyPositionedAsset
-function setInitialAssetPosition(asset, position) {
+export function setInitialAssetPosition(asset, position) {
 	const parentType = assetTypeHierarchy[asset.type].parent;
 	const parentHeadWidth = headWidthList[parentType];
 
@@ -135,17 +135,16 @@ function setInitialAssetPosition(asset, position) {
 	return updatedAsset;
 }
 
-function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
-	const asset = assetOrig;
-	let siblingArr = [...siblingArrOrig];
-	const headWidth = headWidthList[asset.type];
-
+export function calcInsertPositionIntoSiblings(asset, siblingArr) {
+	// const asset = { ...assetOrig };
+	let insertPosition = asset.position;
 	if (siblingArr.length === 0) {
-		console.log("first asset");
-		siblingArr.push(asset);
-
-		return siblingArr;
+		return {
+			insertPosition,
+		};
 	}
+
+	const headWidth = headWidthList[asset.type];
 
 	let leftNeighbour;
 	let leftNeighbourIndex;
@@ -167,9 +166,8 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 		leftNeighbourIndex = rightNeighbourIndex - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has left & right", leftNeighbour)
-	} 
-	// has only left neighbour
-	else if (!rightNeighbour) {
+	} else if (!rightNeighbour) {
+		// has only left neighbour
 		leftNeighbourIndex = siblingArr.length - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has only left", leftNeighbour)
@@ -182,14 +180,42 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 			const positionDiff = asset.position - leftNeighbour.position;
 			// console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
 			if (positionDiff > leftNeighbourWidth / 2) {
-				asset.position = leftNeighbour.position + leftNeighbourWidth;
+				insertPosition = leftNeighbour.position + leftNeighbourWidth;
 			} else {
-				asset.position = leftNeighbour.position;
+				insertPosition = leftNeighbour.position;
 				rightNeighbour = leftNeighbour;
 				rightNeighbourIndex = leftNeighbourIndex;
 			}
 		}
 	}
+	return {
+		insertPosition,
+		rightNeighbour,
+		rightNeighbourIndex,
+		leftNeighbour,
+		leftNeighbourIndex
+	};
+}
+
+function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
+	const asset = { ...assetOrig };
+	let siblingArr = [...siblingArrOrig];
+
+	if (siblingArr.length === 0) {
+		console.log("first asset");
+		siblingArr.push(asset);
+
+		return siblingArr;
+	}
+
+	const {
+		insertPosition,
+		rightNeighbour,
+		rightNeighbourIndex,
+		leftNeighbourIndex
+	} = calcInsertPositionIntoSiblings(asset, siblingArr);
+
+	asset.position = insertPosition;
 
 	let insertIndex;
 	if (rightNeighbour) {
@@ -247,12 +273,16 @@ export function removeAssetFromParent(assetId, dataOrig) {
 	return data;
 }
 
+export function getChildren(assetId, data){
+	const childRefs = data[assetId].children;
+	const children = childRefs.map(childRef => data[childRef.id]);
+	return children;
+}
+
 function insertAssetIntoParent(asset, parentId, dataOrig) {
 	let data = dataOrig;
 	// map parent's ref children to real ones using updatedData
-	let children = data[parentId].children.map(childRef => {
-		return data[childRef.id];
-	});
+	let children = getChildren(parentId, data);
 	children = insertAssetIntoSiblings(asset, children);
 	// console.log("asset: ", asset, "children: ", children)
 
@@ -355,7 +385,7 @@ export function moveAsset(assetId, moveAmount, dataOrig) {
 	const repositionedAsset = update(asset, {
 		position: { $set: newPosition }
 	});
-	
+
 	data = removeAssetFromParent(asset.id, data);
 	data = insertAssetIntoParent(repositionedAsset, parent.id, data);
 	data = resizeAssetToFitTimeline(parent.id, data);
@@ -386,7 +416,7 @@ const phaseData = {
 		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
-		width: 150,
+		width: 450,
 		position: 0,
 		parent: {
 			id: "tmln_01"
