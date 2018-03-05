@@ -6,9 +6,16 @@ import _ from "lodash";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
-import { handleTimelineClick, handleDropAsset, selectAsset } from "../actions/actionCreators";
+import {
+	handleTimelineClick,
+	handleDropAsset,
+	selectAsset,
+	calcInsertPosition,
+	hideInsertPosition
+} from "../actions/actionCreators";
 import { dndTypes } from "../constants";
 import { assetTypeHierarchy } from "../utils/appLogic";
+// import shallowEqual from "../utils/shallowEqual";
 
 import "./styles/TimelineAsset.css";
 
@@ -29,7 +36,7 @@ const dragSpec = {
 };
 
 const dropSpec = {
-	drop(props, monitor, {dropElem}) {
+	drop(props, monitor, { dropElem }) {
 		if (monitor.didDrop()) {
 			return;
 		}
@@ -50,14 +57,33 @@ const dropSpec = {
 		};
 
 		props.handleDropAsset(params);
+		// props.hideInsertPosition();
 	},
-	canDrop(props, monitor){
+	hover(props, monitor, { dropElem }) {
+		if (monitor.canDrop()) {
+			// console.log("hovering & can drop")
+			const { assetId: targetId } = props;
+			const hoverPosition = monitor.getClientOffset().x;
+			const params = {
+				hoverPosition,
+				dropElem,
+				targetId
+			};
+			props.calcInsertPosition(params);
+		}
+		// else if(props.insertPosition && monitor.isOver({shallow: true})){
+		// 	// console.log("shallow but can't drop")
+		// 	props.hideInsertPosition()
+		// }
+	},
+	canDrop(props, monitor) {
 		// console.log("isOver asset: ", monitor.isOver())
 
-		const {type: sourceType} = monitor.getItem();
-		const {type: targetType} = props;
+		const { type: sourceType } = monitor.getItem();
+		const { type: targetType } = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
-		if(sourceType === assetTypeHierarchy[targetType].child){
+		// vahram, use legalCheck from app logic
+		if (sourceType === assetTypeHierarchy[targetType].child) {
 			return true;
 		}
 		return false;
@@ -67,7 +93,7 @@ const dropSpec = {
 const collectDrag = (connectDnD, monitor) => {
 	return {
 		connectDragSource: connectDnD.dragSource(),
-		isDragging: monitor.isDragging(),
+		isDragging: monitor.isDragging()
 	};
 };
 
@@ -98,52 +124,52 @@ class TimelineAsset extends Component {
 			isDragging,
 			connectDropTarget,
 			isHovering,
-			canDrop
+			canDrop, 
+			insertPosition
 		} = this.props;
 
 		const selectedStyle = selected ? "selected" : "";
 		const draggingStyle = isDragging ? "dragging" : "";
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
+		// let insertPosition = null;
+		// if(isHovering && canDrop){
+		// 	insertPosition = this.props.insertPosition;
+		// }
 
 		// if (isDragging) {
 		// 	return null;
 		// }
 
-		return _.flowRight([
-				connectDragSource, 
-				connectDropTarget
-			])(
-					
-				<div
-					className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
-					role="none"
-					onClick={event => {
-						event.stopPropagation();
-						this.props.handleTimelineClick(event, assetId);
-					}}
-					style={{ left: position }}
-					ref={elem => {
-						this.dropElem = elem;
-					}}
-				>
-					{
-					<div className="drag-hover" style={{display:`${hoverDisplay}`}} />
-					}
-					<div className="head">
-						<Asset assetId={assetId} decorative />
-					</div>
-					
-
-					<TimelineBody childAssets={childAssets} width={width} />
-
-					<div
-						className="tail"
-						style={{
-							visibility: type === "scene" || !selected ? "hidden" : ""
-						}}
-					/>
+		return _.flowRight([connectDragSource, connectDropTarget])(
+			<div
+				className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
+				role="none"
+				onClick={event => {
+					event.stopPropagation();
+					this.props.handleTimelineClick(event, assetId);
+				}}
+				style={{ left: position }}
+				ref={elem => {
+					this.dropElem = elem;
+				}}
+			>
+				<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
+				<div className="head">
+					<Asset assetId={assetId} decorative />
 				</div>
-			);
+
+				<TimelineBody childAssets={childAssets} width={width} 
+				insertPosition={insertPosition} 
+				/>
+
+				<div
+					className="tail"
+					style={{
+						visibility: type === "scene" || !selected ? "hidden" : ""
+					}}
+				/>
+			</div>
+		);
 	}
 }
 
@@ -170,40 +196,59 @@ TimelineAsset.propTypes = {
 	connectDropTarget: func.isRequired,
 	isHovering: bool.isRequired,
 	canDrop: bool.isRequired,
+	insertPosition: number
 };
 
 TimelineAsset.defaultProps = {
 	handleTimelineClick: () => {
 		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
 	},
-	selected: false
+	selected: false,
+	insertPosition: null
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { handleTimelineClick, handleDropAsset, selectAsset };
+const actions = {
+	handleTimelineClick,
+	handleDropAsset,
+	selectAsset,
+	calcInsertPosition,
+	hideInsertPosition
+};
 
-function mapStateToProps({ data, selectedAssetId }, { assetId }) {
+// const options = {
+// 	arePropsEqual(props, otherProps){
+// 		// console.log("props: ", props, "otherProps: ", otherProps);
+// 		console.log(props.assetId)
+// 		console.log(shallowEqual(props, otherProps));
+// 	}
+// };
+
+function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
 
 	const selected = selectedAssetId && assetId === selectedAssetId;
+	const insertPosition = insertIndicator.targetId === assetId ? insertIndicator.position : null; 
+
 	return {
 		selected,
 		type,
 		position,
 		width,
 		childAssets: children,
+		insertPosition
 	};
 }
 
 const decorator = _.flowRight([
-	connect(mapStateToProps, actions),
+	connect(mapStateToProps, actions ),
 	DragSource(dndTypes.TIMELINE_ASSET, dragSpec, collectDrag),
-	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDrop)
+	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDrop )
 ]);
 export default decorator(TimelineAsset);
 // export default TimelineAsset;

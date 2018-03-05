@@ -8,6 +8,7 @@ const {
 	REMOVE_ASSET_FROM_PARENT,
 	DROP_ASSET,
 	CALC_INSERT_POSITION,
+	HIDE_INSERT_POSITION
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -95,7 +96,7 @@ export function calcInsertPosition(params){
 
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const hoverPositionRelToTarget = hoverPosition - elemPosRelToViewport;
-	// console.log(hoverPositionRelToTarget);
+	// console.log("targetId: ", targetId);
 
 	return {
 		type: CALC_INSERT_POSITION,
@@ -103,5 +104,12 @@ export function calcInsertPosition(params){
 			targetId,
 			hoverPositionRelToTarget
 		}
+	}
+}
+
+export function hideInsertPosition(){
+	return {
+		type: HIDE_INSERT_POSITION,
+		payload: null
 	}
 }

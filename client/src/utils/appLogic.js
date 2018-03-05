@@ -118,6 +118,7 @@ function isInsertLegal(sourceType, targetType) {
 	};
 }
 
+// vahram, change this to setInitiallyPositionedAsset
 function setInitialAssetPosition(asset, position) {
 	const parentType = assetTypeHierarchy[asset.type].parent;
 	const parentHeadWidth = headWidthList[parentType];
@@ -166,8 +167,9 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 		leftNeighbourIndex = rightNeighbourIndex - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has left & right", leftNeighbour)
-	} else if (!rightNeighbour) {
-		// has only left neighbour
+	} 
+	// has only left neighbour
+	else if (!rightNeighbour) {
 		leftNeighbourIndex = siblingArr.length - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has only left", leftNeighbour)
@@ -365,6 +367,7 @@ const timelineData = {
 		id: "tmln_01",
 		type: "timeline",
 		width: 1500,
+		position: 0,
 		defaultWidth: true,
 		parent: null,
 		children: [
@@ -383,7 +386,7 @@ const phaseData = {
 		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
-		width: 450,
+		width: 150,
 		position: 0,
 		parent: {
 			id: "tmln_01"

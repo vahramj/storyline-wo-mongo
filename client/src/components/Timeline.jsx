@@ -9,7 +9,8 @@ import {
 	handleTimelineClick,
 	fitTimelineToFrame,
 	handleDropAsset,
-	calcInsertPosition
+	calcInsertPosition,
+	hideInsertPosition
 } from "../actions/actionCreators";
 import { dndTypes } from "../constants";
 import { assetTypeHierarchy } from "../utils/appLogic";
@@ -43,25 +44,37 @@ const dropSpec = {
 		};
 
 		props.handleDropAsset(params);
+		// props.hideInsertPosition();
 	},
-	hover(props, monitor, { dropElem }){
-		const {timelineId: targetId} = props;
-		const hoverPosition = monitor.getClientOffset().x;
-		// console.log(hoverPosition);
-		const params = {
-			hoverPosition, 
-			dropElem,
-			targetId
+	hover(props, monitor, { dropElem }) {
+		if (monitor.canDrop()) {
+			const { timelineId: targetId } = props;
+			const hoverPosition = monitor.getClientOffset().x;
+			// console.log( "isOver: ", monitor.isOver({shallow: true}), "canDrop: ", monitor.canDrop() );
+			const params = {
+				hoverPosition,
+				dropElem,
+				targetId
+			};
+			props.calcInsertPosition(params);
 		}
-		props.calcInsertPosition(params);
-		// return true;
+		// else if(props.insertPosition && monitor.isOver({shallow: true})){
+		// 	// console.log("shallow but can't drop")
+		// 	props.hideInsertPosition()
+		// }
+		// else{
+		// 	// console.log("shallow but can't drop")
+		// 	props.hideInsertPosition()
+		// }
 	},
-	canDrop(props, monitor){
+
+	canDrop(props, monitor) {
 		// console.log("isOver timeline: ", monitor.isOver())
-		const {type: sourceType} = monitor.getItem();
-		const {type: targetType} = props;
+		const { type: sourceType } = monitor.getItem();
+		const { type: targetType } = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
-		if(sourceType === assetTypeHierarchy[targetType].child){
+		// vahram, use legalCheck from app logic
+		if (sourceType === assetTypeHierarchy[targetType].child) {
 			return true;
 		}
 		return false;
@@ -74,10 +87,9 @@ const collectDnD = (connectDnD, monitor) => {
 	return {
 		connectDropTarget: connectDnD.dropTarget(),
 		isHovering: monitor.isOver(),
-		canDrop: monitor.canDrop(),
+		canDrop: monitor.canDrop()
 	};
 };
-
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
@@ -116,10 +128,18 @@ class Timeline extends Component {
 	};
 
 	render() {
-		const { width, childAssets, connectDropTarget, isHovering, canDrop, insertPosition } = this.props;
-		console.log("insertPosition: ", insertPosition);
-		const hoverDisplay = (isHovering && canDrop) ? "block" : "none";
-		// const insertPosition = 30;
+		const {
+			width,
+			childAssets,
+			connectDropTarget,
+			isHovering,
+			canDrop,
+			insertPosition
+		} = this.props;
+		// console.log("insertPosition: ", insertPosition);
+		const hoverDisplay = isHovering && canDrop ? "block" : "none";
+
+
 
 		return connectDropTarget(
 			<div
@@ -137,9 +157,11 @@ class Timeline extends Component {
 						this.dropElem = elem;
 					}}
 				>
-					<div id="insert-indicator" style={{left: insertPosition+10}} />
+
 					<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
-					<TimelineBody childAssets={childAssets} width={width} />
+					<TimelineBody childAssets={childAssets} width={width} 
+					insertPosition={insertPosition}
+					/>
 				</div>
 			</div>
 		);
@@ -181,20 +203,26 @@ Timeline.defaultProps = {
 	insertPosition: null
 };
 
-
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
 // ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { handleTimelineClick, fitTimelineToFrame, handleDropAsset, calcInsertPosition };
+const actions = {
+	handleTimelineClick,
+	fitTimelineToFrame,
+	handleDropAsset,
+	calcInsertPosition,
+	hideInsertPosition
+};
 
-function mapStateToProps({ data, insertPosition }) {
+function mapStateToProps({ data, insertIndicator }) {
+	// console.log("insertIndicator from Timelne: ", insertIndicator)
 	const timelineId = "tmln_01";
 	const timelineAsset = data[timelineId];
 	const { width, defaultWidth, children } = timelineAsset;
-
+	const insertPosition = insertIndicator.targetId === timelineId ? insertIndicator.position : null; 
 	return {
 		timelineId,
 		width,
