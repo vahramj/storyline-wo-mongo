@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { number, string, func, bool } from "prop-types";
 import { connect } from "react-redux";
 
-import TimelineAsset from "./TimelineAsset";
+import TimelineAssetRedux from "./TimelineAssetRedux";
 
 import { fitTimelineToFrame } from "../actions/actionCreators";
 
@@ -43,7 +43,7 @@ class Timeline extends Component {
 
 		return (
 			<div className="timeline" ref={ elem => {this.timelineElem = elem;} }>
-				<TimelineAsset assetId={assetId} />
+				<TimelineAssetRedux assetId={assetId} />
 			</div>
 		);
 	}

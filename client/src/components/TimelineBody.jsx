@@ -1,7 +1,7 @@
 import React from "react";
 import { shape, arrayOf, string, number } from "prop-types";
 
-import TimelineAsset from "./TimelineAsset";
+import TimelineAssetRedux from "./TimelineAssetRedux";
 
 import "./styles/TimelineBody.css";
 
@@ -20,7 +20,7 @@ const TimelineBody = props => {
 	return (
 		<div className="body" style={{ width }}>
 			<div className="insert-indicator" style={insertPositionStyle} />
-			{childAssets.map( child => <TimelineAsset key={child.id} assetId={child.id} /> )}
+			{childAssets.map( child => <TimelineAssetRedux key={child.id} assetId={child.id} /> )}
 		</div>
 	);
 };
