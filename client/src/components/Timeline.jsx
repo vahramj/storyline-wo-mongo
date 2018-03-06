@@ -25,6 +25,7 @@ import "./styles/Timeline.css";
 // ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const dropSpec = {
 	drop(props, monitor, { dropElem }) {
+		// console.log("dropping from Timeline")
 		if (monitor.didDrop()) {
 			return;
 		}
@@ -34,23 +35,23 @@ const dropSpec = {
 		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
 		const dropPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
 
-		// const moveAmount = monitor.getDifferenceFromInitialOffset().x;
-		// const sourceDnDType = monitor.getItemType();
 		const params = {
 			sourceId,
 			targetId,
 			dropPosition,
 			dropElem,
-			grabPosLeftEdgeOffset,
-			// moveAmount,
-			// sourceDnDType
 		};
 
 		props.handleDropAsset(params);
-		// props.hideInsertPosition();
+		props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
 		if (!monitor.canDrop()) {
+			// console.log("can't drop", props.insertPosition)
+			// if(props.insertPosition && monitor.isOver({shallow: true})){
+			// 	console.log("shallow but can't drop")
+			// 	props.hideInsertPosition()
+			// }
 			return;
 		}
 		const { timelineId: targetId } = props;
@@ -65,6 +66,7 @@ const dropSpec = {
 			sourceId
 		};
 		props.calcInsertPosition(params);
+		// console.log("hello from hover");
 		// else if(props.insertPosition && monitor.isOver({shallow: true})){
 		// 	// console.log("shallow but can't drop")
 		// 	props.hideInsertPosition()
@@ -145,6 +147,7 @@ class Timeline extends Component {
 		} = this.props;
 		// console.log("insertPosition: ", insertPosition);
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
+		const insertPositionOver = isHovering && insertPosition!==null ? insertPosition : null;
 
 
 
@@ -167,7 +170,7 @@ class Timeline extends Component {
 
 					<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
 					<TimelineBody childAssets={childAssets} width={width} 
-					insertPosition={insertPosition}
+					insertPosition={insertPositionOver} 
 					/>
 				</div>
 			</div>

@@ -37,6 +37,7 @@ const dragSpec = {
 
 const dropSpec = {
 	drop(props, monitor, { dropElem }) {
+		// console.log("dropping from TimelineAsset")
 		if (monitor.didDrop()) {
 			return;
 		}
@@ -48,25 +49,21 @@ const dropSpec = {
 		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
 		const dropPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
 
-		// const moveAmount = monitor.getDifferenceFromInitialOffset().x;
-		// const sourceDnDType = monitor.getItemType();
 		const params = {
 			sourceId,
 			targetId,
 			dropPosition,
 			dropElem,
-			// grabPosLeftEdgeOffset,
-			// moveAmount,
-			// sourceDnDType
 		};
 
 		props.handleDropAsset(params);
-		// props.hideInsertPosition();
+		props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
 		if (!monitor.canDrop()) {
 			return;
 		}
+
 		// console.log("hovering & can drop")
 		const { assetId: targetId } = props;
 		const sourceId = monitor.getItem().assetId;
@@ -79,10 +76,6 @@ const dropSpec = {
 			sourceId
 		};
 		props.calcInsertPosition(params);
-		// else if(props.insertPosition && monitor.isOver({shallow: true})){
-		// 	// console.log("shallow but can't drop")
-		// 	props.hideInsertPosition()
-		// }
 	},
 	canDrop(props, monitor) {
 		// console.log("isOver asset: ", monitor.isOver())
@@ -120,6 +113,12 @@ const collectDrop = (connectDnD, monitor) => {
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 class TimelineAsset extends Component {
+	onClickHandler = (event) => {
+		const {assetId} = this.props;
+		event.stopPropagation();
+		this.props.handleTimelineClick(event, assetId);
+	}
+
 	render() {
 		const {
 			selected,
@@ -139,6 +138,7 @@ class TimelineAsset extends Component {
 		const selectedStyle = selected ? "selected" : "";
 		const draggingStyle = isDragging ? "dragging" : "";
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
+		const insertPositionOver = isHovering && insertPosition!==null ? insertPosition : null;
 		// let insertPosition = null;
 		// if(isHovering && canDrop){
 		// 	insertPosition = this.props.insertPosition;
@@ -152,10 +152,7 @@ class TimelineAsset extends Component {
 			<div
 				className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
 				role="none"
-				onClick={event => {
-					event.stopPropagation();
-					this.props.handleTimelineClick(event, assetId);
-				}}
+				onClick={this.onClickHandler}
 				style={{ left: position }}
 				ref={elem => {
 					this.dropElem = elem;
@@ -167,7 +164,7 @@ class TimelineAsset extends Component {
 				</div>
 
 				<TimelineBody childAssets={childAssets} width={width} 
-				insertPosition={insertPosition} 
+				insertPosition={insertPositionOver} 
 				/>
 
 				<div

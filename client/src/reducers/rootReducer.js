@@ -75,7 +75,6 @@ function rootReducer(state = initialState, action) {
 				targetId,
 				data,
 				position: dropPosition,
-				// leftEdgeOffset: grabPosLeftEdgeOffset
 			});
 			return { ...state, data };
 		}
@@ -99,8 +98,8 @@ function rootReducer(state = initialState, action) {
 		}
 
 		case CALC_INSERT_POSITION: {
+			// console.log("calcing insert pos")
 			const { targetId, sourceId, hoverPositionRelToTarget } = action.payload;
-			// console.log("sourceId: ", sourceId)
 
 			const sourceAsset = setInitialAssetPosition(
 				state.data[sourceId],
@@ -111,11 +110,9 @@ function rootReducer(state = initialState, action) {
 			if (sourceAsset.parent && sourceAsset.parent.id === targetId) {
 				siblings = removeAssetById(sourceId, siblings);
 			}
-			// const insertPosition = sourceAsset.position;
 			const { insertPosition } = calcInsertPositionIntoSiblings(sourceAsset, siblings);
 			// console.log(insertPosition)
 
-			// return { ...state, insertPosition: hoverPositionRelToTarget + targetAsset.position}
 			const insertIndicator = {
 				targetId,
 				position: insertPosition
@@ -125,7 +122,12 @@ function rootReducer(state = initialState, action) {
 		}
 
 		case HIDE_INSERT_POSITION: {
-			return { ...state, insertPosition: null };
+			// console.log("hiding insert position");
+			const insertIndicator = {
+				targetId: null,
+				position: null
+			};
+			return { ...state, insertIndicator };
 		}
 
 		default:

@@ -14,6 +14,7 @@ const TimelineBody = props => {
 			display: "block"
 		};
 	}
+	// console.log(insertPositionStyle);
 
 	return (
 		<div className="body" style={{ width }}>

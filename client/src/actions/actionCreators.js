@@ -53,7 +53,6 @@ export function handleDropAsset(params) {
 		targetId,
 		dropPosition: dropPositionRelToViewport,
 		dropElem,
-		// grabPosLeftEdgeOffset
 	} = params;
 
 	// Vahram, move elemPos calculation to Timeline & TimelineAsset
@@ -66,7 +65,6 @@ export function handleDropAsset(params) {
 			sourceId,
 			targetId,
 			dropPosition,
-			// grabPosLeftEdgeOffset
 		}
 	};
 }
