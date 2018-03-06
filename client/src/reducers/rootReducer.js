@@ -5,14 +5,14 @@ import {
 	selectAsset,
 	insertAsset,
 	removeAssetFromParent,
-	moveAsset,
+	// moveAsset,
 	setInitialAssetPosition,
 	calcInsertPositionIntoSiblings,
 	getChildren,
 	removeAssetById
 } from "../utils/appLogic";
 
-import { actionTypes, dndTypes } from "../constants";
+import { actionTypes, /* dndTypes */ } from "../constants";
 
 const {
 	SELECT_ASSET,
@@ -62,15 +62,15 @@ function rootReducer(state = initialState, action) {
 
 		case DROP_ASSET: {
 			// console.log("asset is being dropped");
-			const { sourceId, targetId, dropPosition, moveAmount, sourceDnDType } = action.payload;
+			const { sourceId, targetId, dropPosition, /* moveAmount, sourceDnDType */ } = action.payload;
 			// console.log("moveAmount: ", moveAmount);
 			let { data } = state;
-			const { parent } = data[sourceId];
-			if (parent && parent.id === targetId && sourceDnDType === dndTypes.TIMELINE_ASSET) {
-				data = moveAsset(sourceId, moveAmount, data);
-			} else {
-				data = insertAsset(sourceId, targetId, dropPosition, data);
-			}
+			// const { parent } = data[sourceId];
+			// if (parent && parent.id === targetId && sourceDnDType === dndTypes.TIMELINE_ASSET) {
+			// 	// data = moveAsset(sourceId, moveAmount, data);
+			// } else {
+			// }
+			data = insertAsset(sourceId, targetId, dropPosition, data);
 			return { ...state, data };
 		}
 
@@ -101,11 +101,12 @@ function rootReducer(state = initialState, action) {
 				hoverPositionRelToTarget
 			);
 			let siblings = getChildren(targetId, state.data);
-			if(sourceAsset.parent){
+			// make sure insert indicator doesn't snap at itself when moving
+			if (sourceAsset.parent && sourceAsset.parent.id === targetId) {
 				siblings = removeAssetById(sourceId, siblings);
 			}
 			// const insertPosition = sourceAsset.position;
-			const {insertPosition} = calcInsertPositionIntoSiblings(sourceAsset, siblings);
+			const { insertPosition } = calcInsertPositionIntoSiblings(sourceAsset, siblings);
 			// console.log(insertPosition)
 
 			// return { ...state, insertPosition: hoverPositionRelToTarget + targetAsset.position}

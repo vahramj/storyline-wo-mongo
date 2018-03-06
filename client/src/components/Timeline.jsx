@@ -30,17 +30,20 @@ const dropSpec = {
 		}
 		const targetId = props.timelineId;
 		const { assetId: sourceId } = monitor.getItem();
-		const dropPosition = monitor.getClientOffset().x;
-		const moveAmount = monitor.getDifferenceFromInitialOffset().x;
-		const sourceDnDType = monitor.getItemType();
-		// console.log("sourceDnDType: ", sourceDnDType);
+
+		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
+		const dropPosition = monitor.getClientOffset().x 
+		- grabPosLeftEdgeOffset;
+
+		// const moveAmount = monitor.getDifferenceFromInitialOffset().x;
+		// const sourceDnDType = monitor.getItemType();
 		const params = {
 			sourceId,
 			targetId,
 			dropPosition,
 			dropElem,
-			moveAmount,
-			sourceDnDType
+			// moveAmount,
+			// sourceDnDType
 		};
 
 		props.handleDropAsset(params);

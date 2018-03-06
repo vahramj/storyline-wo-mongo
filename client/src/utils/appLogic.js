@@ -375,22 +375,22 @@ export function insertAsset(sourceId, targetId, position, dataOrig) {
 	return data;
 }
 
-export function moveAsset(assetId, moveAmount, dataOrig) {
-	let data = dataOrig;
-	const asset = data[assetId];
-	const parent = data[asset.parent.id];
+// function moveAsset(assetId, moveAmount, dataOrig) {
+// 	let data = dataOrig;
+// 	const asset = data[assetId];
+// 	const parent = data[asset.parent.id];
 
-	const newPosition = Math.max(asset.position + moveAmount, 0);
-	// console.log("moveAmount: ", moveAmount);
-	const repositionedAsset = update(asset, {
-		position: { $set: newPosition }
-	});
+// 	const newPosition = Math.max(asset.position + moveAmount, 0);
+// 	// console.log("moveAmount: ", moveAmount);
+// 	const repositionedAsset = update(asset, {
+// 		position: { $set: newPosition }
+// 	});
 
-	data = removeAssetFromParent(asset.id, data);
-	data = insertAssetIntoParent(repositionedAsset, parent.id, data);
-	data = resizeAssetToFitTimeline(parent.id, data);
-	return data;
-}
+// 	data = removeAssetFromParent(asset.id, data);
+// 	data = insertAssetIntoParent(repositionedAsset, parent.id, data);
+// 	data = resizeAssetToFitTimeline(parent.id, data);
+// 	return data;
+// }
 
 const timelineData = {
 	tmln_01: {
@@ -416,7 +416,7 @@ const phaseData = {
 		id: "phs_01",
 		name: "opeining image",
 		type: "phase",
-		width: 450,
+		width: 250,
 		position: 0,
 		parent: {
 			id: "tmln_01"
