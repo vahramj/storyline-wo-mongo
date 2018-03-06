@@ -53,11 +53,11 @@ export function handleDropAsset(params) {
 		targetId,
 		dropPosition: dropPositionRelToViewport,
 		dropElem,
-		moveAmount,
-		sourceDnDType
+		grabPosLeftEdgeOffset
 	} = params;
-	// console.log(dropPositionRelToViewport)
-	// console.log("moveAmount: ", moveAmount);
+
+	// Vahram, move elemPos calculation to Timeline & TimelineAsset
+	// vahram, consider making timeline into a TimelineAsset, maybe
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const dropPosition = dropPositionRelToViewport - elemPosRelToViewport;
 	return {
@@ -66,14 +66,12 @@ export function handleDropAsset(params) {
 			sourceId,
 			targetId,
 			dropPosition,
-			moveAmount,
-			sourceDnDType
+			grabPosLeftEdgeOffset
 		}
 	};
 }
 
 export function fitTimelineToFrame(timelineFrameWidth, timelineId) {
-	// console.log(timelineFrameWidth, timelineId)
 	return {
 		type: FIT_TIMELINE_TO_FRAME,
 		payload: { timelineFrameWidth, timelineId }

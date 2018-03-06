@@ -135,8 +135,9 @@ export function setInitialAssetPosition(asset, position) {
 	return updatedAsset;
 }
 
-export function calcInsertPositionIntoSiblings(asset, siblingArr) {
+export function calcInsertPositionIntoSiblings(asset, siblingArr, leftEdgeOffset=0) {
 	// const asset = { ...assetOrig };
+	// console.log("hello")
 	let insertPosition = asset.position;
 	if (siblingArr.length === 0) {
 		return {
@@ -144,13 +145,14 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 		};
 	}
 
+	const dropPosition = asset.position + leftEdgeOffset;
 	const headWidth = headWidthList[asset.type];
 
 	let leftNeighbour;
 	let leftNeighbourIndex;
 	let rightNeighbourIndex;
 	let rightNeighbour = siblingArr.find((child, index) => {
-		if (child.position > asset.position) {
+		if (child.position > dropPosition) {
 			rightNeighbourIndex = index;
 			return true;
 		}
@@ -166,8 +168,9 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 		leftNeighbourIndex = rightNeighbourIndex - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has left & right", leftNeighbour)
-	} else if (!rightNeighbour) {
-		// has only left neighbour
+	} 
+	// has only left neighbour
+	else if (!rightNeighbour) {
 		leftNeighbourIndex = siblingArr.length - 1;
 		leftNeighbour = siblingArr[leftNeighbourIndex];
 		// console.log("has only left", leftNeighbour)
@@ -176,9 +179,10 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 	if (leftNeighbour) {
 		const leftNeighbourWidth = leftNeighbour.width + headWidth;
 
-		if (leftNeighbour.position + leftNeighbourWidth > asset.position) {
-			const positionDiff = asset.position - leftNeighbour.position;
-			// console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
+		const leftNeighbourEnd = leftNeighbour.position + leftNeighbourWidth;
+		if (leftNeighbourEnd > asset.position || leftNeighbourEnd > dropPosition) {
+			const positionDiff = dropPosition - leftNeighbour.position;
+			console.log("positionDiff: ", positionDiff, 'leftNeighbourWidth/2: ', leftNeighbourWidth/2)
 			if (positionDiff > leftNeighbourWidth / 2) {
 				insertPosition = leftNeighbour.position + leftNeighbourWidth;
 			} else {
@@ -197,7 +201,7 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 	};
 }
 
-function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
+function insertAssetIntoSiblings(assetOrig, siblingArrOrig, leftEdgeOffset) {
 	const asset = { ...assetOrig };
 	let siblingArr = [...siblingArrOrig];
 
@@ -213,7 +217,7 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 		rightNeighbour,
 		rightNeighbourIndex,
 		leftNeighbourIndex
-	} = calcInsertPositionIntoSiblings(asset, siblingArr);
+	} = calcInsertPositionIntoSiblings(asset, siblingArr, leftEdgeOffset);
 
 	asset.position = insertPosition;
 
@@ -279,11 +283,11 @@ export function getChildren(assetId, data){
 	return children;
 }
 
-function insertAssetIntoParent(asset, parentId, dataOrig) {
+function insertAssetIntoParent(asset, parentId, dataOrig, leftEdgeOffset) {
 	let data = dataOrig;
 	// map parent's ref children to real ones using updatedData
 	let children = getChildren(parentId, data);
-	children = insertAssetIntoSiblings(asset, children);
+	children = insertAssetIntoSiblings(asset, children, leftEdgeOffset);
 	// console.log("asset: ", asset, "children: ", children)
 
 	// update all assets that might have new positions
@@ -349,7 +353,7 @@ function resizeAssetToFitTimeline(assetId, dataOrig) {
 	return data;
 }
 
-export function insertAsset(sourceId, targetId, position, dataOrig) {
+export function insertAsset({sourceId, targetId, position, data: dataOrig, leftEdgeOffset=0}) {
 	let data = dataOrig;
 	const source = data[sourceId];
 	const target = data[targetId];
@@ -366,9 +370,9 @@ export function insertAsset(sourceId, targetId, position, dataOrig) {
 		data = removeAssetFromParent(source.id, data);
 	}
 
-	const initiallyPositionedAsset = setInitialAssetPosition(source, position);
+	const initiallyPositionedAsset = setInitialAssetPosition(source, position - leftEdgeOffset);
 
-	data = insertAssetIntoParent(initiallyPositionedAsset, target.id, data);
+	data = insertAssetIntoParent(initiallyPositionedAsset, target.id, data, leftEdgeOffset);
 
 	data = resizeAssetToFitTimeline(data[source.id].parent.id, data);
 

@@ -32,8 +32,7 @@ const dropSpec = {
 		const { assetId: sourceId } = monitor.getItem();
 
 		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
-		const dropPosition = monitor.getClientOffset().x 
-		- grabPosLeftEdgeOffset;
+		const dropPosition = monitor.getClientOffset().x;
 
 		// const moveAmount = monitor.getDifferenceFromInitialOffset().x;
 		// const sourceDnDType = monitor.getItemType();
@@ -42,6 +41,7 @@ const dropSpec = {
 			targetId,
 			dropPosition,
 			dropElem,
+			grabPosLeftEdgeOffset,
 			// moveAmount,
 			// sourceDnDType
 		};
