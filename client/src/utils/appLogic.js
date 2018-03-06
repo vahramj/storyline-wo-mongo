@@ -398,6 +398,7 @@ export function insertAsset({sourceId, targetId, position, data: dataOrig}) {
 const timelineData = {
 	tmln_01: {
 		id: "tmln_01",
+		name: "first draft",
 		type: "timeline",
 		width: 1500,
 		position: 0,

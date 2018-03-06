@@ -127,22 +127,26 @@ class TimelineAsset extends Component {
 			position,
 			width,
 			childAssets,
-			connectDragSource,
 			isDragging,
 			connectDropTarget,
 			isHovering,
 			canDrop, 
-			insertPosition
 		} = this.props;
+		let {
+			insertPosition,
+			connectDragSource,
+		} = this.props;
+
+		// let timelineHeadAndTailStyle = {};
+		if(type === "timeline"){
+			connectDragSource = f => f;
+			// timelineHeadAndTailStyle = {display: "none"};
+		}
 
 		const selectedStyle = selected ? "selected" : "";
 		const draggingStyle = isDragging ? "dragging" : "";
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
-		const insertPositionOver = isHovering && insertPosition!==null ? insertPosition : null;
-		// let insertPosition = null;
-		// if(isHovering && canDrop){
-		// 	insertPosition = this.props.insertPosition;
-		// }
+		insertPosition = isHovering && insertPosition!==null ? insertPosition : null;
 
 		// if (isDragging) {
 		// 	return null;
@@ -164,7 +168,7 @@ class TimelineAsset extends Component {
 				</div>
 
 				<TimelineBody childAssets={childAssets} width={width} 
-				insertPosition={insertPositionOver} 
+				insertPosition={insertPosition} 
 				/>
 
 				<div

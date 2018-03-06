@@ -5,26 +5,19 @@
 	z-index: 2;
 	/*padding: 5px;*/
 }
-
-.timeline .selected{
-	box-shadow: 0 0 0 3px blue;
-	z-index: 3;
-}
-
 .timeline-asset.timeline-phase {
 	padding: 20px 0;
 	height: 110px;
 }
-
-.timeline-asset .body {
-	position: relative;
-	background: rgba(234,234,234,0.5);
+.timeline-asset.timeline-timeline {
+	padding: 20px 0px;
+	height: 150px;
+	background: red;
 }
 
 .timeline-asset .head{
 	margin:5px;
 }
-
 .timeline-asset .tail{
 	/*position: absolute;*/
 	width: 50px;
@@ -32,14 +25,29 @@
 	border-radius: 0 20px 20px 0;
 	background-color: blue;
 }
+.timeline-timeline>.head, .timeline-timeline>.tail{
+	display: none;
+}
 
-.timeline .dragging{
+.timeline .selected{
+	box-shadow: 0 0 0 3px blue;
+	z-index: 3;
+}
+
+.timeline-asset .drag-hover{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: rgba(255,255,0, 0.3);
+	/*box-shadow: 0px 0px 65px 20px rgba(234,234,234,0.7);*/
+	box-shadow: 0 0 0 3px brown;
+	z-index: 1;
+	margin-top: -20px;
+	/*transform: scale(0.99, 0.97);*/
+}
+
+.timeline-asset.dragging{
 	opacity: 0.1;
 }
-
-.timeline-asset .insert-indicator{
-	margin-top: 0;
-}
-
 
 

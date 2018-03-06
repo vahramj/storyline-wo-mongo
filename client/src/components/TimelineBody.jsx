@@ -3,6 +3,7 @@ import { shape, arrayOf, string, number } from "prop-types";
 
 import TimelineAsset from "./TimelineAsset";
 
+import "./styles/TimelineBody.css";
 
 const TimelineBody = props => {
 	const { childAssets, width, insertPosition } = props;
