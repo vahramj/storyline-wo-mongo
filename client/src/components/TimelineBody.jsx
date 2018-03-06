@@ -10,7 +10,7 @@ const TimelineBody = props => {
 	let insertPositionStyle = { display: "none" };
 	if (insertPosition !== null) {
 		insertPositionStyle = {
-			left: insertPosition - 5,
+			left: insertPosition - 3,
 			display: "block"
 		};
 	}

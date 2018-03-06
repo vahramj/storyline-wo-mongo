@@ -67,15 +67,15 @@ function rootReducer(state = initialState, action) {
 
 		case DROP_ASSET: {
 			// console.log("asset is being dropped");
-			const { sourceId, targetId, dropPosition, grabPosLeftEdgeOffset } = action.payload;
+			const { sourceId, targetId, dropPosition } = action.payload;
 			let { data } = state;
 
 			data = insertAsset({
 				sourceId,
 				targetId,
 				data,
-				position: dropPosition - grabPosLeftEdgeOffset,
-				leftEdgeOffset: grabPosLeftEdgeOffset
+				position: dropPosition,
+				// leftEdgeOffset: grabPosLeftEdgeOffset
 			});
 			return { ...state, data };
 		}
@@ -98,31 +98,31 @@ function rootReducer(state = initialState, action) {
 			return { ...state, data: updatedData };
 		}
 
-		// case CALC_INSERT_POSITION: {
-		// 	const { targetId, sourceId, hoverPositionRelToTarget } = action.payload;
-		// 	// console.log("sourceId: ", sourceId)
+		case CALC_INSERT_POSITION: {
+			const { targetId, sourceId, hoverPositionRelToTarget } = action.payload;
+			// console.log("sourceId: ", sourceId)
 
-		// 	const sourceAsset = setInitialAssetPosition(
-		// 		state.data[sourceId],
-		// 		hoverPositionRelToTarget
-		// 	);
-		// 	let siblings = getChildren(targetId, state.data);
-		// 	// make sure insert indicator doesn't snap at itself when moving
-		// 	if (sourceAsset.parent && sourceAsset.parent.id === targetId) {
-		// 		siblings = removeAssetById(sourceId, siblings);
-		// 	}
-		// 	// const insertPosition = sourceAsset.position;
-		// 	const { insertPosition } = calcInsertPositionIntoSiblings(sourceAsset, siblings);
-		// 	// console.log(insertPosition)
+			const sourceAsset = setInitialAssetPosition(
+				state.data[sourceId],
+				hoverPositionRelToTarget
+			);
+			let siblings = getChildren(targetId, state.data);
+			// make sure insert indicator doesn't snap at itself when moving
+			if (sourceAsset.parent && sourceAsset.parent.id === targetId) {
+				siblings = removeAssetById(sourceId, siblings);
+			}
+			// const insertPosition = sourceAsset.position;
+			const { insertPosition } = calcInsertPositionIntoSiblings(sourceAsset, siblings);
+			// console.log(insertPosition)
 
-		// 	// return { ...state, insertPosition: hoverPositionRelToTarget + targetAsset.position}
-		// 	const insertIndicator = {
-		// 		targetId,
-		// 		position: insertPosition
-		// 	};
-		// 	// console.log("insertIndicator from rootReducer: ", insertIndicator);
-		// 	return { ...state, insertIndicator };
-		// }
+			// return { ...state, insertPosition: hoverPositionRelToTarget + targetAsset.position}
+			const insertIndicator = {
+				targetId,
+				position: insertPosition
+			};
+			// console.log("insertIndicator from rootReducer: ", insertIndicator);
+			return { ...state, insertIndicator };
+		}
 
 		case HIDE_INSERT_POSITION: {
 			return { ...state, insertPosition: null };

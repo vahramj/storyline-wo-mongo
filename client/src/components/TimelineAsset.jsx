@@ -46,7 +46,7 @@ const dropSpec = {
 		// console.log("dragElem: ", dragElem);
 		// console.log("initialClientOffset: ", monitor.getInitialClientOffset());
 		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
-		const dropPosition = monitor.getClientOffset().x;
+		const dropPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
 
 		// const moveAmount = monitor.getDifferenceFromInitialOffset().x;
 		// const sourceDnDType = monitor.getItemType();
@@ -55,7 +55,7 @@ const dropSpec = {
 			targetId,
 			dropPosition,
 			dropElem,
-			grabPosLeftEdgeOffset,
+			// grabPosLeftEdgeOffset,
 			// moveAmount,
 			// sourceDnDType
 		};
@@ -64,19 +64,21 @@ const dropSpec = {
 		// props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
-		if (monitor.canDrop()) {
-			// console.log("hovering & can drop")
-			const { assetId: targetId } = props;
-			const sourceId = monitor.getItem().assetId;
-			const hoverPosition = monitor.getClientOffset().x;
-			const params = {
-				hoverPosition,
-				dropElem,
-				targetId,
-				sourceId
-			};
-			props.calcInsertPosition(params);
+		if (!monitor.canDrop()) {
+			return;
 		}
+		// console.log("hovering & can drop")
+		const { assetId: targetId } = props;
+		const sourceId = monitor.getItem().assetId;
+		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
+		const hoverPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
+		const params = {
+			hoverPosition,
+			dropElem,
+			targetId,
+			sourceId
+		};
+		props.calcInsertPosition(params);
 		// else if(props.insertPosition && monitor.isOver({shallow: true})){
 		// 	// console.log("shallow but can't drop")
 		// 	props.hideInsertPosition()
