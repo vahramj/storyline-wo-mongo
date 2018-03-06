@@ -74,7 +74,7 @@ function rootReducer(state = initialState, action) {
 				sourceId,
 				targetId,
 				data,
-				position: dropPosition,
+				position: dropPosition - grabPosLeftEdgeOffset,
 				leftEdgeOffset: grabPosLeftEdgeOffset
 			});
 			return { ...state, data };
