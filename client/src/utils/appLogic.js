@@ -293,6 +293,26 @@ function insertAssetIntoParent(asset, parentId, dataOrig) {
 	return data;
 }
 
+function pushNeighboursToFitIn(asset, dataOrig){
+	// vahram, later, refactor this func or make another similar one to accomodate pushing assets to the left
+	let data = dataOrig;
+	const parent = data[asset.parent.id];
+	const siblingRefs = parent.children;
+
+	if (asset.id !== siblingRefs[siblingRefs.length - 1].id) {
+		let siblings = getChildren(parent.id, data);
+		const assetIndex = findAssetIndexById(asset.id, siblings);
+
+		const pushAmount = getPushAmount(siblings[assetIndex], siblings[assetIndex + 1]);
+
+		if (pushAmount > 0) {
+			siblings = moveAssets(siblings, pushAmount, assetIndex + 1);
+			data = updateDataFromArray(data, siblings);
+		}
+	}
+	return data;
+}
+
 function resizeAssetToFitTimeline(assetId, dataOrig) {
 	let data = dataOrig;
 	let asset = data[assetId];
@@ -300,7 +320,7 @@ function resizeAssetToFitTimeline(assetId, dataOrig) {
 	const resizedAsset = resizeAssetToFitItsChildren(asset.id, data);
 
 	if (resizedAsset === asset) {
-		// return data;
+		return data;
 	}
 
 	asset = resizedAsset;
@@ -311,22 +331,9 @@ function resizeAssetToFitTimeline(assetId, dataOrig) {
 	});
 
 	if (asset.parent) {
-		const parent = data[asset.parent.id];
-		const siblingRefs = parent.children;
-
-		if (assetId !== siblingRefs[siblingRefs.length - 1].id) {
-			let siblings = getChildren(parent.id, data);
-			const assetIndex = findAssetIndexById(asset.id, siblings);
-
-			const pushAmount = getPushAmount(siblings[assetIndex], siblings[assetIndex + 1]);
-
-			if (pushAmount > 0) {
-				siblings = moveAssets(siblings, pushAmount, assetIndex + 1);
-				data = updateDataFromArray(data, siblings);
-			}
-		}
+		data = pushNeighboursToFitIn(asset, data)
 		// recursively check all parents until reaching timeline's null parent
-		data = resizeAssetToFitTimeline(parent.id, data);
+		data = resizeAssetToFitTimeline(asset.parent.id, data);
 	}
 	// console.log("asset after resize: ", asset.type, asset.position, asset.width);
 	return data;
@@ -378,7 +385,8 @@ export function resizeAssetToPosition(assetId, position, dataOrig){
 			}
 		}
 	});
-	data = resizeAssetToFitTimeline(asset.id, data);
+	data = pushNeighboursToFitIn(asset, data);
+	data = resizeAssetToFitTimeline(asset.parent.id, data);
 	return data;
 }
 
