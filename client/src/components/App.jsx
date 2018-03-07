@@ -8,7 +8,7 @@ import _ from "lodash";
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
 import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
-import { dndTypes } from "../constants";
+import { dndTypes } from "../utils/constants";
 
 import "./styles/App.css";
 

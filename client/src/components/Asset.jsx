@@ -6,7 +6,7 @@ import _ from "lodash";
 
 import Thumbnail from "./Thumbnail";
 import { selectAsset } from "../actions/actionCreators";
-import { dndTypes } from "../constants";
+import { dndTypes } from "../utils/constants";
 
 import "./styles/Asset.css";
 import "./styles/Asset-character.css";

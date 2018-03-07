@@ -6,13 +6,13 @@ import {
 	insertAsset,
 	removeAssetFromParent,
 	// moveAsset,
-	setInitialAssetPosition,
+	makeInitiallyPositionedAsset,
 	calcInsertPositionIntoSiblings,
 	getChildren,
 	removeAssetById
 } from "../utils/appLogic";
 
-import { actionTypes /* dndTypes */ } from "../constants";
+import { actionTypes } from "../utils/constants";
 
 const {
 	SELECT_ASSET,
@@ -101,7 +101,7 @@ function rootReducer(state = initialState, action) {
 			// console.log("calcing insert pos")
 			const { targetId, sourceId, hoverPositionRelToTarget } = action.payload;
 
-			const sourceAsset = setInitialAssetPosition(
+			const sourceAsset = makeInitiallyPositionedAsset(
 				state.data[sourceId],
 				hoverPositionRelToTarget
 			);

@@ -8,8 +8,6 @@ import TimelineBody from "./TimelineBody";
 import "./styles/TimelineAsset.css";
 
 
-
-
 class TimelineAsset extends Component {
 	onClickHandler = (event) => {
 		const {assetId} = this.props;
@@ -76,10 +74,6 @@ class TimelineAsset extends Component {
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
 		insertPosition = isHovering && insertPosition!==null ? insertPosition : null;
 
-		// if (isDragging) {
-		// 	return null;
-		// }
-
 		return _.flowRight([connectDragSource, connectDropTarget])(
 			<div
 				className={`timeline-asset ${selectedStyle} ${draggingStyle} timeline-${type}`}
@@ -104,12 +98,7 @@ class TimelineAsset extends Component {
 	}
 }
 
-// ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
-// ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗   ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
-// ██████╔╝██████╔╝██║   ██║██████╔╝█████╗██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
-// ██╔═══╝ ██╔══██╗██║   ██║██╔═══╝ ╚════╝██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
-// ██║     ██║  ██║╚██████╔╝██║           ██║      ██║   ██║     ███████╗███████║
-// ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝           ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
+
 TimelineAsset.propTypes = {
 	assetId: string.isRequired,
 	type: string.isRequired,

@@ -1,23 +1,6 @@
 import update from "immutability-helper";
 
-export const assetTypeHierarchy = {
-	timeline: { child: "phase", parent: "none" },
-	phase: { child: "scene", parent: "timeline" },
-	scene: { child: "character", parent: "phase" },
-	character: { child: null, parent: "scene" }
-};
-
-const headWidthList = {
-	timeline: 0,
-	phase: 135,
-	scene: 135
-};
-
-const initialWidthList = {
-	phase: 30,
-	scene: 0,
-	character: 0
-};
+import { assetTypeHierarchy, headWidthList, initialWidthList } from "./constants";
 
 function getPushAmount(asset, rightNeighbour) {
 	const headWidth = headWidthList[asset.type];
@@ -103,7 +86,7 @@ export function selectAsset(id, data) {
 	return id;
 }
 
-function isInsertLegal(sourceType, targetType) {
+export function isInsertLegal(sourceType, targetType) {
 	const legalTargetType = assetTypeHierarchy[sourceType].parent;
 	if (legalTargetType === targetType) {
 		return {
@@ -118,8 +101,8 @@ function isInsertLegal(sourceType, targetType) {
 	};
 }
 
-// vahram, change this to setInitiallyPositionedAsset
-export function setInitialAssetPosition(asset, position) {
+// vahram, change this to makeInitiallyPositionedAsset
+export function makeInitiallyPositionedAsset(asset, position) {
 	const parentType = assetTypeHierarchy[asset.type].parent;
 	const parentHeadWidth = headWidthList[parentType];
 
@@ -140,7 +123,7 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 	let insertPosition = asset.position;
 	if (siblingArr.length === 0) {
 		return {
-			insertPosition,
+			insertPosition
 		};
 	}
 
@@ -187,7 +170,6 @@ export function calcInsertPositionIntoSiblings(asset, siblingArr) {
 				rightNeighbourIndex = leftNeighbourIndex;
 				leftNeighbourIndex -= 1;
 				leftNeighbour = siblingArr[leftNeighbourIndex];
-
 			}
 		}
 	}
@@ -276,7 +258,7 @@ export function removeAssetFromParent(assetId, dataOrig) {
 	return data;
 }
 
-export function getChildren(assetId, data){
+export function getChildren(assetId, data) {
 	const childRefs = data[assetId].children;
 	const children = childRefs.map(childRef => data[childRef.id]);
 	return children;
@@ -352,7 +334,7 @@ function resizeAssetToFitTimeline(assetId, dataOrig) {
 	return data;
 }
 
-export function insertAsset({sourceId, targetId, position, data: dataOrig}) {
+export function insertAsset({ sourceId, targetId, position, data: dataOrig }) {
 	let data = dataOrig;
 	const source = data[sourceId];
 	const target = data[targetId];
@@ -369,7 +351,7 @@ export function insertAsset({sourceId, targetId, position, data: dataOrig}) {
 		data = removeAssetFromParent(source.id, data);
 	}
 
-	const initiallyPositionedAsset = setInitialAssetPosition(source, position);
+	const initiallyPositionedAsset = makeInitiallyPositionedAsset(source, position);
 
 	data = insertAssetIntoParent(initiallyPositionedAsset, target.id, data);
 

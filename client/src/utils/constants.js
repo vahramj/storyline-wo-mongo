@@ -20,3 +20,22 @@ export const dndTypes = {
 	ASSET: "ASSET",
 	TIMELINE_ASSET: "TIMELINE_ASSET"
 };
+
+export const assetTypeHierarchy = {
+	timeline: { child: "phase", parent: "none" },
+	phase: { child: "scene", parent: "timeline" },
+	scene: { child: "character", parent: "phase" },
+	character: { child: null, parent: "scene" }
+};
+
+export const headWidthList = {
+	timeline: 0,
+	phase: 135,
+	scene: 135
+};
+
+export const initialWidthList = {
+	phase: 30,
+	scene: 0,
+	character: 0
+};

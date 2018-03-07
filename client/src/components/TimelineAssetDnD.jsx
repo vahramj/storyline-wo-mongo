@@ -2,8 +2,8 @@ import { DragSource, DropTarget } from "react-dnd";
 import _ from "lodash";
 
 import TimelineAsset from "./TimelineAsset";
-import { dndTypes } from "../constants";
-import { assetTypeHierarchy } from "../utils/appLogic";
+import { dndTypes } from "../utils/constants";
+import { isInsertLegal } from "../utils/appLogic";
 
 
 const dragSpec = {
@@ -64,11 +64,7 @@ const dropSpec = {
 		const { type: sourceType } = monitor.getItem();
 		const { type: targetType } = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
-		// vahram, use legalCheck from app logic
-		if (sourceType === assetTypeHierarchy[targetType].child) {
-			return true;
-		}
-		return false;
+		return isInsertLegal(sourceType, targetType).result;
 	}
 };
 
