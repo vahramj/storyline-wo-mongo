@@ -9,7 +9,8 @@ import {
 	makeInitiallyPositionedAsset,
 	calcInsertPositionIntoSiblings,
 	getChildren,
-	removeAssetById
+	removeAssetById,
+	resizeAssetToPosition
 } from "../utils/appLogic";
 
 import { actionTypes } from "../utils/constants";
@@ -22,7 +23,8 @@ const {
 	REMOVE_ASSET_FROM_PARENT,
 	DROP_ASSET,
 	CALC_INSERT_POSITION,
-	HIDE_INSERT_POSITION
+	HIDE_INSERT_POSITION,
+	RESIZE_ASSET_TO_POSITION
 } = actionTypes;
 
 const initialState = {
@@ -128,6 +130,13 @@ function rootReducer(state = initialState, action) {
 				position: null
 			};
 			return { ...state, insertIndicator };
+		}
+
+		case RESIZE_ASSET_TO_POSITION: {
+			const {assetId, position} = action.payload;
+			// console.log("from root reducer: ", assetId, position);
+			const data = resizeAssetToPosition(assetId, position, state.data);
+			return { ...state, data };
 		}
 
 		default:

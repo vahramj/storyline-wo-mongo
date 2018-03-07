@@ -25,6 +25,9 @@
 	border-radius: 0 20px 20px 0;
 	background-color: blue;
 }
+.timeline-asset .tail:hover{
+	cursor: ew-resize;
+}
 
 .timeline .selected{
 	box-shadow: 0 0 0 3px blue;

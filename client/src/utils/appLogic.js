@@ -294,15 +294,13 @@ function insertAssetIntoParent(asset, parentId, dataOrig) {
 }
 
 function resizeAssetToFitTimeline(assetId, dataOrig) {
-	// vahram, later, write another resizeAssetToPoint function, that's similar to this
-	// but accomodates drag to resize operations
 	let data = dataOrig;
 	let asset = data[assetId];
 	// console.log("asset before resize: ", asset.type, asset.position, asset.width);
 	const resizedAsset = resizeAssetToFitItsChildren(asset.id, data);
 
 	if (resizedAsset === asset) {
-		return data;
+		// return data;
 	}
 
 	asset = resizedAsset;
@@ -314,10 +312,10 @@ function resizeAssetToFitTimeline(assetId, dataOrig) {
 
 	if (asset.parent) {
 		const parent = data[asset.parent.id];
-		let siblings = parent.children;
+		const siblingRefs = parent.children;
 
-		if (assetId !== siblings[siblings.length - 1].id) {
-			siblings = siblings.map(sibling => data[sibling.id]);
+		if (assetId !== siblingRefs[siblingRefs.length - 1].id) {
+			let siblings = getChildren(parent.id, data);
 			const assetIndex = findAssetIndexById(asset.id, siblings);
 
 			const pushAmount = getPushAmount(siblings[assetIndex], siblings[assetIndex + 1]);
@@ -357,6 +355,30 @@ export function insertAsset({ sourceId, targetId, position, data: dataOrig }) {
 
 	data = resizeAssetToFitTimeline(data[source.id].parent.id, data);
 
+	return data;
+}
+
+export function resizeAssetToPosition(assetId, position, dataOrig){
+	let data = dataOrig;
+	const asset = data[assetId];
+	
+	let lastChildEnd = 0;
+	const children = getChildren(asset.id, data);
+	if(children.length > 0){
+		const lastChild = children[children.length-1];
+		lastChildEnd = lastChild.position + headWidthList[lastChild.type] + lastChild.width;
+	}
+	
+	const headWidth = headWidthList[asset.type];
+	const width = Math.max(position - asset.position - headWidth, lastChildEnd);
+	data = update(data, {
+		[asset.id]: {
+			width: {
+				$set: width
+			}
+		}
+	});
+	data = resizeAssetToFitTimeline(asset.id, data);
 	return data;
 }
 

@@ -4,49 +4,49 @@ import _ from "lodash";
 
 import Asset from "./Asset";
 import TimelineBody from "./TimelineBody";
+import TimelineAssetTail from "./TimelineAssetTail";
 
 import "./styles/TimelineAsset.css";
 
-
 class TimelineAsset extends Component {
-	onClickHandler = (event) => {
-		const {assetId} = this.props;
+	onClickHandler = event => {
+		const { assetId } = this.props;
 		event.stopPropagation();
 		this.props.handleTimelineClick(event, assetId);
-	}
-	
+	};
+
 	renderHead = () => {
-		const {assetId, type} = this.props;
+		const { assetId, type } = this.props;
 		let headElem = (
 			<div className="head">
 				<Asset assetId={assetId} decorative />
 			</div>
 		);
 
-		if(type === "timeline"){
+		if (type === "timeline") {
 			headElem = null;
 		}
 
 		return headElem;
-	}
+	};
 
 	renderTail = () => {
-		const {type, selected} = this.props;
+		const { type, selected, assetId } = this.props;
 		let tailElem = (
-			<div
-				className="tail"
-				style={{
-					visibility: type === "scene" || !selected ? "hidden" : ""
-				}}
+			<TimelineAssetTail
+				type={type}
+				selected={selected}
+				ownerId={assetId}
+				ownerElem={this.dropElem}
 			/>
 		);
 
-		if(type === "timeline"){
+		if (type === "timeline") {
 			tailElem = null;
 		}
 
-		return tailElem
-	}
+		return tailElem;
+	};
 
 	render() {
 		const {
@@ -58,21 +58,18 @@ class TimelineAsset extends Component {
 			isDragging,
 			connectDropTarget,
 			isHovering,
-			canDrop, 
+			canDrop
 		} = this.props;
-		let {
-			insertPosition,
-			connectDragSource,
-		} = this.props;
+		let { insertPosition, connectDragSource } = this.props;
 
-		if(type === "timeline"){
+		if (type === "timeline") {
 			connectDragSource = f => f;
 		}
 
 		const selectedStyle = selected ? "selected" : "";
 		const draggingStyle = isDragging ? "dragging" : "";
 		const hoverDisplay = isHovering && canDrop ? "block" : "none";
-		insertPosition = isHovering && insertPosition!==null ? insertPosition : null;
+		insertPosition = isHovering && insertPosition !== null ? insertPosition : null;
 
 		return _.flowRight([connectDragSource, connectDropTarget])(
 			<div
@@ -84,12 +81,16 @@ class TimelineAsset extends Component {
 					this.dropElem = elem;
 				}}
 			>
+				{ /*
 				<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
+				*/ }
 
 				{this.renderHead()}
 
-				<TimelineBody childAssets={childAssets} width={width} 
-				insertPosition={insertPosition} 
+				<TimelineBody
+					childAssets={childAssets}
+					width={width}
+					insertPosition={insertPosition}
 				/>
 
 				{this.renderTail()}
@@ -97,7 +98,6 @@ class TimelineAsset extends Component {
 		);
 	}
 }
-
 
 TimelineAsset.propTypes = {
 	assetId: string.isRequired,
@@ -126,6 +126,5 @@ TimelineAsset.defaultProps = {
 	selected: false,
 	insertPosition: null
 };
-
 
 export default TimelineAsset;

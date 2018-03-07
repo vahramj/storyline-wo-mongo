@@ -2,32 +2,13 @@
 	"folders":
 	[
 		{
-			"path": "/Users/vahramjacobs/Desktop/dev/udemy"
-		},
-		{
 			"path": "/Users/vahramjacobs/Desktop/dev/_Notes"
 		},
 		{
 			"path": "/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd"
 		},
 		{
-			"path": "/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files"
-		},
-		{
 			"path": "/Current projects/storylilneMaker"
 		}
-	],
-	"settings":
-	{
-		"js_prettier":
-		{
-			"auto_format_on_save": false,
-			"prettier_options":
-			{
-				"parser": "babylon",
-				"singleQuote": false,
-				"useTabs": true
-			}
-		}
-	}
+	]
 }

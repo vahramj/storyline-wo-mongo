@@ -8,7 +8,8 @@ const {
 	REMOVE_ASSET_FROM_PARENT,
 	DROP_ASSET,
 	CALC_INSERT_POSITION,
-	HIDE_INSERT_POSITION
+	HIDE_INSERT_POSITION,
+	RESIZE_ASSET_TO_POSITION
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -56,7 +57,6 @@ export function handleDropAsset(params) {
 	} = params;
 
 	// Vahram, move elemPos calculation to Timeline & TimelineAsset
-	// vahram, consider making timeline into a TimelineAsset, maybe
 	const elemPosRelToViewport = Math.round(dropElem.getBoundingClientRect().left);
 	const dropPosition = dropPositionRelToViewport - elemPosRelToViewport;
 	return {
@@ -102,12 +102,23 @@ export function calcInsertPosition(params){
 			sourceId,
 			hoverPositionRelToTarget
 		}
-	}
+	};
 }
 
 export function hideInsertPosition(){
 	return {
 		type: HIDE_INSERT_POSITION,
 		payload: null
+	};
+}
+
+export function resizeAssetToPosition(assetId, position){
+	// console.log("from action creators: ", assetId, position);
+	return {
+		type: RESIZE_ASSET_TO_POSITION,
+		payload: {
+			assetId,
+			position
+		}
 	}
 }

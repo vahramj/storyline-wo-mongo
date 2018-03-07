@@ -4,521 +4,549 @@
 		"selected_items":
 		[
 			[
-				"get",
-				"getAPIDetails"
+				"Time",
+				"TimelineAssetTail"
 			],
 			[
-				"getApi",
-				"getAPIData"
+				"Tim",
+				"TimelineAssetTail"
 			],
 			[
-				"add",
-				"addApiDataReducer"
+				"conn",
+				"connectDragSource"
 			],
 			[
-				"Sear",
-				"searchTermReducer"
-			],
-			[
-				"Action",
-				"ActionT"
-			],
-			[
-				"react",
-				"react-router-dom"
-			],
-			[
-				"Set",
-				"SET_SEARCH_TERM"
-			],
-			[
-				"sear",
-				"searchTerm"
-			],
-			[
-				"reder",
-				"renderApp"
-			],
-			[
-				"webpack",
-				"webpack-dev-server"
-			],
-			[
-				"com",
-				"component"
-			],
-			[
-				"je",
-				"jest-serializer-enzyme"
-			],
-			[
-				"pre",
-				"preload"
-			],
-			[
-				"itera",
-				"iterator"
-			],
-			[
-				"uniqu",
-				"uniqueId"
-			],
-			[
-				"x",
-				"xRequestedWith"
-			],
-			[
-				"conte",
-				"contentType"
-			],
-			[
-				"content",
-				"content-type"
-			],
-			[
-				"rest",
-				"restructuring"
-			],
-			[
-				"y",
-				"y"
-			],
-			[
-				"conver",
-				"convertCurrency"
-			],
-			[
-				"coun",
-				"countries"
-			],
-			[
-				"getS",
-				"getStatusAlt"
-			],
-			[
-				"is",
-				"isRealString"
-			],
-			[
-				"newMesse",
-				"newMessageHeight"
-			],
-			[
-				"newM",
-				"newMessageHeight"
-			],
-			[
-				"gen",
-				"generateLocationMessage"
-			],
-			[
-				"jw",
-				"JWT_SECRET"
-			],
-			[
-				"J",
-				"JWT_SECRET"
-			],
-			[
-				"authen",
-				"authenticate"
-			],
-			[
-				"Compete",
-				"completedAt"
-			],
-			[
-				"comp",
-				"completedAt"
-			],
-			[
-				"req",
-				"requestOptions"
-			],
-			[
-				"geoc",
-				"geocodeAddress"
-			],
-			[
-				"weather",
-				"weatherResults"
-			],
-			[
-				"Json",
-				"JSON"
-			],
-			[
-				"or",
-				"originalNoteString"
-			],
-			[
-				"ob",
-				"objString"
-			],
-			[
-				"env",
-				"environment"
-			],
-			[
-				"name",
-				"nameRedEx"
-			],
-			[
-				"sor",
-				"sortProperty"
-			],
-			[
-				"usre",
-				"users"
-			],
-			[
-				"blogPost",
-				"BlogPost"
-			],
-			[
-				"blogpost",
-				"blogpost"
-			],
-			[
-				"Comm",
-				"CommentSchema"
-			],
-			[
-				"Schema",
-				"Scheam"
-			],
-			[
-				"deplo",
-				"deployment"
-			],
-			[
-				"folder",
-				"folderNameToDeploy"
-			],
-			[
-				"webp",
-				"webpack-web-server"
-			],
-			[
-				"web",
-				"webpack-dev-server"
-			],
-			[
-				"requ",
-				"requireAuth"
-			],
-			[
-				"A",
-				"AUTH_USER"
-			],
-			[
-				"pas",
-				"password"
-			],
-			[
-				"pass",
-				"passwordConfirm"
-			],
-			[
-				"confirm",
-				"passwordConfirm"
-			],
-			[
-				"Si",
-				"Signup"
-			],
-			[
-				"error",
-				"errorMessage"
-			],
-			[
-				"Auth",
-				"AUTH_ERROR"
-			],
-			[
-				"compo",
-				"ComposedComponent"
-			],
-			[
-				"reqAuth",
-				"requireAuth"
-			],
-			[
-				"someP",
-				"somePropValue"
-			],
-			[
-				"ComposedCompo",
-				"ComposedComponent"
-			],
-			[
-				"ComposedC",
-				"ComposedComp"
-			],
-			[
-				"auth",
-				"authenticated"
-			],
-			[
-				"authe",
-				"authenticate"
-			],
-			[
-				"s",
-				"Switch"
-			],
-			[
-				"header",
-				"Header"
-			],
-			[
-				"C",
-				"CommentBox"
-			],
-			[
-				"test",
-				"TestUtils"
-			],
-			[
-				"comme",
-				"CommentBox"
-			],
-			[
-				"tes",
-				"testingTeam"
-			],
-			[
-				"testT",
-				"testingTeamGen"
-			],
-			[
-				"_",
-				"_predicator_"
-			],
-			[
-				"FET",
-				"FETCH_POST"
-			],
-			[
-				"Ap",
-				"API_KEY"
-			],
-			[
-				"b",
-				"BrowserRouter"
-			],
-			[
-				"googleM",
-				"GoogleMapLoader"
-			],
-			[
-				"k",
-				"KtoF"
-			],
-			[
-				"humi",
-				"humidities"
-			],
-			[
-				"fet",
-				"FETCH_WEATHER"
-			],
-			[
-				"sera",
-				"SearchBar"
-			],
-			[
-				"serch",
-				"SearchBar"
-			],
-			[
-				"ng-",
-				"ng-sparkline"
-			],
-			[
-				"session",
-				"sessionID"
-			],
-			[
-				"sessi",
-				"sessionID"
-			],
-			[
-				"has",
-				"hashPass"
-			],
-			[
-				"loca",
-				"localSession"
-			],
-			[
-				"en",
-				"enqueue"
-			],
-			[
-				"song",
-				"songQueue"
-			],
-			[
-				"songQ",
-				"songQueueEntryView"
-			],
-			[
-				"SongQue",
-				"SongQueueView"
-			],
-			[
-				"SongQ",
-				"SongQueueView"
-			],
-			[
-				"que",
-				"queueEntry"
-			],
-			[
-				"play",
-				"playFirst"
-			],
-			[
-				"curr",
-				"currentSong"
-			],
-			[
-				"son",
-				"songQueue"
-			],
-			[
-				"check",
-				"checkboxView"
-			],
-			[
-				"jqe",
-				"jqueryClicked"
-			],
-			[
-				"todoV",
-				"todoViewInst2_2"
-			],
-			[
-				"todoView",
-				"TodoView2"
-			],
-			[
-				"To",
-				"TodoView2"
-			],
-			[
-				"attri",
-				"attributes"
-			],
-			[
-				"Todo",
-				"TodoView1"
-			],
-			[
-				"T",
-				"TodoValidate1"
-			],
-			[
-				"att",
-				"attributes"
-			],
-			[
-				"initiali",
-				"initialize"
-			],
-			[
-				"title",
-				"title6"
-			],
-			[
-				"at",
-				"attributes"
-			],
-			[
-				"to",
-				"todo6"
-			],
-			[
-				"rep",
-				"reportCustomer"
-			],
-			[
-				"cus",
-				"customers"
-			],
-			[
-				"produ",
-				"productData"
-			],
-			[
-				"orderPr",
-				"orderProductArr"
-			],
-			[
-				"imp",
-				"importedId"
-			],
-			[
-				"orderProd",
-				"orderProdArr"
-			],
-			[
-				"orderP",
-				"orderProductArr"
-			],
-			[
-				"importedP",
-				"importedProductIdArr"
-			],
-			[
-				"sele",
-				"selectProductSQL"
-			],
-			[
-				"imported",
-				"importedProductId"
-			],
-			[
-				"in",
-				"insertProduct"
+				"handl",
+				"handleOnClick"
 			],
 			[
 				"insertP",
-				"insertProductSQL"
+				"insertPositionStyle"
 			],
 			[
-				"foun",
-				"foundOrder"
+				"leftN",
+				"leftNeighbour"
 			],
 			[
-				"insertOrder",
-				"insertOrderDetailSQL"
+				"left",
+				"leftEdgeOffset"
 			],
 			[
-				"currP",
-				"currProdNum"
+				"getIni",
+				"getBoundingClientRect"
 			],
 			[
-				"currProd",
-				"currProdNum"
+				"source",
+				"sourceAsset"
+			],
+			[
+				"insert",
+				"insertPosition"
+			],
+			[
+				"sourc",
+				"sourceId"
+			],
+			[
+				"rightN",
+				"rightNeighbourIndex"
+			],
+			[
+				"sibl",
+				"siblingArr"
+			],
+			[
+				"ass",
+				"asset"
+			],
+			[
+				"sha",
+				"shallowEqual"
+			],
+			[
+				"chil",
+				"childAssets"
 			],
 			[
 				"inser",
-				"insertCustomer"
+				"insertPosition"
 			],
 			[
-				"impo",
-				"importedID"
+				"inserP",
+				"insertPositionStyle"
 			],
 			[
-				"productD",
-				"productDetailsId"
+				"inse",
+				"insertPositionStyle"
+			],
+			[
+				"target",
+				"targetId"
+			],
+			[
+				"C",
+				"CALC_INSERT_POSITION"
+			],
+			[
+				"hover",
+				"hoverPosition"
+			],
+			[
+				"hove",
+				"hoverPosition"
+			],
+			[
+				"sele",
+				"selectAsset"
+			],
+			[
+				"spe",
+				"dropSpec"
+			],
+			[
+				"is",
+				"isRequired"
+			],
+			[
+				"conne",
+				"connectDnD"
+			],
+			[
+				"drag",
+				"dragableTimelineAsset"
+			],
+			[
+				"connectDrag",
+				"connectDragPreview"
+			],
+			[
+				"connectD",
+				"connectDragPreview"
+			],
+			[
+				"sour",
+				"sourcePos"
+			],
+			[
+				"push",
+				"pushAmount"
+			],
+			[
+				"updata",
+				"updateDataFromArray"
+			],
+			[
+				"drop",
+				"dropPositionRelToViewport"
+			],
+			[
+				"connect",
+				"connectDnD"
+			],
+			[
+				"DropT",
+				"DropableTimeline"
+			],
+			[
+				"asset",
+				"assetId"
+			],
+			[
+				"re",
+				"REMOVE_ASSET_FROM_PARENT"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"timelineAss",
+				"TimelineAssetSource"
+			],
+			[
+				"connec",
+				"connectedTimelineAsset"
+			],
+			[
+				"collection",
+				"collectionAssetIds"
+			],
+			[
+				"areS",
+				"areStatePropsEqual"
+			],
+			[
+				"map",
+				"mapStateToProps"
+			],
+			[
+				"collec",
+				"collectionAssetIds"
+			],
+			[
+				"timelie",
+				"timelineFrameWidth"
+			],
+			[
+				"timeline",
+				"timelineAsset"
+			],
+			[
+				"time",
+				"timelineId"
+			],
+			[
+				"update",
+				"updateTimelineWidth"
+			],
+			[
+				"insertA",
+				"insertAsset"
+			],
+			[
+				"selec",
+				"selectedAssetId"
+			],
+			[
+				"select",
+				"selectAsset"
+			],
+			[
+				"default",
+				"defaultWidth"
+			],
+			[
+				"defa",
+				"defaultWidth"
+			],
+			[
+				"def",
+				"defaultWidth"
+			],
+			[
+				"selece",
+				"selectedAssetId"
+			],
+			[
+				"handle",
+				"handleTimelineClick"
+			],
+			[
+				"del",
+				"deSelectAsset"
+			],
+			[
+				"selectedA",
+				"selectedAssetId"
+			],
+			[
+				"Asse",
+				"AssetCollection"
+			],
+			[
+				"chara",
+				"character"
+			],
+			[
+				"check",
+				"checkIfAssetOnTimeline"
+			],
+			[
+				"a",
+				"asset"
+			],
+			[
+				"right",
+				"rightNeighbour"
+			],
+			[
+				"tme",
+				"timeline"
+			],
+			[
+				"resize",
+				"resizeAmount"
+			],
+			[
+				"updateD",
+				"updatedData"
+			],
+			[
+				"upda",
+				"updatedData"
+			],
+			[
+				"pus",
+				"pushAmount"
+			],
+			[
+				"head",
+				"headWidthList"
+			],
+			[
+				"updated",
+				"updatedAsset"
+			],
+			[
+				"assetI",
+				"assetIndex"
+			],
+			[
+				"insertAs",
+				"insertAssetIntoParent"
+			],
+			[
+				"child",
+				"children"
+			],
+			[
+				"assetA",
+				"assetArrOrig"
+			],
+			[
+				"scene",
+				"sceneData"
+			],
+			[
+				"charac",
+				"characterData"
+			],
+			[
+				"newCh",
+				"newChildren"
+			],
+			[
+				"updat",
+				"updateChild"
+			],
+			[
+				"remove",
+				"removeAssetFromItsParent"
+			],
+			[
+				"upd",
+				"updatedData"
+			],
+			[
+				"updatedS",
+				"updatedSourceOldParent"
+			],
+			[
+				"chi",
+				"childrenX"
+			],
+			[
+				"asse",
+				"assetId"
+			],
+			[
+				"assetArr",
+				"assetArr"
+			],
+			[
+				"sou",
+				"sourceHeadWidth_X"
+			],
+			[
+				"new",
+				"newChildren_X"
+			],
+			[
+				"ne",
+				"newChild_X"
+			],
+			[
+				"newC",
+				"newChildren"
+			],
+			[
+				"leftNe",
+				"leftNeighbourIndex"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"headW",
+				"headWidthList"
+			],
+			[
+				"rightNe",
+				"rightNeighbourIndex"
+			],
+			[
+				"he",
+				"headWidth"
+			],
+			[
+				"set",
+				"setDefaultWidth"
+			],
+			[
+				"onclick",
+				"onClickHandler"
+			],
+			[
+				"selected",
+				"selectedAsset"
+			],
+			[
+				"slected",
+				"selectedAsset"
+			],
+			[
+				"clickPos",
+				"clickPosRelToPage"
+			],
+			[
+				"coll",
+				"collectionData"
+			],
+			[
+				"childA",
+				"childAssetsData"
+			],
+			[
+				"timel",
+				"timelineAssetType"
+			],
+			[
+				"ch",
+				"childAssetId"
+			],
+			[
+				"props",
+				"propsToPass"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"parent",
+				"parentId"
+			],
+			[
+				"As",
+				"ASSET_SELECTED"
+			],
+			[
+				"TimelineA",
+				"TimelineAssetBody"
+			],
+			[
+				"timelineA",
+				"TimelineAssetBody"
+			],
+			[
+				"posit",
+				"positionInParent"
+			],
+			[
+				"in",
+				"initialOpening"
+			],
+			[
+				"width",
+				"widthInParent"
+			],
+			[
+				"childAsse",
+				"childAssetData"
+			],
+			[
+				"edit",
+				"editTint"
+			],
+			[
+				"alin",
+				"align-items"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"flex",
+				"flex-grow"
+			],
+			[
+				"thu",
+				"thumbImgContainer"
+			],
+			[
+				"thumb",
+				"thumbImgElem"
+			],
+			[
+				"Re",
+				"RequestedComponent"
+			],
+			[
+				"R",
+				"RequestedComponent"
+			],
+			[
+				"phase",
+				"phaseData"
+			],
+			[
+				"P",
+				"PhaseContainerBody"
+			],
+			[
+				"fra",
+				"frameHeight"
+			],
+			[
+				"spac",
+				"space-around"
+			],
+			[
+				"A",
+				"AssetContainer"
+			],
+			[
+				"ali",
+				"align-items"
+			],
+			[
+				"get",
+				"getAPIDetails"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "src/components/TimelineAsset.jsx",
+			"settings":
+			{
+				"buffer_size": 2683,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/components/TimelineAssetDnD.jsx",
+			"settings":
+			{
+				"buffer_size": 2449,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import React, { Component } from \"react\";\nimport { string, bool, func } from \"prop-types\";\nimport { DragSource } from \"react-dnd\";\nimport { connect } from \"react-redux\";\nimport _ from \"lodash\";\n\nimport { dndTypes } from \"../utils/constants\";\n\nconst spec = {\n\tbeginDrag(){\n\t\t// console.log(\"tail drag begun\");\n\t\treturn {};\n\t}\n};\n\nconst collect = (connectDnD, monitor) => {\n\treturn {\n\t\tconnectDragSource: connectDnD.dragSource(),\n\t\tisDragging: monitor.isDragging(),\n\t\tdragStartPos: monitor.getClientOffset().x\n\t};\n};\n\nclass TimelineAssetTail extends Component {\n\tcomponentDidMount(){\n\t\tprops.tailElem.addEventListener\n\t}\n\trender(){\n\t\tconst {type, selected, connectDragSource} =this.props;\n\t\treturn connectDragSource(\n\t\t\t<div\n\t\t\t\tclassName=\"tail\"\n\t\t\t\tstyle={{\n\t\t\t\t\tvisibility: type === \"scene\" || !selected ? \"hidden\" : \"\"\n\t\t\t\t}}\n\t\t\t\tref={elem => {\n\t\t\t\t\tthis.tailElem = elem;\n\t\t\t\t}}\n\t\t\t/>\n\t\t);\t\n\t}\n};\n\nTimelineAssetTail.propTypes = {\n\ttype: string.isRequired,\n\tselected: bool.isRequired,\n\tconnectDragSource: func.isRequired\n}\n\nconst decorator = _.flowRight([\n\t// connect, \n\tDragSource(dndTypes.TAIL, spec, collect)\n]);\nexport default decorator(TimelineAssetTail);",
+			"file": "src/components/TimelineAssetTail.jsx",
+			"file_size": 958,
+			"file_write_time": 131649101942952812,
+			"settings":
+			{
+				"buffer_size": 1160,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -527,10 +555,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 267.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -612,10 +648,6 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"packa",
-				"Package Control: Install Package"
-			],
-			[
 				"inst",
 				"Package Control: Install Package"
 			],
@@ -626,10 +658,6 @@
 			[
 				"list p",
 				"Package Control: List Packages"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
 			],
 			[
 				"jsPre",
@@ -678,141 +706,147 @@
 	},
 	"expanded_folders":
 	[
+		"/Current projects/storylilneMaker",
+		"/Current projects/storylilneMaker/dev",
+		"/Current projects/storylilneMaker/dev/client",
+		"/Current projects/storylilneMaker/dev/client/src",
+		"/Current projects/storylilneMaker/dev/client/src/components",
+		"/Current projects/storylilneMaker/dev/client/src/utils"
 	],
 	"file_history":
 	[
-		"/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
-		"/Current projects/storylilneMaker/dev/client/src/styles/PhaseContainer.css",
-		"/Current projects/storylilneMaker/dev/client/src/PhaseContainer.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/styles/App.css",
-		"/Current projects/storylilneMaker/dev/client/src/App.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/styles/index.css",
-		"/Current projects/storylilneMaker/dev/client/src/index.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/styles/reset.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/styles.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Main.css",
-		"/Current projects/storylilneMaker/dev/client/webpack.config.js",
-		"/Current projects/storylilneMaker/dev/client/index.html",
+		"/Current projects/storylilneMaker/dev/client/src/utils/constants.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset.css",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
-		"/Current projects/storylilneMaker/dev/client/.eslintrc.json",
-		"/Current projects/storylilneMaker/dev/client/.babelrc",
-		"/Current projects/storylilneMaker/client/package.json",
-		"/Current projects/storylilneMaker/client/.babelrc",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js",
-		"/Current projects/storylilneMaker/client/.eslintrc.json",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.eslintrc.json",
-		"/Current projects/storylilneMaker/client/LICENSE.md",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/package.json",
-		"/Current projects/storylilneMaker/package.json",
-		"/Current projects/storylilneMaker/index.html",
-		"/Current projects/storylilneMaker/index.jsx",
-		"/Current projects/storylilneMaker/.eslintrc.json",
-		"/Current projects/storylilneMaker/client/src/index.jsx.js",
-		"/Current projects/storylilneMaker/.gitignore",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Details.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/actionCreators.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/actions.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/store.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/reducers.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/flow-typed/types.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/actions/index.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_react w redux_udemy.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/components/auth/signin.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/browser notes/html5 history & app states notes.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/App.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ShowCard.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.flowconfig",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ClientApp.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Spinner.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/spinner.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/Search.spec.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/__snapshots__/Search.spec.jsx.snap",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.babelrc",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/components/app.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/terminal related/terminal UI.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/test.sublime-project",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/utils.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/utils.spec.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experiment/package.json",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/webpack.config.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/.eslintrc.json",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/experement/complete-intro-to-react/js/Search.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search1.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/test/complete-intro-to-react/js/ShowCard.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/__test__/Search.spec.jsx.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/mongodb - sGrider/3 - UpStarMusic/.eslintrc",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/data.json",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/index.html",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/landing.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/public/style.css",
-		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+		"/Current projects/storylilneMaker/dev/client/src/utils/appLogic.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/rootReducer.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetDnD.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/actions/actionCreators.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetRedux.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/App.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/Asset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/Timeline.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineBody.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineBody.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Timeline.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetCollection.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/constants.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/App.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetContainer.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineContainer.css",
+		"/Current projects/storylilneMaker/dev/client/package.json",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drop Targets/Dustbin.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Naive/Box.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Naive/Container.js",
 		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/User/JsPrettier.sublime-settings",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/ratingsAPI.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/.eslintignore",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/npm/yarn notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/npm/npm notes.js",
-		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Installed Packages/SublimeLinter-eslint.sublime-package",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/template engines/handlebars notes.md",
+		"/Current projects/storylilneMaker/dev/client/.babelrc",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/package.json",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/src/BoardSquare.jsx",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/src/Board.jsx",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/src/Game.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/.babelrc",
+		"/Current projects/storylilneMaker/dev/client/src/components/Thumbnail.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/actions/actionTypes.js",
+		"/Current projects/storylilneMaker/dev/client/src/index.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetContainer.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineContainer.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_updateAppData.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_updateData.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_selectAsset.js",
+		"/Current projects/storylilneMaker/dev/client/webpack.config.js",
+		"/Current projects/storylilneMaker/dev/client/src/utils/shallowEqual.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset.css",
+		"/Current projects/storylilneMaker/dev/client/.eslintrc.json",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Toolbox.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/index.css",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/es6 notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/html notes.html",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/clientApp.sublime-project",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/terminal related/test.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/test.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/test.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/gitignore.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/git hub notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/misc js notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/es6 notes - Kyle Simpson.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex5/ex5-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex4/ex4-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex3/ex3-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex2/ex2-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex1/ex1-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/ES6_the right parts- by Kyle Simpson/exercises_v/ex0/ex0-v-fixed.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_advance redux_udemy.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/webpack 2/1_js_modules (big & small imgs)/webpack.config.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_middleware (name cards)/src/components/user_list.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_youtube app/src/index.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_youtube app/index.html",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/client/src/reducers/reducer_auth.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_auth (full auth)/server/index.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/db/mongoose.js",
-		"/Users/vahramjacobs/Desktop/dev/MKS/week5/day1/-v shortly/MKS-LA-shortly-express-master/server.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/Advanced Redux Code/v_testing (add comments)/test/test_helper.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Thumbnail.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset-character.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset-phase.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset-scene.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection-character.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection-phase.css",
+		"/Current projects/storylilneMaker/dev/client/storylineMaker.sublime-project",
+		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_new.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/index.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_select_asset.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/Toolbox.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/reducerTypes.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/reducers/index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/reducers/reducer_active_book.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/actions/index.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/index.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/containers/book_list.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_weather app/src/components/app.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/server realated/node notes by andrew mead from udemy.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/_git hub notes.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/github/heroku notes.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/app.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/models/users.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/tests/seed/seed.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/tests/server.tests.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/v-experiments.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/app-promises.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/app(no async-await).js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-async-await/currency-convert.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/users.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/server.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/chat.html",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/js/chat.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/users.test.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/validation.test.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/server/utils/validation.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-chat-app/public/index.html"
+		"/Current projects/storylilneMaker/dev/client/src/App.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/TimelineBody.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/Timeline.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/appLogic.js",
+		"/Current projects/storylilneMaker/dev/client/src/TimelineAsset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/styles/AssetContainer.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/TimelineContainer.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Timeline.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/TimelineAsset.css",
+		"/Current projects/storylilneMaker/dev/client/src/TimelineAssetBody.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/TimelineContainer.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/AssetContainer.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/AssetCollection.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/Asset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/Thumbnail.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/styles/App.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Toolbox.css",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/TargetBox.js",
+		"/Current projects/storylilneMaker/dev/client/src/styles/thumbnail.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Asset.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Asset-character.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Asset-phase.css",
+		"/Current projects/storylilneMaker/dev/client/src/Toolbox.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/Timeline.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/Timeline.jsx.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/TargetBox.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/FileList.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Drop Effects/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Handles and Previews/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Handles and Previews/BoxWithHandle.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Cancel on Drop Outside/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Stress Test/Card.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Stress Test/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Cancel on Drop Outside/Card.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Simple/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Simple/Card.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drop Targets/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/SourceBox.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/index.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/CustomDragLayer.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/BoxDragPreview.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/Box.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/DraggableBox.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/shouldPureComponentUpdate.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Box.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Dustbin.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Dustbin.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Box.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Dustbin.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Box.js"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -826,134 +860,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"_",
-			"asset_container",
-			"index",
-			";\n",
-			"elem_container",
-			"phase_container",
-			"header",
-			"loader",
-			"testComp",
-			"UNLICENSED",
-			"scale",
-			"store",
-			"actionsCreators",
-			"imdbID",
-			"show",
-			"apiData",
-			"Show",
-			"apiData",
-			"show",
-			"apiData",
-			"show",
-			"rating",
-			"getShow",
-			"apiData",
-			"show",
-			"Details",
-			"rating",
-			"addApiDataReducer",
-			"searchTermReducer",
-			"addApiDataReducer",
-			"map",
-			"bind",
-			"connect",
-			"actions)",
-			"map",
-			"action)",
-			"connect(",
-			"mapDispatch",
-			"middleware",
-			"thunk",
-			"string",
-			"String",
-			"redux-promise",
-			"redux",
-			"createMiddleware",
-			"type",
-			"ref",
-			"mapDispatchToState",
-			"mapDispatchToProps",
-			"mapDispatchToState",
-			"object",
-			"landing",
-			"resetSearchTerm",
-			"git show",
-			"git log",
-			"actionsCreators",
-			"store",
-			"state",
-			"Header",
-			"Search",
-			"handleOnEnter",
-			"props",
-			"but",
-			"reset",
-			"mapDispatchToState",
-			"SET_SEARCH_TERM",
-			"Signout",
-			"signout",
-			"Signout",
-			"Provider",
-			"payload",
-			"setSearchTerm",
-			"const",
-			"state",
-			"SET_SEARCH_TERM",
-			"Store",
-			"rootReducer",
-			"Redux",
-			"includes",
-			"another",
-			"Header",
-			"year",
-			"props",
-			"Componernt",
-			"react",
-			"h2",
-			"response",
-			"img",
-			"Animation",
-			"response",
-			"props",
-			"const",
-			"Image",
-			"styled",
-			"webpack-web-server",
-			"Match",
-			"Every time we",
-			"// Every time we type a key into the search field, \n\t\t\t\t\t// an event fires, so react tries to rerenders the component.\n\t\t\t\t\t// It looks at the diff between before and after the event, \n\t\t\t\t\t// and ends up assigning state.searchTerm value to the input value.\n\t\t\t\t// If we want the value to reflect what we've typed, \n\t\t\t\t\t// we should update the state for the next render.",
-			"shows: Array<Show>",
-			"App",
-			"Function",
-			"function",
-			"this",
-			"handleSearchTermChange",
-			"but",
-			"myComponent",
-			"expects",
-			"props",
-			"class",
-			"props",
-			"<Search />",
-			"Search",
-			"filterShowsBySearchTerm",
-			"preload",
-			":",
-			"\"",
-			"preload",
-			"selectedShow",
-			"Details",
-			"Search",
-			"x",
-			"styled-components",
-			"isRequired",
-			"styled-components",
-			"flow",
-			"webpack",
-			"base",
-			"this"
+			"coursorStyle",
+			"hoverStyle",
+			"dragSource",
+			"TimelineAssetTail",
+			"}",
+			"{"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -971,14 +883,118 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/components/TimelineAsset.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2683,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								487,
+								487
+							]
+						],
+						"settings":
+						{
+							"SL.80.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/components/TimelineAssetDnD.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2449,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								447,
+								455
+							]
+						],
+						"settings":
+						{
+							"SL.83.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 280.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/components/TimelineAssetTail.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								615,
+								615
+							]
+						],
+						"settings":
+						{
+							"SL.78.region_keys":
+							[
+								"sublime_linter.protected_regions",
+								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32",
+								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 142.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -1007,6 +1023,14 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 25.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1015,11 +1039,15 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 110.0
+	},
 	"pinned_build_system": "",
 	"project": "storylineMaker.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1028,6 +1056,50 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"packa",
+				"practice files/package.json"
+			],
+			[
+				"timelineasse",
+				"storylilneMaker/dev/client/src/styles/TimelineAsset.css"
+			],
+			[
+				"timelineass",
+				"storylilneMaker/dev/client/src/styles/TimelineAsset.css"
+			],
+			[
+				"timeline",
+				"storylilneMaker/dev/client/src/styles/Timeline.css"
+			],
+			[
+				"timeline.c",
+				"storylilneMaker/dev/client/src/styles/Timeline.css"
+			],
+			[
+				"timelinec",
+				"storylilneMaker/dev/client/src/styles/TimelineContainer.css"
+			],
+			[
+				"toolbox",
+				"storylilneMaker/dev/client/src/styles/Toolbox.css"
+			],
+			[
+				"tool",
+				"storylilneMaker/dev/client/src/Toolbox.jsx"
+			],
+			[
+				"game",
+				"react-dnd/src/Game.js"
+			],
+			[
+				"square",
+				"react-dnd/src/Square.jsx"
+			],
+			[
+				"k",
+				"react-dnd/src/Knight.jsx"
+			],
 			[
 				"pack",
 				"practice files/package.json"
@@ -1039,10 +1111,6 @@
 			[
 				"sear",
 				"practice files/js/Search.jsx"
-			],
-			[
-				"packa",
-				"practice files/package.json"
 			],
 			[
 				"clien",
@@ -1157,7 +1225,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 239.0,
+	"side_bar_width": 266.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

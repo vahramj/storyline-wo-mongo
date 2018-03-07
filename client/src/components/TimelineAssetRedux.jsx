@@ -6,7 +6,8 @@ import {
 	handleDropAsset,
 	selectAsset,
 	calcInsertPosition,
-	hideInsertPosition
+	hideInsertPosition,
+	resizeAssetToPosition
 } from "../actions/actionCreators";
 
 
@@ -16,7 +17,8 @@ const actions = {
 	handleDropAsset,
 	selectAsset,
 	calcInsertPosition,
-	hideInsertPosition
+	hideInsertPosition,
+	resizeAssetToPosition
 };
 
 // const options = {
@@ -30,7 +32,7 @@ const actions = {
 function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
 
-	const selected = selectedAssetId && assetId === selectedAssetId;
+	const selected = !!(selectedAssetId && assetId === selectedAssetId);
 	// console.log("insertIndicator.targetId: ", insertIndicator.targetId, "assetId: ", assetId);
 	// console.log("insertIndicator.position: ", insertIndicator.position);
 	const insertPosition = insertIndicator.targetId === assetId ? insertIndicator.position : null; 

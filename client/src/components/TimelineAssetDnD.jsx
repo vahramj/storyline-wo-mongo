@@ -5,7 +5,6 @@ import TimelineAsset from "./TimelineAsset";
 import { dndTypes } from "../utils/constants";
 import { isInsertLegal } from "../utils/appLogic";
 
-
 const dragSpec = {
 	beginDrag(props) {
 		const { assetId, type } = props;
@@ -41,6 +40,20 @@ const dropSpec = {
 		props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
+		const itemDnDType = monitor.getItemType();
+		if(itemDnDType === dndTypes.TAIL && props.type === "timeline"){
+
+			const dragAssetId = monitor.getItem().ownerId;
+			const resizeElem = monitor.getItem().ownerElem;
+			
+			const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
+			const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
+			const leftEdgePos = leftEdgePosRelToViewport - elemPosRelToViewport;
+			
+			props.resizeAssetToPosition(dragAssetId, leftEdgePos);
+			return;
+		}
+
 		if (!monitor.canDrop()) {
 			return;
 		}
@@ -64,6 +77,13 @@ const dropSpec = {
 		const { type: sourceType } = monitor.getItem();
 		const { type: targetType } = props;
 		// console.log("sourceType: ", sourceType, "targetType: ", targetType);
+
+		// vahram, you might not need to drop tail, if first thing in hover is checking dndType === "TAIL"
+		const itemDnDType = monitor.getItemType();
+		if(itemDnDType === dndTypes.TAIL){
+			return false;
+		}
+
 		return isInsertLegal(sourceType, targetType).result;
 	}
 };
@@ -86,7 +106,7 @@ const collectDrop = (connectDnD, monitor) => {
 
 const decorator = _.flowRight([
 	DragSource(dndTypes.TIMELINE_ASSET, dragSpec, collectDrag),
-	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET], dropSpec, collectDrop )
+	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET, dndTypes.TAIL], dropSpec, collectDrop )
 ]);
 
 export default decorator(TimelineAsset);
