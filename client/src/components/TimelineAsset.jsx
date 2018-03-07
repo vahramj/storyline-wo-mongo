@@ -9,23 +9,50 @@ import "./styles/TimelineAsset.css";
 
 
 
-// ██████╗ ███████╗ █████╗  ██████╗████████╗
-// ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
+
 class TimelineAsset extends Component {
 	onClickHandler = (event) => {
 		const {assetId} = this.props;
 		event.stopPropagation();
 		this.props.handleTimelineClick(event, assetId);
 	}
+	
+	renderHead = () => {
+		const {assetId, type} = this.props;
+		let headElem = (
+			<div className="head">
+				<Asset assetId={assetId} decorative />
+			</div>
+		);
+
+		if(type === "timeline"){
+			headElem = null;
+		}
+
+		return headElem;
+	}
+
+	renderTail = () => {
+		const {type, selected} = this.props;
+		let tailElem = (
+			<div
+				className="tail"
+				style={{
+					visibility: type === "scene" || !selected ? "hidden" : ""
+				}}
+			/>
+		);
+
+		if(type === "timeline"){
+			tailElem = null;
+		}
+
+		return tailElem
+	}
 
 	render() {
 		const {
 			selected,
-			assetId,
 			type,
 			position,
 			width,
@@ -64,20 +91,14 @@ class TimelineAsset extends Component {
 				}}
 			>
 				<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
-				<div className="head">
-					<Asset assetId={assetId} decorative />
-				</div>
+
+				{this.renderHead()}
 
 				<TimelineBody childAssets={childAssets} width={width} 
 				insertPosition={insertPosition} 
 				/>
 
-				<div
-					className="tail"
-					style={{
-						visibility: type === "scene" || !selected ? "hidden" : ""
-					}}
-				/>
+				{this.renderTail()}
 			</div>
 		);
 	}
