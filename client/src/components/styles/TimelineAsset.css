@@ -28,7 +28,11 @@
 .timeline-asset .tail:hover{
 	cursor: ew-resize;
 }
-
+.timeline-asset .tail .preview{
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+}
 .timeline .selected{
 	box-shadow: 0 0 0 3px blue;
 	z-index: 3;

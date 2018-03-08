@@ -377,7 +377,7 @@ export function resizeAssetToPosition(assetId, position, dataOrig){
 	}
 	
 	const headWidth = headWidthList[asset.type];
-	const width = Math.max(position - asset.position - headWidth, lastChildEnd);
+	const width = Math.max(position - headWidth, lastChildEnd);
 	data = update(data, {
 		[asset.id]: {
 			width: {

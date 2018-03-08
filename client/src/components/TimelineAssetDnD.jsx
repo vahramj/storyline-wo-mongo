@@ -45,11 +45,13 @@ const dropSpec = {
 
 			const dragAssetId = monitor.getItem().ownerId;
 			const resizeElem = monitor.getItem().ownerElem;
+
+			// console.log(resizeElem)
 			
 			const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
 			const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
 			const leftEdgePos = leftEdgePosRelToViewport - elemPosRelToViewport;
-			
+			// console.log(leftEdgePos)
 			props.resizeAssetToPosition(dragAssetId, leftEdgePos);
 			return;
 		}

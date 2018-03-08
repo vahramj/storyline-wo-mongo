@@ -9,13 +9,18 @@ import TimelineAssetTail from "./TimelineAssetTail";
 import "./styles/TimelineAsset.css";
 
 class TimelineAsset extends Component {
+
 	onClickHandler = event => {
 		const { assetId } = this.props;
 		event.stopPropagation();
 		this.props.handleTimelineClick(event, assetId);
 	};
 
-	renderHead = () => {
+	getOwner = ()=>{
+		return this.dropElem
+	}
+
+	renderHead() {
 		const { assetId, type } = this.props;
 		let headElem = (
 			<div className="head">
@@ -30,14 +35,15 @@ class TimelineAsset extends Component {
 		return headElem;
 	};
 
-	renderTail = () => {
+	renderTail() {
 		const { type, selected, assetId } = this.props;
+		
 		let tailElem = (
 			<TimelineAssetTail
 				type={type}
 				selected={selected}
 				ownerId={assetId}
-				ownerElem={this.dropElem}
+				getOwner={this.getOwner}
 			/>
 		);
 
@@ -47,6 +53,7 @@ class TimelineAsset extends Component {
 
 		return tailElem;
 	};
+	
 
 	render() {
 		const {
