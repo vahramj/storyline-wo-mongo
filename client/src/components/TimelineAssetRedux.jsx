@@ -7,7 +7,8 @@ import {
 	selectAsset,
 	calcInsertPosition,
 	hideInsertPosition,
-	resizeAssetToPosition
+	resizeAssetToPosition,
+	resetRequestFrame
 } from "../actions/actionCreators";
 
 
@@ -18,7 +19,8 @@ const actions = {
 	selectAsset,
 	calcInsertPosition,
 	hideInsertPosition,
-	resizeAssetToPosition
+	resizeAssetToPosition,
+	resetRequestFrame
 };
 
 // const options = {
@@ -29,7 +31,7 @@ const actions = {
 // 	}
 // };
 
-function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }) {
+function mapStateToProps({ data, selectedAssetId, insertIndicator, requestedFrame }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
 
 	const selected = !!(selectedAssetId && assetId === selectedAssetId);
@@ -43,7 +45,8 @@ function mapStateToProps({ data, selectedAssetId, insertIndicator }, { assetId }
 		position,
 		width,
 		childAssets: children,
-		insertPosition
+		insertPosition,
+		requestedFrame
 	};
 }
 

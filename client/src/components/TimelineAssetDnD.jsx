@@ -40,38 +40,46 @@ const dropSpec = {
 		props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
-		const itemDnDType = monitor.getItemType();
-		if(itemDnDType === dndTypes.TAIL && props.type === "timeline"){
-
-			const dragAssetId = monitor.getItem().ownerId;
-			const resizeElem = monitor.getItem().ownerElem;
-
-			// console.log(resizeElem)
+		function drawHoverFrame(){		
+			props.resetRequestFrame();
 			
-			const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
-			const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
-			const leftEdgePos = leftEdgePosRelToViewport - elemPosRelToViewport;
-			// console.log(leftEdgePos)
-			props.resizeAssetToPosition(dragAssetId, leftEdgePos);
-			return;
-		}
+			const itemDnDType = monitor.getItemType();
+			if(itemDnDType === dndTypes.TAIL && props.type === "timeline"){
 
-		if (!monitor.canDrop()) {
-			return;
-		}
+				const dragAssetId = monitor.getItem().ownerId;
+				const resizeElem = monitor.getItem().ownerElem;
 
-		// console.log("hovering & can drop")
-		const { assetId: targetId } = props;
-		const sourceId = monitor.getItem().assetId;
-		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
-		const hoverPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
-		const params = {
-			hoverPosition,
-			dropElem,
-			targetId,
-			sourceId
-		};
-		props.calcInsertPosition(params);
+				// console.log(resizeElem)
+				
+				const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
+				const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
+				const leftEdgePos = leftEdgePosRelToViewport - elemPosRelToViewport;
+				// console.log(leftEdgePos)
+				props.resizeAssetToPosition(dragAssetId, leftEdgePos);
+				return;
+			}
+
+			if (!monitor.canDrop()) {
+				return;
+			}
+
+			// console.log("hovering & can drop")
+			const { assetId: targetId } = props;
+			const sourceId = monitor.getItem().assetId;
+			const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
+			const hoverPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
+			const params = {
+				hoverPosition,
+				dropElem,
+				targetId,
+				sourceId
+			};
+			props.calcInsertPosition(params);
+		}
+		let { requestedFrame } = props;
+		if(!requestedFrame){
+			requestedFrame = requestAnimationFrame(drawHoverFrame);
+		}
 	},
 	canDrop(props, monitor) {
 		// console.log("isOver asset: ", monitor.isOver())

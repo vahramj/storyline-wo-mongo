@@ -24,7 +24,8 @@ const {
 	DROP_ASSET,
 	CALC_INSERT_POSITION,
 	HIDE_INSERT_POSITION,
-	RESIZE_ASSET_TO_POSITION
+	RESIZE_ASSET_TO_POSITION,
+	RESET_REQUEST_FRAME
 } = actionTypes;
 
 const initialState = {
@@ -33,7 +34,8 @@ const initialState = {
 	insertIndicator: {
 		targetId: null,
 		position: null
-	}
+	},
+	requestedFrame: null
 };
 
 function rootReducer(state = initialState, action) {
@@ -137,6 +139,10 @@ function rootReducer(state = initialState, action) {
 			// console.log("from root reducer: ", assetId, position);
 			const data = resizeAssetToPosition(assetId, position, state.data);
 			return { ...state, data };
+		}
+
+		case RESET_REQUEST_FRAME: {
+			return {...state, requestedFrame: null}
 		}
 
 		default:
