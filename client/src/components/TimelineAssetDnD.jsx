@@ -41,15 +41,15 @@ const dropSpec = {
 	},
 	hover(props, monitor, { dropElem }) {
 		function drawHoverFrame(){		
-			props.resetRequestFrame();
-			
+			props.setFrameRequestor(props.assetId, null);
+
 			const itemDnDType = monitor.getItemType();
 			if(itemDnDType === dndTypes.TAIL && props.type === "timeline"){
-
+				
 				const dragAssetId = monitor.getItem().ownerId;
 				const resizeElem = monitor.getItem().ownerElem;
 
-				// console.log(resizeElem)
+				// console.log("resizeElem")
 				
 				const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
 				const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
@@ -59,11 +59,14 @@ const dropSpec = {
 				return;
 			}
 
+			// console.log("monitor.canDrop(): ", monitor.canDrop())
+			// console.log("props.assetId: ", props.assetId)
+			// console.log("requestedFrame: ", props.requestedFrame)
 			if (!monitor.canDrop()) {
 				return;
 			}
-
 			// console.log("hovering & can drop")
+
 			const { assetId: targetId } = props;
 			const sourceId = monitor.getItem().assetId;
 			const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
@@ -76,10 +79,15 @@ const dropSpec = {
 			};
 			props.calcInsertPosition(params);
 		}
-		let { requestedFrame } = props;
-		if(!requestedFrame){
-			requestedFrame = requestAnimationFrame(drawHoverFrame);
+
+		const { frameRequestors, assetId } = props;
+		if(!(assetId in frameRequestors)){
+			
+			// console.log("hower draw!")
+			const requestedFrame = requestAnimationFrame(drawHoverFrame);
+			props.setFrameRequestor(assetId, requestedFrame);
 		}
+		// drawHoverFrame()
 	},
 	canDrop(props, monitor) {
 		// console.log("isOver asset: ", monitor.isOver())

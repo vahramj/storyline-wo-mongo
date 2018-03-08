@@ -10,7 +10,7 @@ const {
 	CALC_INSERT_POSITION,
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
-	RESET_REQUEST_FRAME
+	SET_FRAME_REQUESTOR
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -124,9 +124,9 @@ export function resizeAssetToPosition(assetId, position){
 	}
 }
 
-export function resetRequestFrame(){
+export function setFrameRequestor(assetId, requestedFrame){
 	return {
-		type: RESET_REQUEST_FRAME,
-		payload: null
+		type: SET_FRAME_REQUESTOR,
+		payload: {assetId, requestedFrame}
 	}
 }

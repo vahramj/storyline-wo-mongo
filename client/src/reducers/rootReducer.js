@@ -25,7 +25,7 @@ const {
 	CALC_INSERT_POSITION,
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
-	RESET_REQUEST_FRAME
+	SET_FRAME_REQUESTOR
 } = actionTypes;
 
 const initialState = {
@@ -35,7 +35,7 @@ const initialState = {
 		targetId: null,
 		position: null
 	},
-	requestedFrame: null
+	frameRequestors: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -141,8 +141,17 @@ function rootReducer(state = initialState, action) {
 			return { ...state, data };
 		}
 
-		case RESET_REQUEST_FRAME: {
-			return {...state, requestedFrame: null}
+		case SET_FRAME_REQUESTOR: {
+			const {requestedFrame, assetId} = action.payload;
+			const frameRequestors = Object.assign({},state.frameRequestors);
+			// console.log("frameRequestors: ", frameRequestors)
+			if(requestedFrame === null){
+				delete frameRequestors[assetId]
+			}
+			else {
+				frameRequestors[assetId] = requestedFrame
+			}
+			return {...state, frameRequestors};
 		}
 
 		default:

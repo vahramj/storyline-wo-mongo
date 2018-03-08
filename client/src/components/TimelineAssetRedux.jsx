@@ -8,9 +8,8 @@ import {
 	calcInsertPosition,
 	hideInsertPosition,
 	resizeAssetToPosition,
-	resetRequestFrame
+	setFrameRequestor
 } from "../actions/actionCreators";
-
 
 
 const actions = {
@@ -20,7 +19,7 @@ const actions = {
 	calcInsertPosition,
 	hideInsertPosition,
 	resizeAssetToPosition,
-	resetRequestFrame
+	setFrameRequestor
 };
 
 // const options = {
@@ -31,7 +30,7 @@ const actions = {
 // 	}
 // };
 
-function mapStateToProps({ data, selectedAssetId, insertIndicator, requestedFrame }, { assetId }) {
+function mapStateToProps({ data, selectedAssetId, insertIndicator, frameRequestors }, { assetId }) {
 	const { type, position, width, children } = data[assetId];
 
 	const selected = !!(selectedAssetId && assetId === selectedAssetId);
@@ -46,7 +45,7 @@ function mapStateToProps({ data, selectedAssetId, insertIndicator, requestedFram
 		width,
 		childAssets: children,
 		insertPosition,
-		requestedFrame
+		frameRequestors
 	};
 }
 
