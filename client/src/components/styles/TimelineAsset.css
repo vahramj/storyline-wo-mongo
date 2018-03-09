@@ -4,6 +4,7 @@
 	background: rgba(234,234,234,0.5);
 	z-index: 2;
 	/*padding: 5px;*/
+	cursor: move;
 }
 .timeline-asset.timeline-phase {
 	padding: 20px 0;
@@ -24,8 +25,6 @@
 	margin-right: -50px;
 	border-radius: 0 20px 20px 0;
 	background-color: blue;
-}
-.timeline-asset .tail:hover{
 	cursor: ew-resize;
 }
 .timeline-asset .tail .preview{

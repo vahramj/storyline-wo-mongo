@@ -1,5 +1,6 @@
 .asset {
 	position: relative;
+	cursor: move;
 }
 
 .asset span {
