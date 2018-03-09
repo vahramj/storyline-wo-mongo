@@ -10,7 +10,7 @@ import {
 	resizeAssetToPosition,
 	setFrameRequestor
 } from "../actions/actionCreators";
-
+import shallowEqual from "../utils/shallowEqual";
 
 const actions = {
 	handleTimelineClick,
@@ -45,8 +45,24 @@ function mapStateToProps({ data, selectedAssetId, insertIndicator, frameRequesto
 		width,
 		childAssets: children,
 		insertPosition,
-		frameRequestors
+		frameRequestors,
+		assetId
 	};
 }
 
-export default connect(mapStateToProps, actions )(TimelineAssetDnD);
+const connectOptions = {
+	areStatePropsEqual(next,prev){
+		const nextWoRequestors = Object.assign({}, next);
+		delete nextWoRequestors.frameRequestors;
+		
+		const prevWoRequestors = Object.assign({}, prev);
+		delete prevWoRequestors.frameRequestors;
+		
+		const {assetId} = next;
+
+		return shallowEqual(nextWoRequestors, prevWoRequestors) 
+			&& !(assetId in prev.frameRequestors);
+	}
+}
+
+export default connect(mapStateToProps, actions, null, connectOptions )(TimelineAssetDnD);

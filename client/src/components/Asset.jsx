@@ -128,12 +128,20 @@ function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	return { selected, onTimeline, assetData };
 }
 
-// const dragableAsset = DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD )(Asset);
-// const connectedAsset = connect( mapStateToProps, actions )(dragableAsset);
+const connectOptions = {
+	areStatePropsEqual(next, prev){
+		return next.selected === prev.selected 
+			&& next.onTimeline === prev.onTimeline
+			&& next.assetData.id === prev.assetData.id
+			&& next.assetData.name === prev.assetData.name
+			&& next.assetData.type === prev.assetData.type
+			&& next.assetData.image === prev.assetData.image
+	}
+}
 const decorator = _.flowRight([
-	connect( mapStateToProps, actions ),
+	connect( mapStateToProps, actions, null, connectOptions ),
 	DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD ),
-])
+]);
 export default decorator(Asset);
 
 // export default Asset;
