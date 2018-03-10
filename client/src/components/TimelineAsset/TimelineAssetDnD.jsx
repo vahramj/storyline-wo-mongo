@@ -2,8 +2,8 @@ import { DragSource, DropTarget } from "react-dnd";
 import _ from "lodash";
 
 import TimelineAsset from "./TimelineAsset";
-import { dndTypes } from "../utils/constants";
-import { isInsertLegal } from "../utils/appLogic";
+import { dndTypes } from "../../utils/constants";
+import { isInsertLegal } from "../../utils/appLogic";
 
 const dragSpec = {
 	beginDrag(props) {

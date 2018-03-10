@@ -3,9 +3,9 @@ import { shape, arrayOf, string, number } from "prop-types";
 
 import TimelineAssetRedux from "./TimelineAssetRedux";
 
-import "./styles/TimelineBody.css";
+import "../styles/TimelineAsset/TimelineAssetBody.css";
 
-const TimelineBody = props => {
+const TimelineAssetBody = props => {
 	const { childAssets, width, insertPosition } = props;
 	// console.log("insertPosition: ", insertPosition, "childAssets: ", childAssets);
 	let insertPositionStyle = { display: "none" };
@@ -25,7 +25,7 @@ const TimelineBody = props => {
 	);
 };
 
-TimelineBody.propTypes = {
+TimelineAssetBody.propTypes = {
 	width: number.isRequired,
 	childAssets: arrayOf(
 		shape({
@@ -35,8 +35,8 @@ TimelineBody.propTypes = {
 	insertPosition: number
 };
 
-TimelineBody.defaultProps = {
+TimelineAssetBody.defaultProps = {
 	insertPosition: null
 }
 
-export default TimelineBody;
+export default TimelineAssetBody;

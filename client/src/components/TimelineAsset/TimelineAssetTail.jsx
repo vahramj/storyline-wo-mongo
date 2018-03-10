@@ -1,15 +1,15 @@
 import React from "react";
-import { string, bool, func, shape } from "prop-types";
+import { string, bool, func } from "prop-types";
 import { DragSource } from "react-dnd";
 import _ from "lodash";
 
-import { dndTypes } from "../utils/constants";
+import { dndTypes } from "../../utils/constants";
 
 const spec = {
 	beginDrag(props){
 		// console.log("tail drag begun");
-		const {ownerId, getOwner} = props;
-		const ownerElem = getOwner();
+		const {ownerId, getOwnerElem} = props;
+		const ownerElem = getOwnerElem();
 		// console.log(props, ownerElem);
 		return {ownerId, ownerElem};
 	}
@@ -44,11 +44,11 @@ TimelineAssetTail.propTypes = {
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	ownerId: string.isRequired,
-	ownerElem: shape()
+	getOwnerElem: func.isRequired
 };
 
 TimelineAssetTail.defaultProps = {
-	ownerElem: {}
+	// getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")}
 };
 
 const decorator = _.flowRight([

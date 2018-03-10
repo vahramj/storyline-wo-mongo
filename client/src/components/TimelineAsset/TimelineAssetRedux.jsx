@@ -9,8 +9,8 @@ import {
 	hideInsertPosition,
 	resizeAssetToPosition,
 	setFrameRequestor
-} from "../actions/actionCreators";
-import shallowEqual from "../utils/shallowEqual";
+} from "../../actions/actionCreators";
+import shallowEqual from "../../utils/shallowEqual";
 
 const actions = {
 	handleTimelineClick,
@@ -31,22 +31,21 @@ const actions = {
 // };
 
 function mapStateToProps({ data, selectedAssetId, insertIndicator, frameRequestors }, { assetId }) {
-	const { type, position, width, children } = data[assetId];
+	const { type, position } = data[assetId];
 
 	const selected = !!(selectedAssetId && assetId === selectedAssetId);
 	// console.log("insertIndicator.targetId: ", insertIndicator.targetId, "assetId: ", assetId);
 	// console.log("insertIndicator.position: ", insertIndicator.position);
+	
 	const insertPosition = insertIndicator.targetId === assetId ? insertIndicator.position : null; 
 
 	return {
+		assetId,
 		selected,
 		type,
 		position,
-		width,
-		childAssets: children,
 		insertPosition,
 		frameRequestors,
-		assetId
 	};
 }
 

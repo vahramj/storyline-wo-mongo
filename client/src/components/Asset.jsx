@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { shape, bool, string, func } from "prop-types";
+import { bool, string, func } from "prop-types";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
 import _ from "lodash";
 
-import Thumbnail from "./Thumbnail";
+import AssetBase from "./AssetBase";
 import { selectAsset } from "../actions/actionCreators";
 import { dndTypes } from "../utils/constants";
 
@@ -23,7 +23,7 @@ const AssetSourceSpec = {
 	beginDrag(props) {
 		props.selectAsset(props.assetId);
 		// console.log(props);
-		const { assetId, assetData: {type} } = props;
+		const { assetId, type } = props;
 		return { assetId, type };
 	},
 	canDrag(props){
@@ -43,39 +43,38 @@ const collectDnD = connectDnD => {
 // ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
-class Asset extends Component {
-	containerAssetAttributes = {
-		role: "none",
-		onClick: event => {
-			event.stopPropagation();
-			this.props.selectAsset(this.props.assetData.id);
-		}
-	};
-
-	render() {
-		const { selected, onTimeline, assetData, connectDragSource } = this.props;
-		const { name, image, type } = assetData;
+const Asset = props => {
+		const {selected, onTimeline, assetId, type, connectDragSource} = props;
 
 		const selectedStyle = selected ? "selected" : "";
 		const onTimelineStyle = onTimeline ? "onTimeline" : "";
 
-		const assetAttributes = this.props.decorative ? {} : this.containerAssetAttributes;
+		const assetAttributes = {
+			className: `asset ${type} ${selectedStyle} ${onTimelineStyle}`,
+			role: "none",
+			onClick (event) {
+				event.stopPropagation();
+				props.selectAsset(assetId);
+			}
+		};
 
 		return connectDragSource(
-			<div className={`asset ${type} ${selectedStyle} ${onTimelineStyle}`} {...assetAttributes}>
+			<div {...assetAttributes}>
 				<div className="hover-tint">
-					<img src="/static/icons/edit_icon.png" className="edit-icon" alt={`edit ${type} icon`} />
+					<img
+						src="/static/icons/edit_icon.png"
+						className="edit-icon"
+						alt={`edit ${type} icon`}
+					/>
 					<img
 						src="/static/icons/delete_phase_icon_2.png"
 						className="delete-icon"
 						alt={`delete ${type} icon`}
 					/>
 				</div>
-				<Thumbnail {...{ image, name, type }} />
-				<span>{name}</span>
+				<AssetBase assetId={assetId} />
 			</div>
 		);
-	}
 }
 
 // ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
@@ -85,16 +84,11 @@ class Asset extends Component {
 // ██║     ██║  ██║╚██████╔╝██║           ██║      ██║   ██║     ███████╗███████║
 // ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝           ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
 Asset.propTypes = {
-	assetData: shape({
-		id: string.isRequired,
-		name: string.isRequired,
-		type: string.isRequired,
-		image: string
-	}).isRequired,
-	selectAsset: func,
+	assetId: string.isRequired,
+	type: string.isRequired,
 	selected: bool.isRequired,
 	onTimeline: bool,
-	decorative: bool,
+	selectAsset: func,
 	connectDragSource: func.isRequired
 };
 
@@ -103,7 +97,6 @@ Asset.defaultProps = {
 		console.log("Vahram, Asset click handler hasn't been setup ");
 	},
 	onTimeline: false,
-	decorative: false
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
@@ -114,8 +107,8 @@ Asset.defaultProps = {
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = {selectAsset};
 
-function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
-	const selected = !!selectedAssetId && assetId === selectedAssetId && !decorative;
+function mapStateToProps({ selectedAssetId, data }, { assetId }) {
+	const selected = !!selectedAssetId && assetId === selectedAssetId;
 
 	const assetData = data[assetId];
 
@@ -123,23 +116,15 @@ function mapStateToProps({ selectedAssetId, data }, { assetId, decorative }) {
 	while (ancestor.parent) {
 		ancestor = data[ancestor.parent.id];
 	}
-	const onTimeline = ancestor.type === "timeline" && !decorative;
+	const onTimeline = ancestor.type === "timeline";
 
-	return { selected, onTimeline, assetData };
+	const { type } = assetData;
+
+	return { selected, onTimeline, type };
 }
 
-const connectOptions = {
-	areStatePropsEqual(next, prev){
-		return next.selected === prev.selected 
-			&& next.onTimeline === prev.onTimeline
-			&& next.assetData.id === prev.assetData.id
-			&& next.assetData.name === prev.assetData.name
-			&& next.assetData.type === prev.assetData.type
-			&& next.assetData.image === prev.assetData.image
-	}
-}
 const decorator = _.flowRight([
-	connect( mapStateToProps, actions, null, connectOptions ),
+	connect( mapStateToProps, actions ),
 	DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD ),
 ]);
 export default decorator(Asset);

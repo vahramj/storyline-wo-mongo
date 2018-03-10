@@ -3,13 +3,12 @@
 	cursor: move;
 }
 
-.asset span {
-	display: block;
-	padding: 7px 5px 5px 5px;
+.asset.onTimeline {
+	box-shadow: 0 0 0 3px rgb(150,130,90);
+}
 
-	font-family: 'Quicksand', sans-serif;
-	font-size: 12px;
-	font-weight: lighter;
+.asset.selected {
+	box-shadow: 0 0 0 3px green;
 }
 
 .asset .hover-tint{
@@ -28,12 +27,17 @@
 	cursor: pointer;
 }
 
-.asset.onTimeline {
-	box-shadow: 0 0 0 3px rgb(150,130,90);
+/* asset base */
+.asset-base{
 }
 
-.asset.selected {
-	box-shadow: 0 0 0 3px green;
+.asset-base span {
+	display: block;
+	padding: 7px 5px 5px 5px;
+
+	font-family: 'Quicksand', sans-serif;
+	font-size: 12px;
+	font-weight: lighter;
 }
 
 

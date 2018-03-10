@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { number, string, func, bool } from "prop-types";
 import { connect } from "react-redux";
 
-import TimelineAssetRedux from "./TimelineAssetRedux";
+import TimelineAssetRedux from "./TimelineAsset/TimelineAssetRedux";
 
 import { fitTimelineToFrame } from "../actions/actionCreators";
 
