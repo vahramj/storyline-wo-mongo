@@ -23,8 +23,4 @@
 	background-color: blue;
 	cursor: ew-resize;
 }
-.timeline-asset-base .tail .preview{
-	opacity: 0;
-	width: 1px;
-	height: 1px;
-}
+

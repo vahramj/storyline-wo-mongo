@@ -25,41 +25,51 @@ const AssetSourceSpec = {
 		// console.log(props);
 		const { assetId, type } = props;
 		return { assetId, type };
-	},
-	canDrag(props){
-		return !props.decorative
 	}
 };
 
-const collectDnD = connectDnD => {
+const collectDnD = (connectDnD, monitor) => {
 	return {
-		connectDragSource: connectDnD.dragSource()
+		connectDragSource: connectDnD.dragSource(),
+		connectDragPreview: connectDnD.dragPreview(),
+		isDragging: monitor.isDragging()
 	};
 };
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║   
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
-const Asset = props => {
-		const {selected, onTimeline, assetId, type, connectDragSource} = props;
+// ██████╔╝█████╗  ███████║██║        ██║
+// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
+// ██║  ██║███████╗██║  ██║╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
+class Asset extends Component {
+	onClickHandler = event => {
+		const { assetId } = this.props;
+		event.stopPropagation();
+		this.props.selectAsset(assetId);
+	};
+
+	render() {
+		const {
+			selected,
+			onTimeline,
+			assetId,
+			type,
+			isDragging,
+			connectDragSource,
+			connectDragPreview
+		} = this.props;
 
 		const selectedStyle = selected ? "selected" : "";
 		const onTimelineStyle = onTimeline ? "onTimeline" : "";
-
-		const assetAttributes = {
-			className: `asset ${type} ${selectedStyle} ${onTimelineStyle}`,
-			role: "none",
-			onClick (event) {
-				event.stopPropagation();
-				props.selectAsset(assetId);
-			}
-		};
+		const draggingStyle = isDragging ? "dragging" : "";
 
 		return connectDragSource(
-			<div {...assetAttributes}>
+			<div
+				className={`asset ${type} ${selectedStyle} ${onTimelineStyle} ${draggingStyle}`}
+				role="none"
+				onClick={this.onClickHandler}
+			>
 				<div className="hover-tint">
 					<img
 						src="/static/icons/edit_icon.png"
@@ -73,8 +83,10 @@ const Asset = props => {
 					/>
 				</div>
 				<AssetBase assetId={assetId} />
+				{connectDragPreview(<div className="hidden-preview" />)}
 			</div>
 		);
+	}
 }
 
 // ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
@@ -89,23 +101,25 @@ Asset.propTypes = {
 	selected: bool.isRequired,
 	onTimeline: bool,
 	selectAsset: func,
-	connectDragSource: func.isRequired
+	connectDragSource: func.isRequired,
+	connectDragPreview: func.isRequired,
+	isDragging: bool.isRequired
 };
 
 Asset.defaultProps = {
 	selectAsset: () => {
 		console.log("Vahram, Asset click handler hasn't been setup ");
 	},
-	onTimeline: false,
+	onTimeline: false
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = {selectAsset};
+const actions = { selectAsset };
 
 function mapStateToProps({ selectedAssetId, data }, { assetId }) {
 	const selected = !!selectedAssetId && assetId === selectedAssetId;
@@ -124,8 +138,8 @@ function mapStateToProps({ selectedAssetId, data }, { assetId }) {
 }
 
 const decorator = _.flowRight([
-	connect( mapStateToProps, actions ),
-	DragSource( dndTypes.ASSET, AssetSourceSpec, collectDnD ),
+	connect(mapStateToProps, actions),
+	DragSource(dndTypes.ASSET, AssetSourceSpec, collectDnD)
 ]);
 export default decorator(Asset);
 

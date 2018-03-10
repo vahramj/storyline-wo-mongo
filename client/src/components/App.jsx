@@ -7,6 +7,7 @@ import _ from "lodash";
 
 import AssetContainer from "./AssetContainer";
 import TimelineContainer from "./TimelineContainer";
+import CustomDragLayer from "./CustomDragLayer";
 import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
 import { dndTypes } from "../utils/constants";
 
@@ -64,6 +65,7 @@ const App = props => {
 					<TimelineContainer />
 				</div>
 			)}
+			<CustomDragLayer /> 
 		</div>
 	);
 };

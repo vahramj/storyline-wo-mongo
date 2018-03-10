@@ -109,6 +109,7 @@ const dropSpec = {
 const collectDrag = (connectDnD, monitor) => {
 	return {
 		connectDragSource: connectDnD.dragSource(),
+		connectDragPreview: connectDnD.dragPreview(),
 		isDragging: monitor.isDragging()
 	};
 };

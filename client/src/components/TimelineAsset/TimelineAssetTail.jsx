@@ -32,7 +32,7 @@ const TimelineAssetTail = props => {
 			}}
 		>
 			{
-				connectDragPreview(<div className="preview" />)
+				connectDragPreview(<div className="hidden-preview" />)
 			}
 		</div>
 	);	
@@ -44,11 +44,11 @@ TimelineAssetTail.propTypes = {
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	ownerId: string.isRequired,
-	getOwnerElem: func.isRequired
+	getOwnerElem: func
 };
 
 TimelineAssetTail.defaultProps = {
-	// getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")}
+	getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")}
 };
 
 const decorator = _.flowRight([

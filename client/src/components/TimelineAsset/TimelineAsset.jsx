@@ -28,10 +28,15 @@ class TimelineAsset extends Component {
 			isHovering,
 			canDrop
 		} = this.props;
-		let { connectDragSource, insertPosition } = this.props;
+		let { 
+			connectDragSource, 
+			connectDragPreview,
+			insertPosition 
+		} = this.props;
 
 		if (type === "timeline") {
 			connectDragSource = f => f;
+			connectDragPreview = f => f;
 		}
 
 		const selectedStyle = selected ? "selected" : "";
@@ -58,6 +63,9 @@ class TimelineAsset extends Component {
 					insertPosition={insertPosition}
 					selected={selected}
 				/>
+				{
+					connectDragPreview(<div className="hidden-preview" />)
+				}
 			</div>
 		);
 	}
@@ -70,6 +78,7 @@ TimelineAsset.propTypes = {
 	handleTimelineClick: func,
 	selected: bool,
 	connectDragSource: func.isRequired,
+	connectDragPreview: func.isRequired,
 	isDragging: bool.isRequired,
 	connectDropTarget: func.isRequired,
 	isHovering: bool.isRequired,

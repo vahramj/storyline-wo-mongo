@@ -71,12 +71,13 @@ TimelineAssetBase.propTypes = {
 		})
 	).isRequired,
 	insertPosition: number,
-	getOwnerElem: func.isRequired
+	getOwnerElem: func
 };
 
 TimelineAssetBase.defaultProps = {
 	insertPosition: null,
-	selected: false
+	selected: false,
+	getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")},
 };
 
 function mapStateToProps({ data }, { assetId }) {
