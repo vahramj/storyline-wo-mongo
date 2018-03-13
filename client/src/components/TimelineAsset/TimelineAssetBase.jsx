@@ -80,7 +80,9 @@ TimelineAssetBase.defaultProps = {
 	getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")},
 };
 
-function mapStateToProps({ data }, { assetId }) {
+function mapStateToProps({ assetsData }, { assetId }) {
+	const { data } = assetsData;
+
 	const { type, width, children } = data[assetId];
 
 	return {

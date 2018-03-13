@@ -25,7 +25,9 @@ AssetBase.defaultProps = {
 	image: ""
 };
 
-function mapStateToProps({ data }, { assetId }){
+function mapStateToProps({ assetsData }, { assetId }){
+	const { data } = assetsData;
+	
 	const assetData = data[assetId];
 	const {name, type, image} = assetData;
 	return { name, type, image };

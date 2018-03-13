@@ -74,14 +74,16 @@ AssetCollection.defaultProps = {
 
 const options = {
 	areStatesEqual(next, prev){
-		return next.data === prev.data;
+		return next.assetsData.data === prev.assetsData.data;
 	},
 	areStatePropsEqual(next, prev){
 		return shallowEqual(next.collectionAssetIds, prev.collectionAssetIds)
 	}
 }
 
-function mapStateToProps({data}, {type}){
+function mapStateToProps({ assetsData }, {type}){
+	const { data } = assetsData;
+	
 	const collectionAssetIds = Object.keys(data).filter(id => data[id].type === type);
 
 	return {

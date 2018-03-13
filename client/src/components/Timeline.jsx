@@ -80,7 +80,8 @@ const actions = {
 	fitTimelineToFrame,
 };
 
-function mapStateToProps({ data }) {
+function mapStateToProps({ assetsData }) {
+	const { data } = assetsData;
 	// console.log("insertIndicator from Timelne: ", insertIndicator)
 	const assetId = "tmln_01";
 	const timelineAsset = data[assetId];

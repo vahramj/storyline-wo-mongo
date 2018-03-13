@@ -121,7 +121,10 @@ Asset.defaultProps = {
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
 const actions = { selectAsset };
 
-function mapStateToProps({ selectedAssetId, data }, { assetId }) {
+function mapStateToProps({ assetsData }, { assetId }) {
+	// console.log(assetsData);
+	const { selectedAssetId, data } = assetsData;
+	
 	const selected = !!selectedAssetId && assetId === selectedAssetId;
 
 	const assetData = data[assetId];

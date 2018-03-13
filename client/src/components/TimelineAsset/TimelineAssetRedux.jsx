@@ -30,7 +30,9 @@ const actions = {
 // 	}
 // };
 
-function mapStateToProps({ data, selectedAssetId, insertIndicator, frameRequestors }, { assetId }) {
+function mapStateToProps({ assetsData }, { assetId }) {
+	// console.log(assetsData);
+	const { data, selectedAssetId, insertIndicator, frameRequestors } = assetsData;
 	const { type, position } = data[assetId];
 
 	const selected = !!(selectedAssetId && assetId === selectedAssetId);

@@ -26,31 +26,31 @@ const dropSpec = {
 		const { assetId: sourceId } = monitor.getItem();
 		// console.log("dragElem: ", dragElem);
 		// console.log("initialClientOffset: ", monitor.getInitialClientOffset());
-		const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
+		const grabPosLeftEdgeOffset =
+			monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x;
 		const dropPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
 
 		const params = {
 			sourceId,
 			targetId,
 			dropPosition,
-			dropElem,
+			dropElem
 		};
 
 		props.handleDropAsset(params);
 		props.hideInsertPosition();
 	},
 	hover(props, monitor, { dropElem }) {
-		function drawHoverFrame(){		
+		function drawHoverFrame() {
 			props.setFrameRequestor(props.assetId, null);
 
 			const itemDnDType = monitor.getItemType();
-			if(itemDnDType === dndTypes.TAIL && props.type === "timeline"){
-				
+			if (itemDnDType === dndTypes.TAIL && props.type === "timeline") {
 				const dragAssetId = monitor.getItem().ownerId;
 				const resizeElem = monitor.getItem().ownerElem;
 
 				// console.log("resizeElem")
-				
+
 				const leftEdgePosRelToViewport = Math.round(monitor.getSourceClientOffset().x);
 				const elemPosRelToViewport = Math.round(resizeElem.getBoundingClientRect().left);
 				const leftEdgePos = leftEdgePosRelToViewport - elemPosRelToViewport;
@@ -69,7 +69,8 @@ const dropSpec = {
 
 			const { assetId: targetId } = props;
 			const sourceId = monitor.getItem().assetId;
-			const grabPosLeftEdgeOffset = monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x
+			const grabPosLeftEdgeOffset =
+				monitor.getInitialClientOffset().x - monitor.getInitialSourceClientOffset().x;
 			const hoverPosition = monitor.getClientOffset().x - grabPosLeftEdgeOffset;
 			const params = {
 				hoverPosition,
@@ -81,8 +82,7 @@ const dropSpec = {
 		}
 
 		const { frameRequestors, assetId } = props;
-		if(!(assetId in frameRequestors)){
-			
+		if (!(assetId in frameRequestors)) {
 			// console.log("hower draw!")
 			const requestedFrame = requestAnimationFrame(drawHoverFrame);
 			props.setFrameRequestor(assetId, requestedFrame);
@@ -98,7 +98,7 @@ const dropSpec = {
 
 		// vahram, you might not need to drop tail, if first thing in hover is checking dndType === "TAIL"
 		const itemDnDType = monitor.getItemType();
-		if(itemDnDType === dndTypes.TAIL){
+		if (itemDnDType === dndTypes.TAIL) {
 			return false;
 		}
 
@@ -122,11 +122,9 @@ const collectDrop = (connectDnD, monitor) => {
 	};
 };
 
-
 const decorator = _.flowRight([
 	DragSource(dndTypes.TIMELINE_ASSET, dragSpec, collectDrag),
-	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET, dndTypes.TAIL], dropSpec, collectDrop )
+	DropTarget([dndTypes.ASSET, dndTypes.TIMELINE_ASSET, dndTypes.TAIL], dropSpec, collectDrop)
 ]);
 
 export default decorator(TimelineAsset);
-
