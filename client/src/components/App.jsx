@@ -1,44 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import { func } from "prop-types";
-import { DropTarget, DragDropContext } from "react-dnd";
+import React, { Component } from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import _ from "lodash";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import AssetContainer from "./AssetContainer";
-import TimelineContainer from "./TimelineContainer";
+import rootReducer from "../reducers/rootReducer";
+import ContainerHolder from "./ContainerHolder";
+import AssetDetails from "./AssetDetails";
 import CustomDragLayer from "./CustomDragLayer";
-import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
-import { dndTypes } from "../utils/constants";
 
 import "./styles/App.css";
 
-// ██████╗ ███╗   ██╗██████╗
-// ██╔══██╗████╗  ██║██╔══██╗
-// ██║  ██║██╔██╗ ██║██║  ██║
-// ██║  ██║██║╚██╗██║██║  ██║
-// ██████╔╝██║ ╚████║██████╔╝
-// ╚═════╝ ╚═╝  ╚═══╝╚═════╝
-const appTargetSpec = {
-	drop(props, monitor) {
-
-		if(monitor.didDrop()){
-			return	
-		}
-		const { assetId } = monitor.getItem();
-		// console.log("drop props: ", assetId);
-		// props.deSelectAsset();
-		props.removeAssetFromParent(assetId);
-	}
-};
-
-const collectDnD = (connectDnD, monitor) => {
-	return {
-		connectDropTarget: connectDnD.dropTarget(),
-		isOver: monitor.isOver(),
-		isOverShallow: monitor.isOver({shallow: true})
-	};
-};
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
@@ -47,53 +20,31 @@ const collectDnD = (connectDnD, monitor) => {
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
 
-const App = props => {
-	// console.log("isOver :", props.isOver);
-	// console.log("isOverShallow :", props.isOverShallow);
-	return (
-		<div>
-			<header id="main-header">
-				<h1>Storyline Maker</h1>
-			</header>
-			{props.connectDropTarget(
-				<div className="container-holder" role="none" onClick={props.deSelectAsset}>
-					<div className="asset-containers">
-						<AssetContainer type="phase" />
-						<AssetContainer type="scene" />
-						<AssetContainer type="character" />
-					</div>
-					<TimelineContainer />
+/* eslint-disable no-underscore-dangle */
+const store = createStore(rootReducer, 
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */
+
+class App extends Component {
+	componentDidMount(){
+
+	}
+	render(){
+		return (
+			<Provider store={store}>
+				<div>
+					<header id="main-header">
+						<h1>Storyline Maker</h1>
+					</header>
+					<ContainerHolder />
+					<AssetDetails />
+					<CustomDragLayer /> 
 				</div>
-			)}
-			<CustomDragLayer /> 
-		</div>
-	);
+			</Provider>
+		);
+	}
 };
 
-// ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
-// ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗   ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝
-// ██████╔╝██████╔╝██║   ██║██████╔╝█████╗██║    ╚████╔╝ ██████╔╝█████╗  ███████╗
-// ██╔═══╝ ██╔══██╗██║   ██║██╔═══╝ ╚════╝██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ╚════██║
-// ██║     ██║  ██║╚██████╔╝██║           ██║      ██║   ██║     ███████╗███████║
-// ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝           ╚═╝      ╚═╝   ╚═╝     ╚══════╝╚══════╝
-
-App.propTypes = {
-	deSelectAsset: func.isRequired,
-	connectDropTarget: func.isRequired
-};
-
-// ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
-// ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
-// ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
-// ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = {deSelectAsset, removeAssetFromParent};
-
-const decorator = _.flowRight([
-	DragDropContext(HTML5Backend),
-	connect(null, actions),
-	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD),
-]);
-export default decorator(App);
+export default DragDropContext(HTML5Backend)(App);
 
