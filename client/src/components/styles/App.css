@@ -46,6 +46,12 @@
 	box-shadow: 0 0 0 3px white;
 }
 
+input:focus{
+	outline: 10px none;
+	/*background: rgb(120, 160, 160);*/
+	box-shadow: 0 0 0 3px rgb(120, 160, 160);
+}
+
 .hidden-preview{
 	opacity: 0;
 	width: 1px;

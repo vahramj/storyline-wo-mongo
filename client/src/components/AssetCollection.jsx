@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import Asset from "./Asset";
 import shallowEqual from "../utils/shallowEqual";
+import { isTermInAsset } from "../utils/appLogic";
 
 import "./styles/AssetCollection.css";
 import "./styles/AssetCollection-character.css";
@@ -81,14 +82,17 @@ const options = {
 	}
 }
 
-function mapStateToProps({ assetsData }, {type}){
+function mapStateToProps({ assetsData }, { type, searchTerm }){
 	const { data } = assetsData;
 	
-	const collectionAssetIds = Object.keys(data).filter(id => data[id].type === type);
+	const collectionAssetIds = Object.keys(data).filter(id => {
+		const asset = data[id];
+		return asset.type === type && isTermInAsset(searchTerm, asset);
+	});
 
 	return {
 		collectionAssetIds
-	}
+	};
 }
 
 export default connect(mapStateToProps, null, null, options)(AssetCollection);

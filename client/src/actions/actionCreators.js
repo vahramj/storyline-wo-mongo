@@ -10,7 +10,8 @@ const {
 	CALC_INSERT_POSITION,
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
-	SET_FRAME_REQUESTOR
+	SET_FRAME_REQUESTOR,
+	SET_SEARCH_TERM
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -29,17 +30,9 @@ export function deSelectAsset() {
 
 export function handleTimelineClick(event, assetId) {
 	const clickPosRelToViewport = event.clientX;
+	// Vahram, move elemPos calculation to Timeline & TimelineAsset
 	const elemPosRelToViewport = Math.round(event.currentTarget.getBoundingClientRect().left);
 	const clickPosition = clickPosRelToViewport - elemPosRelToViewport;
-	// console.log(
-	// 	"clickPosRelToViewport: ",
-	// 	clickPosRelToViewport,
-	// 	"elemPosRelToViewport: ",
-	// 	elemPosRelToViewport,
-	// 	"clickPosition: ",
-	// 	clickPosition
-	// );
-	// console.log("target elem: ", event.currentTarget);
 	return {
 		type: CLICK_TIMELINE,
 		payload: {
@@ -128,5 +121,12 @@ export function setFrameRequestor(assetId, requestedFrame){
 	return {
 		type: SET_FRAME_REQUESTOR,
 		payload: {assetId, requestedFrame}
+	}
+}
+
+export function setSearchTerm(term, searchType){
+	return {
+		type: SET_SEARCH_TERM,
+		payload: {searchType, term}
 	}
 }
