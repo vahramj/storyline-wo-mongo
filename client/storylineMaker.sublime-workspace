@@ -4,8 +4,136 @@
 		"selected_items":
 		[
 			[
+				"c",
+				"component"
+			],
+			[
+				"hidd",
+				"hiddenClassName"
+			],
+			[
+				"init",
+				"initialData"
+			],
+			[
+				"sear",
+				"searchedAssets"
+			],
+			[
+				"searc",
+				"searchTerm"
+			],
+			[
+				"fil",
+				"filterAssetsBySearchTerm"
+			],
+			[
+				"colle",
+				"collectionAssets"
+			],
+			[
+				"searchTermR",
+				"searchTermReducer"
+			],
+			[
+				"search",
+				"searchTermReducer"
+			],
+			[
+				"sera",
+				"searchTerm"
+			],
+			[
+				"ser",
+				"searchTerm"
+			],
+			[
+				"asses",
+				"assetsDataReducer"
+			],
+			[
+				"assetsD",
+				"assetsDataReducer"
+			],
+			[
+				"is",
+				"isDragging"
+			],
+			[
+				"get",
+				"getDragStyle"
+			],
+			[
+				"ass",
+				"assetId"
+			],
+			[
+				"dnd",
+				"dndType"
+			],
+			[
+				"dn",
+				"dndType"
+			],
+			[
+				"asset",
+				"assetData"
+			],
+			[
+				"on",
+				"onClickHandler"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"Dra",
+				"DraggedAsset"
+			],
+			[
+				"DnD",
+				"DnDtype"
+			],
+			[
+				"T",
+				"TimelineAssetBase"
+			],
+			[
+				"Tm",
+				"TimelineAssetBase"
+			],
+			[
+				"inser",
+				"insertIndicator"
+			],
+			[
+				"timle",
+				"TimelineAssetBase"
+			],
+			[
+				"Time",
+				"TimelineAssetBase"
+			],
+			[
+				"dec",
+				"decorativeProps"
+			],
+			[
+				"props",
+				"propTypes"
+			],
+			[
 				"conne",
-				"connectOptions"
+				"connectDragSource"
+			],
+			[
+				"conn",
+				"connectDragSource"
+			],
+			[
+				"t",
+				"Test"
 			],
 			[
 				"sele",
@@ -21,10 +149,6 @@
 			],
 			[
 				"connect",
-				"connectDragPreview"
-			],
-			[
-				"conn",
 				"connectDragPreview"
 			],
 			[
@@ -50,10 +174,6 @@
 			[
 				"leftEdgeP",
 				"leftEdgePosRelToViewport"
-			],
-			[
-				"Time",
-				"TimelineAssetTail"
 			],
 			[
 				"Tim",
@@ -96,20 +216,12 @@
 				"siblingArr"
 			],
 			[
-				"ass",
-				"asset"
-			],
-			[
 				"sha",
 				"shallowEqual"
 			],
 			[
 				"chil",
 				"childAssets"
-			],
-			[
-				"inser",
-				"insertPosition"
 			],
 			[
 				"inserP",
@@ -138,10 +250,6 @@
 			[
 				"spe",
 				"dropSpec"
-			],
-			[
-				"is",
-				"isRequired"
 			],
 			[
 				"drag",
@@ -174,10 +282,6 @@
 			[
 				"DropT",
 				"DropableTimeline"
-			],
-			[
-				"asset",
-				"assetId"
 			],
 			[
 				"re",
@@ -410,110 +514,6 @@
 			[
 				"onclick",
 				"onClickHandler"
-			],
-			[
-				"selected",
-				"selectedAsset"
-			],
-			[
-				"slected",
-				"selectedAsset"
-			],
-			[
-				"clickPos",
-				"clickPosRelToPage"
-			],
-			[
-				"coll",
-				"collectionData"
-			],
-			[
-				"childA",
-				"childAssetsData"
-			],
-			[
-				"timel",
-				"timelineAssetType"
-			],
-			[
-				"ch",
-				"childAssetId"
-			],
-			[
-				"props",
-				"propsToPass"
-			],
-			[
-				"class",
-				"className"
-			],
-			[
-				"parent",
-				"parentId"
-			],
-			[
-				"As",
-				"ASSET_SELECTED"
-			],
-			[
-				"TimelineA",
-				"TimelineAssetBody"
-			],
-			[
-				"timelineA",
-				"TimelineAssetBody"
-			],
-			[
-				"posit",
-				"positionInParent"
-			],
-			[
-				"in",
-				"initialOpening"
-			],
-			[
-				"width",
-				"widthInParent"
-			],
-			[
-				"childAsse",
-				"childAssetData"
-			],
-			[
-				"edit",
-				"editTint"
-			],
-			[
-				"alin",
-				"align-items"
-			],
-			[
-				"pos",
-				"position"
-			],
-			[
-				"flex",
-				"flex-grow"
-			],
-			[
-				"thu",
-				"thumbImgContainer"
-			],
-			[
-				"thumb",
-				"thumbImgElem"
-			],
-			[
-				"Re",
-				"RequestedComponent"
-			],
-			[
-				"R",
-				"RequestedComponent"
-			],
-			[
-				"phase",
-				"phaseData"
 			]
 		]
 	},
@@ -523,34 +523,34 @@
 			"file": "src/utils/appLogic.js",
 			"settings":
 			{
-				"buffer_size": 16304,
+				"buffer_size": 10727,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/reducers/rootReducer.js",
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 			"settings":
 			{
-				"buffer_size": 4042,
+				"buffer_size": 65911,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/actions/actionCreators.js",
+			"file": "src/index.jsx",
 			"settings":
 			{
-				"buffer_size": 2695,
+				"buffer_size": 210,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/components/TimelineAsset.jsx",
+			"file": "src/components/App.jsx",
 			"settings":
 			{
-				"buffer_size": 2830,
+				"buffer_size": 1462,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -720,40 +720,83 @@
 		"/Current projects/storylilneMaker/dev/client/src",
 		"/Current projects/storylilneMaker/dev/client/src/actions",
 		"/Current projects/storylilneMaker/dev/client/src/components",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset",
 		"/Current projects/storylilneMaker/dev/client/src/reducers",
 		"/Current projects/storylilneMaker/dev/client/src/utils"
 	],
 	"file_history":
 	[
-		"/Current projects/storylilneMaker/dev/client/src/components/Asset.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetRedux.jsx",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Stress Test/Container.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetDnD.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/utils/constants.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/App.jsx",
+		"/Current projects/storylilneMaker/dev/client/webpack.config.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/ClientApp.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/index.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetDetails.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetContainer.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/actions/actionCreators.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/ContainerHolder.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetContainer.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/App.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/index.css",
+		"/Current projects/storylilneMaker/dev/client/src/styles/reset.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetCollection.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/utils/constants.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/rootReducer.js",
+		"/Current projects/storylilneMaker/dev/client/src/utils/renderHelpers.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/searchTermReducer.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/reducers.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/Asset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/assetsDataReducer.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetRedux.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetBase.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/Timeline.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/AssetBase.jsx",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Details.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/App.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/CustomDragLayer.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAsset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetDnD.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset/TimelineAsset.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset/TimelineAssetBody.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetTail.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset/TimelineAssetBase.css",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/DraggableBox.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/CustomDragLayer.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/index.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/Container.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/BoxDragPreview.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetBody.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetBody.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetBase.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAssetBase.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetRedux.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection.css",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetDnD.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/components/Test.jsx",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial copy/webpack.config.js",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial copy/src/index.jsx",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial copy/package.json",
+		"/Current projects/storylilneMaker/dev/client/package.json",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/package.json",
+		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Stress Test/Container.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Cancel on Drop Outside/Container.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Cancel on Drop Outside/Card.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineBody.jsx",
 		"/Current projects/storylilneMaker/dev/client/.babelrc",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineBody.css",
-		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineAsset.css",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Simple/Container.js",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
 		"/Current projects/storylilneMaker/dev/client/src/utils/appLogic.js",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/rootReducer.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/App.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/Timeline.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/Timeline.css",
-		"/Current projects/storylilneMaker/dev/client/src/components/AssetCollection.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/constants.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection.css",
-		"/Current projects/storylilneMaker/dev/client/src/components/styles/App.css",
-		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetContainer.css",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineContainer.css",
-		"/Current projects/storylilneMaker/dev/client/package.json",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drop Targets/Dustbin.js",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Naive/Box.js",
@@ -766,18 +809,13 @@
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/chess tutorial/.babelrc",
 		"/Current projects/storylilneMaker/dev/client/src/components/Thumbnail.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/actions/actionTypes.js",
-		"/Current projects/storylilneMaker/dev/client/src/index.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/AssetContainer.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineContainer.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_updateAppData.js",
 		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_updateData.js",
 		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_selectAsset.js",
-		"/Current projects/storylilneMaker/dev/client/webpack.config.js",
 		"/Current projects/storylilneMaker/dev/client/src/utils/shallowEqual.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset.css",
 		"/Current projects/storylilneMaker/dev/client/.eslintrc.json",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/Toolbox.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/index.css",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/js misc/es6 notes.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/Thumbnail.css",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/Asset-character.css",
@@ -787,8 +825,6 @@
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/AssetCollection-phase.css",
 		"/Current projects/storylilneMaker/dev/client/storylineMaker.sublime-project",
 		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
-		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_new.js",
@@ -817,42 +853,7 @@
 		"/Current projects/storylilneMaker/dev/client/src/Asset.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/Thumbnail.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/styles/App.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Toolbox.css",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/TargetBox.js",
-		"/Current projects/storylilneMaker/dev/client/src/styles/thumbnail.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Asset.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Asset-character.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Asset-phase.css",
-		"/Current projects/storylilneMaker/dev/client/src/Toolbox.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/Timeline.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Timeline.jsx.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/TargetBox.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/FileList.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/06 Other/Native Files/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Drop Effects/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Handles and Previews/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/05 Customize/Handles and Previews/BoxWithHandle.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Stress Test/Card.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Simple/Card.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drop Targets/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drag Sources/SourceBox.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/index.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/CustomDragLayer.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/BoxDragPreview.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/Box.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/DraggableBox.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Custom Drag Layer/shouldPureComponentUpdate.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Box.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Dustbin.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Multiple Targets/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Dustbin.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Single Target/Box.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Container.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Dustbin.js",
-		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/01 Dustbin/Copy or Move/Box.js"
+		"/Current projects/storylilneMaker/dev/client/src/styles/Toolbox.css"
 	],
 	"find":
 	{
@@ -870,6 +871,109 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CustomDragLayer",
+			"component",
+			"div",
+			"hello",
+			"decorator",
+			"AssetContainer",
+			"_",
+			"isOverShallow",
+			"hiddenClassName",
+			"background",
+			"Quicksand",
+			"constants",
+			"toLowercase",
+			"isTermInAsset",
+			"id",
+			"show",
+			"shows",
+			"filterShowsBySearchTerm",
+			"props",
+			"assetsDataReducer",
+			"type",
+			"handleSearchTermChange",
+			"updateSearchterm",
+			"AssetContainer",
+			"sceneSearchTermReducer",
+			"SET_SCENE_SEARCH_TERM",
+			"UPDATE_SEARCH_TERM",
+			"SET_SEARCH_TERM",
+			"UPDATE_SEARCH_TERM",
+			"SET_SEARCH_TERM",
+			"SET_SCENE_SEARCH_TERM",
+			"{",
+			"data",
+			"SET_SCENE_SEARCH_TERM",
+			"combineReducer",
+			"data",
+			"assetsData",
+			"assetData",
+			"redux",
+			"rootReducer",
+			"isHovering",
+			"connectDragPreview",
+			"function",
+			"yellow",
+			"green",
+			"white",
+			"function",
+			"this",
+			"initialOffset",
+			"getItemStyle",
+			"const",
+			"block",
+			"getStyle",
+			"console",
+			"$",
+			"connectDragSource",
+			"props",
+			"left",
+			"block",
+			"style",
+			"transfrom",
+			"currenOffset",
+			"selected",
+			"renderLayer",
+			"props",
+			"DnDtype",
+			"DnDTypes",
+			"assetId",
+			"type",
+			"case",
+			"TimelineAssetBase",
+			"TimelineBody",
+			"getOwner",
+			"asset",
+			"ownerElem",
+			"getOwner",
+			"ownerElem",
+			"TimelineAssetBase",
+			"this",
+			"connect",
+			"TimelineAsset",
+			"assetId",
+			"TimelineAssetBase",
+			"this",
+			"base",
+			"this",
+			"assetData",
+			"type",
+			"base",
+			"asset",
+			"id",
+			"AssetDecorative",
+			"assetData",
+			"asset",
+			"Asset",
+			"Asset ",
+			"Asset",
+			"containerAssetAttributes",
+			"Asset",
+			"getEmptyImage",
+			"Knight",
+			"KNIGHT",
+			"Knight",
 			"NoRequestors",
 			"nextNoRequestors",
 			"NoReqs",
@@ -894,48 +998,7 @@
 			"requestFrame",
 			"setRequestFrame",
 			"resetRequestFrame",
-			"setRequestFrame",
-			"RESET_REQUEST_FRAME",
-			"SET_REQUEST_FRAME",
-			"RESET_REQUEST_FRAME",
-			"SET_REQUEST_FRAME",
-			"requestFrame",
-			"requestedFrame",
-			"animation",
-			"hello",
-			"this",
-			"preview",
-			"absolute",
-			"connectDragPreview",
-			"pushNeighboursToFitIn",
-			"siblings",
-			"resizeAssetToFitTimeline",
-			"dropElem",
-			"RESIZE_ASSET_TO",
-			"dragAmount",
-			"resizeAssetTo",
-			"amount",
-			"resizeAssetByAmount",
-			"data",
-			"const",
-			"leftEdgePos",
-			"leftEdgePosRelToViewport",
-			"RESIZE_ASSET",
-			"ownerId",
-			"assetId",
-			"getInitialClientOffset",
-			"getDifferenceFromInitialOffset",
-			"dragStartPos",
-			"isDragging",
-			"dropElem",
-			"handleMouseMove",
-			"props",
-			"coursorStyle",
-			"hoverStyle",
-			"dragSource",
-			"TimelineAssetTail",
-			"}",
-			"{"
+			"setRequestFrame"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -962,15 +1025,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16304,
+						"buffer_size": 10727,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9791,
-								9791
+								10723,
+								10723
 							]
 						],
 						"settings":
@@ -983,12 +1046,18 @@
 							[
 								"sublime_linter.protected_regions"
 							],
+							"SL.16.region_keys":
+							[
+							],
+							"SL.28.region_keys":
+							[
+							],
 							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7563.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -996,66 +1065,27 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/reducers/rootReducer.js",
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4042,
+						"buffer_size": 65911,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3761,
-								3761
+								22882,
+								22895
 							]
 						],
 						"settings":
 						{
-							"SL.102.region_keys":
+							"SL.138.region_keys":
 							[
-								"sublime_linter.protected_regions"
 							],
-							"SL.15.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2089.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/actions/actionCreators.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2695,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								265,
-								265
-							],
-							[
-								2652,
-								2652
-							]
-						],
-						"settings":
-						{
-							"SL.40.region_keys":
+							"SL.17.region_keys":
 							[
 							],
 							"git_gutter_is_enabled": true,
@@ -1063,43 +1093,83 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1587.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "src/components/TimelineAsset.jsx",
+					"buffer": 2,
+					"file": "src/index.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2830,
+						"buffer_size": 210,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1011,
-								1011
+								158,
+								158
 							]
 						],
 						"settings":
 						{
-							"SL.33.region_keys":
+							"SL.160.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"SL.18.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/components/App.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1462,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1265,
+								1265
+							]
+						],
+						"settings":
+						{
+							"SL.118.region_keys":
 							[
 								"sublime_linter.protected_regions",
 								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot",
 								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32"
+							],
+							"SL.19.region_keys":
+							[
+								"sublime_linter.protected_regions"
 							],
 							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 339.0,
+						"translation.y": 278.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1341,7 +1411,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 266.0,
+	"side_bar_width": 330.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

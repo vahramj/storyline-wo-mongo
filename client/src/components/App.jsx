@@ -32,16 +32,20 @@ class App extends Component {
 	}
 	render(){
 		return (
-			<Provider store={store}>
-				<div>
-					<header id="main-header">
-						<h1>Storyline Maker</h1>
-					</header>
-					<ContainerHolder />
-					<AssetDetails />
-					<CustomDragLayer /> 
-				</div>
-			</Provider>
+			<BrowserRouter>
+				<Provider store={store}>
+					<div>
+						<header id="main-header">
+							<h1>Storyline Maker</h1>
+						</header>
+						<Switch>
+							<Route path="/details" component={ AssetDetails } />
+							<Route path="/" component={ ContainerHolder } />
+						</Switch>
+						<CustomDragLayer /> 
+					</div>
+				</Provider>
+			</BrowserRouter>
 		);
 	}
 };
