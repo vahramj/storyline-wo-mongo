@@ -14,7 +14,7 @@ const TimelineContainer = ()=>{
 					<h2>{`timeline`.toUpperCase()}</h2>
 				</div>
 			</header>
-			<div id="work-area">
+			<div className="container-body">
 				<Toolbox />
 				<Timeline />
 			</div>

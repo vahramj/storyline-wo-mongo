@@ -47,7 +47,7 @@ const collectDnD = (connectDnD, monitor) => {
 const ContainerHolder = props => {
 	// console.log("isOver :", props.isOver);
 	return props.connectDropTarget(
-		<div className="container-holder" role="none" onClick={props.deSelectAsset}>
+		<div role="none" onClick={props.deSelectAsset}>
 			<div className="asset-containers">
 				<AssetContainer type="phase" />
 				<AssetContainer type="scene" />

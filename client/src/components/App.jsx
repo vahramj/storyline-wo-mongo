@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import rootReducer from "../reducers/rootReducer";
 import ContainerHolder from "./ContainerHolder";
-import AssetDetails from "./AssetDetails";
+import DetailContainer from "./DetailContainer";
 import CustomDragLayer from "./CustomDragLayer";
 
 import "./styles/App.css";
@@ -38,10 +38,12 @@ class App extends Component {
 						<header id="main-header">
 							<h1>Storyline Maker</h1>
 						</header>
-						<Switch>
-							<Route path="/details" component={ AssetDetails } />
-							<Route path="/" component={ ContainerHolder } />
-						</Switch>
+						<div className="main">
+							<Switch>
+								<Route path="/details" component={ DetailContainer } />
+								<Route path="/" component={ ContainerHolder } />
+							</Switch>
+						</div>
 						<CustomDragLayer /> 
 					</div>
 				</Provider>
