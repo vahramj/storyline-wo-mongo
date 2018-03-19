@@ -48,7 +48,7 @@ const DetailContainer = props => {
 
 					<fieldset>
 						<div className="btns">
-							<button className="btn btn-primary"> add </button>						
+							<button className="btn btn-primary">add</button>						
 							<Link className="btn btn-danger" to="/">cancel</Link>
 						</div>
 					</fieldset>
