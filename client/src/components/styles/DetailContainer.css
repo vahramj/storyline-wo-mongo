@@ -4,6 +4,8 @@
 	min-width: 620px;
 
 	background: rgb(234,234,234);
+	
+	/*font-family: 'Quicksand', sans-serif;*/
 }
 
 /*header*/
@@ -33,7 +35,6 @@
 	margin-bottom: 50%;
 	color: rgb(170,182, 180);
 
-	font-family: 'Quicksand', sans-serif;
 	font-size: 18pt;
 	font-weight: lighter;
 
@@ -45,4 +46,26 @@
 	/*flex-direction: column;*/
 	width: 100%;
 	min-height: 552px;
+}
+
+.detail-container .container-body form {
+	padding: 0 30px;
+}
+
+.detail-container .container-body form p {
+	margin: 10px 0;
+}
+
+.detail-container .container-body fieldset{
+	/*border: 1px black solid;*/
+	/*padding: 10px;*/
+	margin: 10px 0;
+}
+
+.detail-container .container-body .btns{
+	margin-top: 20px;
+}
+
+.detail-container .container-body .btn{
+	margin-right: 20px;
 }
