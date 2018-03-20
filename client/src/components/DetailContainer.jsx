@@ -5,14 +5,14 @@ import { string, shape } from "prop-types";
 import "./styles/DetailContainer.css";
 
 const DetailContainer = (props) => {
-	const { type } = props.match.params;
+	const { type, operation } = props.match.params;
 	console.log(props);
 
 	return (
 		<div className="detail-container">
 			<header>
 				<div className="h2Wrapper">
-					<h2>{`add ${type}`.toUpperCase()}</h2>
+					<h2>{`${operation} ${type}`.toUpperCase()}</h2>
 				</div>
 			</header>
 			<div className="container-body">

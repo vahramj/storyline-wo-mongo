@@ -1,6 +1,7 @@
 import React from "react";
 import { string, func } from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import AssetCollection from "./AssetCollection";
 import { setSearchTerm } from "../actions/actionCreators";
@@ -22,7 +23,9 @@ const AssetContainer = props => {
 				<div className="h2Wrapper">
 					<h2>{`${type}s`.toUpperCase()}</h2>
 				</div>
-				<div className="small-plus-icon">&#43;</div>
+				<Link to={`details/add/${type}`}>
+					<div className="small-plus-icon">&#43;</div>
+				</Link>
 			</header>
 			<section className="container-body">
 				<div className="search-bg-fader">
