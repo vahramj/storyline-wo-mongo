@@ -85,7 +85,7 @@ const phaseData = {
 			// 	id: "scn_08",
 			// },
 		],
-		image: "./static/images/phase_thumbnails/opening image 02_thumb.png"
+		image: "/static/images/phase_thumbnails/opening image 02_thumb.png"
 	},
 	phs_03: {
 		id: "phs_03",

@@ -15,7 +15,7 @@
 }
 
 #add-asset .large-plus-icon:hover {
-	cursor: pointer;
+	/*cursor: pointer;*/
 	background: white;
 	box-shadow: 0 0 75px 30px rgba(255,255,255,1);
 }

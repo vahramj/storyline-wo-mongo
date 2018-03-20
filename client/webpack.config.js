@@ -32,7 +32,9 @@ module.exports = {
 	},
 	devServer: {
 		// inline: false
-		historyApiFallback: true
+		historyApiFallback: true,
+		// publicPath: "/static/",
+		// contentBase: "./",
 	},
 	plugins: [ 
 		new ExtractTextPlugin("styles.css")

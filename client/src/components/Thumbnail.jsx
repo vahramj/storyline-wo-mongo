@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
 import { string } from "prop-types";
+import path from "path";
 
 import "./styles/Thumbnail.css";
+
 
 const frameSizes = {
 	phase: {frameWidth: 125, frameHeight: 70},
@@ -10,16 +12,17 @@ const frameSizes = {
 }
 
 const defaultImages = {
-	phase: "./static/images/phase_thumbnails/phase_default_04_thumb.png",
-	character: "./static/images/character_thumbnails/character_default-02.png",
-	scene: "./static/images/scene_thumbnails/scene_default_01.png",
+	phase: "/static/images/phase_thumbnails/phase_default_04_thumb.png",
+	character: "/static/images/character_thumbnails/character_default-02.png",
+	scene: "/static/images/scene_thumbnails/scene_default_01.png",
 };
 class Thumbnail extends PureComponent{
 	constructor(props){
 		super(props);
 
 		this.state = {
-			image: this.props.image || defaultImages[props.type]
+			image: path.resolve(this.props.image || defaultImages[props.type])
+			// image: this.props.image || defaultImages[props.type]
 		}
 	};
 
