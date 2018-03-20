@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { string, arrayOf } from "prop-types";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Asset from "./Asset";
 import shallowEqual from "../utils/shallowEqual";
@@ -56,7 +57,9 @@ class AssetCollection extends Component {
 
 					<li>
 						<div id="add-asset">
-							<div className="large-plus-icon">&#43;</div>
+							<Link to="/details">
+								<div className="large-plus-icon">&#43;</div>
+							</Link>
 						</div>
 					</li>
 				</ul>

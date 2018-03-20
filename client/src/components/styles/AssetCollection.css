@@ -20,13 +20,18 @@
 	box-shadow: 0 0 75px 30px rgba(255,255,255,1);
 }
 
+#add-asset {
+	box-sizing: border-box;
+}
+
 #add-asset .large-plus-icon {
 	border: 4px rgb(120, 160, 160) solid;
 	width: 65px;
 	height: 65px;
-	margin: auto;
 
 	font-size: 60px;
 	text-align: center;
 	color: rgb(120, 160, 160);
+
+	display: inline-block;
 }

@@ -43,9 +43,10 @@
 	width: 125px;
 	height: 95px;
 	/*border: 1px solid green;*/
+	/*padding-top: 11px;*/
+	padding: 0 20px;
 }
 
 .phase-collection #add-asset .large-plus-icon {
-	margin-top: 11px;
 }
 
