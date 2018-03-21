@@ -57,7 +57,7 @@ class AssetCollection extends Component {
 
 					<li>
 						<div id="add-asset">
-							<Link to={`/details/add/${type}`}>
+							<Link to={`/add/${type}`}>
 								<div className="large-plus-icon">&#43;</div>
 							</Link>
 						</div>

@@ -69,3 +69,19 @@
 .detail-container .container-body .btn{
 	margin-right: 20px;
 }
+
+.detail-container .container-body .dropzone{
+	width: 125px;
+	height: 70px;
+	border: 2px dashed rgb(78,79,81);
+}
+
+.detail-container .container-body .dropzone div{
+	/*margin: auto;*/
+	padding: 3px;
+}
+.detail-container .container-body .dropzone p{
+	text-align: center;
+	font-size: 10pt;
+	margin: 3px 0;
+}

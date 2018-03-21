@@ -35,6 +35,12 @@ export const assetTypeHierarchy = {
 	character: { child: null, parent: "scene" }
 };
 
+export const frameSizes = {
+	phase: {frameWidth: 125, frameHeight: 70},
+	scene: {frameWidth: 125, frameHeight: 70},
+	character: {frameWidth: 78, frameHeight: 78},
+}
+
 export const headWidthList = {
 	timeline: 0,
 	phase: 135,

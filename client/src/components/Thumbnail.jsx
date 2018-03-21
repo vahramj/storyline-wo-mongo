@@ -2,14 +2,9 @@ import React, { PureComponent } from "react";
 import { string } from "prop-types";
 import path from "path";
 
+import { frameSizes } from "../utils/constants";
+
 import "./styles/Thumbnail.css";
-
-
-const frameSizes = {
-	phase: {frameWidth: 125, frameHeight: 70},
-	scene: {frameWidth: 125, frameHeight: 70},
-	character: {frameWidth: 78, frameHeight: 78},
-}
 
 const defaultImages = {
 	phase: "/static/images/phase_thumbnails/phase_default_04_thumb.png",
