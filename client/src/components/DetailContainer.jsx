@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape } from "prop-types";
 import Dropzone from "react-dropzone";
+import sha1 from "sha1";
+import superagent from 'superagent';
 
 import "./styles/DetailContainer.css";
 
@@ -22,7 +24,53 @@ class DetailContainer extends Component {
 
 	onImageChange = event => {
 		console.log(event.target.files);
-	}
+	};
+
+	uploadFile = (files) => {
+		console.log(files)
+
+		const image = files[0];
+
+		const cloudName = "cldimgs";
+		const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+		
+		const timestamp = Date.now()/1000;
+		const uploadPreset = "affevzry";
+		const secret = "1IA49RibTzlQ-NmpNFt9i7LYVz0";
+
+		const paramsStr = `timestamp=${timestamp}&upload_preset=${uploadPreset}${secret}`;
+		const signature = sha1(paramsStr);
+		console.log("paramsStr: ", paramsStr);
+		console.log("signature: ", signature);
+		
+		const params = {
+			timestamp,
+			signature,
+			"api_key": "295886862954169",
+			"upload_preset": uploadPreset,
+		};
+
+		const uploadRequest = superagent.post(url);
+		uploadRequest.attach("file", image);
+
+		Object.keys(params).forEach(key=>{
+			uploadRequest.field(key, params[key])
+		});
+
+		uploadRequest.end((err, resp) => {
+			if(err){
+				alert("err: ", err);
+				return;
+			}
+			
+			const uploaded = resp.body;
+			console.log("upload complete: ", JSON.stringify(uploaded));
+			
+			// const images = Object.assign([], this.state.images);
+			// images.push(uploaded);
+			// this.setState({images});
+		});
+	};
 
 	handleNameChange = event => {
 		this.setState({
@@ -78,7 +126,7 @@ class DetailContainer extends Component {
 						</fieldset>
 
 						<fieldset>
-							<Dropzone className="dropzone">
+							<Dropzone className="dropzone" onDrop={this.uploadFile}>
 								<div>
 									<p>click me</p>
 									<p>or</p> 
