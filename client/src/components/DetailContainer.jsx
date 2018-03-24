@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape } from "prop-types";
 import Dropzone from "react-dropzone";
-import sha1 from "sha1";
-import superagent from 'superagent';
+
+import uploadImage from "../utils/uploadImage";
 
 import "./styles/DetailContainer.css";
 
@@ -12,7 +12,7 @@ class DetailContainer extends Component {
 		super(props);
 		this.state = {
 			name: "",
-			summary: "",
+			summary: ""
 		};
 	}
 
@@ -26,62 +26,20 @@ class DetailContainer extends Component {
 		console.log(event.target.files);
 	};
 
-	uploadFile = (files) => {
-		console.log(files)
-
-		const image = files[0];
-
-		const cloudName = "cldimgs";
-		const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
-		
-		const timestamp = Date.now()/1000;
-		const uploadPreset = "affevzry";
-		const secret = "1IA49RibTzlQ-NmpNFt9i7LYVz0";
-
-		const paramsStr = `timestamp=${timestamp}&upload_preset=${uploadPreset}${secret}`;
-		const signature = sha1(paramsStr);
-		console.log("paramsStr: ", paramsStr);
-		console.log("signature: ", signature);
-		
-		const params = {
-			timestamp,
-			signature,
-			"api_key": "295886862954169",
-			"upload_preset": uploadPreset,
-		};
-
-		const uploadRequest = superagent.post(url);
-		uploadRequest.attach("file", image);
-
-		Object.keys(params).forEach(key=>{
-			uploadRequest.field(key, params[key])
-		});
-
-		uploadRequest.end((err, resp) => {
-			if(err){
-				alert("err: ", err);
-				return;
-			}
-			
-			const uploaded = resp.body;
-			console.log("upload complete: ", JSON.stringify(uploaded));
-			
-			// const images = Object.assign([], this.state.images);
-			// images.push(uploaded);
-			// this.setState({images});
-		});
-	};
+	handleUploadImage = files => {
+		uploadImage(files[0]);
+	}
 
 	handleNameChange = event => {
 		this.setState({
 			name: event.target.value
-		})
+		});
 	};
 
 	handleSummaryChange = event => {
 		this.setState({
 			summary: event.target.value
-		})
+		});
 	};
 
 	render() {
@@ -96,7 +54,7 @@ class DetailContainer extends Component {
 					</div>
 				</header>
 				<div className="container-body">
-					<form onSubmit={this.onSubmit} >
+					<form onSubmit={this.onSubmit}>
 						<fieldset>
 							<label htmlFor="name">
 								<p> Name for phase </p>
@@ -126,10 +84,16 @@ class DetailContainer extends Component {
 						</fieldset>
 
 						<fieldset>
-							<Dropzone className="dropzone" onDrop={this.uploadFile}>
+							<Dropzone
+								className="dropzone"
+								onDrop={this.handleUploadImage}
+								ref={elem => {
+									this.dropzoneElem = elem;
+								}}
+							>
 								<div>
 									<p>click me</p>
-									<p>or</p> 
+									<p>or</p>
 									<p>drop an image onto me</p>
 								</div>
 							</Dropzone>
