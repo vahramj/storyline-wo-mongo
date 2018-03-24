@@ -1,5 +1,5 @@
 import sha1 from "sha1";
-import superagent from "superagent";
+import request from "superagent";
 
 // vahram, when all is working try this with axios
 // vahram, when all is working try this w/ regular file loader
@@ -27,26 +27,38 @@ function uploadFile (file) {
 		upload_preset: uploadPreset
 	};
 
-	const uploadRequest = superagent.post(url);
-	uploadRequest.attach("file", image);
+	const uploadProm = request
+		.post(url)
+		.attach("file", image);
 
 	Object.keys(params).forEach(key => {
-		uploadRequest.field(key, params[key]);
+		uploadProm.field(key, params[key]);
 	});
 
-	uploadRequest.end((err, resp) => {
-		if (err) {
-			alert("err: ", err);
-			return;
-		}
+	uploadProm.then((value)=>{
+		console.log(value);
+	})
+	// const uploadRequest = request.post(url);
+	// uploadRequest.attach("file", image);
 
-		const uploaded = resp.body;
-		console.log("upload complete: ", uploaded);
+	// Object.keys(params).forEach(key => {
+	// 	uploadRequest.field(key, params[key]);
+	// });
 
-		// const images = Object.assign([], this.state.images);
-		// images.push(uploaded);
-		// this.setState({images});
-	});
+	// uploadRequest.end((err, resp) => {
+	// 	if (err) {
+	// 		alert("err: ", err);
+	// 		return null;
+	// 	}
+
+	// 	const uploaded = resp.body;
+	// 	console.log("upload complete: ", uploaded);
+
+	// 	return resp.body.secure_url;
+	// 	// const images = Object.assign([], this.state.images);
+	// 	// images.push(uploaded);
+	// 	// this.setState({images});
+	// });
 };
 
 export default uploadFile;
