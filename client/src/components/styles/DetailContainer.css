@@ -69,37 +69,6 @@
 	margin-right: 20px;
 }
 
-.detail-container .dropzone {
-	width: 125px;
-	height: 70px;
-	border: 2px dashed rgb(78, 79, 81);
-}
 
-.detail-container .dropzone div {
-	/*margin: auto;*/
-}
-
-.detail-container .dropzone p,
-.detail-container .dropzone img {
-	text-align: center;
-	font-size: 10pt;
-	margin: 3px 0;
-	line-height: 15px;
-}
-
-.detail-container .dropzone p{
-	padding: 0 3px;
-}
-
-.image-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
-}
-
-.image-container p{
-
-}
 
 

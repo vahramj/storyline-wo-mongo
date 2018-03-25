@@ -4,6 +4,8 @@ import { string } from "prop-types";
 
 import uploadImage from "../utils/uploadImage";
 
+import "./styles/ImageSelector.css";
+
 class ImageSelector extends Component {
 	constructor(props) {
 		super(props);
