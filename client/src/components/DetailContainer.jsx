@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape } from "prop-types";
-import Dropzone from "react-dropzone";
+// import Dropzone from "react-dropzone";
 
-import uploadImage from "../utils/uploadImage";
+import ImageSelector from "./ImageSelector";
+// import uploadImage from "../utils/uploadImage";
 
 import "./styles/DetailContainer.css";
 
@@ -12,7 +13,7 @@ class DetailContainer extends Component {
 		super(props);
 		this.state = {
 			name: "",
-			summary: ""
+			summary: "",
 		};
 	}
 
@@ -26,9 +27,7 @@ class DetailContainer extends Component {
 		console.log(event.target.files);
 	};
 
-	handleUploadImage = files => {
-		uploadImage(files[0]);
-	}
+
 
 	handleNameChange = event => {
 		this.setState({
@@ -57,7 +56,7 @@ class DetailContainer extends Component {
 					<form onSubmit={this.onSubmit}>
 						<fieldset>
 							<label htmlFor="name">
-								<p> Name for phase </p>
+								<h3> Name for phase </h3>
 								<input
 									type="text"
 									id="name"
@@ -70,7 +69,7 @@ class DetailContainer extends Component {
 
 						<fieldset>
 							<label htmlFor="summary">
-								<p>Summary</p>
+								<h3>Summary</h3>
 								<textarea
 									type="text"
 									id="summary"
@@ -84,33 +83,10 @@ class DetailContainer extends Component {
 						</fieldset>
 
 						<fieldset>
-							<Dropzone
-								className="dropzone"
-								onDrop={this.handleUploadImage}
-								ref={elem => {
-									this.dropzoneElem = elem;
-								}}
-							>
-								<div>
-									<p>click me</p>
-									<p>or</p>
-									<p>drop an image onto me</p>
-								</div>
-							</Dropzone>
-							{/*
 							<label htmlFor="file">
-								<p>Select image</p>
-								<input
-									type="file"
-									id="imageFile"
-									name="imageFile"
-									ref = {inputElem => {
-										this.fileInputElem = inputElem
-									}}
-									onChange = {this.onImageChange}
-								/>
+								<h3>Select image</h3>
+								<ImageSelector type={this.props.match.params.type} /> 
 							</label>
-							*/}
 
 							{/*
 							<label htmlFor="image-url">

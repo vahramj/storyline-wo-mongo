@@ -3,7 +3,7 @@ import request from "superagent";
 
 // vahram, when all is working try this with axios
 // vahram, when all is working try this w/ regular file loader
-function uploadFile (file) {
+async function uploadFile (file) {
 	console.log(file);
 
 	const image = file;
@@ -35,30 +35,9 @@ function uploadFile (file) {
 		uploadProm.field(key, params[key]);
 	});
 
-	uploadProm.then((value)=>{
-		console.log(value);
-	})
-	// const uploadRequest = request.post(url);
-	// uploadRequest.attach("file", image);
+	const reqResult = await uploadProm;
 
-	// Object.keys(params).forEach(key => {
-	// 	uploadRequest.field(key, params[key]);
-	// });
-
-	// uploadRequest.end((err, resp) => {
-	// 	if (err) {
-	// 		alert("err: ", err);
-	// 		return null;
-	// 	}
-
-	// 	const uploaded = resp.body;
-	// 	console.log("upload complete: ", uploaded);
-
-	// 	return resp.body.secure_url;
-	// 	// const images = Object.assign([], this.state.images);
-	// 	// images.push(uploaded);
-	// 	// this.setState({images});
-	// });
+	return reqResult.body.secure_url;
 };
 
 export default uploadFile;

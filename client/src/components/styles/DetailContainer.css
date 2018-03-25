@@ -3,37 +3,36 @@
 	display: flex;
 	min-width: 620px;
 
-	background: rgb(234,234,234);
-	
+	background: rgb(234, 234, 234);
+
 	/*font-family: 'Quicksand', sans-serif;*/
 }
 
 /*header*/
-.detail-container header{
-
+.detail-container header {
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
 
 	padding: 5px 1px 5px 0;
-	
+
 	width: 33px;
 	/*min-width is for safari*/
 	min-width: 33px;
-	
-	background: rgb(78,79,81);
+
+	background: rgb(78, 79, 81);
 }
 
-.detail-container header .h2Wrapper{
+.detail-container header .h2Wrapper {
 	/* fixes the rotation offset*/
 	margin: 0 1px -10px 0;
 }
 
-.detail-container header h2{
+.detail-container header h2 {
 	transform: rotate(-90deg);
 
 	margin-bottom: 50%;
-	color: rgb(170,182, 180);
+	color: rgb(170, 182, 180);
 
 	font-size: 18pt;
 	font-weight: lighter;
@@ -49,39 +48,58 @@
 	padding: 0 30px 30px;
 }
 
-.detail-container .container-body form {
+.detail-container form {
 }
 
-.detail-container .container-body form p {
+.detail-container form h3 {
 	margin: 10px 0;
 }
 
-.detail-container .container-body fieldset{
+.detail-container fieldset {
 	/*border: 1px black solid;*/
 	/*padding: 10px;*/
 	margin: 10px 0;
 }
 
-.detail-container .container-body .btns{
+.detail-container .btns {
 	margin-top: 20px;
 }
 
-.detail-container .container-body .btn{
+.detail-container .btn {
 	margin-right: 20px;
 }
 
-.detail-container .container-body .dropzone{
+.detail-container .dropzone {
 	width: 125px;
 	height: 70px;
-	border: 2px dashed rgb(78,79,81);
+	border: 2px dashed rgb(78, 79, 81);
 }
 
-.detail-container .container-body .dropzone div{
+.detail-container .dropzone div {
 	/*margin: auto;*/
-	padding: 3px;
 }
-.detail-container .container-body .dropzone p{
+
+.detail-container .dropzone p,
+.detail-container .dropzone img {
 	text-align: center;
 	font-size: 10pt;
 	margin: 3px 0;
+	line-height: 15px;
 }
+
+.detail-container .dropzone p{
+	padding: 0 3px;
+}
+
+.image-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+.image-container p{
+
+}
+
+
