@@ -3,6 +3,7 @@ import Dropzone from "react-dropzone";
 import { string } from "prop-types";
 
 import uploadImage from "../utils/uploadImage";
+import { frameSizes } from "../utils/constants";
 
 import "./styles/ImageSelector.css";
 
@@ -36,17 +37,17 @@ class ImageSelector extends Component {
 		this.setState({
 			image: files[0].preview
 		});
-		console.log(files[0].preview)
+		console.log(files[0].preview);
+	};
 
-	}
-
-	frameImage = (event) => {
+	frameImage = event => {
 		event.preventDefault();
 		event.stopPropagation();
 		console.log(this);
-	}
+	};
 
 	renderImage = () => {
+		const { type } = this.props;
 		let image;
 		if (this.state.image === null) {
 			image = (
@@ -56,18 +57,16 @@ class ImageSelector extends Component {
 					drop an image onto me
 				</p>
 			);
-		} 
-		else if (this.state.image === "uploading") {
+		} else if (this.state.image === "uploading") {
 			image = <p>uploading...</p>;
-		} 
-		else {
+		} else {
 			image = (
 				<div>
 					<p style={{ display: this.state.loaded ? "none" : "block" }}>uploading...</p>
 					<img
-						style={{display: this.state.loaded ? "block" : "none"}}
+						style={{ display: this.state.loaded ? "block" : "none" }}
 						src={this.state.image}
-						alt={`thumbnail for ${this.props.type}`}
+						alt={`thumbnail for ${type}`}
 						onLoad={() => {
 							this.setState({ loaded: true });
 						}}
@@ -75,8 +74,20 @@ class ImageSelector extends Component {
 				</div>
 			);
 		}
-		return <div className="image-loader-frame">{image}</div>;
-	}
+		const { frameWidth, frameHeight } = frameSizes[type];
+		// console.log(frameWidth, frameHeight)
+		return (
+			<div
+				className="image-loader-frame"
+				style={{
+					width: frameWidth,
+					height: frameHeight
+				}}
+			>
+				{image}
+			</div>
+		);
+	};
 
 	render() {
 		return (
@@ -91,7 +102,9 @@ class ImageSelector extends Component {
 				>
 					{this.renderImage}
 				</Dropzone>
-				<button className="btn" onClick={this.frameImage}>frame</button>
+				<button className="btn" onClick={this.frameImage}>
+					frame
+				</button>
 			</div>
 
 			// <input
