@@ -20,13 +20,19 @@
 	padding: 0 3px;
 }
 
-.image-container {
+.image-loader {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
+	/*align-items: center;*/
 }
 
-.image-container p{
+.image-loader-frame {
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*justify-content: center;*/
+	height: 100%;
+	overflow: hidden;
+}
+
+.image-loader-frame p{
 
 }

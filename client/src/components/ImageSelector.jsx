@@ -18,7 +18,6 @@ class ImageSelector extends Component {
 	uploadImage = files => {
 		this.setState({
 			image: "uploading"
-			// image: files[0].preview
 		});
 
 		uploadImage(files[0])
@@ -33,11 +32,23 @@ class ImageSelector extends Component {
 			});
 	};
 
+	showPreview = files => {
+		this.setState({
+			image: files[0].preview
+		});
+		console.log(files[0].preview)
+
+	}
+
+	frameImage = (event) => {
+		event.preventDefault();
+		event.stopPropagation();
+		console.log(this);
+	}
+
 	renderImage = () => {
 		let image;
-		if (this.state.image === "uploading") {
-			image = <p>uploading...</p>;
-		} else if (this.state.image === null) {
+		if (this.state.image === null) {
 			image = (
 				<p>
 					click me<br />
@@ -45,7 +56,11 @@ class ImageSelector extends Component {
 					drop an image onto me
 				</p>
 			);
-		} else {
+		} 
+		else if (this.state.image === "uploading") {
+			image = <p>uploading...</p>;
+		} 
+		else {
 			image = (
 				<div>
 					<p style={{ display: this.state.loaded ? "none" : "block" }}>uploading...</p>
@@ -60,20 +75,24 @@ class ImageSelector extends Component {
 				</div>
 			);
 		}
-		return <div className="image-container">{image}</div>;
-	};
+		return <div className="image-loader-frame">{image}</div>;
+	}
 
 	render() {
 		return (
-			<Dropzone
-				className="dropzone"
-				onDrop={this.uploadImage}
-				ref={elem => {
-					this.dropzoneElem = elem;
-				}}
-			>
-				{this.renderImage}
-			</Dropzone>
+			<div className="image-loader">
+				<Dropzone
+					className="dropzone"
+					// onDrop={this.uploadImage}
+					onDrop={this.showPreview}
+					ref={elem => {
+						this.dropzoneElem = elem;
+					}}
+				>
+					{this.renderImage}
+				</Dropzone>
+				<button className="btn" onClick={this.frameImage}>frame</button>
+			</div>
 
 			// <input
 			// 	type="file"
