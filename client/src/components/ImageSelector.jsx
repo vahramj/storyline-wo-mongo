@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { string } from "prop-types";
 
+import ImageEditor from "./ImageEditor";
+
 import uploadImage from "../utils/uploadImage";
 import { frameSizes } from "../utils/constants";
 
@@ -12,7 +14,8 @@ class ImageSelector extends Component {
 		super(props);
 		this.state = {
 			image: null,
-			loaded: false
+			loaded: false,
+			showImageEditor: false
 		};
 	}
 
@@ -37,13 +40,16 @@ class ImageSelector extends Component {
 		this.setState({
 			image: files[0].preview
 		});
-		console.log(files[0].preview);
+		// console.log(files[0].preview);
 	};
 
 	frameImage = event => {
 		event.preventDefault();
 		event.stopPropagation();
 		console.log(this);
+		this.setState({
+			showImageEditor: true
+		})
 	};
 
 	renderImage = () => {
@@ -102,6 +108,7 @@ class ImageSelector extends Component {
 				>
 					{this.renderImage}
 				</Dropzone>
+				<ImageEditor show={this.state.showImageEditor} />
 				<button className="btn" onClick={this.frameImage}>
 					frame
 				</button>

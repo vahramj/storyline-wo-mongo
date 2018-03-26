@@ -9,7 +9,7 @@ import TimelineContainer from "./TimelineContainer";
 import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
 import { dndTypes } from "../utils/constants";
 
-import "./styles/App.css";
+import "./styles/ContainerHolder.css";
 
 // ██████╗ ███╗   ██╗██████╗
 // ██╔══██╗████╗  ██║██╔══██╗
@@ -46,9 +46,10 @@ const collectDnD = (connectDnD, monitor) => {
 
 const ContainerHolder = props => {
 	// console.log("isOver :", props.isOver);
-	return props.connectDropTarget(
+	return (
 		<div role="none" onClick={props.deSelectAsset}>
-			<div className="asset-containers">
+			{ props.connectDropTarget(<div id="main-drop-bg" />) }
+			<div id="asset-containers">
 				<AssetContainer type="phase" />
 				<AssetContainer type="scene" />
 				<AssetContainer type="character" />
