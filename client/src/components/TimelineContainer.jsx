@@ -9,14 +9,9 @@ import "./styles/TimelineContainer.css";
 const TimelineContainer = ()=>{
 	return (
 		<div id="timeline-container">
+
 			<ContainerHeader headerText="timeline" />
-{/*
-			<header>
-				<div className="h2Wrapper">
-					<h2>{`timeline`.toUpperCase()}</h2>
-				</div>
-			</header>
-*/}
+
 			<div className="container-body">
 				<Toolbox />
 				<Timeline />

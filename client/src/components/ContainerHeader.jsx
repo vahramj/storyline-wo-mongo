@@ -25,7 +25,7 @@ ContainerHeader.propTypes = {
 
 ContainerHeader.defaultProps = {
 	headerText: "",
-	children: null
+	children: <div />
 };
 
 export default ContainerHeader;
