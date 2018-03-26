@@ -1,6 +1,8 @@
 #asset-containers{
+	position: relative;
 	display: flex;
 	justify-content: space-between;
+	/*z-index: 0;*/
 }
 
 #main-drop-bg{

@@ -19,9 +19,8 @@ import "./styles/ContainerHolder.css";
 // ╚═════╝ ╚═╝  ╚═══╝╚═════╝
 const appTargetSpec = {
 	drop(props, monitor) {
-
-		if(monitor.didDrop()){
-			return	
+		if (monitor.didDrop()) {
+			return;
 		}
 		const { assetId } = monitor.getItem();
 		// console.log("drop props: ", assetId);
@@ -33,22 +32,24 @@ const appTargetSpec = {
 const collectDnD = (connectDnD, monitor) => {
 	return {
 		connectDropTarget: connectDnD.dropTarget(),
-		isOver: monitor.isOver(),
+		isOver: monitor.isOver()
 	};
 };
 
 // ██████╗ ███████╗ █████╗  ██████╗████████╗
 // ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝
-// ██████╔╝█████╗  ███████║██║        ██║   
-// ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
-// ██║  ██║███████╗██║  ██║╚██████╗   ██║   
-// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
+// ██████╔╝█████╗  ███████║██║        ██║
+// ██╔══██╗██╔══╝  ██╔══██║██║        ██║
+// ██║  ██║███████╗██║  ██║╚██████╗   ██║
+// ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 
 const ContainerHolder = props => {
 	// console.log("isOver :", props.isOver);
 	return (
-		<div role="none" onClick={props.deSelectAsset}>
-			{ props.connectDropTarget(<div id="main-drop-bg" />) }
+		<div>
+			{props.connectDropTarget(
+				<div id="main-drop-bg" role="none" onClick={props.deSelectAsset} />
+			)}
 			<div id="asset-containers">
 				<AssetContainer type="phase" />
 				<AssetContainer type="scene" />
@@ -74,16 +75,15 @@ ContainerHolder.propTypes = {
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
 // ██╔══██╗██╔════╝██╔══██╗██║   ██║╚██╗██╔╝
-// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝ 
-// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗ 
+// ██████╔╝█████╗  ██║  ██║██║   ██║ ╚███╔╝
+// ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = {deSelectAsset, removeAssetFromParent};
+const actions = { deSelectAsset, removeAssetFromParent };
 
 const decorator = _.flowRight([
 	connect(null, actions),
-	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD),
+	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD)
 ]);
 
 export default decorator(ContainerHolder);
-
