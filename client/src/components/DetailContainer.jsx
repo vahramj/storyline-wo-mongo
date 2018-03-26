@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { string, shape } from "prop-types";
 // import Dropzone from "react-dropzone";
 
+import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageSelector";
 // import uploadImage from "../utils/uploadImage";
 
@@ -47,11 +48,7 @@ class DetailContainer extends Component {
 
 		return (
 			<div className="detail-container">
-				<header>
-					<div className="h2Wrapper">
-						<h2>{`${operation} ${type}`.toUpperCase()}</h2>
-					</div>
-				</header>
+				<ContainerHeader headerText={`${operation} ${type}`} />					
 				<div className="container-body">
 					<form onSubmit={this.onSubmit}>
 						<fieldset>

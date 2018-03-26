@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AssetCollection from "./AssetCollection";
+import ContainerHeader from "./ContainerHeader";
+
 import { setSearchTerm } from "../actions/actionCreators";
 
 import "./styles/AssetContainer.css";
@@ -19,14 +21,13 @@ const AssetContainer = props => {
 	const hidden = searchTerm.length === 0 ? "hidden" : "";
 	return (
 		<div className="asset-container">
-			<header>
-				<div className="h2Wrapper">
-					<h2>{`${type}s`.toUpperCase()}</h2>
-				</div>
+
+			<ContainerHeader headerText={`${type}s`}>				
 				<Link to={`/add/${type}`}>
 					<div className="small-plus-icon">&#43;</div>
 				</Link>
-			</header>
+			</ContainerHeader>
+
 			<section className="container-body">
 				<div className="search-bg-fader">
 					<input

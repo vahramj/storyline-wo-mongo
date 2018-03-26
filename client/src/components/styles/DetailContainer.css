@@ -8,38 +8,6 @@
 	/*font-family: 'Quicksand', sans-serif;*/
 }
 
-/*header*/
-.detail-container header {
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: center;
-
-	padding: 5px 1px 5px 0;
-
-	width: 33px;
-	/*min-width is for safari*/
-	min-width: 33px;
-
-	background: rgb(78, 79, 81);
-}
-
-.detail-container header .h2Wrapper {
-	/* fixes the rotation offset*/
-	margin: 0 1px -10px 0;
-}
-
-.detail-container header h2 {
-	transform: rotate(-90deg);
-
-	margin-bottom: 50%;
-	color: rgb(170, 182, 180);
-
-	font-size: 18pt;
-	font-weight: lighter;
-
-	white-space: nowrap;
-}
-
 .detail-container .container-body {
 	/*display: flex;*/
 	/*flex-direction: column;*/

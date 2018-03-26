@@ -5,5 +5,10 @@
 	width: 100vw;
 	height: 100vh;
 	background: rgba(100,100,100,0.5);
+}
 
+.image-editor-container{
+	width: 500px;
+	height: 500px;
+	background-color: white;
 }
