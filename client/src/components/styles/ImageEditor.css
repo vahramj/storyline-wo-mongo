@@ -18,6 +18,6 @@
 	border: 2px dashed rgb(170, 182, 180);
 }
 
-.uncropped-image-frame{
+.whole-image-frame{
 	position: absolute;
 }
