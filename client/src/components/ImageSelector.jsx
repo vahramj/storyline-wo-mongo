@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { string } from "prop-types";
 
-import ImageEditor from "./ImageEditor";
+import ImageEditorContainer from "./ImageEditorContainer";
+import Modal from "./Modal";
 
 import uploadImage from "../utils/uploadImage";
 import { frameSizes } from "../utils/constants";
@@ -36,7 +37,7 @@ class ImageSelector extends Component {
 			});
 	};
 
-	showPreview = files => {
+	getImagePreview = files => {
 		this.setState({
 			image: files[0].preview
 		});
@@ -49,7 +50,7 @@ class ImageSelector extends Component {
 		console.log(this);
 		this.setState({
 			showImageEditor: true
-		})
+		});
 	};
 
 	renderImage = () => {
@@ -96,22 +97,28 @@ class ImageSelector extends Component {
 	};
 
 	render() {
+		const { type } = this.props;
 		return (
 			<div className="image-loader">
 				<Dropzone
 					className="dropzone"
 					// onDrop={this.uploadImage}
-					onDrop={this.showPreview}
+					onDrop={this.getImagePreview}
 					ref={elem => {
 						this.dropzoneElem = elem;
 					}}
 				>
 					{this.renderImage}
 				</Dropzone>
-				<ImageEditor show={this.state.showImageEditor} />
 				<button className="btn" onClick={this.frameImage}>
 					frame
 				</button>
+				<Modal show={this.state.showImageEditor} >
+					<ImageEditorContainer
+								imageUrl={this.state.image}
+								type={type}
+							/>
+				</Modal>
 			</div>
 
 			// <input

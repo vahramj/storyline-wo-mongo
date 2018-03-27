@@ -1,14 +1,23 @@
-.image-editor-bg{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(100,100,100,0.5);
+.image-editor{
+	position: relative;
+	width: 400px;
+	height: 400px;
+	/*width: 100%;*/
 }
 
-.image-editor-container{
-	width: 500px;
-	height: 500px;
-	background-color: white;
+.unused-image-tint{
+	position: absolute;
+	background: rgba(100,100,150,0.5);
+	width: 100%;
+	height: 100%;
+}
+
+.image-preview-frame{
+	overflow: hidden;
+	position: absolute;
+	border: 2px dashed rgb(170, 182, 180);
+}
+
+.uncropped-image-frame{
+	position: absolute;
 }
