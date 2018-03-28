@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DragLayer } from "react-dnd";
 import { shape, string, number, bool } from "prop-types";
 
-import TimelineAssetBase from "./TimelineAsset/TimelineAssetBase";
+import TimelineAsset from "./TimelineAsset/TimelineAsset";
 import AssetBase from "./AssetBase";
 import { dndTypes } from "../utils/constants";
 
@@ -42,7 +42,7 @@ class CustomDragLayer extends Component {
 				);
 			}
 			case dndTypes.TIMELINE_ASSET: {
-				return <TimelineAssetBase assetId={assetId} />
+				return <TimelineAsset assetId={assetId} />
 			}
 			default: 
 				return null;
@@ -56,7 +56,7 @@ class CustomDragLayer extends Component {
 			return null;
 			// return (
 			// 	<div id="custom-drag-layer" style={{left: 0, top:0}}>
-			// 		<TimelineAssetBase assetId="phs_01" />
+			// 		<TimelineAsset assetId="phs_01" />
 			// 	</div>
 			// );
 		}

@@ -1,97 +1,95 @@
-import React, { Component } from "react";
-import { number, bool, string, func /* arrayOf, shape */ } from "prop-types";
-import _ from "lodash";
+import React from "react";
+import { connect } from "react-redux";
+import { arrayOf, shape, number, string, func, bool } from "prop-types";
 
-import TimelineAssetBase from "./TimelineAssetBase";
+import AssetBase from "../AssetBase";
+import TimelineAssetBody from "./TimelineAssetBody";
+import TimelineAssetTail from "./TimelineAssetTail";
 
-import "../styles/TimelineAsset/TimelineAsset.css";
+import "./styles/TimelineAsset.css";
 
-class TimelineAsset extends Component {
-	onClickHandler = event => {
-		const { assetId } = this.props;
-		event.stopPropagation();
-		this.props.handleTimelineClick(event, assetId);
-	};
+const TimelineAsset = props => {
+	const {childAssets, width, insertPosition, type} = props;
 
-	getOwnerElem = () => {
-		return this.dropElem;
-	};
-
-	render() {
-		const {
-			assetId,
-			selected,
-			type,
-			position,
-			isDragging,
-			connectDropTarget,
-			isHovering,
-			canDrop
-		} = this.props;
-		let { 
-			connectDragSource, 
-			connectDragPreview,
-			insertPosition 
-		} = this.props;
-
-		if (type === "timeline") {
-			connectDragSource = f => f;
-			connectDragPreview = f => f;
-		}
-
-		const selectedStyle = selected ? "selected" : "";
-		const draggingStyle = isDragging ? "dragging" : "";
-		const hoverDisplay = isHovering && canDrop ? "block" : "none";
-		insertPosition = isHovering && insertPosition !== null ? insertPosition : null;
-
-		return _.flowRight([connectDragSource, connectDropTarget])(
-			<div
-				className={`timeline-asset ${selectedStyle} ${draggingStyle} `}
-				role="none"
-				onClick={this.onClickHandler}
-				style={{ left: position }}
-				ref={elem => {
-					this.dropElem = elem;
-				}}
-			>
-				{
-				<div className="drag-hover" style={{ display: `${hoverDisplay}` }} />
-				}
-				<TimelineAssetBase
-					getOwnerElem={this.getOwnerElem}
-					assetId={assetId}
-					insertPosition={insertPosition}
-					selected={selected}
-				/>
-				{
-					connectDragPreview(<div className="hidden-drag-preview" />)
-				}
+	function renderHead(){
+		const { assetId } = props;
+		let headElem = (
+			<div className="head">
+				<AssetBase assetId={assetId} />
 			</div>
 		);
-	}
-}
+
+		if (type === "timeline") {
+			headElem = null;
+		}
+
+		return headElem;
+	};
+
+	function renderTail() {
+		const { selected, assetId, getOwnerElem } = props;
+		
+		let tailElem = (
+			<TimelineAssetTail
+				type={type}
+				selected={selected}
+				ownerId={assetId}
+				getOwnerElem={getOwnerElem}
+			/>
+		);
+
+		if (type === "timeline") {
+			tailElem = null;
+		}
+
+		return tailElem;
+	};
+
+	return (
+		<div className={`timeline-asset-base timeline-${type}`}>		
+			{renderHead()}
+
+			<TimelineAssetBody
+				childAssets={childAssets}
+				width={width}
+				insertPosition={insertPosition}
+			/>
+
+			{renderTail()}
+		</div>
+	);
+};
 
 TimelineAsset.propTypes = {
 	assetId: string.isRequired,
 	type: string.isRequired,
-	position: number.isRequired,
-	handleTimelineClick: func,
+	width: number.isRequired,
 	selected: bool,
-	connectDragSource: func.isRequired,
-	connectDragPreview: func.isRequired,
-	isDragging: bool.isRequired,
-	connectDropTarget: func.isRequired,
-	isHovering: bool.isRequired,
-	canDrop: bool.isRequired,
-	insertPosition: number
+	childAssets: arrayOf(
+		shape({
+			id: string.isRequired
+		})
+	).isRequired,
+	insertPosition: number,
+	getOwnerElem: func
 };
 
 TimelineAsset.defaultProps = {
-	handleTimelineClick: () => {
-		console.log("Vahram, TimelineAsset click handler hasn't been setup ");
-	},
+	insertPosition: null,
 	selected: false,
-	insertPosition: null
+	getOwnerElem(){console.log("vahram, getOwnerElem is not passed in")},
 };
 
-export default TimelineAsset;
+function mapStateToProps({ assetsData }, { assetId }) {
+	const { data } = assetsData;
+
+	const { type, width, children } = data[assetId];
+
+	return {
+		type,
+		width,
+		childAssets: children
+	};
+}
+
+export default connect(mapStateToProps)(TimelineAsset);
