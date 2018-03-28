@@ -64,7 +64,7 @@ class TimelineAsset extends Component {
 					selected={selected}
 				/>
 				{
-					connectDragPreview(<div className="hidden-preview" />)
+					connectDragPreview(<div className="hidden-drag-preview" />)
 				}
 			</div>
 		);

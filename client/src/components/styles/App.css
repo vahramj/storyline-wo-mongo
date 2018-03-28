@@ -47,7 +47,7 @@ input:focus{
 	box-shadow: 0 0 0 3px rgb(120, 160, 160);
 }
 
-.hidden-preview{
+.hidden-drag-preview{
 	opacity: 0;
 	width: 1px;
 	height: 1px;

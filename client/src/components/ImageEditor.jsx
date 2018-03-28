@@ -19,9 +19,15 @@ const dragSpec = {
 
 const dropSpec = {
 	drop(props, monitor, component) {
-		const { x, y } = monitor.getDifferenceFromInitialOffset();
+		// const { x, y } = monitor.getDifferenceFromInitialOffset();
 		console.log("dropped");
+		// component.moveImageBy(x, y);
+		component.resetMove()
+	},
+	hover(props, monitor, component){
+		const { x, y } = monitor.getDifferenceFromInitialOffset();
 		component.moveImageBy(x, y);
+		console.log(monitor.getDifferenceFromInitialOffset())
 	}
 };
 
@@ -55,39 +61,68 @@ class ImageEditor extends Component {
 
 		this.state = {
 			frameStyle,
-			imageX: 0,
-			imageY: 0
+			imageMoveDiffX: 0,
+			imageMoveDiffY: 0,
+			imageMoveX: 0,
+			imageMoveY: 0,
+			imageScaleX: 1,
+			imageScaleY: 1,
 		};
 	};
 
 	moveImageBy(x, y) {
 		console.log("from moveImageBy: ", x, y);
+		if(this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y){
+			return;
+		}
 		this.setState({
-			imageX: this.state.imageX + x,
-			imageY: this.state.imageY + y
+			imageMoveDiffX: x,
+			imageMoveDiffY: y,
+			imageMoveX: this.state.imageMoveX + x - this.state.imageMoveDiffX,
+			imageMoveY: this.state.imageMoveY + y - this.state.imageMoveDiffY
 		});
 	};
+
+	resetMove(){
+		this.setState({
+			imageMoveDiffX: 0,
+			imageMoveDiffY: 0,			
+		})
+	}
 
 	handleCoordinateXChange = (event)=>{
 		// console.log(typeof event.target.value)
 		this.setState({
-			imageX: Number(event.target.value)
+			imageMoveX: Number(event.target.value)
 		})
 	};
 
 	handleCoordinateYChange = (event)=>{
 		this.setState({
-			imageY: Number(event.target.value)
+			imageMoveY: Number(event.target.value)
+		})
+	};
+
+	handleScaleXChange = (event)=>{
+		// console.log(typeof event.target.value)
+		this.setState({
+			imageScaleX: Number(event.target.value)
+		})
+	};
+
+	handleScaleYChange = (event)=>{
+		this.setState({
+			imageScaleY: Number(event.target.value)
 		})
 	};
 
 	render() {
 		const { imageUrl } = this.props;
-		const { imageX, imageY } = this.state;
+		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY } = this.state;
 		const { connectDragSource, connectDragPreview, connectDropTarget } = this.props;
 
 		const imageStyle = {
-			transform: `translate(${imageX}px, ${imageY}px)`
+			transform: `translate(${imageMoveX}px, ${imageMoveY}px) scale(${imageScaleX}, ${imageScaleY})`,
 		};
 		console.log("fromRender: ", imageStyle);
 		// why doesn't translate turn into a valid style
@@ -103,27 +138,52 @@ class ImageEditor extends Component {
 						<div className="cropped-image-frame" style={this.state.frameStyle}>
 							{image}
 						</div>
+					{
+						connectDragPreview(<div className="hidden-drag-preview" />)
+					}
 					</div>
 				)}
 				<div id="image-edit-controls">
 					<fieldset>
 						<label htmlFor="CoordinateX">
-							<span>x: </span>
+							<span>move X: </span>
 							<input
 								type="number"
 								id="CoordinateX"
 								onChange={this.handleCoordinateXChange}
-								value={this.state.imageX}
+								value={this.state.imageMoveX}
 							/>
 						</label>
 
 						<label htmlFor="CoordinateY">
-							<span>y: </span>
+							<span>move Y: </span>
 							<input
 								type="number"
 								id="CoordinateY"
 								onChange={this.handleCoordinateYChange}
-								value={this.state.imageY}
+								value={this.state.imageMoveY}
+							/>
+						</label>
+					</fieldset>
+
+					<fieldset>
+						<label htmlFor="CoordinateX">
+							<span>scale X: </span>
+							<input
+								type="number"
+								id="CoordinateX"
+								onChange={this.handleScaleXChange}
+								value={this.state.imageScaleX}
+							/>
+						</label>
+
+						<label htmlFor="CoordinateY">
+							<span>scale Y: </span>
+							<input
+								type="number"
+								id="CoordinateY"
+								onChange={this.handleScaleYChange}
+								value={this.state.imageScaleY}
 							/>
 						</label>
 					</fieldset>

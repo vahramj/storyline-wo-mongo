@@ -32,7 +32,7 @@ const TimelineAssetTail = props => {
 			}}
 		>
 			{
-				connectDragPreview(<div className="hidden-preview" />)
+				connectDragPreview(<div className="hidden-drag-preview" />)
 			}
 		</div>
 	);	
