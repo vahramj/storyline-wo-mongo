@@ -11,32 +11,32 @@ const parentWidth = 400;
 const parentHeight = 400;
 
 const dragSpec = {
-	beginDrag(){
+	beginDrag() {
 		console.log("dragging");
-		return {}
+		return {};
 	}
-}
+};
 
 const dropSpec = {
-	drop(props, monitor, component){
-		const {x,y} = monitor.getDifferenceFromInitialOffset();
+	drop(props, monitor, component) {
+		const { x, y } = monitor.getDifferenceFromInitialOffset();
 		console.log("dropped");
-		component.moveImageBy(x,y);
+		component.moveImageBy(x, y);
 	}
-}
+};
 
-function collectDrag (connectDnD, monitor) {
+function collectDrag(connectDnD, monitor) {
 	return {
 		connectDragSource: connectDnD.dragSource(),
-		connectDragPreview: connectDnD.dragPreview(),
+		connectDragPreview: connectDnD.dragPreview()
 		// isDragging: monitor.isDragging()
-	}
+	};
 }
 
-function collectDrop (connectDnD) {
+function collectDrop(connectDnD) {
 	return {
 		connectDropTarget: connectDnD.dropTarget()
-	}
+	};
 }
 
 class ImageEditor extends Component {
@@ -50,23 +50,36 @@ class ImageEditor extends Component {
 			width: frameWidth,
 			height: frameHeight,
 			left: (parentWidth - frameWidth) / 2,
-			top: (parentHeight - frameHeight) / 2,
+			top: (parentHeight - frameHeight) / 2
 		};
 
 		this.state = {
 			frameStyle,
 			imageX: 0,
-			imageY: 0,
+			imageY: 0
 		};
-	}
+	};
 
-	moveImageBy(x,y){
-		console.log("from moveImageBy: ", x,y);
+	moveImageBy(x, y) {
+		console.log("from moveImageBy: ", x, y);
 		this.setState({
-			imageX: this.state.imageX+x,
-			imageY: this.state.imageY+y
+			imageX: this.state.imageX + x,
+			imageY: this.state.imageY + y
 		});
-	}
+	};
+
+	handleCoordinateXChange = (event)=>{
+		// console.log(typeof event.target.value)
+		this.setState({
+			imageX: Number(event.target.value)
+		})
+	};
+
+	handleCoordinateYChange = (event)=>{
+		this.setState({
+			imageY: Number(event.target.value)
+		})
+	};
 
 	render() {
 		const { imageUrl } = this.props;
@@ -92,7 +105,20 @@ class ImageEditor extends Component {
 						</div>
 					</div>
 				)}
-				<div>tools</div>
+				<div id="image-edit-controls">
+					<input
+						type="number"
+						name="CoordinateX"
+						onChange={this.handleCoordinateXChange}
+						value={this.state.imageX}
+					/>
+					<input
+						type="number"
+						name="CoordinateY"
+						onChange={this.handleCoordinateYChange}
+						value={this.state.imageY}
+					/>
+				</div>
 			</div>
 		);
 	}
@@ -114,5 +140,5 @@ ImageEditor.defaultProps = {
 const decorator = _.flowRight([
 	DragSource(dndTypes.EDITABLE_IMAGE, dragSpec, collectDrag),
 	DropTarget([dndTypes.EDITABLE_IMAGE, dndTypes.EDIT_IMAGE_HANDLE], dropSpec, collectDrop)
-])
+]);
 export default decorator(ImageEditor);

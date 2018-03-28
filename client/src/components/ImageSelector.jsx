@@ -47,7 +47,7 @@ class ImageSelector extends Component {
 	frameImage = event => {
 		event.preventDefault();
 		event.stopPropagation();
-		console.log(this);
+		// console.log(this);
 		this.setState({
 			showImageEditor: true
 		});
