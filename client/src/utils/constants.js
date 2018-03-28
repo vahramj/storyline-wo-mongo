@@ -25,7 +25,9 @@ export const actionTypes = {
 export const dndTypes = {
 	ASSET: "ASSET",
 	TIMELINE_ASSET: "TIMELINE_ASSET",
-	TAIL: "TAIL"
+	TAIL: "TAIL",
+	EDITABLE_IMAGE: "EDITABLE_IMAGE",
+	EDIT_IMAGE_HANDLE: "EDIT_IMAGE_HANDLE"
 };
 
 export const assetTypeHierarchy = {
