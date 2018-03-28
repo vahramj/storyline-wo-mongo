@@ -106,18 +106,27 @@ class ImageEditor extends Component {
 					</div>
 				)}
 				<div id="image-edit-controls">
-					<input
-						type="number"
-						name="CoordinateX"
-						onChange={this.handleCoordinateXChange}
-						value={this.state.imageX}
-					/>
-					<input
-						type="number"
-						name="CoordinateY"
-						onChange={this.handleCoordinateYChange}
-						value={this.state.imageY}
-					/>
+					<fieldset>
+						<label htmlFor="CoordinateX">
+							<span>x: </span>
+							<input
+								type="number"
+								id="CoordinateX"
+								onChange={this.handleCoordinateXChange}
+								value={this.state.imageX}
+							/>
+						</label>
+
+						<label htmlFor="CoordinateY">
+							<span>y: </span>
+							<input
+								type="number"
+								id="CoordinateY"
+								onChange={this.handleCoordinateYChange}
+								value={this.state.imageY}
+							/>
+						</label>
+					</fieldset>
 				</div>
 			</div>
 		);

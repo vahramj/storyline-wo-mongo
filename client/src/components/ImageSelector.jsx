@@ -115,9 +115,9 @@ class ImageSelector extends Component {
 				</button>
 				<Modal show={this.state.showImageEditor} >
 					<ImageEditorContainer
-								imageUrl={this.state.image}
-								type={type}
-							/>
+						imageUrl={this.state.image}
+						type={type}
+					/>
 				</Modal>
 			</div>
 
