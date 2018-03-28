@@ -2,7 +2,7 @@ import React from "react";
 import { string } from "prop-types";
 
 import ContainerHeader from "./ContainerHeader";
-import ImageEditor from "./ImageEditor";
+import ImageEditor from "./ImageEditor/ImageEditor";
 
 import { frameSizes } from "../utils/constants";
 

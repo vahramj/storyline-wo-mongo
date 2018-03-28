@@ -3,7 +3,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import { number, string, func } from "prop-types";
 import _ from "lodash";
 
-import { dndTypes } from "../utils/constants";
+import { dndTypes } from "../../utils/constants";
 
 import "./styles/ImageEditor.css";
 
@@ -167,23 +167,34 @@ class ImageEditor extends Component {
 					</fieldset>
 
 					<fieldset>
-						<label htmlFor="CoordinateX">
+						<label htmlFor="ScaleX">
 							<span>scale X: </span>
 							<input
-								type="number"
-								id="CoordinateX"
+								type="range"
 								onChange={this.handleScaleXChange}
 								value={this.state.imageScaleX}
+								step="0.1"
+								min="-5"
+								max="5"
+							/>
+							<input
+								type="number"
+								id="ScaleX"
+								onChange={this.handleScaleXChange}
+								value={this.state.imageScaleX}
+								step="0.1"
 							/>
 						</label>
+						<br />
 
 						<label htmlFor="CoordinateY">
 							<span>scale Y: </span>
 							<input
-								type="number"
+								type="range"
 								id="CoordinateY"
 								onChange={this.handleScaleYChange}
 								value={this.state.imageScaleY}
+								step="0.1"
 							/>
 						</label>
 					</fieldset>
