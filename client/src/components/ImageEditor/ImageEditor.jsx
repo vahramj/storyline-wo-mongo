@@ -3,7 +3,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import { number, string, func } from "prop-types";
 import _ from "lodash";
 
-import SliderInput from "./SliderInput";
+import ImageEditControls from "./ImageEditControls";
 
 import { dndTypes } from "../../utils/constants";
 
@@ -73,6 +73,10 @@ class ImageEditor extends Component {
 		};
 	}
 
+	setEditorState = (newEditorState)=>{
+		this.setState(newEditorState);
+	}
+	
 	moveImageBy(x, y) {
 		console.log("from moveImageBy: ", x, y);
 		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
@@ -93,37 +97,6 @@ class ImageEditor extends Component {
 		});
 	}
 
-	handleCoordinateXChange = event => {
-		// console.log(typeof event.target.value)
-		this.setState({
-			imageMoveX: Number(event.target.value)
-		});
-	};
-
-	handleCoordinateYChange = event => {
-		this.setState({
-			imageMoveY: Number(event.target.value)
-		});
-	};
-
-	handleScaleXChange = event => {
-		// console.log(typeof event.target.value)
-		this.setState({
-			imageScaleX: Number(event.target.value)
-		});
-	};
-
-	handleScaleYChange = event => {
-		this.setState({
-			imageScaleY: Number(event.target.value)
-		});
-	};
-
-	handleRotateChange = event => {
-		this.setState({
-			rotation: Number(event.target.value)
-		});
-	};
 
 	render() {
 		const { imageUrl } = this.props;
@@ -154,56 +127,7 @@ class ImageEditor extends Component {
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
-				<div id="image-edit-controls">
-					<fieldset>
-						<SliderInput
-							label="move X"
-							name="CoordinateX"
-							changeHandler={this.handleCoordinateXChange}
-							value={this.state.imageMoveX}
-						/>
-						<br />
-						<SliderInput
-							label="move Y"
-							name="CoordinateY"
-							changeHandler={this.handleCoordinateYChange}
-							value={this.state.imageMoveY}
-						/>
-					</fieldset>
-
-					<fieldset>
-						<SliderInput
-							label="scale X"
-							name="scaleX"
-							changeHandler={this.handleScaleXChange}
-							value={this.state.imageScaleX}
-							step="0.1"
-							min="-5"
-							max="5"
-						/>
-						<br />
-						<SliderInput
-							label="scale Y"
-							name="scaleY"
-							changeHandler={this.handleScaleYChange}
-							value={this.state.imageScaleY}
-							step="0.1"
-							min="-5"
-							max="5"
-						/>
-					</fieldset>
-
-					<fieldset>
-						<SliderInput
-							label="rotate"
-							name="rotate"
-							changeHandler={this.handleRotateChange}
-							value={this.state.rotation}
-							min="0"
-							max="359"
-						/>
-					</fieldset>
-				</div>
+				<ImageEditControls editorState={this.state} setEditorState={this.setEditorState} />
 			</div>
 		);
 	}

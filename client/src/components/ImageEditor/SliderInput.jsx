@@ -2,7 +2,9 @@ import React from "react";
 import { string, func, number } from "prop-types";
 
 function SliderInput(props){
+	
 	const { min, max, changeHandler, value, step, label, name } = props;
+
 	return(
 		<div className="slider-input">
 			<label htmlFor={`${name}`}>
@@ -25,6 +27,7 @@ function SliderInput(props){
 			</label>
 		</div>
 	);
+
 }
 
 SliderInput.propTypes = {

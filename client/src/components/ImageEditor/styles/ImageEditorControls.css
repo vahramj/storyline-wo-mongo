@@ -1,0 +1,19 @@
+#image-edit-controls {
+	padding: 10px;
+}
+
+#image-edit-controls label {
+	margin-right: 10px;
+	font-weight: bold;
+}
+#image-edit-controls input[type=number]{
+	width: 40px;
+	height: 25px;
+	font-size: 10pt;
+}
+
+.slider-input label{
+	/*float: right;*/
+	display: flex;
+	justify-content: space-between;
+}
