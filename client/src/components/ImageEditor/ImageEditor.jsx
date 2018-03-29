@@ -3,7 +3,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import { number, string, func } from "prop-types";
 import _ from "lodash";
 
-import ImageEditControls from "./ImageEditControls";
+import ImageEditorControls from "./ImageEditorControls";
 
 import { dndTypes } from "../../utils/constants";
 
@@ -29,7 +29,7 @@ const dropSpec = {
 	hover(props, monitor, component) {
 		const { x, y } = monitor.getDifferenceFromInitialOffset();
 		component.moveImageBy(x, y);
-		console.log(monitor.getDifferenceFromInitialOffset());
+		// console.log(monitor.getDifferenceFromInitialOffset());
 	}
 };
 
@@ -78,7 +78,7 @@ class ImageEditor extends Component {
 	}
 	
 	moveImageBy(x, y) {
-		console.log("from moveImageBy: ", x, y);
+		// console.log("from moveImageBy: ", x, y);
 		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
 			return;
 		}
@@ -110,7 +110,7 @@ class ImageEditor extends Component {
 						scale(${imageScaleX}, ${imageScaleY}) 
 			`
 		};
-		console.log("fromRender: ", imageStyle);
+		// console.log("fromRender: ", imageStyle);
 		// why doesn't translate turn into a valid style
 		const image = <img src={imageUrl} alt="thumbnail for asset" style={imageStyle} />;
 		return (
@@ -127,7 +127,7 @@ class ImageEditor extends Component {
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
-				<ImageEditControls editorState={this.state} setEditorState={this.setEditorState} />
+				<ImageEditorControls editorState={this.state} setEditorState={this.setEditorState} />
 			</div>
 		);
 	}

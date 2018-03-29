@@ -3,6 +3,8 @@ import { func, shape, number } from "prop-types";
 
 import SliderInput from "./SliderInput";
 
+import "./styles/ImageEditorControls.css";
+
 class ImageEditControls extends Component{
 	handleCoordinateXChange = event => {
 		this.props.setEditorState({
