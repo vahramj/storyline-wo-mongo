@@ -3,6 +3,8 @@ import { DragSource, DropTarget } from "react-dnd";
 import { number, string, func } from "prop-types";
 import _ from "lodash";
 
+import SliderInput from "./SliderInput";
+
 import { dndTypes } from "../../utils/constants";
 
 import "./styles/ImageEditor.css";
@@ -22,12 +24,12 @@ const dropSpec = {
 		// const { x, y } = monitor.getDifferenceFromInitialOffset();
 		console.log("dropped");
 		// component.moveImageBy(x, y);
-		component.resetMove()
+		component.resetMove();
 	},
-	hover(props, monitor, component){
+	hover(props, monitor, component) {
 		const { x, y } = monitor.getDifferenceFromInitialOffset();
 		component.moveImageBy(x, y);
-		console.log(monitor.getDifferenceFromInitialOffset())
+		console.log(monitor.getDifferenceFromInitialOffset());
 	}
 };
 
@@ -67,12 +69,13 @@ class ImageEditor extends Component {
 			imageMoveY: 0,
 			imageScaleX: 1,
 			imageScaleY: 1,
+			rotation: 0
 		};
-	};
+	}
 
 	moveImageBy(x, y) {
 		console.log("from moveImageBy: ", x, y);
-		if(this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y){
+		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
 			return;
 		}
 		this.setState({
@@ -81,48 +84,58 @@ class ImageEditor extends Component {
 			imageMoveX: this.state.imageMoveX + x - this.state.imageMoveDiffX,
 			imageMoveY: this.state.imageMoveY + y - this.state.imageMoveDiffY
 		});
-	};
-
-	resetMove(){
-		this.setState({
-			imageMoveDiffX: 0,
-			imageMoveDiffY: 0,			
-		})
 	}
 
-	handleCoordinateXChange = (event)=>{
+	resetMove() {
+		this.setState({
+			imageMoveDiffX: 0,
+			imageMoveDiffY: 0
+		});
+	}
+
+	handleCoordinateXChange = event => {
 		// console.log(typeof event.target.value)
 		this.setState({
 			imageMoveX: Number(event.target.value)
-		})
+		});
 	};
 
-	handleCoordinateYChange = (event)=>{
+	handleCoordinateYChange = event => {
 		this.setState({
 			imageMoveY: Number(event.target.value)
-		})
+		});
 	};
 
-	handleScaleXChange = (event)=>{
+	handleScaleXChange = event => {
 		// console.log(typeof event.target.value)
 		this.setState({
 			imageScaleX: Number(event.target.value)
-		})
+		});
 	};
 
-	handleScaleYChange = (event)=>{
+	handleScaleYChange = event => {
 		this.setState({
 			imageScaleY: Number(event.target.value)
-		})
+		});
+	};
+
+	handleRotateChange = event => {
+		this.setState({
+			rotation: Number(event.target.value)
+		});
 	};
 
 	render() {
 		const { imageUrl } = this.props;
-		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY } = this.state;
+		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY, rotation } = this.state;
 		const { connectDragSource, connectDragPreview, connectDropTarget } = this.props;
 
 		const imageStyle = {
-			transform: `translate(${imageMoveX}px, ${imageMoveY}px) scale(${imageScaleX}, ${imageScaleY})`,
+			transform: `
+						translate(${imageMoveX}px, ${imageMoveY}px) 
+						rotate(${rotation}deg)
+						scale(${imageScaleX}, ${imageScaleY}) 
+			`
 		};
 		console.log("fromRender: ", imageStyle);
 		// why doesn't translate turn into a valid style
@@ -138,65 +151,57 @@ class ImageEditor extends Component {
 						<div className="cropped-image-frame" style={this.state.frameStyle}>
 							{image}
 						</div>
-					{
-						connectDragPreview(<div className="hidden-drag-preview" />)
-					}
+						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
 				<div id="image-edit-controls">
 					<fieldset>
-						<label htmlFor="CoordinateX">
-							<span>move X: </span>
-							<input
-								type="number"
-								id="CoordinateX"
-								onChange={this.handleCoordinateXChange}
-								value={this.state.imageMoveX}
-							/>
-						</label>
-
-						<label htmlFor="CoordinateY">
-							<span>move Y: </span>
-							<input
-								type="number"
-								id="CoordinateY"
-								onChange={this.handleCoordinateYChange}
-								value={this.state.imageMoveY}
-							/>
-						</label>
+						<SliderInput
+							label="move X"
+							name="CoordinateX"
+							changeHandler={this.handleCoordinateXChange}
+							value={this.state.imageMoveX}
+						/>
+						<br />
+						<SliderInput
+							label="move Y"
+							name="CoordinateY"
+							changeHandler={this.handleCoordinateYChange}
+							value={this.state.imageMoveY}
+						/>
 					</fieldset>
 
 					<fieldset>
-						<label htmlFor="ScaleX">
-							<span>scale X: </span>
-							<input
-								type="range"
-								onChange={this.handleScaleXChange}
-								value={this.state.imageScaleX}
-								step="0.1"
-								min="-5"
-								max="5"
-							/>
-							<input
-								type="number"
-								id="ScaleX"
-								onChange={this.handleScaleXChange}
-								value={this.state.imageScaleX}
-								step="0.1"
-							/>
-						</label>
+						<SliderInput
+							label="scale X"
+							name="scaleX"
+							changeHandler={this.handleScaleXChange}
+							value={this.state.imageScaleX}
+							step="0.1"
+							min="-5"
+							max="5"
+						/>
 						<br />
+						<SliderInput
+							label="scale Y"
+							name="scaleY"
+							changeHandler={this.handleScaleYChange}
+							value={this.state.imageScaleY}
+							step="0.1"
+							min="-5"
+							max="5"
+						/>
+					</fieldset>
 
-						<label htmlFor="CoordinateY">
-							<span>scale Y: </span>
-							<input
-								type="range"
-								id="CoordinateY"
-								onChange={this.handleScaleYChange}
-								value={this.state.imageScaleY}
-								step="0.1"
-							/>
-						</label>
+					<fieldset>
+						<SliderInput
+							label="rotate"
+							name="rotate"
+							changeHandler={this.handleRotateChange}
+							value={this.state.rotation}
+							min="0"
+							max="359"
+						/>
 					</fieldset>
 				</div>
 			</div>

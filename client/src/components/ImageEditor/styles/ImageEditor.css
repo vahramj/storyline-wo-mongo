@@ -42,3 +42,9 @@
 	height: 25px;
 	font-size: 10pt;
 }
+
+.slider-input label{
+	/*float: right;*/
+	display: flex;
+	justify-content: space-between;
+}
