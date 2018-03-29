@@ -61,12 +61,12 @@ class Asset extends Component {
 		} = this.props;
 
 		const selectedStyle = selected ? "selected" : "";
-		const onTimelineStyle = onTimeline ? "onTimeline" : "";
-		const draggingStyle = isDragging ? "dragging" : "";
+		const onTimelineClassName = onTimeline ? "onTimeline" : "";
+		const draggingClassName = isDragging ? "dragging" : "";
 
 		return connectDragSource(
 			<div
-				className={`asset ${type} ${selectedStyle} ${onTimelineStyle} ${draggingStyle}`}
+				className={`asset ${type} ${selectedStyle} ${onTimelineClassName} ${draggingClassName}`}
 				role="none"
 				onClick={this.onClickHandler}
 			>
@@ -83,7 +83,7 @@ class Asset extends Component {
 					/>
 				</div>
 				<AssetBase assetId={assetId} />
-				{connectDragPreview(<div className="hidden-preview" />)}
+				{connectDragPreview(<div className="hidden-drag-preview" />)}
 			</div>
 		);
 	}
@@ -124,7 +124,7 @@ const actions = { selectAsset };
 function mapStateToProps({ assetsData }, { assetId }) {
 	// console.log(assetsData);
 	const { selectedAssetId, data } = assetsData;
-	
+
 	const selected = !!selectedAssetId && assetId === selectedAssetId;
 
 	const assetData = data[assetId];
