@@ -68,15 +68,16 @@ class ImageEditor extends Component {
 			imageMoveX: 0,
 			imageMoveY: 0,
 			imageScaleX: 1,
-			imageScaleY: 1,
+			imageScaleY: 0.8,
+			lockScale: true,
 			rotation: 0
 		};
 	}
 
-	setEditorState = (newEditorState)=>{
+	setEditorState = newEditorState => {
 		this.setState(newEditorState);
-	}
-	
+	};
+
 	moveImageBy(x, y) {
 		// console.log("from moveImageBy: ", x, y);
 		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
@@ -90,13 +91,32 @@ class ImageEditor extends Component {
 		});
 	}
 
+	scaleImageTo = (newScaleX = this.state.imageScaleX, newScaleY = this.state.imageScaleY) => {
+		const { imageScaleX, imageScaleY } = this.state;
+
+		let scaleY = newScaleY;
+		if (this.state.lockScale) {
+			if(imageScaleX !== 0){
+				const ratio = (newScaleX - imageScaleX) / imageScaleX;
+				scaleY = imageScaleY + imageScaleY * ratio;
+			}
+			else {
+				scaleY = imageScaleY + newScaleX - imageScaleX;
+			}
+		}
+
+		this.setState({
+			imageScaleX: newScaleX,
+			imageScaleY: scaleY
+		});
+	}
+
 	resetMove() {
 		this.setState({
 			imageMoveDiffX: 0,
 			imageMoveDiffY: 0
 		});
 	}
-
 
 	render() {
 		const { imageUrl } = this.props;
@@ -127,7 +147,11 @@ class ImageEditor extends Component {
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
-				<ImageEditorControls editorState={this.state} setEditorState={this.setEditorState} />
+				<ImageEditorControls
+					editorState={this.state}
+					setEditorState={this.setEditorState}
+					scaleImageTo={this.scaleImageTo}
+				/>
 			</div>
 		);
 	}
