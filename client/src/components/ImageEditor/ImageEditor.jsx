@@ -128,6 +128,20 @@ class ImageEditor extends Component {
 		});
 	}
 
+	resetEdit = (event)=>{
+		event.preventDefault();
+
+		this.setState({
+			imageMoveX: 0,
+			imageMoveY: 0,
+			imageScaleX: 1,
+			imageScaleY: 1,
+			lockScale: true,
+			scaleRatio: 1,
+			rotation: 0
+		});
+	}
+
 	render() {
 		const { imageUrl } = this.props;
 		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY, rotation } = this.state;
@@ -166,7 +180,7 @@ class ImageEditor extends Component {
 					<div className="btns">
 						<button className="btn btn-danger">save</button>
 						<button className="btn btn-primary">cancel</button>
-						<button className="btn">reset</button>
+						<button className="btn" onClick={this.resetEdit}>reset</button>
 					</div>
 				</div>
 			</div>
