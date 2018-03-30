@@ -68,8 +68,9 @@ class ImageEditor extends Component {
 			imageMoveX: 0,
 			imageMoveY: 0,
 			imageScaleX: 1,
-			imageScaleY: 0.8,
+			imageScaleY: 1,
 			lockScale: true,
+			scaleRatio: 1,
 			rotation: 0
 		};
 	}
@@ -78,28 +79,31 @@ class ImageEditor extends Component {
 		this.setState(newEditorState);
 	};
 
-	setLockScale = (value) => {
-		this.setState({
-			lockScale: value
-		})
-	};
-
-	// scaleImageTo = ({newScaleX = this.state.imageScaleX, newScaleY = this.state.imageScaleY}) => {
-	scaleImageTo = ({newScaleX, newScaleY}) => {
-		const { imageScaleX, imageScaleY } = this.state;
-
-		const scaleX = newScaleX || newScaleX === 0 ? newScaleX : imageScaleX;
-		let scaleY = newScaleY || newScaleY === 0 ? newScaleY : imageScaleY;
-
-		if (this.state.lockScale && imageScaleX !== 0 && newScaleX !==0) {
-			const changeRatio = (newScaleX - imageScaleX) / imageScaleX;
-			// console.log("changeRatio: ", changeRatio)
-			scaleY = imageScaleY + imageScaleY * changeRatio;
+	setLockScale = (lock) => {
+		const { imageScaleX, imageScaleY, scaleRatio } = this.state;
+		
+		let newScaleRatio; 
+		if(imageScaleX !== 0 || imageScaleY !== 0 ){
+			newScaleRatio = lock ? (imageScaleY/imageScaleX) : scaleRatio;
 		}
 
-		// console.log(scaleX, scaleY)
 		this.setState({
-			imageScaleX: scaleX,
+			lockScale: lock,
+			scaleRatio: newScaleRatio
+		});
+	};
+
+	scaleImageTo = ({ newScaleX = this.state.imageScaleX, newScaleY = this.state.imageScaleY }) => {
+		const { scaleRatio } = this.state;
+
+		let scaleY = newScaleY;
+		if (this.state.lockScale) {
+			scaleY = newScaleX * scaleRatio;
+		}
+
+		// console.log(newScaleX, scaleY)
+		this.setState({
+			imageScaleX: newScaleX,
 			imageScaleY: scaleY
 		});
 	};

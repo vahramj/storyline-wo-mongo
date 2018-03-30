@@ -81,8 +81,8 @@ class ImageEditControls extends Component{
 						changeHandler={this.handleScaleXChange}
 						value={ editorState.imageScaleX }
 						step="0.1"
-						min="-5"
-						max="5"
+						min="-2"
+						max="2"
 					/>
 					<SliderInput
 						label="scale Y"
@@ -90,8 +90,8 @@ class ImageEditControls extends Component{
 						changeHandler={this.handleScaleYChange}
 						value={ editorState.imageScaleY }
 						step="0.1"
-						min="-5"
-						max="5"
+						min="-2"
+						max="2"
 						disabled = {editorState.lockScale}
 					/>
 				</fieldset>
