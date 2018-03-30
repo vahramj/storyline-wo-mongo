@@ -2,11 +2,23 @@
 	display: flex;
 }
 
-.edit-area{
+.image-editor .edit-area{
 	position: relative;
 	width: 400px;
 	height: 400px;
 	/*width: 100%;*/
+}
+
+.image-editor .control-area{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.image-editor .control-area .btns{
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 .unused-image-tint{

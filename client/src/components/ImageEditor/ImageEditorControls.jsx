@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { func, shape, number } from "prop-types";
+import { func, shape, number, oneOfType, arrayOf, node } from "prop-types";
 
 import SliderInput from "./SliderInput";
 
 import "./styles/ImageEditorControls.css";
 
-class ImageEditControls extends Component{
+class ImageEditControls extends Component {
 	handleCoordinateXChange = event => {
-
 		this.props.setEditorState({
 			imageMoveX: Number(event.target.value)
 		});
-
 	};
 
 	handleCoordinateYChange = event => {
@@ -26,7 +24,7 @@ class ImageEditControls extends Component{
 		// 	imageScaleX: Number(event.target.value)
 		// });
 		const newScaleX = Number(event.target.value);
-		this.props.scaleImageTo({newScaleX})
+		this.props.scaleImageTo({ newScaleX });
 	};
 
 	handleScaleYChange = event => {
@@ -34,7 +32,7 @@ class ImageEditControls extends Component{
 		// 	imageScaleY: Number(event.target.value)
 		// });
 		const newScaleY = Number(event.target.value);
-		this.props.scaleImageTo({newScaleY})
+		this.props.scaleImageTo({ newScaleY });
 	};
 
 	handleRotateChange = event => {
@@ -44,27 +42,31 @@ class ImageEditControls extends Component{
 	};
 
 	handleLockScaleChange = event => {
-		console.log(event.target.checked)
-		this.props.setLockScale(event.target.checked)
-	}
+		console.log(event.target.checked);
+		this.props.setLockScale(event.target.checked);
+	};
 
-	render(){	
+	render() {
 		const { editorState } = this.props;
 
-		return(
+		return (
 			<div id="image-edit-controls">
 				<fieldset>
 					<SliderInput
 						label="move X"
 						name="CoordinateX"
 						changeHandler={this.handleCoordinateXChange}
-						value={ editorState.imageMoveX }
+						value={editorState.imageMoveX}
+						min="-100"
+						max="100"
 					/>
 					<SliderInput
 						label="move Y"
 						name="CoordinateY"
 						changeHandler={this.handleCoordinateYChange}
-						value={ editorState.imageMoveY }
+						value={editorState.imageMoveY}
+						min="-100"
+						max="100"
 					/>
 				</fieldset>
 
@@ -72,14 +74,18 @@ class ImageEditControls extends Component{
 					<div id="lock-edit-image-scale">
 						<label htmlFor="lockScale">
 							lock scale:
-							<input type="checkbox" checked={editorState.lockScale} onChange={this.handleLockScaleChange} />
+							<input
+								type="checkbox"
+								checked={editorState.lockScale}
+								onChange={this.handleLockScaleChange}
+							/>
 						</label>
 					</div>
 					<SliderInput
 						label="scale X"
 						name="scaleX"
 						changeHandler={this.handleScaleXChange}
-						value={ editorState.imageScaleX }
+						value={editorState.imageScaleX}
 						step="0.1"
 						min="-2"
 						max="2"
@@ -88,11 +94,11 @@ class ImageEditControls extends Component{
 						label="scale Y"
 						name="scaleY"
 						changeHandler={this.handleScaleYChange}
-						value={ editorState.imageScaleY }
+						value={editorState.imageScaleY}
 						step="0.1"
 						min="-2"
 						max="2"
-						disabled = {editorState.lockScale}
+						disabled={editorState.lockScale}
 					/>
 				</fieldset>
 
@@ -101,11 +107,15 @@ class ImageEditControls extends Component{
 						label="rotate"
 						name="rotate"
 						changeHandler={this.handleRotateChange}
-						value={ editorState.rotation }
+						value={editorState.rotation}
 						min="-180"
 						max="180"
 					/>
 				</fieldset>
+
+				{
+					// this.props.children
+				}
 			</div>
 		);
 	}
@@ -121,9 +131,15 @@ ImageEditControls.propTypes = {
 		imageScaleX: number.isRequired,
 		imageScaleY: number.isRequired,
 		rotation: number.isRequired
-	}).isRequired
+	}).isRequired,
+	// children: oneOfType([
+	// 	arrayOf(node),
+	// 	node
+	// ]),
 };
 
+ImageEditControls.defaultProps = {
+	// children: null
+}
+
 export default ImageEditControls;
-
-

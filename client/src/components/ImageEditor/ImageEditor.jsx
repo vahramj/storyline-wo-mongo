@@ -156,12 +156,19 @@ class ImageEditor extends Component {
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
-				<ImageEditorControls
-					editorState={this.state}
-					setEditorState={this.setEditorState}
-					scaleImageTo={this.scaleImageTo}
-					setLockScale={this.setLockScale}
-				/>
+				<div className="control-area">
+					<ImageEditorControls
+						editorState={this.state}
+						setEditorState={this.setEditorState}
+						scaleImageTo={this.scaleImageTo}
+						setLockScale={this.setLockScale}
+					/>
+					<div className="btns">
+						<button className="btn btn-danger">save</button>
+						<button className="btn btn-primary">cancel</button>
+						<button className="btn">reset</button>
+					</div>
+				</div>
 			</div>
 		);
 	}
