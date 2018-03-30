@@ -78,6 +78,32 @@ class ImageEditor extends Component {
 		this.setState(newEditorState);
 	};
 
+	setLockScale = (value) => {
+		this.setState({
+			lockScale: value
+		})
+	};
+
+	// scaleImageTo = ({newScaleX = this.state.imageScaleX, newScaleY = this.state.imageScaleY}) => {
+	scaleImageTo = ({newScaleX, newScaleY}) => {
+		const { imageScaleX, imageScaleY } = this.state;
+
+		const scaleX = newScaleX || newScaleX === 0 ? newScaleX : imageScaleX;
+		let scaleY = newScaleY || newScaleY === 0 ? newScaleY : imageScaleY;
+
+		if (this.state.lockScale && imageScaleX !== 0 && newScaleX !==0) {
+			const changeRatio = (newScaleX - imageScaleX) / imageScaleX;
+			// console.log("changeRatio: ", changeRatio)
+			scaleY = imageScaleY + imageScaleY * changeRatio;
+		}
+
+		// console.log(scaleX, scaleY)
+		this.setState({
+			imageScaleX: scaleX,
+			imageScaleY: scaleY
+		});
+	};
+
 	moveImageBy(x, y) {
 		// console.log("from moveImageBy: ", x, y);
 		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
@@ -88,26 +114,6 @@ class ImageEditor extends Component {
 			imageMoveDiffY: y,
 			imageMoveX: this.state.imageMoveX + x - this.state.imageMoveDiffX,
 			imageMoveY: this.state.imageMoveY + y - this.state.imageMoveDiffY
-		});
-	}
-
-	scaleImageTo = (newScaleX = this.state.imageScaleX, newScaleY = this.state.imageScaleY) => {
-		const { imageScaleX, imageScaleY } = this.state;
-
-		let scaleY = newScaleY;
-		if (this.state.lockScale) {
-			if(imageScaleX !== 0){
-				const ratio = (newScaleX - imageScaleX) / imageScaleX;
-				scaleY = imageScaleY + imageScaleY * ratio;
-			}
-			else {
-				scaleY = imageScaleY + newScaleX - imageScaleX;
-			}
-		}
-
-		this.setState({
-			imageScaleX: newScaleX,
-			imageScaleY: scaleY
 		});
 	}
 
@@ -130,8 +136,7 @@ class ImageEditor extends Component {
 						scale(${imageScaleX}, ${imageScaleY}) 
 			`
 		};
-		// console.log("fromRender: ", imageStyle);
-		// why doesn't translate turn into a valid style
+
 		const image = <img src={imageUrl} alt="thumbnail for asset" style={imageStyle} />;
 		return (
 			<div className="image-editor">
@@ -151,6 +156,7 @@ class ImageEditor extends Component {
 					editorState={this.state}
 					setEditorState={this.setEditorState}
 					scaleImageTo={this.scaleImageTo}
+					setLockScale={this.setLockScale}
 				/>
 			</div>
 		);

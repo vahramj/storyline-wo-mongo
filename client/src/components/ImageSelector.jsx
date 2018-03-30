@@ -20,6 +20,13 @@ class ImageSelector extends Component {
 		};
 	}
 
+	getImagePreview = files => {
+		this.setState({
+			image: files[0].preview
+		});
+		// console.log(files[0].preview);
+	};
+
 	uploadImage = files => {
 		this.setState({
 			image: "uploading"
@@ -35,13 +42,6 @@ class ImageSelector extends Component {
 			.catch(err => {
 				console.log("error uploading the file", err);
 			});
-	};
-
-	getImagePreview = files => {
-		this.setState({
-			image: files[0].preview
-		});
-		// console.log(files[0].preview);
 	};
 
 	frameImage = event => {

@@ -3,7 +3,7 @@
 }
 
 #image-edit-controls label {
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 	font-weight: bold;
 }
 #image-edit-controls input[type=number]{
@@ -12,8 +12,17 @@
 	font-size: 10pt;
 }
 
+#image-editor-controls fieldset{
+	margin-bottom: 10px;
+}
+
 .slider-input label{
 	/*float: right;*/
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+#lock-edit-image-scale{
+	margin-bottom: 5px;
 }

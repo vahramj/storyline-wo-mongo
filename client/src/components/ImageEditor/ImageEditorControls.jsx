@@ -26,7 +26,7 @@ class ImageEditControls extends Component{
 		// 	imageScaleX: Number(event.target.value)
 		// });
 		const newScaleX = Number(event.target.value);
-		this.props.scaleImageTo(newScaleX)
+		this.props.scaleImageTo({newScaleX})
 	};
 
 	handleScaleYChange = event => {
@@ -34,7 +34,7 @@ class ImageEditControls extends Component{
 		// 	imageScaleY: Number(event.target.value)
 		// });
 		const newScaleY = Number(event.target.value);
-		this.props.scaleImageTo(null,newScaleY)
+		this.props.scaleImageTo({newScaleY})
 	};
 
 	handleRotateChange = event => {
@@ -42,6 +42,11 @@ class ImageEditControls extends Component{
 			rotation: Number(event.target.value)
 		});
 	};
+
+	handleLockScaleChange = event => {
+		console.log(event.target.checked)
+		this.props.setLockScale(event.target.checked)
+	}
 
 	render(){	
 		const { editorState } = this.props;
@@ -55,7 +60,6 @@ class ImageEditControls extends Component{
 						changeHandler={this.handleCoordinateXChange}
 						value={ editorState.imageMoveX }
 					/>
-					<br />
 					<SliderInput
 						label="move Y"
 						name="CoordinateY"
@@ -65,6 +69,12 @@ class ImageEditControls extends Component{
 				</fieldset>
 
 				<fieldset>
+					<div id="lock-edit-image-scale">
+						<label htmlFor="lockScale">
+							lock scale:
+							<input type="checkbox" checked={editorState.lockScale} onChange={this.handleLockScaleChange} />
+						</label>
+					</div>
 					<SliderInput
 						label="scale X"
 						name="scaleX"
@@ -74,8 +84,6 @@ class ImageEditControls extends Component{
 						min="-5"
 						max="5"
 					/>
-					<input type="checkbox" />
-					<br />
 					<SliderInput
 						label="scale Y"
 						name="scaleY"
@@ -106,6 +114,7 @@ class ImageEditControls extends Component{
 ImageEditControls.propTypes = {
 	setEditorState: func.isRequired,
 	scaleImageTo: func.isRequired,
+	setLockScale: func.isRequired,
 	editorState: shape({
 		imageMoveX: number.isRequired,
 		imageMoveY: number.isRequired,
