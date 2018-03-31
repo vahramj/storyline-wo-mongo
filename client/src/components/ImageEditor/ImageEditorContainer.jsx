@@ -9,14 +9,16 @@ import { frameSizes } from "../../utils/constants";
 import "./styles/ImageEditorContainer.css";
 
 const ImageEditorContainer = props => {
-	const { imageUrl, type, hideImageEditor } = props;
+	const { imageUrl, type, hideImageEditor, setImageEditData, imageEditData } = props;
 	const { frameWidth, frameHeight } = frameSizes[type];
 
 	const imageEditorProps = {
 		frameWidth,
 		frameHeight,
 		imageUrl,
-		hideImageEditor
+		hideImageEditor,
+		setImageEditData,
+		imageEditData
 	};
 	return(
 		<div className="image-editor-container">
@@ -31,7 +33,9 @@ const ImageEditorContainer = props => {
 ImageEditorContainer.propTypes = {
 	imageUrl: string,
 	type: string.isRequired,
-	hideImageEditor: func.isRequired
+	hideImageEditor: func.isRequired,
+	setImageEditData: func.isRequired,
+
 }
 
 ImageEditorContainer.defaultProps = {

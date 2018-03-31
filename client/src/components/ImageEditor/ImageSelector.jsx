@@ -16,7 +16,8 @@ class ImageSelector extends Component {
 		this.state = {
 			image: null,
 			loaded: false,
-			imageEditorShown: false
+			imageEditorShown: false,
+			imageEditData: null
 		};
 	}
 
@@ -53,10 +54,15 @@ class ImageSelector extends Component {
 		});
 	};
 
-	hideImageEditor = event => {
-		event.preventDefault();
+	hideImageEditor = () => {
 		this.setState({
 			imageEditorShown: false
+		});
+	}
+
+	setImageEditData = (imageEditData) => {
+		this.setState({
+			imageEditData
 		});
 	}
 
@@ -125,7 +131,8 @@ class ImageSelector extends Component {
 						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
 						type={type}
-						children="hello"
+						setImageEditData={this.setImageEditData}
+						imageEditData={this.state.imageEditData}
 					/>
 				</Modal>
 			</div>

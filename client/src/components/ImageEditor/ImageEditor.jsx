@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
-import { number, string, func } from "prop-types";
+import { number, string, func, shape, bool } from "prop-types";
 import _ from "lodash";
 
 import ImageEditorControls from "./ImageEditorControls";
@@ -53,7 +53,8 @@ class ImageEditor extends Component {
 		// console.log(this);
 
 		const { frameWidth, frameHeight } = this.props;
-
+		let { imageEditData } = this.props;
+		// console.log("imageEditData from ImageEditor: ", imageEditData);
 		const frameStyle = {
 			width: frameWidth,
 			height: frameHeight,
@@ -61,17 +62,24 @@ class ImageEditor extends Component {
 			top: (parentHeight - frameHeight) / 2
 		};
 
+		if(!imageEditData){
+			imageEditData = {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
+		const scaleRatio = imageEditData.imageScaleY / imageEditData.imageScaleX;
+
 		this.state = {
 			frameStyle,
 			imageMoveDiffX: 0,
 			imageMoveDiffY: 0,
-			imageMoveX: 0,
-			imageMoveY: 0,
-			imageScaleX: 1,
-			imageScaleY: 1,
 			lockScale: true,
-			scaleRatio: 1,
-			rotation: 0
+			scaleRatio,
+			...imageEditData
 		};
 	}
 
@@ -79,12 +87,12 @@ class ImageEditor extends Component {
 		this.setState(newEditorState);
 	};
 
-	setLockScale = (lock) => {
+	setLockScale = lock => {
 		const { imageScaleX, imageScaleY, scaleRatio } = this.state;
-		
-		let newScaleRatio; 
-		if(imageScaleX !== 0 || imageScaleY !== 0 ){
-			newScaleRatio = lock ? (imageScaleY/imageScaleX) : scaleRatio;
+
+		let newScaleRatio;
+		if (imageScaleX !== 0 || imageScaleY !== 0) {
+			newScaleRatio = lock ? imageScaleY / imageScaleX : scaleRatio;
 		}
 
 		this.setState({
@@ -128,7 +136,7 @@ class ImageEditor extends Component {
 		});
 	}
 
-	resetEdit = (event)=>{
+	resetEdit = event => {
 		event.preventDefault();
 
 		this.setState({
@@ -140,6 +148,25 @@ class ImageEditor extends Component {
 			scaleRatio: 1,
 			rotation: 0
 		});
+	};
+
+	handleClickSave = event => {
+		event.preventDefault();
+
+		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY, rotation } = this.state;
+		this.props.setImageEditData({
+			imageMoveX,
+			imageMoveY,
+			imageScaleX,
+			imageScaleY,
+			rotation
+		});
+		this.props.hideImageEditor();
+	};
+
+	handleClickCancel = event => {
+		event.preventDefault();
+		this.props.hideImageEditor();
 	}
 
 	render() {
@@ -178,9 +205,15 @@ class ImageEditor extends Component {
 						setLockScale={this.setLockScale}
 					/>
 					<div className="btns">
-						<button className="btn btn-danger">save</button>
-						<button className="btn btn-primary" onClick={this.props.hideImageEditor}>cancel</button>
-						<button className="btn" onClick={this.resetEdit}>reset</button>
+						<button className="btn btn-danger" onClick={this.handleClickSave}>
+							save
+						</button>
+						<button className="btn btn-primary" onClick={this.handleClickCancel}>
+							cancel
+						</button>
+						<button className="btn" onClick={this.resetEdit}>
+							reset
+						</button>
 					</div>
 				</div>
 			</div>
@@ -195,11 +228,20 @@ ImageEditor.propTypes = {
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	connectDropTarget: func.isRequired,
-	hideImageEditor: func.isRequired
+	hideImageEditor: func.isRequired,
+	setImageEditData: func.isRequired,
+	imageEditData: shape({
+		imageMoveX: number.isRequired,
+		imageMoveY: number.isRequired,
+		imageScaleX: number.isRequired,
+		imageScaleY: number.isRequired,
+		rotation: number.isRequired
+	})
 };
 
 ImageEditor.defaultProps = {
-	imageUrl: ""
+	imageUrl: "",
+	imageEditData: null
 };
 
 const decorator = _.flowRight([

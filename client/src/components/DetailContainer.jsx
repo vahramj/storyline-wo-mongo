@@ -15,6 +15,7 @@ class DetailContainer extends Component {
 		this.state = {
 			name: "",
 			summary: "",
+			imageData: null
 		};
 	}
 
@@ -28,7 +29,11 @@ class DetailContainer extends Component {
 		console.log(event.target.files);
 	};
 
-
+	setImageData = imageData => {
+		this.setState({
+			imageData
+		});
+	};
 
 	handleNameChange = event => {
 		this.setState({
@@ -48,7 +53,7 @@ class DetailContainer extends Component {
 
 		return (
 			<div className="detail-container">
-				<ContainerHeader headerText={`${operation} ${type}`} />					
+				<ContainerHeader headerText={`${operation} ${type}`} />
 				<div className="container-body">
 					<form onSubmit={this.onSubmit}>
 						<fieldset>
@@ -82,7 +87,10 @@ class DetailContainer extends Component {
 						<fieldset>
 							<label htmlFor="file">
 								<h3>Select image</h3>
-								<ImageSelector type={this.props.match.params.type} /> 
+								<ImageSelector
+									type={this.props.match.params.type}
+									setImageData={this.setImageData}
+								/>
 							</label>
 
 							{/*
