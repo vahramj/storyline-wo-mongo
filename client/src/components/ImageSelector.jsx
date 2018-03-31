@@ -16,7 +16,7 @@ class ImageSelector extends Component {
 		this.state = {
 			image: null,
 			loaded: false,
-			showImageEditor: false
+			imageEditorShown: false
 		};
 	}
 
@@ -44,14 +44,21 @@ class ImageSelector extends Component {
 			});
 	};
 
-	frameImage = event => {
+	showImageEditor = event => {
 		event.preventDefault();
-		event.stopPropagation();
+		// event.stopPropagation();
 		// console.log(this);
 		this.setState({
-			showImageEditor: true
+			imageEditorShown: true
 		});
 	};
+
+	hideImageEditor = event => {
+		event.preventDefault();
+		this.setState({
+			imageEditorShown: false
+		});
+	}
 
 	renderImage = () => {
 		const { type } = this.props;
@@ -110,11 +117,12 @@ class ImageSelector extends Component {
 				>
 					{this.renderImage}
 				</Dropzone>
-				<button className="btn" onClick={this.frameImage}>
+				<button className="btn" onClick={this.showImageEditor}>
 					frame
 				</button>
-				<Modal show={this.state.showImageEditor} >
+				<Modal show={this.state.imageEditorShown} >
 					<ImageEditorContainer
+						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
 						type={type}
 					/>

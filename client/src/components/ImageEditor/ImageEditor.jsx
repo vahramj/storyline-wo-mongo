@@ -179,7 +179,7 @@ class ImageEditor extends Component {
 					/>
 					<div className="btns">
 						<button className="btn btn-danger">save</button>
-						<button className="btn btn-primary">cancel</button>
+						<button className="btn btn-primary" onClick={this.props.hideImageEditor}>cancel</button>
 						<button className="btn" onClick={this.resetEdit}>reset</button>
 					</div>
 				</div>
@@ -194,7 +194,8 @@ ImageEditor.propTypes = {
 	frameWidth: number.isRequired,
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
-	connectDropTarget: func.isRequired
+	connectDropTarget: func.isRequired,
+	hideImageEditor: func.isRequired
 };
 
 ImageEditor.defaultProps = {

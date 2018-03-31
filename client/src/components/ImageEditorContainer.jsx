@@ -1,5 +1,5 @@
 import React from "react";
-import { string } from "prop-types";
+import { string, func } from "prop-types";
 
 import ContainerHeader from "./ContainerHeader";
 import ImageEditor from "./ImageEditor/ImageEditor";
@@ -9,13 +9,14 @@ import { frameSizes } from "../utils/constants";
 import "./styles/ImageEditorContainer.css";
 
 const ImageEditorContainer = props => {
-	const { imageUrl, type } = props;
+	const { imageUrl, type, hideImageEditor } = props;
 	const { frameWidth, frameHeight } = frameSizes[type];
 
 	const imageEditorProps = {
 		frameWidth,
 		frameHeight,
-		imageUrl
+		imageUrl,
+		hideImageEditor
 	};
 	// vahram, when done, break this up to pop-up component & image-editor component
 	return(
@@ -30,7 +31,8 @@ const ImageEditorContainer = props => {
 
 ImageEditorContainer.propTypes = {
 	imageUrl: string,
-	type: string.isRequired
+	type: string.isRequired,
+	hideImageEditor: func.isRequired
 }
 
 ImageEditorContainer.defaultProps = {
