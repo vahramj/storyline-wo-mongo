@@ -3,10 +3,10 @@ import Dropzone from "react-dropzone";
 import { string } from "prop-types";
 
 import ImageEditorContainer from "./ImageEditorContainer";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
-import uploadImage from "../utils/uploadImage";
-import { frameSizes } from "../utils/constants";
+import uploadImage from "../../utils/uploadImage";
+import { frameSizes } from "../../utils/constants";
 
 import "./styles/ImageSelector.css";
 
@@ -125,6 +125,7 @@ class ImageSelector extends Component {
 						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
 						type={type}
+						children="hello"
 					/>
 				</Modal>
 			</div>

@@ -4,7 +4,7 @@ import { string, shape } from "prop-types";
 // import Dropzone from "react-dropzone";
 
 import ContainerHeader from "./ContainerHeader";
-import ImageSelector from "./ImageSelector";
+import ImageSelector from "./ImageEditor/ImageSelector";
 // import uploadImage from "../utils/uploadImage";
 
 import "./styles/DetailContainer.css";

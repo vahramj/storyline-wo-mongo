@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { func, shape, number, oneOfType, arrayOf, node } from "prop-types";
+import { func, shape, number, /* oneOfType, arrayOf, node */ } from "prop-types";
 
 import SliderInput from "./SliderInput";
 
@@ -19,18 +19,12 @@ class ImageEditControls extends Component {
 	};
 
 	handleScaleXChange = event => {
-		// console.log(typeof event.target.value)
-		// this.props.setEditorState({
-		// 	imageScaleX: Number(event.target.value)
-		// });
 		const newScaleX = Number(event.target.value);
 		this.props.scaleImageTo({ newScaleX });
 	};
 
 	handleScaleYChange = event => {
-		// this.props.setEditorState({
-		// 	imageScaleY: Number(event.target.value)
-		// });
+
 		const newScaleY = Number(event.target.value);
 		this.props.scaleImageTo({ newScaleY });
 	};

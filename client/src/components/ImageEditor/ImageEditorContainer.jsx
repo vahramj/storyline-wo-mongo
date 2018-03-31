@@ -1,10 +1,10 @@
 import React from "react";
 import { string, func } from "prop-types";
 
-import ContainerHeader from "./ContainerHeader";
-import ImageEditor from "./ImageEditor/ImageEditor";
+import ContainerHeader from "../ContainerHeader";
+import ImageEditor from "./ImageEditor";
 
-import { frameSizes } from "../utils/constants";
+import { frameSizes } from "../../utils/constants";
 
 import "./styles/ImageEditorContainer.css";
 
@@ -18,7 +18,6 @@ const ImageEditorContainer = props => {
 		imageUrl,
 		hideImageEditor
 	};
-	// vahram, when done, break this up to pop-up component & image-editor component
 	return(
 		<div className="image-editor-container">
 			<ContainerHeader headerText="edit image" />
