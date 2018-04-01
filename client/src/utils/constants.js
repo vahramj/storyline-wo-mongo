@@ -38,9 +38,9 @@ export const assetTypeHierarchy = {
 };
 
 export const frameSizes = {
-	phase: {frameWidth: 125, frameHeight: 70},
-	scene: {frameWidth: 125, frameHeight: 70},
-	character: {frameWidth: 78, frameHeight: 78},
+	phase: {frameWidth: 125, frameHeight: 70, borderRadius: 0},
+	scene: {frameWidth: 125, frameHeight: 70, borderRadius: 20},
+	character: {frameWidth: 78, frameHeight: 78, borderRadius: 50},
 }
 
 export const headWidthList = {

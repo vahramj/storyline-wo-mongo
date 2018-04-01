@@ -13,11 +13,18 @@ import "./styles/ImageSelector.css";
 class ImageSelector extends Component {
 	constructor(props) {
 		super(props);
+
+		const { type } = props;
+		const { frameWidth, frameHeight, borderRadius } = frameSizes[type];
+
 		this.state = {
+			frameWidth,
+			frameHeight,
+			borderRadius,
 			image: null,
 			loaded: false,
 			imageEditorShown: false,
-			imageEditData: null
+			imageEditData: null,
 		};
 	}
 
@@ -58,29 +65,32 @@ class ImageSelector extends Component {
 		this.setState({
 			imageEditorShown: false
 		});
-	}
+	};
 
 	setImageEditData = (imageEditData) => {
 		this.setState({
 			imageEditData
 		});
-	}
+	};
 
 	renderImage = () => {
 		const { type } = this.props;
-		let image;
+		let imagePreview;
+
 		if (this.state.image === null) {
-			image = (
+			imagePreview = (
 				<p>
 					click me<br />
 					or<br />
 					drop an image onto me
 				</p>
 			);
-		} else if (this.state.image === "uploading") {
-			image = <p>uploading...</p>;
-		} else {
-			image = (
+		} 
+		else if (this.state.image === "uploading") {
+			imagePreview = <p>uploading...</p>;
+		} 
+		else {
+			imagePreview = (
 				<div>
 					<p style={{ display: this.state.loaded ? "none" : "block" }}>uploading...</p>
 					<img
@@ -94,32 +104,32 @@ class ImageSelector extends Component {
 				</div>
 			);
 		}
-		const { frameWidth, frameHeight } = frameSizes[type];
 		// console.log(frameWidth, frameHeight)
 		return (
 			<div
 				className="image-loader-frame"
-				style={{
-					width: frameWidth,
-					height: frameHeight
-				}}
 			>
-				{image}
+				{imagePreview}
 			</div>
 		);
 	};
 
 	render() {
-		const { type } = this.props;
+		// const { type } = this.props;
 		return (
 			<div className="image-loader">
 				<Dropzone
 					className="dropzone"
+					style={{
+						width: this.state.frameWidth,
+						height: this.state.frameHeight,
+						borderRadius: `${this.state.borderRadius}%`
+					}}
 					// onDrop={this.uploadImage}
 					onDrop={this.getImagePreview}
-					ref={elem => {
-						this.dropzoneElem = elem;
-					}}
+					// ref={elem => {
+						// this.dropzoneElem = elem;
+					// }}
 				>
 					{this.renderImage}
 				</Dropzone>
@@ -130,9 +140,12 @@ class ImageSelector extends Component {
 					<ImageEditorContainer
 						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
-						type={type}
+						// type={type}
 						setImageEditData={this.setImageEditData}
 						imageEditData={this.state.imageEditData}
+						frameWidth={this.state.frameWidth}
+						frameHeight={this.state.frameHeight}
+						borderRadius={this.state.borderRadius}
 					/>
 				</Modal>
 			</div>

@@ -52,12 +52,13 @@ class ImageEditor extends Component {
 		super(props);
 		// console.log(this);
 
-		const { frameWidth, frameHeight } = this.props;
+		const { frameWidth, frameHeight, borderRadius } = this.props;
 		let { imageEditData } = this.props;
 		// console.log("imageEditData from ImageEditor: ", imageEditData);
 		const frameStyle = {
 			width: frameWidth,
 			height: frameHeight,
+			borderRadius,
 			left: (parentWidth - frameWidth) / 2,
 			top: (parentHeight - frameHeight) / 2
 		};
@@ -127,16 +128,16 @@ class ImageEditor extends Component {
 			imageMoveX: this.state.imageMoveX + x - this.state.imageMoveDiffX,
 			imageMoveY: this.state.imageMoveY + y - this.state.imageMoveDiffY
 		});
-	}
+	};
 
 	resetMove() {
 		this.setState({
 			imageMoveDiffX: 0,
 			imageMoveDiffY: 0
 		});
-	}
+	};
 
-	resetEdit = event => {
+	handleClickReset = event => {
 		event.preventDefault();
 
 		this.setState({
@@ -211,7 +212,7 @@ class ImageEditor extends Component {
 						<button className="btn btn-primary" onClick={this.handleClickCancel}>
 							cancel
 						</button>
-						<button className="btn" onClick={this.resetEdit}>
+						<button className="btn" onClick={this.handleClickReset}>
 							reset
 						</button>
 					</div>
@@ -225,6 +226,7 @@ ImageEditor.propTypes = {
 	imageUrl: string,
 	frameHeight: number.isRequired,
 	frameWidth: number.isRequired,
+	borderRadius: number,
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	connectDropTarget: func.isRequired,
@@ -241,7 +243,8 @@ ImageEditor.propTypes = {
 
 ImageEditor.defaultProps = {
 	imageUrl: "",
-	imageEditData: null
+	imageEditData: null,
+	borderRadius: 0
 };
 
 const decorator = _.flowRight([

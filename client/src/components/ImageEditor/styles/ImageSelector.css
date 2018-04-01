@@ -2,6 +2,7 @@
 	/*width: 125px;*/
 	/*height: 70px;*/
 	border: 2px dashed rgb(78, 79, 81);
+	overflow: hidden;
 }
 
 .dropzone div {
@@ -11,7 +12,7 @@
 .dropzone p,
 .dropzone img {
 	text-align: center;
-	font-size: 10pt;
+	font-size: 8pt;
 	/*margin: 3px 0;*/
 	line-height: 15px;
 }
@@ -30,7 +31,6 @@
 	/*flex-direction: column;*/
 	/*justify-content: center;*/
 	height: 100%;
-	overflow: hidden;
 }
 
 .image-loader-frame p{

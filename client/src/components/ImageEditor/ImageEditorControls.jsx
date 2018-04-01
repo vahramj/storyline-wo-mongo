@@ -44,7 +44,7 @@ class ImageEditControls extends Component {
 		const { editorState } = this.props;
 
 		return (
-			<div id="image-edit-controls">
+			<div id="image-editor-controls">
 				<fieldset>
 					<SliderInput
 						label="move X"
