@@ -23,7 +23,11 @@
 
 .image-loader {
 	display: flex;
-	/*align-items: center;*/
+	align-items: center;
+}
+
+.image-loader > .btn {
+	margin-left: 10px;
 }
 
 .image-loader-frame {

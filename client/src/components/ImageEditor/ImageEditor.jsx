@@ -52,9 +52,9 @@ class ImageEditor extends Component {
 		super(props);
 		// console.log(this);
 
-		const { frameWidth, frameHeight, borderRadius } = this.props;
-		let { imageEditData } = this.props;
-		// console.log("imageEditData from ImageEditor: ", imageEditData);
+		const { frameWidth, frameHeight, borderRadius, imageDisplayData } = this.props;
+		// let { imageDisplayData } = this.props;
+		// console.log("imageDisplayData from ImageEditor: ", imageDisplayData);
 		const frameStyle = {
 			width: frameWidth,
 			height: frameHeight,
@@ -63,16 +63,16 @@ class ImageEditor extends Component {
 			top: (parentHeight - frameHeight) / 2
 		};
 
-		if(!imageEditData){
-			imageEditData = {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
-				rotation: 0
-			}
-		}
-		const scaleRatio = imageEditData.imageScaleY / imageEditData.imageScaleX;
+		// if(!imageDisplayData){
+		// 	imageDisplayData = {
+		// 		imageMoveX: 0,
+		// 		imageMoveY: 0,
+		// 		imageScaleX: 1,
+		// 		imageScaleY: 1,
+		// 		rotation: 0
+		// 	}
+		// }
+		const scaleRatio = imageDisplayData.imageScaleY / imageDisplayData.imageScaleX;
 
 		this.state = {
 			frameStyle,
@@ -80,7 +80,7 @@ class ImageEditor extends Component {
 			imageMoveDiffY: 0,
 			lockScale: true,
 			scaleRatio,
-			...imageEditData
+			...imageDisplayData
 		};
 	}
 
@@ -232,7 +232,7 @@ ImageEditor.propTypes = {
 	connectDropTarget: func.isRequired,
 	hideImageEditor: func.isRequired,
 	setImageEditData: func.isRequired,
-	imageEditData: shape({
+	imageDisplayData: shape({
 		imageMoveX: number.isRequired,
 		imageMoveY: number.isRequired,
 		imageScaleX: number.isRequired,
@@ -243,7 +243,7 @@ ImageEditor.propTypes = {
 
 ImageEditor.defaultProps = {
 	imageUrl: "",
-	imageEditData: null,
+	imageDisplayData: null,
 	borderRadius: 0
 };
 

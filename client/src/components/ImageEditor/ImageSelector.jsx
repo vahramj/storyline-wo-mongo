@@ -24,13 +24,26 @@ class ImageSelector extends Component {
 			image: null,
 			loaded: false,
 			imageEditorShown: false,
-			imageEditData: null,
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
 		};
 	}
 
 	getImagePreview = files => {
 		this.setState({
-			image: files[0].preview
+			image: files[0].preview,
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
 		});
 		// console.log(files[0].preview);
 	};
@@ -67,9 +80,9 @@ class ImageSelector extends Component {
 		});
 	};
 
-	setImageEditData = (imageEditData) => {
+	setImageEditData = imageDisplayData => {
 		this.setState({
-			imageEditData
+			imageDisplayData
 		});
 	};
 
@@ -90,11 +103,27 @@ class ImageSelector extends Component {
 			imagePreview = <p>uploading...</p>;
 		} 
 		else {
+			const {
+				imageMoveX,
+				imageMoveY,
+				imageScaleX,
+				imageScaleY,
+				rotation
+			} = this.state.imageDisplayData;
+
+			const imageStyle = {
+				transform: `
+							translate(${imageMoveX}px, ${imageMoveY}px) 
+							rotate(${rotation}deg)
+							scale(${imageScaleX}, ${imageScaleY}) 
+				`
+			};
+
 			imagePreview = (
 				<div>
 					<p style={{ display: this.state.loaded ? "none" : "block" }}>uploading...</p>
 					<img
-						style={{ display: this.state.loaded ? "block" : "none" }}
+						style={{ display: this.state.loaded ? "block" : "none", ...imageStyle }}
 						src={this.state.image}
 						alt={`thumbnail for ${type}`}
 						onLoad={() => {
@@ -105,13 +134,7 @@ class ImageSelector extends Component {
 			);
 		}
 		// console.log(frameWidth, frameHeight)
-		return (
-			<div
-				className="image-loader-frame"
-			>
-				{imagePreview}
-			</div>
-		);
+		return <div className="image-loader-frame">{imagePreview}</div>;
 	};
 
 	render() {
@@ -128,21 +151,21 @@ class ImageSelector extends Component {
 					// onDrop={this.uploadImage}
 					onDrop={this.getImagePreview}
 					// ref={elem => {
-						// this.dropzoneElem = elem;
+					// this.dropzoneElem = elem;
 					// }}
 				>
 					{this.renderImage}
 				</Dropzone>
 				<button className="btn" onClick={this.showImageEditor}>
-					frame
+					edit
 				</button>
-				<Modal show={this.state.imageEditorShown} >
+				<Modal show={this.state.imageEditorShown}>
 					<ImageEditorContainer
 						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
 						// type={type}
 						setImageEditData={this.setImageEditData}
-						imageEditData={this.state.imageEditData}
+						imageDisplayData={this.state.imageDisplayData}
 						frameWidth={this.state.frameWidth}
 						frameHeight={this.state.frameHeight}
 						borderRadius={this.state.borderRadius}
