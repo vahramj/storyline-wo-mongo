@@ -22,7 +22,7 @@ class ImageSelector extends Component {
 			frameHeight,
 			borderRadius,
 			image: null,
-			loaded: false,
+			// loaded: false,
 			imageEditorShown: false,
 			imageDisplayData: {
 				imageMoveX: 0,
@@ -34,18 +34,11 @@ class ImageSelector extends Component {
 		};
 	}
 
-	getImagePreview = files => {
+	// vahram, replace this with individual functions for each Control when implementing enhanced Image editing
+	setImageEditData = imageDisplayData => {
 		this.setState({
-			image: files[0].preview,
-			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
-				rotation: 0
-			}
+			imageDisplayData
 		});
-		// console.log(files[0].preview);
 	};
 
 	uploadImage = files => {
@@ -65,14 +58,18 @@ class ImageSelector extends Component {
 			});
 	};
 
-	showImageEditor = event => {
+	handleEditClick = event => {
 		event.preventDefault();
 		// event.stopPropagation();
 		// console.log(this);
+		this.showImageEditor();
+	};
+
+	showImageEditor (){
 		this.setState({
 			imageEditorShown: true
 		});
-	};
+	}
 
 	hideImageEditor = () => {
 		this.setState({
@@ -80,10 +77,19 @@ class ImageSelector extends Component {
 		});
 	};
 
-	setImageEditData = imageDisplayData => {
+	handleImageDrop = files => {
 		this.setState({
-			imageDisplayData
+			image: files[0].preview,
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
 		});
+		this.showImageEditor();
+		// console.log(files[0].preview);
 	};
 
 	renderImage = () => {
@@ -99,9 +105,9 @@ class ImageSelector extends Component {
 				</p>
 			);
 		} 
-		else if (this.state.image === "uploading") {
-			imagePreview = <p>uploading...</p>;
-		} 
+		// else if (this.state.image === "uploading") {
+		// 	imagePreview = <p>uploading...</p>;
+		// } 
 		else {
 			const {
 				imageMoveX,
@@ -120,50 +126,39 @@ class ImageSelector extends Component {
 			};
 
 			imagePreview = (
-				<div>
-					<p style={{ display: this.state.loaded ? "none" : "block" }}>uploading...</p>
-					<img
-						style={{ display: this.state.loaded ? "block" : "none", ...imageStyle }}
-						src={this.state.image}
-						alt={`thumbnail for ${type}`}
-						onLoad={() => {
-							this.setState({ loaded: true });
-						}}
-					/>
-				</div>
+				<img style={imageStyle} src={this.state.image} alt={`thumbnail for ${type}`} />
 			);
 		}
 		// console.log(frameWidth, frameHeight)
-		return <div className="image-loader-frame">{imagePreview}</div>;
+		return (
+			<div
+				className="image-loader-frame"
+				style={{
+					width: this.state.frameWidth,
+					height: this.state.frameHeight,
+					borderRadius: `${this.state.borderRadius}%`
+				}}
+			>
+				{imagePreview}
+			</div>
+		);
 	};
 
 	render() {
-		// const { type } = this.props;
 		return (
 			<div className="image-loader">
-				<Dropzone
-					className="dropzone"
-					style={{
-						width: this.state.frameWidth,
-						height: this.state.frameHeight,
-						borderRadius: `${this.state.borderRadius}%`
-					}}
-					// onDrop={this.uploadImage}
-					onDrop={this.getImagePreview}
-					// ref={elem => {
-					// this.dropzoneElem = elem;
-					// }}
-				>
-					{this.renderImage}
+				<Dropzone className="dropzone" onDrop={this.handleImageDrop}>
+					{this.renderImage()}
 				</Dropzone>
+
 				<button className="btn" onClick={this.showImageEditor}>
 					edit
 				</button>
+
 				<Modal show={this.state.imageEditorShown}>
 					<ImageEditorContainer
 						hideImageEditor={this.hideImageEditor}
 						imageUrl={this.state.image}
-						// type={type}
 						setImageEditData={this.setImageEditData}
 						imageDisplayData={this.state.imageDisplayData}
 						frameWidth={this.state.frameWidth}
@@ -172,16 +167,6 @@ class ImageSelector extends Component {
 					/>
 				</Modal>
 			</div>
-
-			// <input
-			// 	type="file"
-			// 	id="imageFile"
-			// 	name="imageFile"
-			// 	ref = {inputElem => {
-			// 		this.fileInputElem = inputElem
-			// 	}}
-			// 	onChange = {this.onImageChange}
-			// />
 		);
 	}
 }

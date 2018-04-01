@@ -4,6 +4,7 @@ import { number, string, func, shape, bool } from "prop-types";
 import _ from "lodash";
 
 import ImageEditorControls from "./ImageEditorControls";
+import { dragSpec, dropSpec, collectDrag, collectDrop } from "./imageEditorDnDSpecs";
 
 import { dndTypes } from "../../utils/constants";
 
@@ -11,41 +12,6 @@ import "./styles/ImageEditor.css";
 
 const parentWidth = 400;
 const parentHeight = 400;
-
-const dragSpec = {
-	beginDrag() {
-		console.log("dragging");
-		return {};
-	}
-};
-
-const dropSpec = {
-	drop(props, monitor, component) {
-		// const { x, y } = monitor.getDifferenceFromInitialOffset();
-		console.log("dropped");
-		// component.moveImageBy(x, y);
-		component.resetMove();
-	},
-	hover(props, monitor, component) {
-		const { x, y } = monitor.getDifferenceFromInitialOffset();
-		component.moveImageBy(x, y);
-		// console.log(monitor.getDifferenceFromInitialOffset());
-	}
-};
-
-function collectDrag(connectDnD, monitor) {
-	return {
-		connectDragSource: connectDnD.dragSource(),
-		connectDragPreview: connectDnD.dragPreview()
-		// isDragging: monitor.isDragging()
-	};
-}
-
-function collectDrop(connectDnD) {
-	return {
-		connectDropTarget: connectDnD.dropTarget()
-	};
-}
 
 class ImageEditor extends Component {
 	constructor(props) {
