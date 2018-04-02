@@ -12,7 +12,8 @@ const {
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
 	SET_SEARCH_TERM,
-	SET_CURRENT_IMAGE_DATA
+	SET_CURRENT_IMAGE_DATA,
+	SAVE_ASSET_DETAILS
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -136,5 +137,13 @@ export function setCurrentImageData(currentImageData){
 	return {
 		type: SET_CURRENT_IMAGE_DATA,
 		payload: currentImageData
+	}
+}
+
+export function saveDetails(assetDetails){
+	// console.log("assetDetails: ", assetDetails);
+	return {
+		type: SAVE_ASSET_DETAILS,
+		payload: assetDetails
 	}
 }

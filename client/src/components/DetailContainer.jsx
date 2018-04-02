@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { string, shape } from "prop-types";
-// import Dropzone from "react-dropzone";
+import { string, shape, number, func } from "prop-types";
+import { connect } from "react-redux";
 
 import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageEditor/ImageSelector";
 
 import uploadImage from "../utils/uploadImage";
+import { saveDetails } from "../actions/actionCreators";
 
 import "./styles/DetailContainer.css";
 
@@ -16,7 +17,6 @@ class DetailContainer extends Component {
 		this.state = {
 			name: "",
 			summary: "",
-			imageData: null
 		};
 	}
 
@@ -24,16 +24,6 @@ class DetailContainer extends Component {
 		event.preventDefault();
 		console.log(this.fileInputElem.value);
 		console.log(this.fileInputElem.files);
-	};
-
-	onImageChange = event => {
-		console.log(event.target.files);
-	};
-
-	setImageData = imageData => {
-		this.setState({
-			imageData
-		});
 	};
 
 	handleNameChange = event => {
@@ -51,23 +41,37 @@ class DetailContainer extends Component {
 	handleSaveDetails = event => {
 		event.preventDefault();
 		console.log("saving details")
-	};
-
-	uploadImage = files => {
-		// this.setState({
-		// 	image: "uploading"
-		// });
-
-		uploadImage(files[0])
-			.then(url => {
-				console.log(url);
-				// this.setState({
-				// 	imageUrl: url
-				// });
-			})
-			.catch(err => {
-				console.log("error uploading the file", err);
-			});
+		const { imageFile, imageUrl } = this.props.currentImageData;
+		const { type } = this.props.match.params;
+		const { name, summary } = this.state;
+		// upload image to claudinary
+		// save the resulting url & display details to asset data
+		this.props.saveDetails({
+			type,
+			name,
+			summary,
+			image: imageUrl
+			// vahram, add display details after the exiting data model works
+		})
+		this.props.history.push("/");
+		// uploadImage(imageFile)
+		// 	.then(url => {
+		// 		console.log(url);
+		// 		this.props.saveDetails({
+		// 			type,
+		// 			name,
+		// 			summary,
+		// 			image: url
+		// 			// vahram, add display details after the exiting data model works
+		// 		})
+		// 	})
+		// 	.then(() => {
+		// 		// console.log("this.props from handleSaveDetails: ", this.props);
+		// 		// this.props.history.push("/");
+		// 	})
+		// 	.catch(err => {
+		// 		console.log("error uploading the file", err);
+		// 	});
 	};
 
 	render() {
@@ -111,8 +115,7 @@ class DetailContainer extends Component {
 							<label htmlFor="file">
 								<h3>Select image</h3>
 								<ImageSelector
-									type={this.props.match.params.type}
-									setImageData={this.setImageData}
+									type={type}
 								/>
 							</label>
 						</fieldset>
@@ -138,7 +141,43 @@ DetailContainer.propTypes = {
 			operation: string.isRequired,
 			type: string.isRequired
 		}).isRequired
-	}).isRequired
+	}).isRequired,
+
+	history: shape({
+		push: func.isRequired
+	}).isRequired,
+
+	// vahram, come back to this when coding edit existing asset
+	assetData: shape({
+		id: string.isRequired,
+		name: string.isRequired,
+		type: string.isRequired,
+	}),
+
+	currentImageData: shape({
+		// imageUrl: string.isRequired,
+		imageFile: shape(),
+		imageDisplayData: shape({
+			imageMoveX: number.isRequired,
+			imageMoveY: number.isRequired,
+			imageScaleX: number.isRequired,
+			imageScaleY: number.isRequired,
+			rotation: number.isRequired
+		}).isRequired
+	}),
+
+	saveDetails: func.isRequired
 };
 
-export default DetailContainer;
+DetailContainer.defaultProps = {
+	currentImageData: null,
+	assetData: null
+}
+
+function mapStateToProps({ currentImageData }){
+	return {
+		currentImageData
+	};
+}
+
+export default connect( mapStateToProps, { saveDetails })(DetailContainer);

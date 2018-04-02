@@ -51,6 +51,7 @@ class ImageSelector extends Component {
 
 	handleImageDrop = files => {
 		this.props.setCurrentImageData({
+			imageFile: files[0],
 			imageUrl: files[0].preview,
 		})
 		this.showImageEditor();
@@ -59,9 +60,10 @@ class ImageSelector extends Component {
 
 	renderImage = () => {
 		const { type, currentImageData } = this.props;
+		// console.log(currentImageData)
 		let imagePreview;
 
-		if ( currentImageData.imageUrl ) {
+		if ( currentImageData.imageUrl === "" ) {
 			imagePreview = (
 				<p>
 					click me<br />
@@ -145,6 +147,7 @@ ImageSelector.propTypes = {
 	type: string,
 	currentImageData: shape({
 		imageUrl: string.isRequired,
+		imageFile: shape(),
 		imageDisplayData: shape({
 			imageMoveX: number.isRequired,
 			imageMoveY: number.isRequired,

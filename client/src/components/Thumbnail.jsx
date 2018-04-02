@@ -16,8 +16,8 @@ class Thumbnail extends PureComponent{
 		super(props);
 
 		this.state = {
-			image: path.resolve(this.props.image || defaultImages[props.type])
-			// image: this.props.image || defaultImages[props.type]
+			// image: path.resolve(this.props.image || defaultImages[props.type])
+			image: this.props.image || defaultImages[props.type]
 		}
 	};
 

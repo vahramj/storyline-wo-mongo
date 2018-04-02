@@ -1,4 +1,5 @@
 import update from "immutability-helper";
+import makeUniqId from "uniqid";
 
 import {
 	getData,
@@ -27,7 +28,8 @@ const {
 	CALC_INSERT_POSITION,
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
-	SET_FRAME_REQUESTOR
+	SET_FRAME_REQUESTOR,
+	SAVE_ASSET_DETAILS
 } = actionTypes;
 
 const initialState = {
@@ -154,6 +156,37 @@ function assetsDataReducer(state = initialState, action) {
 				frameRequestors[assetId] = requestedFrame
 			}
 			return {...state, frameRequestors};
+		}
+
+		case SAVE_ASSET_DETAILS: {
+			const { assetId } = action.payload; 
+			if(assetId){
+				const newData = update(state.data,{
+					[assetId]: {
+						$merge: action.payload
+					}
+				});
+				return newData
+			}
+			// generate new id
+			const newAssetId = makeUniqId();
+			// generate new asset
+			const newAsset = {
+				id: newAssetId,
+				parent: null,
+				children: [],
+				...action.payload,
+			}
+			// add asset to assetsData
+			const newData = update(state, {
+				data: {
+					[newAssetId]: {
+						$set: newAsset
+					}
+				}
+			});
+			console.log(newData)
+			return newData;
 		}
 
 		default:
