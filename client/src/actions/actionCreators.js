@@ -11,7 +11,8 @@ const {
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
-	SET_SEARCH_TERM
+	SET_SEARCH_TERM,
+	SET_CURRENT_IMAGE_DATA
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -128,5 +129,12 @@ export function setSearchTerm(term, searchType){
 	return {
 		type: SET_SEARCH_TERM,
 		payload: {searchType, term}
+	}
+}
+
+export function setCurrentImageData(currentImageData){
+	return {
+		type: SET_CURRENT_IMAGE_DATA,
+		payload: currentImageData
 	}
 }

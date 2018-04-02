@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DragSource, DropTarget } from "react-dnd";
-import { number, string, func, shape, bool } from "prop-types";
+import { number, string, func, shape } from "prop-types";
 import _ from "lodash";
 
 import ImageEditorControls from "./ImageEditorControls";
@@ -18,8 +18,8 @@ class ImageEditor extends Component {
 		super(props);
 		// console.log(this);
 
-		const { frameWidth, frameHeight, borderRadius, imageDisplayData } = this.props;
-		// let { imageDisplayData } = this.props;
+		const { frameWidth, frameHeight, borderRadius } = this.props;
+		let { imageDisplayData } = this.props;
 		// console.log("imageDisplayData from ImageEditor: ", imageDisplayData);
 		const frameStyle = {
 			width: frameWidth,
@@ -29,15 +29,15 @@ class ImageEditor extends Component {
 			top: (parentHeight - frameHeight) / 2
 		};
 
-		// if(!imageDisplayData){
-		// 	imageDisplayData = {
-		// 		imageMoveX: 0,
-		// 		imageMoveY: 0,
-		// 		imageScaleX: 1,
-		// 		imageScaleY: 1,
-		// 		rotation: 0
-		// 	}
-		// }
+		if(!imageDisplayData){
+			imageDisplayData = {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 		const scaleRatio = imageDisplayData.imageScaleY / imageDisplayData.imageScaleX;
 
 		this.state = {
@@ -121,7 +121,7 @@ class ImageEditor extends Component {
 		event.preventDefault();
 
 		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY, rotation } = this.state;
-		this.props.setImageEditData({
+		this.props.setImageDisplayData({
 			imageMoveX,
 			imageMoveY,
 			imageScaleX,
@@ -152,6 +152,7 @@ class ImageEditor extends Component {
 		const image = <img src={imageUrl} alt="thumbnail for asset" style={imageStyle} />;
 		return (
 			<div className="image-editor">
+
 				{connectDropTarget(
 					<div className="edit-area">
 						<div className="uncropped-image-frame" style={this.state.frameStyle}>
@@ -164,6 +165,7 @@ class ImageEditor extends Component {
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
 				)}
+
 				<div className="control-area">
 					<ImageEditorControls
 						editorState={this.state}
@@ -183,21 +185,25 @@ class ImageEditor extends Component {
 						</button>
 					</div>
 				</div>
+				
 			</div>
 		);
 	}
 }
 
 ImageEditor.propTypes = {
-	imageUrl: string,
 	frameHeight: number.isRequired,
 	frameWidth: number.isRequired,
 	borderRadius: number,
+	
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	connectDropTarget: func.isRequired,
+
 	hideImageEditor: func.isRequired,
-	setImageEditData: func.isRequired,
+	setImageDisplayData: func.isRequired,
+	
+	imageUrl: string,
 	imageDisplayData: shape({
 		imageMoveX: number.isRequired,
 		imageMoveY: number.isRequired,

@@ -5,7 +5,8 @@ import { string, shape } from "prop-types";
 
 import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageEditor/ImageSelector";
-// import uploadImage from "../utils/uploadImage";
+
+import uploadImage from "../utils/uploadImage";
 
 import "./styles/DetailContainer.css";
 
@@ -45,6 +46,28 @@ class DetailContainer extends Component {
 		this.setState({
 			summary: event.target.value
 		});
+	};
+
+	handleSaveDetails = event => {
+		event.preventDefault();
+		console.log("saving details")
+	};
+
+	uploadImage = files => {
+		// this.setState({
+		// 	image: "uploading"
+		// });
+
+		uploadImage(files[0])
+			.then(url => {
+				console.log(url);
+				// this.setState({
+				// 	imageUrl: url
+				// });
+			})
+			.catch(err => {
+				console.log("error uploading the file", err);
+			});
 	};
 
 	render() {
@@ -92,23 +115,11 @@ class DetailContainer extends Component {
 									setImageData={this.setImageData}
 								/>
 							</label>
-
-							{/*
-							<label htmlFor="image-url">
-								<fieldset>
-									<p>
-										<input type="radio" name="imageInput" />
-										<span>Image url</span>
-									</p>
-									<input type="text" id="image-url" size="60" name="imageUrl" />
-								</fieldset>
-							</label>
-							*/}
 						</fieldset>
 
 						<fieldset>
 							<div className="btns">
-								<button className="btn btn-primary">add</button>
+								<button className="btn btn-primary" onClick={this.handleSaveDetails}>save</button>
 								<Link className="btn btn-danger" to="/">
 									cancel
 								</Link>

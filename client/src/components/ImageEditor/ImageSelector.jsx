@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import { string } from "prop-types";
+import { string, number, shape, func } from "prop-types";
+import { connect } from "react-redux";
 
 import ImageEditorContainer from "./ImageEditorContainer";
 import Modal from "../Modal";
 
-import uploadImage from "../../utils/uploadImage";
 import { frameSizes } from "../../utils/constants";
+import { setCurrentImageData } from "../../actions/actionCreators";
 
 import "./styles/ImageSelector.css";
 
@@ -21,47 +22,18 @@ class ImageSelector extends Component {
 			frameWidth,
 			frameHeight,
 			borderRadius,
-			image: null,
-			// loaded: false,
-			imageEditorShown: false,
-			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
-				rotation: 0
-			}
+			imageEditorShown: false
 		};
 	}
 
-	// vahram, replace this with individual functions for each Control when implementing enhanced Image editing
-	setImageEditData = imageDisplayData => {
-		this.setState({
+	setImageDisplayData = imageDisplayData => {
+		this.props.setCurrentImageData({
 			imageDisplayData
-		});
-	};
-
-	uploadImage = files => {
-		this.setState({
-			image: "uploading"
-		});
-
-		uploadImage(files[0])
-			.then(url => {
-				console.log(url);
-				this.setState({
-					image: url
-				});
-			})
-			.catch(err => {
-				console.log("error uploading the file", err);
-			});
+		})
 	};
 
 	handleEditClick = event => {
 		event.preventDefault();
-		// event.stopPropagation();
-		// console.log(this);
 		this.showImageEditor();
 	};
 
@@ -78,25 +50,18 @@ class ImageSelector extends Component {
 	};
 
 	handleImageDrop = files => {
-		this.setState({
-			image: files[0].preview,
-			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
-				rotation: 0
-			}
-		});
+		this.props.setCurrentImageData({
+			imageUrl: files[0].preview,
+		})
 		this.showImageEditor();
 		// console.log(files[0].preview);
 	};
 
 	renderImage = () => {
-		const { type } = this.props;
+		const { type, currentImageData } = this.props;
 		let imagePreview;
 
-		if (this.state.image === null) {
+		if ( currentImageData.imageUrl ) {
 			imagePreview = (
 				<p>
 					click me<br />
@@ -109,13 +74,14 @@ class ImageSelector extends Component {
 		// 	imagePreview = <p>uploading...</p>;
 		// } 
 		else {
+			const { imageUrl, imageDisplayData } = this.props.currentImageData;
 			const {
 				imageMoveX,
 				imageMoveY,
 				imageScaleX,
 				imageScaleY,
 				rotation
-			} = this.state.imageDisplayData;
+			} = imageDisplayData;
 
 			const imageStyle = {
 				transform: `
@@ -126,7 +92,7 @@ class ImageSelector extends Component {
 			};
 
 			imagePreview = (
-				<img style={imageStyle} src={this.state.image} alt={`thumbnail for ${type}`} />
+				<img style={imageStyle} src={imageUrl} alt={`thumbnail for ${type}`} />
 			);
 		}
 		// console.log(frameWidth, frameHeight)
@@ -145,22 +111,26 @@ class ImageSelector extends Component {
 	};
 
 	render() {
+		const { imageDisplayData, imageUrl } = this.props.currentImageData;
+
 		return (
 			<div className="image-loader">
 				<Dropzone className="dropzone" onDrop={this.handleImageDrop}>
 					{this.renderImage()}
 				</Dropzone>
 
-				<button className="btn" onClick={this.showImageEditor}>
+				<button className="btn" onClick={this.handleEditClick}>
 					edit
 				</button>
 
 				<Modal show={this.state.imageEditorShown}>
 					<ImageEditorContainer
 						hideImageEditor={this.hideImageEditor}
-						imageUrl={this.state.image}
-						setImageEditData={this.setImageEditData}
-						imageDisplayData={this.state.imageDisplayData}
+						setImageDisplayData={this.setImageDisplayData}
+
+						imageUrl={imageUrl}
+						imageDisplayData={imageDisplayData}
+
 						frameWidth={this.state.frameWidth}
 						frameHeight={this.state.frameHeight}
 						borderRadius={this.state.borderRadius}
@@ -172,11 +142,27 @@ class ImageSelector extends Component {
 }
 
 ImageSelector.propTypes = {
-	type: string
+	type: string,
+	currentImageData: shape({
+		imageUrl: string.isRequired,
+		imageDisplayData: shape({
+			imageMoveX: number.isRequired,
+			imageMoveY: number.isRequired,
+			imageScaleX: number.isRequired,
+			imageScaleY: number.isRequired,
+			rotation: number.isRequired
+		}).isRequired
+	}),
+	setCurrentImageData: func.isRequired
 };
 
 ImageSelector.defaultProps = {
-	type: "asset"
+	type: "asset", 
+	currentImageData: null
 };
 
-export default ImageSelector;
+function mapStateToProps({ currentImageData }){
+	return { currentImageData };
+}
+
+export default connect( mapStateToProps, { setCurrentImageData })(ImageSelector);
