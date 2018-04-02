@@ -43,11 +43,57 @@ const collectDnD = (connectDnD, monitor) => {
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 class Asset extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			editAssetToolsShown: false
+		}
+	};
+
+	componentWillReceiveProps(nextProps){
+		if(!nextProps.selected){
+			this.setState({
+				editAssetToolsShown: false
+			})
+		}
+	}
+
 	onClickHandler = event => {
 		const { assetId } = this.props;
 		event.stopPropagation();
 		this.props.selectAsset(assetId);
 	};
+
+	onDoubleClickHandler = () => {
+		// event.stopPropagation()
+		this.setState({
+			editAssetToolsShown: true
+		})
+	}
+
+	renderEditAssetTools(){
+		// console.log(this);
+		const { type } = this.props;
+		let opacity = 1;
+		if(!this.state.editAssetToolsShown){
+			// return null;
+			opacity = 0;
+		}
+		return (
+			<div className="hover-tint" style={{opacity}} onDoubleClick={this.onDoubleClickHandler}>
+				<img
+					src="/static/icons/edit_icon.png"
+					className="edit-icon"
+					alt={`edit ${type} icon`}
+				/>
+				<img
+					src="/static/icons/delete_phase_icon_2.png"
+					className="delete-icon"
+					alt={`delete ${type} icon`}
+				/>
+			</div>
+		);
+	}
 
 	render() {
 		const {
@@ -70,18 +116,7 @@ class Asset extends Component {
 				role="none"
 				onClick={this.onClickHandler}
 			>
-				<div className="hover-tint">
-					<img
-						src="/static/icons/edit_icon.png"
-						className="edit-icon"
-						alt={`edit ${type} icon`}
-					/>
-					<img
-						src="/static/icons/delete_phase_icon_2.png"
-						className="delete-icon"
-						alt={`delete ${type} icon`}
-					/>
-				</div>
+				{ this.renderEditAssetTools() }
 				<AssetBase assetId={assetId} />
 				{connectDragPreview(<div className="hidden-drag-preview" />)}
 			</div>

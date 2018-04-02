@@ -48,6 +48,9 @@ const ContainerHolder = props => {
 	return (
 		<div>
 			{props.connectDropTarget(
+				// vahram, when add/edit detail functionality is done, 
+				// move the main drop bg functionality from #main-drop-bg div, to .main div in App
+				// otherwise, clicking/dropping between asset containers doesn't register
 				<div id="main-drop-bg" role="none" onClick={props.deSelectAsset} />
 			)}
 			<div id="asset-containers">

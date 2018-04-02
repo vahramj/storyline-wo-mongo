@@ -52,8 +52,10 @@ class DetailContainer extends Component {
 			summary,
 			image: imageUrl
 			// vahram, add display details after the exiting data model works
-		})
+		});
+
 		this.props.history.push("/");
+		
 		// uploadImage(imageFile)
 		// 	.then(url => {
 		// 		console.log(url);
