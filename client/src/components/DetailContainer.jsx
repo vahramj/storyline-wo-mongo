@@ -47,14 +47,27 @@ class DetailContainer extends Component {
 		}
 	}
 
-	onSubmit = (event) => {
-		event.preventDefault();
-		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
-	};
-
+	// ██╗   ██╗████████╗██╗██╗     ███████╗
+	// ██║   ██║╚══██╔══╝██║██║     ██╔════╝
+	// ██║   ██║   ██║   ██║██║     ███████╗
+	// ██║   ██║   ██║   ██║██║     ╚════██║
+	// ╚██████╔╝   ██║   ██║███████╗███████║
+	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
 
 	setImageData = (newImageData) => {
 		this.setState({ imageData: { ...this.state.imageData, ...newImageData }});
+	};
+
+	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
+	// ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝    ██║  ██║██╔══██╗██║     ██╔════╝
+	// █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║       ███████║██║  ██║██║     ███████╗
+	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
+	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
+	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
+
+	handleSubmitForm = (event) => {
+		event.preventDefault();
+		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
 	};
 
 	handleNameChange = event => {
@@ -122,7 +135,7 @@ class DetailContainer extends Component {
 			<div className="detail-container">
 				<ContainerHeader headerText={`${operation} ${type}`} />
 				<div className="container-body">
-					<form onSubmit={this.onSubmit}>
+					<form onSubmit={this.handleSubmitForm}>
 						<fieldset>
 							<label htmlFor="name">
 								<h3> {`Name for ${type}`} </h3>

@@ -33,6 +33,7 @@
             "components": [ "Link" ],
             "specialLink": [ "to" ],
             "aspects": [ "noHref", "invalidHref", "preferButton" ]
-        }]
+        }],
+        "react/sort-comp": "off"
     }
 }

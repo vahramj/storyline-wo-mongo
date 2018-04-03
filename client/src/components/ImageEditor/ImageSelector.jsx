@@ -26,36 +26,29 @@ class ImageSelector extends Component {
 		};
 	}
 
+	// ██╗   ██╗████████╗██╗██╗     ███████╗
+	// ██║   ██║╚══██╔══╝██║██║     ██╔════╝
+	// ██║   ██║   ██║   ██║██║     ███████╗
+	// ██║   ██║   ██║   ██║██║     ╚════██║
+	// ╚██████╔╝   ██║   ██║███████╗███████║
+	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
+
 	setImageDisplayData = imageDisplayData => {
 		this.props.setImageData({
 			imageDisplayData
 		})
 	};
 
-	handleEditClick = event => {
-		event.preventDefault();
-		this.showImageEditor();
-	};
-
 	showImageEditor (){
 		this.setState({
 			imageEditorShown: true
 		});
-	}
+	};
 
 	hideImageEditor = () => {
 		this.setState({
 			imageEditorShown: false
 		});
-	};
-
-	handleImageDrop = files => {
-		this.props.setImageData({
-			imageFile: files[0],
-			imageUrl: files[0].preview,
-		})
-		this.showImageEditor();
-		// console.log(files[0].preview);
 	};
 
 	renderImage = () => {
@@ -109,6 +102,29 @@ class ImageSelector extends Component {
 				{imagePreview}
 			</div>
 		);
+	};
+
+
+	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
+	// ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝    ██║  ██║██╔══██╗██║     ██╔════╝
+	// █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║       ███████║██║  ██║██║     ███████╗
+	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
+	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
+	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
+
+	handleEditClick = event => {
+		event.preventDefault();
+		this.showImageEditor();
+	};
+
+	handleImageDrop = files => {
+		this.props.setImageData({
+			imageFile: files[0],
+			imageUrl: files[0].preview,
+			// imageDisplayData: null
+		});
+		this.showImageEditor();
+		// console.log(files[0].preview);
 	};
 
 	render() {

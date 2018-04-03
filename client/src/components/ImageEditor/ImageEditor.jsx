@@ -50,6 +50,14 @@ class ImageEditor extends Component {
 		};
 	}
 
+	// ██╗   ██╗████████╗██╗██╗     ███████╗
+	// ██║   ██║╚══██╔══╝██║██║     ██╔════╝
+	// ██║   ██║   ██║   ██║██║     ███████╗
+	// ██║   ██║   ██║   ██║██║     ╚════██║
+	// ╚██████╔╝   ██║   ██║███████╗███████║
+	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
+                                     
+	// vahram, change these to individual controls in ImageEditorControls
 	setEditorState = newEditorState => {
 		this.setState(newEditorState);
 	};
@@ -83,16 +91,17 @@ class ImageEditor extends Component {
 		});
 	};
 
-	fitImgToFrame = ({ target: img }) => {
+	fitImageToFrame = ( imageElem ) => {
 		const { frameWidth, frameHeight } = this.props;
+		const { imageMoveX, imageMoveY } = this.state;
 
-		const shiftX = frameWidth/2 - img.width/2;
-		const shiftY = frameHeight/2 - img.height/2;
-		// console.log(frameWidth, img.width, shiftX);
+		const shiftX = frameWidth/2 - imageElem.width/2 - imageMoveX;
+		const shiftY = frameHeight/2 - imageElem.height/2 - imageMoveY;
+		// console.log(frameWidth, imageElem.width, shiftX);
 		
-		let newScaleX = frameHeight/img.height;
-		if (img.width / img.height < frameWidth / frameHeight) {
-			newScaleX = frameWidth/img.width
+		let newScaleX = frameHeight/imageElem.height;
+		if (imageElem.width / imageElem.height < frameWidth / frameHeight) {
+			newScaleX = frameWidth/imageElem.width
 		}
 
 		this.moveImageBy(shiftX, shiftY);
@@ -128,6 +137,19 @@ class ImageEditor extends Component {
 		});
 	};
 
+	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
+	// ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝    ██║  ██║██╔══██╗██║     ██╔════╝
+	// █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║       ███████║██║  ██║██║     ███████╗
+	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
+	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
+	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
+
+	handleImageLoad = (event) => {
+		if(!this.props.imageDisplayData){
+			this.fitImageToFrame(event.target)
+		}
+	};
+
 	handleClickReset = event => {
 		event.preventDefault();
 
@@ -142,6 +164,11 @@ class ImageEditor extends Component {
 		});
 	};
 
+	handleClickFit = event => {
+		event.preventDefault();
+		this.fitImageToFrame( this.imageElem );
+	};
+	
 	handleClickSave = event => {
 		event.preventDefault();
 
@@ -184,7 +211,10 @@ class ImageEditor extends Component {
 									src={imageUrl}
 									alt="thumbnail for asset"
 									style={imageStyle}
-									onLoad={this.fitImgToFrame}
+									onLoad={this.handleImageLoad}
+									ref={elem=>{
+										this.imageElem = elem
+									}}
 								/>
 							)}
 						</div>
@@ -216,6 +246,9 @@ class ImageEditor extends Component {
 						</button>
 						<button className="btn" onClick={this.handleClickReset}>
 							reset
+						</button>
+						<button className="btn" onClick={this.handleClickFit}>
+							fit
 						</button>
 					</div>
 				</div>
