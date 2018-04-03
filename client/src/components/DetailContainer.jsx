@@ -39,10 +39,19 @@ class DetailContainer extends Component {
 		}
 	};
 
+	componentDidMount(){
+		const { operation, type } = this.props.match.params;
+		const { assetData } = this.props;
+		if( operation === "edit" && !assetData){
+			this.props.history.push(`/add/${type}`);
+		}
+	}
+
 	onSubmit = (event) => {
 		event.preventDefault();
 		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
 	};
+
 
 	setImageData = (newImageData) => {
 		this.setState({ imageData: { ...this.state.imageData, ...newImageData }});
@@ -205,14 +214,14 @@ DetailContainer.defaultProps = {
 }
 
 function mapStateToProps({ assetsData: {data} }, props){
-	const { operation, type, id } = props.match.params;
+	const { operation, id } = props.match.params;
 	// console.log(operation, type, id);
+
 	let assetData;
-	if(operation === "edit" && id){
+	if(operation === "edit" && id && data[id]){
 		const { name, imageData, summary } = data[id];
 		assetData = {
 			id,
-			type,
 			name,
 			summary,
 			imageData
