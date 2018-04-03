@@ -40,7 +40,7 @@ class App extends Component {
 						</header>
 						<div className="main">
 							<Switch>
-								<Route path="/:operation/:type" component={ DetailContainer } />
+								<Route path="/:operation/:type/:id?" component={ DetailContainer } />
 								<Route path="/" component={ ContainerHolder } />
 							</Switch>
 						</div>

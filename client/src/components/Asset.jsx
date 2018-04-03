@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { bool, string, func } from "prop-types";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import AssetBase from "./AssetBase";
@@ -43,18 +44,18 @@ const collectDnD = (connectDnD, monitor) => {
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 class Asset extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			editAssetToolsShown: false
-		}
-	};
+		};
+	}
 
-	componentWillReceiveProps(nextProps){
-		if(!nextProps.selected){
+	componentWillReceiveProps(nextProps) {
+		if (!nextProps.selected) {
 			this.setState({
 				editAssetToolsShown: false
-			})
+			});
 		}
 	}
 
@@ -68,24 +69,40 @@ class Asset extends Component {
 		// event.stopPropagation()
 		this.setState({
 			editAssetToolsShown: true
-		})
-	}
+		});
+	};
 
-	renderEditAssetTools(){
+	onEditAssetClickHandler = () => {
+		console.log(`editing asset ${this.props.assetId}`);
+		console.log(this.props);
+		// this.props.history.push("/details");
+
+	};
+
+	renderEditAssetTools() {
 		// console.log(this);
-		const { type } = this.props;
-		let opacity = 1;
-		if(!this.state.editAssetToolsShown){
-			// return null;
-			opacity = 0;
+		const { type, assetId } = this.props;
+
+		if (!this.state.editAssetToolsShown) {
+			return (
+				<div
+					className="hover-tint"
+					style={{ opacity: 0 }}
+					onDoubleClick={this.onDoubleClickHandler}
+				/>
+			);
 		}
 		return (
-			<div className="hover-tint" style={{opacity}} onDoubleClick={this.onDoubleClickHandler}>
-				<img
-					src="/static/icons/edit_icon.png"
-					className="edit-icon"
-					alt={`edit ${type} icon`}
-				/>
+			<div className="hover-tint">
+				<Link to={`/edit/${type}/${assetId}`}>
+					<img
+						src="/static/icons/edit_icon.png"
+						className="edit-icon"
+						alt={`edit ${type} icon`}
+						// role="none"
+						// onClick={this.onEditAssetClickHandler}
+					/>
+				</Link>
 				<img
 					src="/static/icons/delete_phase_icon_2.png"
 					className="delete-icon"
@@ -116,7 +133,7 @@ class Asset extends Component {
 				role="none"
 				onClick={this.onClickHandler}
 			>
-				{ this.renderEditAssetTools() }
+				{this.renderEditAssetTools()}
 				<AssetBase assetId={assetId} />
 				{connectDragPreview(<div className="hidden-drag-preview" />)}
 			</div>

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageEditor/ImageSelector";
 
-import uploadImage from "../utils/uploadImage";
+// import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../actions/actionCreators";
 
 import "./styles/DetailContainer.css";
@@ -18,6 +18,11 @@ class DetailContainer extends Component {
 			name: "",
 			summary: "",
 		};
+		const { assetData } = props;
+		if(assetData){
+			this.state.name = assetData.name;
+			this.state.summary = assetData.summary;
+		}
 	}
 
 	onSubmit = event => {
@@ -55,7 +60,7 @@ class DetailContainer extends Component {
 		});
 
 		this.props.history.push("/");
-		
+
 		// uploadImage(imageFile)
 		// 	.then(url => {
 		// 		console.log(url);
@@ -154,6 +159,7 @@ DetailContainer.propTypes = {
 		id: string.isRequired,
 		name: string.isRequired,
 		type: string.isRequired,
+		image: string.isRequired
 	}),
 
 	currentImageData: shape({
@@ -176,9 +182,23 @@ DetailContainer.defaultProps = {
 	assetData: null
 }
 
-function mapStateToProps({ currentImageData }){
+function mapStateToProps({ currentImageData, assetsData: {data} }, props){
+	const { operation, type, id } = props.match.params;
+	// console.log(operation, type, id);
+	let assetData;
+	if(operation === "edit" && id){
+		const { name, image } = data[id];
+		assetData = {
+			id,
+			type,
+			name,
+			image
+		}
+	}
+
 	return {
-		currentImageData
+		currentImageData,
+		assetData
 	};
 }
 
