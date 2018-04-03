@@ -192,8 +192,7 @@ DetailContainer.propTypes = {
 	assetData: shape({
 		id: string.isRequired,
 		name: string.isRequired,
-		summary: string.isRequired,
-		type: string.isRequired,
+		summary: string,
 		imageData: shape({
 			imageUrl: string.isRequired,
 			imageDisplayData: shape({

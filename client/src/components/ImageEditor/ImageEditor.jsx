@@ -29,21 +29,21 @@ class ImageEditor extends Component {
 			top: (parentHeight - frameHeight) / 2
 		};
 
-		if(!imageDisplayData){
+		if (!imageDisplayData) {
 			imageDisplayData = {
 				imageMoveX: 0,
 				imageMoveY: 0,
 				imageScaleX: 1,
 				imageScaleY: 1,
 				rotation: 0
-			}
+			};
 		}
 		const scaleRatio = imageDisplayData.imageScaleY / imageDisplayData.imageScaleX;
 
 		this.state = {
 			frameStyle,
-			imageMoveDiffX: 0,
-			imageMoveDiffY: 0,
+			dragOffsetX: 0,
+			dragOffsetY: 0,
 			lockScale: true,
 			scaleRatio,
 			...imageDisplayData
@@ -83,23 +83,48 @@ class ImageEditor extends Component {
 		});
 	};
 
-	moveImageBy(x, y) {
-		// console.log("from moveImageBy: ", x, y);
-		if (this.state.imageMoveDiffX === x && this.state.imageMoveDiffY === y) {
-			return;
+	fitImgToFrame = ({ target: img }) => {
+		const { frameWidth, frameHeight } = this.props;
+
+		const shiftX = frameWidth/2 - img.width/2;
+		const shiftY = frameHeight/2 - img.height/2;
+		// console.log(frameWidth, img.width, shiftX);
+		
+		let newScaleX = frameHeight/img.height;
+		if (img.width / img.height < frameWidth / frameHeight) {
+			newScaleX = frameWidth/img.width
 		}
+
+		this.moveImageBy(shiftX, shiftY);
+		this.scaleImageTo({ newScaleX });
+		// this.thumbImageElem.classList.toggle("hidden");
+	};
+
+	moveImageBy(x, y){
+		console.log(this.state.imageMoveX, x)
 		this.setState({
-			imageMoveDiffX: x,
-			imageMoveDiffY: y,
-			imageMoveX: this.state.imageMoveX + x - this.state.imageMoveDiffX,
-			imageMoveY: this.state.imageMoveY + y - this.state.imageMoveDiffY
+			imageMoveX: this.state.imageMoveX + x, 
+			imageMoveY: this.state.imageMoveY + y
 		});
 	};
 
-	resetMove() {
+	dragImageBy(x, y) {
+		// console.log("from dragImageBy: ", x, y);
+		if (this.state.dragOffsetX === x && this.state.dragOffsetY === y) {
+			return;
+		}
 		this.setState({
-			imageMoveDiffX: 0,
-			imageMoveDiffY: 0
+			dragOffsetX: x,
+			dragOffsetY: y,
+			imageMoveX: this.state.imageMoveX + x - this.state.dragOffsetX,
+			imageMoveY: this.state.imageMoveY + y - this.state.dragOffsetY
+		});
+	};
+
+	resetDragOffset() {
+		this.setState({
+			dragOffsetX: 0,
+			dragOffsetY: 0
 		});
 	};
 
@@ -134,7 +159,7 @@ class ImageEditor extends Component {
 	handleClickCancel = event => {
 		event.preventDefault();
 		this.props.hideImageEditor();
-	}
+	};
 
 	render() {
 		const { imageUrl } = this.props;
@@ -149,18 +174,27 @@ class ImageEditor extends Component {
 			`
 		};
 
-		const image = <img src={imageUrl} alt="thumbnail for asset" style={imageStyle} />;
 		return (
 			<div className="image-editor">
-
 				{connectDropTarget(
 					<div className="edit-area">
 						<div className="uncropped-image-frame" style={this.state.frameStyle}>
-							{connectDragSource(image)}
+							{connectDragSource(
+								<img
+									src={imageUrl}
+									alt="thumbnail for asset"
+									style={imageStyle}
+									onLoad={this.fitImgToFrame}
+								/>
+							)}
 						</div>
 						<div className="unused-image-tint" />
 						<div className="cropped-image-frame" style={this.state.frameStyle}>
-							{image}
+							<img
+								src={imageUrl}
+								alt="thumbnail for asset"
+								style={imageStyle}
+							/>
 						</div>
 						{connectDragPreview(<div className="hidden-drag-preview" />)}
 					</div>
@@ -185,7 +219,6 @@ class ImageEditor extends Component {
 						</button>
 					</div>
 				</div>
-				
 			</div>
 		);
 	}
@@ -195,14 +228,14 @@ ImageEditor.propTypes = {
 	frameHeight: number.isRequired,
 	frameWidth: number.isRequired,
 	borderRadius: number,
-	
+
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	connectDropTarget: func.isRequired,
 
 	hideImageEditor: func.isRequired,
 	setImageDisplayData: func.isRequired,
-	
+
 	imageUrl: string,
 	imageDisplayData: shape({
 		imageMoveX: number.isRequired,

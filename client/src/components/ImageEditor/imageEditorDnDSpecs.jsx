@@ -9,12 +9,12 @@ export const dropSpec = {
 	drop(props, monitor, component) {
 		// const { x, y } = monitor.getDifferenceFromInitialOffset();
 		console.log("dropped");
-		// component.moveImageBy(x, y);
-		component.resetMove();
+		// component.dragImageBy(x, y);
+		component.resetDragOffset();
 	},
 	hover(props, monitor, component) {
 		const { x, y } = monitor.getDifferenceFromInitialOffset();
-		component.moveImageBy(x, y);
+		component.dragImageBy(x, y);
 		// console.log(monitor.getDifferenceFromInitialOffset());
 	}
 };
