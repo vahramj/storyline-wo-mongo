@@ -21,8 +21,6 @@ export const actionTypes = {
 
 	SET_SEARCH_TERM: "SET_SEARCH_TERM",
 
-	SET_CURRENT_IMAGE_DATA: "SET_CURRENT_IMAGE_DATA",
-	
 	SAVE_ASSET_DETAILS: "SAVE_ASSET_DETAILS"
 };
 
@@ -97,7 +95,16 @@ const phaseData = {
 			// 	id: "scn_08",
 			// },
 		],
-		image: "/static/images/phase_thumbnails/opening image 02_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/opening image 02_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_03: {
 		id: "phs_03",
@@ -113,8 +120,8 @@ const phaseData = {
 			// {
 			// 	id: "scn_20",
 			// }
-		]
-		// image: ""
+		],
+		imageData: null
 	},
 	phs_05: {
 		id: "phs_05",
@@ -123,7 +130,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/catalist 01_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/catalist 01_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_10: {
 		id: "phs_10",
@@ -132,7 +148,7 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: ""
+		imageData: null
 	},
 	phs_15: {
 		id: "phs_15",
@@ -141,7 +157,7 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/breaking into two 03_thumb.png"
+		imageData: null
 	},
 	phs_17: {
 		id: "phs_17",
@@ -150,7 +166,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/fun and games 03_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/fun and games 03_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_20: {
 		id: "phs_20",
@@ -159,7 +184,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/bad guys close in 05_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/bad guys close in 05_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_23: {
 		id: "phs_23",
@@ -168,7 +202,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/breaking into three 01_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/breaking into three 01_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_25: {
 		id: "phs_25",
@@ -177,7 +220,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/fanale 03_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/fanale 03_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	phs_30: {
 		id: "phs_30",
@@ -186,7 +238,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/phase_thumbnails/closing image 02_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/closing image 02_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	}
 };
 
@@ -198,7 +259,16 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/scene_thumbnails/fellowship begins_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/scene_thumbnails/fellowship begins_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	scn_08: {
 		id: "scn_08",
@@ -207,7 +277,7 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: ""
+		imageData: null
 	},
 	scn_10: {
 		id: "scn_10",
@@ -216,7 +286,16 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/scene_thumbnails/frodo's decision_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/scene_thumbnails/frodo's decision_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	scn_15: {
 		id: "scn_15",
@@ -225,7 +304,16 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/scene_thumbnails/gorlum's journey_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/scene_thumbnails/gorlum's journey_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	scn_17: {
 		id: "scn_17",
@@ -233,8 +321,8 @@ const sceneData = {
 		type: "scene",
 		// width: null,
 		parent: null,
-		children: []
-		// image: ""
+		children: [],
+		imageData: null
 	},
 	scn_20: {
 		id: "scn_20",
@@ -243,7 +331,16 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/scene_thumbnails/saving Minas Tirith_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/scene_thumbnails/saving Minas Tirith_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	scn_25: {
 		id: "scn_25",
@@ -252,7 +349,16 @@ const sceneData = {
 		// width: null,
 		parent: null,
 		children: [],
-		image: "./static/images/scene_thumbnails/underground_thumb.png"
+		imageData: {
+			imageUrl: "/static/images/scene_thumbnails/underground_thumb.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	}
 };
 
@@ -261,89 +367,179 @@ const characterData = {
 		id: "chr_05",
 		name: "Aragorn",
 		type: "character",
-		image: "./static/images/character_thumbnails/Aragorn_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/Aragorn_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_10: {
 		id: "chr_10",
 		name: "Arwen",
 		type: "character",
-		// image: "./static/images/character_thumbnails/arwen_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: null
 	},
 	chr_15: {
 		id: "chr_15",
 		name: "Eowyn",
 		type: "character",
-		image: "./static/images/character_thumbnails/Eowyn_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/Eowyn_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_20: {
 		id: "chr_20",
 		name: "Frodo",
 		type: "character",
-		image: "./static/images/character_thumbnails/frodo_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/frodo_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_25: {
 		id: "chr_25",
 		name: "Gandalf the gray",
 		type: "character",
-		image: "./static/images/character_thumbnails/gandalf_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/gandalf_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_30: {
 		id: "chr_30",
 		name: "gollum",
 		type: "character",
-		image: "./static/images/character_thumbnails/gollum_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/gollum_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_35: {
 		id: "chr_35",
 		name: "legolas",
 		type: "character",
-		image: "./static/images/character_thumbnails/legolas_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/legolas_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_40: {
 		id: "chr_40",
 		name: "samwise gamgee",
 		type: "character",
-		image: "./static/images/character_thumbnails/sam_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/sam_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_45: {
 		id: "chr_45",
 		name: "saruman",
 		type: "character",
-		image: "./static/images/character_thumbnails/saruman_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/saruman_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_50: {
 		id: "chr_50",
 		name: "sauron the terrible",
 		type: "character",
-		image: "./static/images/character_thumbnails/sauron_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/sauron_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	},
 	chr_51: {
 		id: "chr_51",
 		name: "theoden",
 		type: "character",
-		image: "./static/images/character_thumbnails/theoden_01.png",
 		parent: null,
-		children: []
+		children: [],
+		imageData: {
+			imageUrl: "/static/images/character_thumbnails/theoden_01.png",
+			imageDisplayData: {
+				imageMoveX: 0,
+				imageMoveY: 0,
+				imageScaleX: 1,
+				imageScaleY: 1,
+				rotation: 0
+			}
+		}
 	}
 };
 export const initialData = { ...timelineData, ...phaseData, ...characterData, ...sceneData };

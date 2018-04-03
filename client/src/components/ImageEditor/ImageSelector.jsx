@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { string, number, shape, func } from "prop-types";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import ImageEditorContainer from "./ImageEditorContainer";
 import Modal from "../Modal";
 
 import { frameSizes } from "../../utils/constants";
-import { setCurrentImageData } from "../../actions/actionCreators";
+// import { setImageData } from "../../actions/actionCreators";
 
 import "./styles/ImageSelector.css";
 
@@ -27,7 +27,7 @@ class ImageSelector extends Component {
 	}
 
 	setImageDisplayData = imageDisplayData => {
-		this.props.setCurrentImageData({
+		this.props.setImageData({
 			imageDisplayData
 		})
 	};
@@ -50,7 +50,7 @@ class ImageSelector extends Component {
 	};
 
 	handleImageDrop = files => {
-		this.props.setCurrentImageData({
+		this.props.setImageData({
 			imageFile: files[0],
 			imageUrl: files[0].preview,
 		})
@@ -59,11 +59,11 @@ class ImageSelector extends Component {
 	};
 
 	renderImage = () => {
-		const { type, currentImageData } = this.props;
-		// console.log(currentImageData)
+		const { type, imageData } = this.props;
+		// console.log(imageData)
 		let imagePreview;
 
-		if ( currentImageData.imageUrl === "" ) {
+		if ( imageData.imageUrl === "" ) {
 			imagePreview = (
 				<p>
 					click me<br />
@@ -76,7 +76,7 @@ class ImageSelector extends Component {
 		// 	imagePreview = <p>uploading...</p>;
 		// } 
 		else {
-			const { imageUrl, imageDisplayData } = this.props.currentImageData;
+			const { imageUrl, imageDisplayData } = this.props.imageData;
 			const {
 				imageMoveX,
 				imageMoveY,
@@ -92,7 +92,6 @@ class ImageSelector extends Component {
 							scale(${imageScaleX}, ${imageScaleY}) 
 				`
 			};
-
 			imagePreview = (
 				<img style={imageStyle} src={imageUrl} alt={`thumbnail for ${type}`} />
 			);
@@ -113,7 +112,7 @@ class ImageSelector extends Component {
 	};
 
 	render() {
-		const { imageDisplayData, imageUrl } = this.props.currentImageData;
+		const { imageDisplayData, imageUrl } = this.props.imageData;
 
 		return (
 			<div className="image-loader">
@@ -145,7 +144,7 @@ class ImageSelector extends Component {
 
 ImageSelector.propTypes = {
 	type: string,
-	currentImageData: shape({
+	imageData: shape({
 		imageUrl: string.isRequired,
 		imageFile: shape(),
 		imageDisplayData: shape({
@@ -156,16 +155,16 @@ ImageSelector.propTypes = {
 			rotation: number.isRequired
 		}).isRequired
 	}),
-	setCurrentImageData: func.isRequired
+	setImageData: func.isRequired
 };
 
 ImageSelector.defaultProps = {
 	type: "asset", 
-	currentImageData: null
+	imageData: null
 };
 
-function mapStateToProps({ currentImageData }){
-	return { currentImageData };
-}
+// function mapStateToProps({ imageData }){
+// 	return { imageData };
+// }
 
-export default connect( mapStateToProps, { setCurrentImageData })(ImageSelector);
+export default ImageSelector;

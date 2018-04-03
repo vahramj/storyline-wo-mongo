@@ -12,7 +12,6 @@ const {
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
 	SET_SEARCH_TERM,
-	SET_CURRENT_IMAGE_DATA,
 	SAVE_ASSET_DETAILS
 } = actionTypes;
 
@@ -130,13 +129,6 @@ export function setSearchTerm(term, searchType){
 	return {
 		type: SET_SEARCH_TERM,
 		payload: {searchType, term}
-	}
-}
-
-export function setCurrentImageData(currentImageData){
-	return {
-		type: SET_CURRENT_IMAGE_DATA,
-		payload: currentImageData
 	}
 }
 

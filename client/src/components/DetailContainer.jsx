@@ -17,18 +17,35 @@ class DetailContainer extends Component {
 		this.state = {
 			name: "",
 			summary: "",
+			imageData: {
+				imageUrl: "",
+				imageDisplayData: {
+					imageMoveX: 0,
+					imageMoveY: 0,
+					imageScaleX: 1,
+					imageScaleY: 1,
+					rotation: 0
+				}
+			}
 		};
+
 		const { assetData } = props;
 		if(assetData){
 			this.state.name = assetData.name;
 			this.state.summary = assetData.summary;
+			if(assetData.imageData){
+				this.state.imageData = assetData.imageData;
+			}
 		}
-	}
+	};
 
-	onSubmit = event => {
+	onSubmit = (event) => {
 		event.preventDefault();
-		console.log(this.fileInputElem.value);
-		console.log(this.fileInputElem.files);
+		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
+	};
+
+	setImageData = (newImageData) => {
+		this.setState({ imageData: { ...this.state.imageData, ...newImageData }});
 	};
 
 	handleNameChange = event => {
@@ -46,16 +63,23 @@ class DetailContainer extends Component {
 	handleSaveDetails = event => {
 		event.preventDefault();
 		console.log("saving details")
-		const { imageFile, imageUrl } = this.props.currentImageData;
-		const { type } = this.props.match.params;
+
+		let { imageData } = this.state;
+		const { imageFile } = imageData;
+		if(!imageFile){
+			imageData = null;
+		}
+
+		const { type, id } = this.props.match.params;
 		const { name, summary } = this.state;
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
 		this.props.saveDetails({
+			id,
 			type,
 			name,
 			summary,
-			image: imageUrl
+			imageData
 			// vahram, add display details after the exiting data model works
 		});
 
@@ -83,7 +107,7 @@ class DetailContainer extends Component {
 
 	render() {
 		const { type, operation } = this.props.match.params;
-		// console.log(this.props);
+		// console.log(type);
 
 		return (
 			<div className="detail-container">
@@ -92,7 +116,7 @@ class DetailContainer extends Component {
 					<form onSubmit={this.onSubmit}>
 						<fieldset>
 							<label htmlFor="name">
-								<h3> Name for phase </h3>
+								<h3> {`Name for ${type}`} </h3>
 								<input
 									type="text"
 									id="name"
@@ -123,6 +147,8 @@ class DetailContainer extends Component {
 								<h3>Select image</h3>
 								<ImageSelector
 									type={type}
+									imageData={this.state.imageData}
+									setImageData={this.setImageData}
 								/>
 							</label>
 						</fieldset>
@@ -154,50 +180,48 @@ DetailContainer.propTypes = {
 		push: func.isRequired
 	}).isRequired,
 
-	// vahram, come back to this when coding edit existing asset
 	assetData: shape({
 		id: string.isRequired,
 		name: string.isRequired,
+		summary: string.isRequired,
 		type: string.isRequired,
-		image: string.isRequired
-	}),
-
-	currentImageData: shape({
-		// imageUrl: string.isRequired,
-		imageFile: shape(),
-		imageDisplayData: shape({
-			imageMoveX: number.isRequired,
-			imageMoveY: number.isRequired,
-			imageScaleX: number.isRequired,
-			imageScaleY: number.isRequired,
-			rotation: number.isRequired
-		}).isRequired
+		imageData: shape({
+			imageUrl: string.isRequired,
+			imageDisplayData: shape({
+				imageMoveX: number.isRequired,
+				imageMoveY: number.isRequired,
+				imageScaleX: number.isRequired,
+				imageScaleY: number.isRequired,
+				rotation: number.isRequired
+			}).isRequired
+		})
 	}),
 
 	saveDetails: func.isRequired
 };
 
 DetailContainer.defaultProps = {
-	currentImageData: null,
-	assetData: null
+	assetData: null,
 }
 
-function mapStateToProps({ currentImageData, assetsData: {data} }, props){
+function mapStateToProps({ assetsData: {data} }, props){
 	const { operation, type, id } = props.match.params;
 	// console.log(operation, type, id);
 	let assetData;
 	if(operation === "edit" && id){
-		const { name, image } = data[id];
+		const { name, imageData, summary } = data[id];
 		assetData = {
 			id,
 			type,
 			name,
-			image
+			summary,
+			imageData
 		}
 	}
+	// console.log(assetData)
 
 	return {
-		currentImageData,
+		// imageData,
 		assetData
 	};
 }

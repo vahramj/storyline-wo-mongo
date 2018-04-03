@@ -159,13 +159,17 @@ function assetsDataReducer(state = initialState, action) {
 		}
 
 		case SAVE_ASSET_DETAILS: {
-			const { assetId } = action.payload; 
-			if(assetId){
-				const newData = update(state.data,{
-					[assetId]: {
-						$merge: action.payload
+			const { id } = action.payload;
+			
+			if(id){
+				const newData = update(state, {
+					data: {
+						[id]: {
+							$merge: { ...action.payload, id }
+						}
 					}
 				});
+				console.log("new asset: ", newData.data[id]);
 				return newData
 			}
 			// generate new id
@@ -185,7 +189,6 @@ function assetsDataReducer(state = initialState, action) {
 					}
 				}
 			});
-			console.log(newData)
 			return newData;
 		}
 
