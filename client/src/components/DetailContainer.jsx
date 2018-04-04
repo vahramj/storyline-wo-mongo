@@ -98,7 +98,6 @@ class DetailContainer extends Component {
 			name,
 			summary,
 			imageData
-			// vahram, add display details after the exiting data model works
 		});
 
 		this.props.history.push("/");
@@ -111,7 +110,6 @@ class DetailContainer extends Component {
 		// 			name,
 		// 			summary,
 		// 			image: url
-		// 			// vahram, add display details after the exiting data model works
 		// 		})
 		// 	})
 		// 	.then(() => {

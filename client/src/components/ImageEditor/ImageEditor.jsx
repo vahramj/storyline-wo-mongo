@@ -67,7 +67,7 @@ class ImageEditor extends Component {
 
 		let newScaleRatio;
 		if (imageScaleX !== 0 || imageScaleY !== 0) {
-			newScaleRatio = lock ? imageScaleY / imageScaleX : scaleRatio;
+			newScaleRatio = lock ? (imageScaleY / imageScaleX) : scaleRatio;
 		}
 
 		this.setState({
@@ -94,20 +94,30 @@ class ImageEditor extends Component {
 
 	fitImageToFrame = ( imageElem ) => {
 		const { frameWidth, frameHeight } = this.props;
-		const { imageMoveX, imageMoveY } = this.state;
+		const { imageMoveX, imageMoveY, imageScaleX, imageScaleY, scaleRatio } = this.state;
 
 		const shiftX = frameWidth/2 - imageElem.width/2 - imageMoveX;
 		const shiftY = frameHeight/2 - imageElem.height/2 - imageMoveY;
-		// console.log(frameWidth, imageElem.width, shiftX);
-		
-		let newScaleX = frameHeight/imageElem.height;
-		if (imageElem.width / imageElem.height < frameWidth / frameHeight) {
-			newScaleX = frameWidth/imageElem.width
-		}
-
 		this.moveImageBy(shiftX, shiftY);
-		this.scaleImageTo({ newScaleX });
-		// this.thumbImageElem.classList.toggle("hidden");
+		// console.log(frameWidth, imageElem.width, shiftX);
+
+		if(this.state.lockScale){
+			const elemCurrWidth = imageElem.width*imageScaleX;
+			const elemCurrHeight = imageElem.height*imageScaleY;
+
+			let newScaleX = frameHeight/(imageElem.height*scaleRatio);
+			if (elemCurrWidth / elemCurrHeight < frameWidth / frameHeight) {
+				newScaleX = frameWidth/imageElem.width;
+			}
+
+			this.scaleImageTo({ newScaleX });
+			// this.thumbImageElem.classList.toggle("hidden");
+		}
+		else {
+			const newScaleX = frameWidth/imageElem.width;
+			const newScaleY = frameHeight/imageElem.height;
+			this.scaleImageTo({ newScaleX, newScaleY });
+		}		
 	};
 
 	moveImageBy(x, y){
@@ -120,15 +130,22 @@ class ImageEditor extends Component {
 
 	dragImageBy(x, y) {
 		// console.log("from dragImageBy: ", x, y);
-		if (this.state.dragOffsetX === x && this.state.dragOffsetY === y) {
+		const { dragOffsetX, dragOffsetY } = this.state;
+
+		if (dragOffsetX === x && dragOffsetY === y) {
 			return;
 		}
+		const dragOffsetChangeX = x - dragOffsetX;
+		const dragOffsetChangeY = y - dragOffsetY;
+
 		this.setState({
 			dragOffsetX: x,
 			dragOffsetY: y,
-			imageMoveX: this.state.imageMoveX + x - this.state.dragOffsetX,
-			imageMoveY: this.state.imageMoveY + y - this.state.dragOffsetY
+			imageMoveX: this.state.imageMoveX + dragOffsetChangeX, 
+			imageMoveY: this.state.imageMoveY + dragOffsetChangeY
+
 		});
+		// this.moveImageBy(dragOffsetChangeX, dragOffsetChangeY);
 	};
 
 	resetDragOffset() {
