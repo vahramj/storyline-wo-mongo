@@ -56,7 +56,7 @@ class ImageSelector extends Component {
 		// console.log(imageData)
 		let imagePreview;
 
-		if ( imageData.imageUrl === "" ) {
+		if ( !imageData || imageData.imageUrl === "" ) {
 			imagePreview = (
 				<p>
 					click me<br />
@@ -69,22 +69,27 @@ class ImageSelector extends Component {
 		// 	imagePreview = <p>uploading...</p>;
 		// } 
 		else {
-			const { imageUrl, imageDisplayData } = this.props.imageData;
-			const {
-				imageMoveX,
-				imageMoveY,
-				imageScaleX,
-				imageScaleY,
-				rotation
-			} = imageDisplayData;
+			const { imageUrl, imageDisplayData } = imageData;
+			let imageStyle = {};
 
-			const imageStyle = {
-				transform: `
-							translate(${imageMoveX}px, ${imageMoveY}px) 
-							rotate(${rotation}deg)
-							scale(${imageScaleX}, ${imageScaleY}) 
-				`
-			};
+			if(imageDisplayData){
+				const {
+					imageMoveX,
+					imageMoveY,
+					imageScaleX,
+					imageScaleY,
+					rotation
+				} = imageDisplayData;
+
+				imageStyle = {
+					transform: `
+								translate(${imageMoveX}px, ${imageMoveY}px) 
+								rotate(${rotation}deg)
+								scale(${imageScaleX}, ${imageScaleY}) 
+					`
+				};
+			}
+
 			imagePreview = (
 				<img style={imageStyle} src={imageUrl} alt={`thumbnail for ${type}`} />
 			);
@@ -111,7 +116,6 @@ class ImageSelector extends Component {
 	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
 	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
 	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
-
 	handleEditClick = event => {
 		event.preventDefault();
 		this.showImageEditor();
@@ -121,14 +125,16 @@ class ImageSelector extends Component {
 		this.props.setImageData({
 			imageFile: files[0],
 			imageUrl: files[0].preview,
-			// imageDisplayData: null
+			imageDisplayData: null
 		});
 		this.showImageEditor();
 		// console.log(files[0].preview);
 	};
 
 	render() {
-		const { imageDisplayData, imageUrl } = this.props.imageData;
+		const { imageData } = this.props;
+		const imageUrl = imageData ? imageData.imageUrl : "";
+		const imageDisplayData = imageData ? imageData.imageDisplayData : null;
 
 		return (
 			<div className="image-loader">
@@ -169,7 +175,7 @@ ImageSelector.propTypes = {
 			imageScaleX: number.isRequired,
 			imageScaleY: number.isRequired,
 			rotation: number.isRequired
-		}).isRequired
+		})
 	}),
 	setImageData: func.isRequired
 };

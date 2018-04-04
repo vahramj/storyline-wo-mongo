@@ -110,7 +110,7 @@ class ImageEditor extends Component {
 	};
 
 	moveImageBy(x, y){
-		console.log(this.state.imageMoveX, x)
+		// console.log(this.state.imageMoveX, x)
 		this.setState({
 			imageMoveX: this.state.imageMoveX + x, 
 			imageMoveY: this.state.imageMoveY + y

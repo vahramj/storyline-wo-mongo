@@ -17,16 +17,11 @@ class DetailContainer extends Component {
 		this.state = {
 			name: "",
 			summary: "",
-			imageData: {
-				imageUrl: "",
-				imageDisplayData: {
-					imageMoveX: 0,
-					imageMoveY: 0,
-					imageScaleX: 1,
-					imageScaleY: 1,
-					rotation: 0
-				}
-			}
+			imageData: null
+			// {
+			// 	imageUrl: "",
+			// 	imageDisplayData: null
+			// }
 		};
 
 		const { assetData } = props;
@@ -55,7 +50,8 @@ class DetailContainer extends Component {
 	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
 
 	setImageData = (newImageData) => {
-		this.setState({ imageData: { ...this.state.imageData, ...newImageData }});
+		const oldImageData = this.state.imageData || {};
+		this.setState({ imageData: { ...oldImageData, ...newImageData }});
 	};
 
 	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
@@ -86,11 +82,11 @@ class DetailContainer extends Component {
 		event.preventDefault();
 		console.log("saving details")
 
-		let { imageData } = this.state;
-		const { imageFile } = imageData;
-		if(!imageFile){
-			imageData = null;
-		}
+		const { imageData } = this.state;
+		// const { imageFile } = imageData;
+		// if(!imageFile){
+		// 	imageData = null;
+		// }
 
 		const { type, id } = this.props.match.params;
 		const { name, summary } = this.state;

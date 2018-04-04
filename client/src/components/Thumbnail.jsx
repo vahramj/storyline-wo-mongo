@@ -30,8 +30,11 @@ class Thumbnail extends PureComponent{
 		let imageStyle = {}; 
 		let imageSrc = defaultImages[this.props.type];
 
-		if( imageData ){
+		if( imageData && imageData.imageUrl){
+			imageSrc = imageData.imageUrl;
+		}
 
+		if( imageData && imageData.imageDisplayData ){
 			const {
 				imageMoveX,
 				imageMoveY,
@@ -47,8 +50,6 @@ class Thumbnail extends PureComponent{
 							scale(${imageScaleX}, ${imageScaleY}) 
 				`
 			};
-
-			imageSrc = imageData.imageUrl;
 		}
 
 		return(
