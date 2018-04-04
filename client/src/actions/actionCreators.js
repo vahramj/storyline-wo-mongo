@@ -12,10 +12,12 @@ const {
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
 	SET_SEARCH_TERM,
-	SAVE_ASSET_DETAILS
+	SAVE_ASSET_DETAILS,
+	DELETE_ASSET
 } = actionTypes;
 
 export function selectAsset(assetId) {
+	// console.log(`selecting ${assetId}`)
 	return {
 		type: SELECT_ASSET,
 		payload: { assetId }
@@ -137,5 +139,13 @@ export function saveDetails(assetDetails){
 	return {
 		type: SAVE_ASSET_DETAILS,
 		payload: assetDetails
+	}
+}
+
+export function deleteAsset(assetId){
+	// console.log(`deleting asset ${assetId}`);
+	return {
+		type: DELETE_ASSET,
+		payload: {assetId}
 	}
 }

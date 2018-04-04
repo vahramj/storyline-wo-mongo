@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import AssetBase from "./AssetBase";
-import { selectAsset } from "../actions/actionCreators";
+import { selectAsset, deleteAsset } from "../actions/actionCreators";
 import { dndTypes } from "../utils/constants";
 
 import "./styles/Asset.css";
@@ -59,25 +59,32 @@ class Asset extends Component {
 		}
 	}
 
-	onClickHandler = event => {
-		const { assetId } = this.props;
+	handlerClick = event => {
 		event.stopPropagation();
-		this.props.selectAsset(assetId);
+		const { assetId, selected } = this.props;
+		if(!selected){
+			this.props.selectAsset(assetId);
+		}
 	};
 
-	onDoubleClickHandler = () => {
+	handleDoubleClick = () => {
 		// event.stopPropagation()
 		this.setState({
 			editAssetToolsShown: true
 		});
 	};
 
-	onEditAssetClickHandler = () => {
+	handleEditClick = () => {
 		console.log(`editing asset ${this.props.assetId}`);
 		console.log(this.props);
 		// this.props.history.push("/details");
 
 	};
+
+	handleDeleteClick = () => {
+		// console.log(`deleting asset ${this.props.assetId}`);
+		this.props.deleteAsset(this.props.assetId);
+	}
 
 	renderEditAssetTools() {
 		// console.log(this);
@@ -88,7 +95,7 @@ class Asset extends Component {
 				<div
 					className="hover-tint"
 					style={{ opacity: 0 }}
-					onDoubleClick={this.onDoubleClickHandler}
+					onDoubleClick={this.handleDoubleClick}
 				/>
 			);
 		}
@@ -100,13 +107,15 @@ class Asset extends Component {
 						className="edit-icon"
 						alt={`edit ${type} icon`}
 						// role="none"
-						// onClick={this.onEditAssetClickHandler}
+						// onClick={this.handleEditClick}
 					/>
 				</Link>
 				<img
 					src="/static/icons/delete_phase_icon_2.png"
 					className="delete-icon"
 					alt={`delete ${type} icon`}
+					role="none"
+					onClick={this.handleDeleteClick}
 				/>
 			</div>
 		);
@@ -131,7 +140,7 @@ class Asset extends Component {
 			<div
 				className={`asset ${type} ${selectedStyle} ${onTimelineClassName} ${draggingClassName}`}
 				role="none"
-				onClick={this.onClickHandler}
+				onClick={this.handlerClick}
 			>
 				{this.renderEditAssetTools()}
 				<AssetBase assetId={assetId} />
@@ -152,16 +161,17 @@ Asset.propTypes = {
 	type: string.isRequired,
 	selected: bool.isRequired,
 	onTimeline: bool,
-	selectAsset: func,
+	selectAsset: func.isRequired,
+	deleteAsset: func.isRequired,
 	connectDragSource: func.isRequired,
 	connectDragPreview: func.isRequired,
 	isDragging: bool.isRequired
 };
 
 Asset.defaultProps = {
-	selectAsset: () => {
-		console.log("Vahram, Asset click handler hasn't been setup ");
-	},
+	// selectAsset: () => {
+	// 	console.log("Vahram, Asset click handler hasn't been setup ");
+	// },
 	onTimeline: false
 };
 
@@ -171,7 +181,7 @@ Asset.defaultProps = {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { selectAsset };
+const actions = { selectAsset, deleteAsset };
 
 function mapStateToProps({ assetsData }, { assetId }) {
 	// console.log(assetsData);
@@ -196,6 +206,7 @@ const decorator = _.flowRight([
 	connect(mapStateToProps, actions),
 	DragSource(dndTypes.ASSET, AssetSourceSpec, collectDnD)
 ]);
+
 export default decorator(Asset);
 
 // export default Asset;

@@ -29,7 +29,8 @@ const {
 	HIDE_INSERT_POSITION,
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
-	SAVE_ASSET_DETAILS
+	SAVE_ASSET_DETAILS,
+	DELETE_ASSET
 } = actionTypes;
 
 const initialState = {
@@ -190,6 +191,23 @@ function assetsDataReducer(state = initialState, action) {
 				}
 			});
 			return newData;
+		}
+
+		case DELETE_ASSET: {
+			const { assetId } = action.payload;
+			
+			const { data } = state;
+			const newData = Object.assign( {}, data );
+			delete newData[assetId];
+
+			const newState = update(state, {
+				data: {
+					$set: newData
+				}
+			});
+
+			return newState;
+
 		}
 
 		default:

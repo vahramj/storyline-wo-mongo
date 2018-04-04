@@ -21,7 +21,9 @@ export const actionTypes = {
 
 	SET_SEARCH_TERM: "SET_SEARCH_TERM",
 
-	SAVE_ASSET_DETAILS: "SAVE_ASSET_DETAILS"
+	SAVE_ASSET_DETAILS: "SAVE_ASSET_DETAILS",
+
+	DELETE_ASSET: "DELETE_ASSET"
 };
 
 export const dndTypes = {
