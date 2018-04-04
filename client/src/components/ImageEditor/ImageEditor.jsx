@@ -90,6 +90,7 @@ class ImageEditor extends Component {
 			imageScaleY: scaleY
 		});
 	};
+	// this makes sure only images wo styles get initially fitted
 
 	fitImageToFrame = ( imageElem ) => {
 		const { frameWidth, frameHeight } = this.props;
@@ -145,6 +146,7 @@ class ImageEditor extends Component {
 	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
 
 	handleImageLoad = (event) => {
+		// this makes sure only images wo styles get initially fitted
 		if(!this.props.imageDisplayData){
 			this.fitImageToFrame(event.target)
 		}

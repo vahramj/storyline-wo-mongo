@@ -73,7 +73,8 @@ const timelineData = {
 			// {
 			// 	id: "phs_03",
 			// },
-		]
+		],
+		imageData: null
 	}
 };
 
@@ -98,10 +99,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/opening image 02_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -40,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -133,10 +134,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/catalist 01_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -41,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -157,7 +158,16 @@ const phaseData = {
 		// width: null,
 		parent: null,
 		children: [],
-		imageData: null
+		imageData: {
+			imageUrl: "/static/images/phase_thumbnails/breaking into two 02_thumb.png",
+			imageDisplayData: {
+				imageMoveX: -34,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
+				rotation: 0
+			}
+		}
 	},
 	phs_17: {
 		id: "phs_17",
@@ -169,10 +179,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/fun and games 03_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -33,
+				imageMoveY: -14,
+				imageScaleX: 0.8,
+				imageScaleY: 0.8,
 				rotation: 0
 			}
 		}
@@ -187,10 +197,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/bad guys close in 05_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -45,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -205,10 +215,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/breaking into three 01_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -46,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -223,8 +233,8 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/fanale 03_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
+				imageMoveX: -34,
+				imageMoveY: -9,
 				imageScaleX: 1,
 				imageScaleY: 1,
 				rotation: 0
@@ -241,10 +251,10 @@ const phaseData = {
 		imageData: {
 			imageUrl: "/static/images/phase_thumbnails/closing image 02_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -27,
+				imageMoveY: -17,
+				imageScaleX: 0.8,
+				imageScaleY: 0.8,
 				rotation: 0
 			}
 		}
@@ -262,10 +272,10 @@ const sceneData = {
 		imageData: {
 			imageUrl: "/static/images/scene_thumbnails/fellowship begins_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -4.5,
+				imageMoveY: -13,
+				imageScaleX: 0.93,
+				imageScaleY: 0.93,
 				rotation: 0
 			}
 		}
@@ -289,10 +299,10 @@ const sceneData = {
 		imageData: {
 			imageUrl: "/static/images/scene_thumbnails/frodo's decision_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -48,
+				imageMoveY: -15,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -307,10 +317,10 @@ const sceneData = {
 		imageData: {
 			imageUrl: "/static/images/scene_thumbnails/gorlum's journey_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -13,
+				imageMoveY: -15,
+				imageScaleX: 0.85,
+				imageScaleY: 0.85,
 				rotation: 0
 			}
 		}
@@ -334,10 +344,10 @@ const sceneData = {
 		imageData: {
 			imageUrl: "/static/images/scene_thumbnails/saving Minas Tirith_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -26.5,
+				imageMoveY: -15,
+				imageScaleX: 0.73,
+				imageScaleY: 0.73,
 				rotation: 0
 			}
 		}
@@ -352,10 +362,10 @@ const sceneData = {
 		imageData: {
 			imageUrl: "/static/images/scene_thumbnails/underground_thumb.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -26.5,
+				imageMoveY: -15,
+				imageScaleX: 0.73,
+				imageScaleY: 0.73,
 				rotation: 0
 			}
 		}
@@ -372,10 +382,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/Aragorn_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -36,
+				imageMoveY: -58,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
 				rotation: 0
 			}
 		}
@@ -397,10 +407,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/Eowyn_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -165,
+				imageMoveY: -99,
+				imageScaleX: 0.3,
+				imageScaleY: 0.3,
 				rotation: 0
 			}
 		}
@@ -414,10 +424,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/frodo_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -51,
+				imageMoveY: -36,
+				imageScaleX: 0.55,
+				imageScaleY: 0.55,
 				rotation: 0
 			}
 		}
@@ -431,10 +441,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/gandalf_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -36,
+				imageMoveY: -17,
+				imageScaleX: 0.7,
+				imageScaleY: 0.7,
 				rotation: 0
 			}
 		}
@@ -448,10 +458,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/gollum_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -36,
+				imageMoveY: -36,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
 				rotation: 0
 			}
 		}
@@ -465,10 +475,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/legolas_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -40,
+				imageMoveY: -45,
+				imageScaleX: 0.6,
+				imageScaleY: 0.6,
 				rotation: 0
 			}
 		}
@@ -482,10 +492,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/sam_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -83,
+				imageMoveY: -36,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
 				rotation: 0
 			}
 		}
@@ -499,10 +509,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/saruman_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -61,
+				imageMoveY: -36,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
 				rotation: 0
 			}
 		}
@@ -516,10 +526,10 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/sauron_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
+				imageMoveX: -36,
+				imageMoveY: -58,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
 				rotation: 0
 			}
 		}
@@ -533,12 +543,11 @@ const characterData = {
 		imageData: {
 			imageUrl: "/static/images/character_thumbnails/theoden_01.png",
 			imageDisplayData: {
-				imageMoveX: 0,
-				imageMoveY: 0,
-				imageScaleX: 1,
-				imageScaleY: 1,
-				rotation: 0
-			}
+				imageMoveX: -65,
+				imageMoveY: -36,
+				imageScaleX: 0.52,
+				imageScaleY: 0.52,
+				rotation: 0			}
 		}
 	}
 };
