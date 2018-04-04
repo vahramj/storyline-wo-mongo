@@ -3,12 +3,11 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import rootReducer from "../reducers/rootReducer";
-import ContainerHolder from "./ContainerHolder";
-import DetailContainer from "./DetailContainer";
 import CustomDragLayer from "./CustomDragLayer";
+import Main from "./Main";
 
 import "./styles/App.css";
 
@@ -38,12 +37,7 @@ class App extends Component {
 						<header id="main-header">
 							<h1>Storyline Maker</h1>
 						</header>
-						<div className="main">
-							<Switch>
-								<Route path="/:operation/:type/:id?" component={ DetailContainer } />
-								<Route path="/" component={ ContainerHolder } />
-							</Switch>
-						</div>
+						<Main />
 						<CustomDragLayer /> 
 					</div>
 				</Provider>
