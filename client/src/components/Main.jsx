@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { func } from "prop-types";
 import { DropTarget } from "react-dnd";
@@ -79,8 +79,10 @@ Main.propTypes = {
 const actions = { deSelectAsset, removeAssetFromParent };
 
 const decorator = _.flowRight([
+	withRouter,
+	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD),
 	connect(null, actions),
-	DropTarget(dndTypes.TIMELINE_ASSET, appTargetSpec, collectDnD)
 ]);
+
 
 export default decorator(Main);
