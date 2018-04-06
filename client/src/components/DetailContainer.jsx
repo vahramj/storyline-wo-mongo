@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
+import _ from "lodash";
 
 import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageEditor/ImageSelector";
@@ -25,19 +27,19 @@ class DetailContainer extends Component {
 		};
 
 		const { assetData } = props;
-		if(assetData){
+		if (assetData) {
 			this.state.name = assetData.name;
 			this.state.summary = assetData.summary;
-			if(assetData.imageData){
+			if (assetData.imageData) {
 				this.state.imageData = assetData.imageData;
 			}
 		}
-	};
+	}
 
-	componentDidMount(){
+	componentDidMount() {
 		const { operation, type } = this.props.match.params;
 		const { assetData } = this.props;
-		if( operation === "edit" && !assetData){
+		if (operation === "edit" && !assetData) {
 			this.props.history.push(`/add/${type}`);
 		}
 	}
@@ -49,9 +51,9 @@ class DetailContainer extends Component {
 	// ╚██████╔╝   ██║   ██║███████╗███████║
 	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
 
-	setImageData = (newImageData) => {
+	setImageData = newImageData => {
 		const oldImageData = this.state.imageData || {};
-		this.setState({ imageData: { ...oldImageData, ...newImageData }});
+		this.setState({ imageData: { ...oldImageData, ...newImageData } });
 	};
 
 	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
@@ -61,7 +63,7 @@ class DetailContainer extends Component {
 	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
 	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
 
-	handleSubmitForm = (event) => {
+	handleSubmitForm = event => {
 		event.preventDefault();
 		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
 	};
@@ -78,9 +80,9 @@ class DetailContainer extends Component {
 		});
 	};
 
-	handleSaveDetails = event => {
-		event.preventDefault();
-		console.log("saving details")
+	handleSaveDetails = formValues => {
+		// event.preventDefault();
+		console.log("saving details");
 
 		const { imageData } = this.state;
 		// const { imageFile } = imageData;
@@ -89,7 +91,8 @@ class DetailContainer extends Component {
 		// }
 
 		const { type, id } = this.props.match.params;
-		const { name, summary } = this.state;
+		// const { summary } = this.state;
+		const { name, summary } = formValues;
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
 		this.props.saveDetails({
@@ -123,63 +126,85 @@ class DetailContainer extends Component {
 
 	render() {
 		const { type, operation } = this.props.match.params;
-		// console.log(type);
+		console.log("props: ", this.props);
+		const { handleSubmit } = this.props;
+		// const handleSubmit = (value) => value;
 
 		return (
-			<div className="detail-container">
-				<ContainerHeader headerText={`${operation} ${type}`} />
-				<div className="container-body">
-					<form onSubmit={this.handleSubmitForm}>
-						<fieldset>
-							<label htmlFor="name">
-								<h3> {`Name for ${type}`} </h3>
-								<input
-									type="text"
-									id="name"
-									name="name"
-									value={this.state.name}
-									onChange={this.handleNameChange}
-								/>
-							</label>
-						</fieldset>
+			<div className="main">
+				<div className="detail-container">
+					<ContainerHeader headerText={`${operation} ${type}`} />
+					<div className="container-body">
+						<form onSubmit={handleSubmit(this.handleSubmitForm)}>
+							<fieldset>
+								<label htmlFor="name">
+									<h3> {`Name for ${type}`} </h3>
+									{
+										// <input
+										// 	type="text"
+										// 	id="name"
+										// 	name="name"
+										// 	value={this.state.name}
+										// 	onChange={this.handleNameChange}
+										// />
+										<Field component="input" name="name" type="text" id="name" />
+									}
+								</label>
+							</fieldset>
 
-						<fieldset>
-							<label htmlFor="summary">
-								<h3>Summary</h3>
-								<textarea
-									type="text"
-									id="summary"
-									name="summary"
-									cols="60"
-									rows="10"
-									value={this.state.summary}
-									onChange={this.handleSummaryChange}
-								/>
-							</label>
-						</fieldset>
+							<fieldset>
+								<label htmlFor="summary">
+									<h3>Summary</h3>
+									{
+										<Field 
+											component="textarea"
+											name="summary"
+											id="summary"
+											cols="60"
+											rows="10"
+										/>
+										// <textarea
+										// 	type="text"
+										// 	id="summary"
+										// 	name="summary"
+										// 	cols="60"
+										// 	rows="10"
+										// 	value={this.state.summary}
+										// 	onChange={this.handleSummaryChange}
+										// />
+									}
+								</label>
+							</fieldset>
 
-						<fieldset>
-							<label htmlFor="file">
-								<h3>Select image</h3>
-								<ImageSelector
-									type={type}
-									imageData={this.state.imageData}
-									setImageData={this.setImageData}
-								/>
-							</label>
-						</fieldset>
+							<fieldset>
+								<label htmlFor="file">
+									<h3>Select image</h3>
+									<ImageSelector
+										type={type}
+										imageData={this.state.imageData}
+										setImageData={this.setImageData}
+									/>
+								</label>
+							</fieldset>
 
-						<fieldset>
-							<div className="btns">
-								<button className="btn btn-primary" onClick={this.handleSaveDetails}>save</button>
-								<Link className="btn btn-danger" to="/">
-									cancel
-								</Link>
-							</div>
-						</fieldset>
-					</form>
+							<fieldset>
+								<div className="btns">
+									<button
+										className="btn btn-primary"
+										onClick={handleSubmit(this.handleSaveDetails)}
+									>
+										save
+									</button>
+									<Link className="btn btn-danger" to="/">
+										cancel
+									</Link>
+								</div>
+							</fieldset>
+						</form>
+					</div>
 				</div>
 			</div>
+
 		);
 	}
 }
@@ -212,33 +237,49 @@ DetailContainer.propTypes = {
 		})
 	}),
 
-	saveDetails: func.isRequired
+	saveDetails: func.isRequired,
+
+	handleSubmit: func.isRequired
 };
 
 DetailContainer.defaultProps = {
-	assetData: null,
-}
+	assetData: null
+};
 
-function mapStateToProps({ assetsData: {data} }, props){
+function mapStateToProps({ assetsData: { data } }, props) {
 	const { operation, id } = props.match.params;
 	// console.log(operation, type, id);
 
 	let assetData;
-	if(operation === "edit" && id && data[id]){
+	if (operation === "edit" && id && data[id]) {
 		const { name, imageData, summary } = data[id];
 		assetData = {
 			id,
 			name,
 			summary,
 			imageData
-		}
+		};
 	}
-	// console.log(assetData)
+	console.log(assetData);
 
 	return {
 		// imageData,
-		assetData
+		assetData,
+		initialValues: assetData
 	};
 }
 
-export default connect( mapStateToProps, { saveDetails })(DetailContainer);
+function validate(values) {
+	const errors = {};
+	if (!values.name) {
+		errors.name = "Please provide name for the asset";
+	}
+	return errors;
+}
+
+const decorator = _.flowRight([
+	connect(mapStateToProps, { saveDetails }),
+	reduxForm({ validate, form: "assetDetailsForm" }),
+]);
+
+export default decorator(DetailContainer);
