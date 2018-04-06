@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import _ from "lodash";
 
 import ContainerHeader from "./ContainerHeader";
-import DetailField from "./DetailField";
 import ImageSelector from "./ImageEditor/ImageSelector";
+import DetailsFieldsPhase from "./DetailsFieldsPhase";
 
 // import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../actions/actionCreators";
@@ -42,34 +42,14 @@ class DetailsContainer extends Component {
 		}
 	}
 
-	// ██╗   ██╗████████╗██╗██╗     ███████╗
-	// ██║   ██║╚══██╔══╝██║██║     ██╔════╝
-	// ██║   ██║   ██║   ██║██║     ███████╗
-	// ██║   ██║   ██║   ██║██║     ╚════██║
-	// ╚██████╔╝   ██║   ██║███████╗███████║
-	//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
-
 	setImageData = newImageData => {
 		const oldImageData = this.state.imageData || {};
 		this.setState({ imageData: { ...oldImageData, ...newImageData } });
 	};
 
-	// ███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗██████╗ ██╗     ███████╗
-	// ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝    ██║  ██║██╔══██╗██║     ██╔════╝
-	// █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║       ███████║██║  ██║██║     ███████╗
-	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
-	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
-	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
-
 	handleSubmitForm = event => {
 		event.preventDefault();
 		console.log("vahram, DetailsContainer form just got submitted, figure why. It shouldn't");
-	};
-
-	handleSummaryChange = event => {
-		this.setState({
-			summary: event.target.value
-		});
 	};
 
 	handleSaveDetails = formValues => {
@@ -126,23 +106,7 @@ class DetailsContainer extends Component {
 					<ContainerHeader headerText={`${operation} ${type}`} />
 					<div className="container-body">
 						<form onSubmit={handleSubmit(this.handleSubmitForm)}>
-							<Field
-								headerText={`Name for ${type}`}
-								name="name"
-								id="name"
-								component={DetailField}
-								type="text"
-							/>
-
-							<Field
-								headerText="Summary"
-								name="summary"
-								id="summary"
-								cols="60"
-								rows="10"
-								component={DetailField}
-								type="textarea"
-							/>
+							<DetailsFieldsPhase />
 
 							<fieldset>
 								<label htmlFor="file">
@@ -166,6 +130,8 @@ class DetailsContainer extends Component {
 									<Link className="btn btn-danger" to="/">
 										cancel
 									</Link>
+
+									<button className="btn" disabled>reset</button>
 								</div>
 							</fieldset>
 						</form>
