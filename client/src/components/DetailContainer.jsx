@@ -6,6 +6,7 @@ import { Field, reduxForm } from "redux-form";
 import _ from "lodash";
 
 import ContainerHeader from "./ContainerHeader";
+import DetailField from "./DetailField";
 import ImageSelector from "./ImageEditor/ImageSelector";
 
 // import uploadImage from "../utils/uploadImage";
@@ -17,18 +18,14 @@ class DetailContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
+			// name: "",
 			summary: "",
 			imageData: null
-			// {
-			// 	imageUrl: "",
-			// 	imageDisplayData: null
-			// }
 		};
 
 		const { assetData } = props;
 		if (assetData) {
-			this.state.name = assetData.name;
+			// this.state.name = assetData.name;
 			this.state.summary = assetData.summary;
 			if (assetData.imageData) {
 				this.state.imageData = assetData.imageData;
@@ -39,6 +36,7 @@ class DetailContainer extends Component {
 	componentDidMount() {
 		const { operation, type } = this.props.match.params;
 		const { assetData } = this.props;
+		// vahram, optimize this to use location === "edit" rather than operation
 		if (operation === "edit" && !assetData) {
 			this.props.history.push(`/add/${type}`);
 		}
@@ -66,12 +64,6 @@ class DetailContainer extends Component {
 	handleSubmitForm = event => {
 		event.preventDefault();
 		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
-	};
-
-	handleNameChange = event => {
-		this.setState({
-			name: event.target.value
-		});
 	};
 
 	handleSummaryChange = event => {
@@ -126,9 +118,7 @@ class DetailContainer extends Component {
 
 	render() {
 		const { type, operation } = this.props.match.params;
-		console.log("props: ", this.props);
 		const { handleSubmit } = this.props;
-		// const handleSubmit = (value) => value;
 
 		return (
 			<div className="main">
@@ -136,45 +126,23 @@ class DetailContainer extends Component {
 					<ContainerHeader headerText={`${operation} ${type}`} />
 					<div className="container-body">
 						<form onSubmit={handleSubmit(this.handleSubmitForm)}>
-							<fieldset>
-								<label htmlFor="name">
-									<h3> {`Name for ${type}`} </h3>
-									{
-										// <input
-										// 	type="text"
-										// 	id="name"
-										// 	name="name"
-										// 	value={this.state.name}
-										// 	onChange={this.handleNameChange}
-										// />
-										<Field component="input" name="name" type="text" id="name" />
-									}
-								</label>
-							</fieldset>
+							<Field
+								headerText={`Name for ${type}`}
+								name="name"
+								id="name"
+								component={DetailField}
+								type="text"
+							/>
 
-							<fieldset>
-								<label htmlFor="summary">
-									<h3>Summary</h3>
-									{
-										<Field 
-											component="textarea"
-											name="summary"
-											id="summary"
-											cols="60"
-											rows="10"
-										/>
-										// <textarea
-										// 	type="text"
-										// 	id="summary"
-										// 	name="summary"
-										// 	cols="60"
-										// 	rows="10"
-										// 	value={this.state.summary}
-										// 	onChange={this.handleSummaryChange}
-										// />
-									}
-								</label>
-							</fieldset>
+							<Field
+								headerText="Summary"
+								name="summary"
+								id="summary"
+								cols="60"
+								rows="10"
+								component={DetailField}
+								type="textarea"
+							/>
 
 							<fieldset>
 								<label htmlFor="file">
@@ -204,7 +172,6 @@ class DetailContainer extends Component {
 					</div>
 				</div>
 			</div>
-
 		);
 	}
 }
@@ -277,9 +244,14 @@ function validate(values) {
 	return errors;
 }
 
+const reduxFormOptions = {
+	validate,
+	form: "assetDetailsForm"
+};
+
 const decorator = _.flowRight([
 	connect(mapStateToProps, { saveDetails }),
-	reduxForm({ validate, form: "assetDetailsForm" }),
+	reduxForm(reduxFormOptions)
 ]);
 
 export default decorator(DetailContainer);
