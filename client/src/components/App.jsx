@@ -9,7 +9,7 @@ import rootReducer from "../reducers/rootReducer";
 import CustomDragLayer from "./CustomDragLayer";
 // import Main from "./Main";
 import ContainerHolder from "./ContainerHolder";
-import DetailContainer from "./DetailContainer";
+import DetailsContainer from "./DetailsContainer";
 
 
 import "./styles/App.css";
@@ -41,7 +41,7 @@ class App extends Component {
 							<h1>Storyline Maker</h1>
 						</header>
 						<Switch>
-							<Route path="/:operation/:type/:id?" component={ DetailContainer } />
+							<Route path="/:operation/:type/:id?" component={ DetailsContainer } />
 							<Route path="/" component={ ContainerHolder } />
 						</Switch>
 						<CustomDragLayer /> 

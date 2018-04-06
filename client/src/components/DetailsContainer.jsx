@@ -12,9 +12,9 @@ import ImageSelector from "./ImageEditor/ImageSelector";
 // import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../actions/actionCreators";
 
-import "./styles/DetailContainer.css";
+import "./styles/DetailsContainer.css";
 
-class DetailContainer extends Component {
+class DetailsContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -63,7 +63,7 @@ class DetailContainer extends Component {
 
 	handleSubmitForm = event => {
 		event.preventDefault();
-		console.log("vahram, DetailContainer form just got submitted, figure why. It shouldn't");
+		console.log("vahram, DetailsContainer form just got submitted, figure why. It shouldn't");
 	};
 
 	handleSummaryChange = event => {
@@ -176,7 +176,7 @@ class DetailContainer extends Component {
 	}
 }
 
-DetailContainer.propTypes = {
+DetailsContainer.propTypes = {
 	match: shape({
 		params: shape({
 			operation: string.isRequired,
@@ -209,7 +209,7 @@ DetailContainer.propTypes = {
 	handleSubmit: func.isRequired
 };
 
-DetailContainer.defaultProps = {
+DetailsContainer.defaultProps = {
 	assetData: null
 };
 
@@ -254,4 +254,4 @@ const decorator = _.flowRight([
 	reduxForm(reduxFormOptions)
 ]);
 
-export default decorator(DetailContainer);
+export default decorator(DetailsContainer);
