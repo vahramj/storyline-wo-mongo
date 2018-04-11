@@ -161,6 +161,7 @@ function assetsDataReducer(state = initialState, action) {
 
 		case SAVE_ASSET_DETAILS: {
 			const { id } = action.payload;
+			// console.log("action.payload: ", action.payload);
 			
 			if(id){
 				const newData = update(state, {
@@ -170,7 +171,7 @@ function assetsDataReducer(state = initialState, action) {
 						}
 					}
 				});
-				console.log("new asset: ", newData.data[id]);
+				// console.log("updated asset: ", newData.data[id]);
 				return newData
 			}
 			// generate new id

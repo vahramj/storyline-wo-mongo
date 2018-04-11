@@ -12,32 +12,40 @@ class DetailsFieldsPhase extends Component {
 	render(){
 		return (
 			<div>
-				<Field
-					headerText="Name for phase"
-					name="name"
-					id="name"
-					component={DetailField}
-					type="text"
-				/>
+				<fieldset>
+					<Field
+						headerText="Phase name"
+						name="name"
+						id="name"
+						component={DetailField}
+						type="text"
+					/>
+				</fieldset>
 
-				<Field
-					headerText="Summary"
-					name="summary"
-					id="summary"
-					cols="60"
-					rows="10"
-					component={DetailField}
-					type="textarea"
-				/>
+				<fieldset>
+					<Field
+						headerText="Summary"
+						name="summary"
+						id="summary"
+						cols="60"
+						rows="10"
+						component={DetailField}
+						type="textarea"
+					/>
+				</fieldset>
 			</div>
 		);
 	}
 };
 
 function validate(values) {
+	console.log(values)
 	const errors = {};
 	if (!values.name) {
 		errors.name = "Please provide name for the phase";
+	}
+	if (!values.summary || values.summary.length < 15){
+		errors.summary = "Please provide a summary at least 15 charachters long";
 	}
 	return errors;
 }

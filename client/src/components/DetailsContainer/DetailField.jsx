@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./styles/CustomField.css"
+import "./styles/DetailField.css"
 
 const CustomField = fieldProps => {
 	const { headerText, id, name, type, input, meta, cols, rows, display="vertical" } = fieldProps;

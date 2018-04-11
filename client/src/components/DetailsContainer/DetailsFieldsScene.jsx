@@ -14,7 +14,7 @@ class DetailsFieldsScene extends Component {
 			<div>
 				<fieldset >
 					<Field
-						headerText="Character name:"
+						headerText="Scene name:"
 						name="name"
 						id="name"
 						component={DetailField}

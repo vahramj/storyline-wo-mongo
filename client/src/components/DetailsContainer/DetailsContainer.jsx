@@ -32,8 +32,9 @@ class DetailsContainer extends Component {
 				return value;
 			}
 		};
-
+	
 		const { assetData } = props;
+		// console.log("assetData: ", assetData);
 		if (assetData && assetData.imageData) {
 			this.state.imageData = assetData.imageData;
 		}
@@ -69,15 +70,15 @@ class DetailsContainer extends Component {
 		const { imageData } = this.state;
 
 		const { type, id } = this.props.match.params;
-		const { name, summary } = formValues;
+		// const { name, summary } = formValues;
+		// console.log(formValues)
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
 		this.props.saveDetails({
 			id,
 			type,
-			name,
-			summary,
-			imageData
+			imageData,
+			...formValues
 		});
 
 		this.props.history.push("/");
@@ -196,13 +197,9 @@ function mapStateToProps({ assetsData: { data } }, props) {
 
 	let assetData;
 	if (operation === "edit" && id && data[id]) {
-		const { name, imageData, summary } = data[id];
-		assetData = {
-			id,
-			name,
-			summary,
-			imageData
-		};
+		// console.log(operation, id, data[id])
+		// const { name, imageData, summary } = data[id];
+		assetData = data[id];
 	}
 
 	return {
