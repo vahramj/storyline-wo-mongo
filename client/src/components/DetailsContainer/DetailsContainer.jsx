@@ -8,6 +8,7 @@ import ContainerHeader from "../ContainerHeader";
 import ImageSelector from "../ImageEditor/ImageSelector";
 import DetailsFieldsPhase from "./DetailsFieldsPhase";
 import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
+import DetailsFieldsScene from "./DetailsFieldsScene";
 
 // import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../../actions/actionCreators";
@@ -16,7 +17,8 @@ import "./styles/DetailsContainer.css";
 
 const detailFieldsTypes = {
 	phase: DetailsFieldsPhase,
-	character: DetailsFieldsCharacter
+	character: DetailsFieldsCharacter,
+	scene: DetailsFieldsScene
 };
 
 class DetailsContainer extends Component {

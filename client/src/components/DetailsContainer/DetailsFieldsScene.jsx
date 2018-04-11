@@ -3,7 +3,7 @@ import { reduxForm, Field } from "redux-form";
 
 import DetailField from "./DetailField";
 
-class DetailsFieldsCharacter extends Component {
+class DetailsFieldsScene extends Component {
 	componentWillMount(){
 		const { handleSubmit, getHandleSubmit } = this.props;
 		getHandleSubmit(handleSubmit);
@@ -24,20 +24,20 @@ class DetailsFieldsCharacter extends Component {
 
 				<fieldset>
 					<Field
-						headerText="Male:"
-						name="gender"
-						id="male"
-						value="male"
+						headerText="Int"
+						name="int_ext"
+						id="int"
+						value="int"
 						component={DetailField}
 						type="radio"
 						display="horizontal"
 					/>
 
 					<Field
-						headerText="Female:"
-						name="gender"
-						id="female"
-						value="female"
+						headerText="Ext:"
+						name="int_ext"
+						id="ext"
+						value="ext"
 						component={DetailField}
 						type="radio"
 						display="horizontal"
@@ -46,9 +46,9 @@ class DetailsFieldsCharacter extends Component {
 
 				<fieldset >
 					<Field
-						headerText="Age:"
-						name="age"
-						id="age"
+						headerText="Location:"
+						name="location"
+						id="location"
 						component={DetailField}
 						type="text"
 					/>
@@ -56,9 +56,9 @@ class DetailsFieldsCharacter extends Component {
 
 				<fieldset >
 					<Field
-						headerText="Race/ethnicity:"
-						name="race"
-						id="race"
+						headerText="Time:"
+						name="time"
+						id="time"
 						component={DetailField}
 						type="text"
 					/>
@@ -66,7 +66,7 @@ class DetailsFieldsCharacter extends Component {
 
 				<fieldset>
 					<Field
-						headerText="Description"
+						headerText="Summary"
 						name="summary"
 						id="summary"
 						cols="60"
@@ -83,14 +83,14 @@ class DetailsFieldsCharacter extends Component {
 function validate(values) {
 	const errors = {};
 	if (!values.name) {
-		errors.name = "Please provide name for the character";
+		errors.name = "Please provide name for the scene";
 	}
 	return errors;
 }
 
 const reduxFormOptions = {
 	validate,
-	form: "characterForm"
+	form: "sceneForm"
 }
 
-export default reduxForm(reduxFormOptions)(DetailsFieldsCharacter);
+export default reduxForm(reduxFormOptions)(DetailsFieldsScene);
