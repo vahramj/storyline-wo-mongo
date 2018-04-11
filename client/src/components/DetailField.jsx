@@ -3,7 +3,7 @@ import React from "react";
 import "./styles/CustomField.css"
 
 const CustomField = fieldProps => {
-	const { headerText, id, name, type, input, meta, cols, rows } = fieldProps;
+	const { headerText, id, name, type, input, meta, cols, rows, display="vertical" } = fieldProps;
 	const { touched, error } = meta;
 	// console.log(touched, error)
 
@@ -14,22 +14,19 @@ const CustomField = fieldProps => {
 
 	let fieldHelp = null; 
 	if(touched && error){
-		fieldHelp = <span className="field-error"> ({error})</span>
+		fieldHelp = <span className="field-error">({error})</span>
 	}
 
 	return (
-		<fieldset>
+		<div className={`detail-field ${display}-field`}>
 			<label htmlFor={id}>
-			<div>
-				
-				<h3> 
-					{headerText} 
-				</h3>
-				{ fieldHelp }
-			</div>
+				<div>			
+					<h3> {headerText} </h3>
+					{ fieldHelp }
+				</div>
 				{ fieldElem }
 			</label>
-		</fieldset>
+		</div>
 	);
 };
 

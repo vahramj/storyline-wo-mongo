@@ -2,34 +2,38 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 import _ from "lodash";
 
 import ContainerHeader from "./ContainerHeader";
 import ImageSelector from "./ImageEditor/ImageSelector";
 import DetailsFieldsPhase from "./DetailsFieldsPhase";
+import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 
 // import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../actions/actionCreators";
 
 import "./styles/DetailsContainer.css";
 
+const detailFieldsTypes = {
+	phase: DetailsFieldsPhase,
+	character: DetailsFieldsCharacter
+};
+
 class DetailsContainer extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
-			// name: "",
-			summary: "",
-			imageData: null
+			imageData: null,
+			handleSubmit(value) {
+				// console.log("I am handleSubmit, hohoho");
+				return value;
+			}
 		};
 
 		const { assetData } = props;
-		if (assetData) {
-			// this.state.name = assetData.name;
-			this.state.summary = assetData.summary;
-			if (assetData.imageData) {
-				this.state.imageData = assetData.imageData;
-			}
+		if (assetData && assetData.imageData) {
+			this.state.imageData = assetData.imageData;
 		}
 	}
 
@@ -42,13 +46,17 @@ class DetailsContainer extends Component {
 		}
 	}
 
+	getHandleSubmit = handleSubmit => {
+		this.setState({ handleSubmit });
+	};
+
 	setImageData = newImageData => {
 		const oldImageData = this.state.imageData || {};
 		this.setState({ imageData: { ...oldImageData, ...newImageData } });
 	};
 
-	handleSubmitForm = event => {
-		event.preventDefault();
+	handleSubmitForm = formValues => {
+		// event.preventDefault();
 		console.log("vahram, DetailsContainer form just got submitted, figure why. It shouldn't");
 	};
 
@@ -57,13 +65,8 @@ class DetailsContainer extends Component {
 		console.log("saving details");
 
 		const { imageData } = this.state;
-		// const { imageFile } = imageData;
-		// if(!imageFile){
-		// 	imageData = null;
-		// }
 
 		const { type, id } = this.props.match.params;
-		// const { summary } = this.state;
 		const { name, summary } = formValues;
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
@@ -98,15 +101,22 @@ class DetailsContainer extends Component {
 
 	render() {
 		const { type, operation } = this.props.match.params;
-		const { handleSubmit } = this.props;
+		const { assetData } = this.props;
+		const { handleSubmit } = this.state;
+
+		const DetailFields = detailFieldsTypes[type];
 
 		return (
 			<div className="main">
 				<div className="detail-container">
 					<ContainerHeader headerText={`${operation} ${type}`} />
+
 					<div className="container-body">
-						<form onSubmit={handleSubmit(this.handleSubmitForm)}>
-							<DetailsFieldsPhase />
+						<form onSubmit={this.handleSubmitForm}>
+							<DetailFields
+								getHandleSubmit={this.getHandleSubmit}
+								initialValues={assetData}
+							/>
 
 							<fieldset>
 								<label htmlFor="file">
@@ -123,7 +133,7 @@ class DetailsContainer extends Component {
 								<div className="btns">
 									<button
 										className="btn btn-primary"
-										onClick={handleSubmit(this.handleSaveDetails)}
+										onClick = { handleSubmit(this.handleSaveDetails) }
 									>
 										save
 									</button>
@@ -131,7 +141,9 @@ class DetailsContainer extends Component {
 										cancel
 									</Link>
 
-									<button className="btn" disabled>reset</button>
+									<button className="btn" disabled>
+										reset
+									</button>
 								</div>
 							</fieldset>
 						</form>
@@ -170,9 +182,7 @@ DetailsContainer.propTypes = {
 		})
 	}),
 
-	saveDetails: func.isRequired,
-
-	handleSubmit: func.isRequired
+	saveDetails: func.isRequired
 };
 
 DetailsContainer.defaultProps = {
@@ -181,7 +191,6 @@ DetailsContainer.defaultProps = {
 
 function mapStateToProps({ assetsData: { data } }, props) {
 	const { operation, id } = props.match.params;
-	// console.log(operation, type, id);
 
 	let assetData;
 	if (operation === "edit" && id && data[id]) {
@@ -193,31 +202,9 @@ function mapStateToProps({ assetsData: { data } }, props) {
 			imageData
 		};
 	}
-	console.log(assetData);
 
 	return {
-		// imageData,
-		assetData,
-		initialValues: assetData
+		assetData
 	};
 }
-
-function validate(values) {
-	const errors = {};
-	if (!values.name) {
-		errors.name = "Please provide name for the asset";
-	}
-	return errors;
-}
-
-const reduxFormOptions = {
-	validate,
-	form: "assetDetailsForm"
-};
-
-const decorator = _.flowRight([
-	connect(mapStateToProps, { saveDetails }),
-	reduxForm(reduxFormOptions)
-]);
-
-export default decorator(DetailsContainer);
+export default connect(mapStateToProps, { saveDetails })(DetailsContainer);
