@@ -140,6 +140,7 @@ class DetailsContainer extends Component {
 									>
 										save
 									</button>
+									
 									<Link className="btn btn-danger" to="/">
 										cancel
 									</Link>

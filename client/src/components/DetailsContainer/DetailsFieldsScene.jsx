@@ -14,11 +14,12 @@ class DetailsFieldsScene extends Component {
 			<div>
 				<fieldset >
 					<Field
-						headerText="Scene name:"
+						headerText="Scene name"
 						name="name"
 						id="name"
 						component={DetailField}
 						type="text"
+						required
 					/>
 				</fieldset>
 
@@ -30,11 +31,12 @@ class DetailsFieldsScene extends Component {
 						value="int"
 						component={DetailField}
 						type="radio"
+						checked
 						display="horizontal"
 					/>
 
 					<Field
-						headerText="Ext:"
+						headerText="Ext"
 						name="int_ext"
 						id="ext"
 						value="ext"
@@ -46,21 +48,23 @@ class DetailsFieldsScene extends Component {
 
 				<fieldset >
 					<Field
-						headerText="Location:"
+						headerText="Location"
 						name="location"
 						id="location"
 						component={DetailField}
 						type="text"
+						required
 					/>
 				</fieldset>
 
 				<fieldset >
 					<Field
-						headerText="Time:"
+						headerText="Time"
 						name="time"
 						id="time"
 						component={DetailField}
 						type="text"
+						required
 					/>
 				</fieldset>
 
@@ -84,6 +88,12 @@ function validate(values) {
 	const errors = {};
 	if (!values.name) {
 		errors.name = "Please provide name for the scene";
+	}
+	if(!values.location) {
+		errors.location = "Please specify the location of the scene";
+	}
+	if(!values.time) {
+		errors.location = "Please specify the time when the scene takes place";
 	}
 	return errors;
 }

@@ -14,27 +14,29 @@ class DetailsFieldsCharacter extends Component {
 			<div>
 				<fieldset >
 					<Field
-						headerText="Character name:"
+						headerText="Character name"
 						name="name"
 						id="name"
 						component={DetailField}
 						type="text"
+						required
 					/>
 				</fieldset>
 
 				<fieldset>
 					<Field
-						headerText="Male:"
+						headerText="Male"
 						name="gender"
 						id="male"
 						value="male"
 						component={DetailField}
 						type="radio"
 						display="horizontal"
+						checked
 					/>
 
 					<Field
-						headerText="Female:"
+						headerText="Female"
 						name="gender"
 						id="female"
 						value="female"
@@ -42,33 +44,45 @@ class DetailsFieldsCharacter extends Component {
 						type="radio"
 						display="horizontal"
 					/>
-				</fieldset>
 
-				<fieldset >
-					<Field
-						headerText="Age:"
-						name="age"
-						id="age"
+					<Field 
+						headerText="Other"
+						name="gender"
+						id="other"
+						value="other"
 						component={DetailField}
-						type="text"
+						type="radio"
+						display="horizontal"
 					/>
 				</fieldset>
 
 				<fieldset >
 					<Field
-						headerText="Race/ethnicity:"
+						headerText="Age"
+						name="age"
+						id="age"
+						component={DetailField}
+						type="text"
+						required
+					/>
+				</fieldset>
+
+				<fieldset >
+					<Field
+						headerText="Race/ethnicity"
 						name="race"
 						id="race"
 						component={DetailField}
 						type="text"
+						required
 					/>
 				</fieldset>
 
 				<fieldset>
 					<Field
 						headerText="Description"
-						name="summary"
-						id="summary"
+						name="description"
+						id="description"
 						cols="60"
 						rows="10"
 						component={DetailField}
@@ -82,9 +96,19 @@ class DetailsFieldsCharacter extends Component {
 
 function validate(values) {
 	const errors = {};
-	if (!values.name) {
+	if ( !values.name ) {
 		errors.name = "Please provide name for the character";
 	}
+
+	if( !values.age ) {
+		errors.age = "Please provide age description for the character";
+	}
+
+	if( !values.race ){
+		errors.race = "Please provide race or ethnicity description for the character"
+	}
+
+
 	return errors;
 }
 
