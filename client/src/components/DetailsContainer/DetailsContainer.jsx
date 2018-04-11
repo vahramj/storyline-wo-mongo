@@ -4,13 +4,13 @@ import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-import ContainerHeader from "./ContainerHeader";
-import ImageSelector from "./ImageEditor/ImageSelector";
+import ContainerHeader from "../ContainerHeader";
+import ImageSelector from "../ImageEditor/ImageSelector";
 import DetailsFieldsPhase from "./DetailsFieldsPhase";
 import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 
 // import uploadImage from "../utils/uploadImage";
-import { saveDetails } from "../actions/actionCreators";
+import { saveDetails } from "../../actions/actionCreators";
 
 import "./styles/DetailsContainer.css";
 

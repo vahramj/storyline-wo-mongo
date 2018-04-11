@@ -9,7 +9,7 @@ import rootReducer from "../reducers/rootReducer";
 import CustomDragLayer from "./CustomDragLayer";
 // import Main from "./Main";
 import ContainerHolder from "./ContainerHolder";
-import DetailsContainer from "./DetailsContainer";
+import DetailsContainer from "./DetailsContainer/DetailsContainer";
 
 
 import "./styles/App.css";
