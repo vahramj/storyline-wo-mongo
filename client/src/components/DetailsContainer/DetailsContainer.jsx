@@ -30,7 +30,8 @@ class DetailsContainer extends Component {
 			handleSubmit(value) {
 				// console.log("I am handleSubmit, hohoho");
 				return value;
-			}
+			},
+			submitting: false
 		};
 
 		const { assetData } = props;
@@ -50,7 +51,7 @@ class DetailsContainer extends Component {
 	}
 
 	getReduxFormFunctions = ({ handleSubmit, reset }) => {
-		console.log(handleSubmit, reset);
+		// console.log(handleSubmit, reset);
 		this.setState({ handleSubmit, reset });
 	};
 
@@ -67,6 +68,7 @@ class DetailsContainer extends Component {
 	handleSaveDetails = formValues => {
 		// event.preventDefault();
 		console.log("saving details");
+		this.setState({submitting: true})
 
 		const { imageData } = this.state;
 
@@ -100,6 +102,18 @@ class DetailsContainer extends Component {
 		// 		console.log("error uploading the file", err);
 		// 	});
 	};
+
+	handleResetDetails = () => {
+		const { reset } = this.state;
+		reset();
+		const { assetData } = this.props;
+		let imageData = null;
+		// console.log("assetData: ", assetData);
+		if (assetData && assetData.imageData) {
+			imageData = assetData.imageData;
+		}
+		this.setState({ imageData });
+	}
 
 	getInitialValues() {
 		const { type } = this.props.match.params;
@@ -165,8 +179,9 @@ class DetailsContainer extends Component {
 									<input
 										type="button"
 										className="btn"
-										onClick={reset}
+										onClick={this.handleResetDetails}
 										value="reset"
+										// disabled
 									/>
 								</div>
 							</fieldset>
