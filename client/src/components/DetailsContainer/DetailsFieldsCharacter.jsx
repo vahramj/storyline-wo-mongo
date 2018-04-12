@@ -61,6 +61,15 @@ class DetailsFieldsCharacter extends Component {
 						type="radio"
 						display="horizontal"
 					/>
+
+					<Field
+						// headerText="otherGender"
+						name="otherGender"
+						id="otherGender"
+						component={DetailField}
+						type="text"
+						display="horizontal"
+					/>
 				</fieldset>
 
 				<fieldset>

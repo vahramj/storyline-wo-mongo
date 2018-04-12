@@ -1,4 +1,5 @@
 import React from "react";
+import { string, bool, shape } from "prop-types";
 
 import "./styles/DetailField.css";
 
@@ -6,24 +7,22 @@ const DetailField = props => {
 	const {
 		headerText,
 		id,
-		name,
 		type,
 		input,
-		checked,
 		cols,
 		rows,
 		display = "vertical",
 		required,
 		meta
 	} = props;
+	// console.log(props)
 
 	const { touched, error } = meta;
 
-	let fieldElem = <input type={type} id={id} name={name} {...input} 
-	/>;
+	let fieldElem = <input type={type} id={id} {...input} />;
 
 	if (type === "textarea") {
-		fieldElem = <textarea id={id} name={name} cols={cols} rows={rows} {...input} />;
+		fieldElem = <textarea id={id} cols={cols} rows={rows} {...input} />;
 	}
 
 	let requiredMark;
@@ -48,5 +47,30 @@ const DetailField = props => {
 		</div>
 	);
 };
+
+DetailField.propTypes = {
+	input: shape({
+		name: string.isRequired,
+	}).isRequired,
+	meta: shape({
+		touched: bool.isRequired,
+		error: string
+	}).isRequired,
+	type: string.isRequired,
+	id: string.isRequired,
+	headerText: string,
+	cols: string,
+	rows: string,
+	display: string,
+	required: bool,
+}
+
+DetailField.defaultProps = {
+	headerText: "",
+	cols: "60",
+	rows: "10",
+	display: "vertical",
+	required: false,
+}
 
 export default DetailField;
