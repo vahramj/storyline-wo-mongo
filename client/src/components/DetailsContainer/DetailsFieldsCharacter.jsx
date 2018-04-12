@@ -4,6 +4,7 @@ import { reduxForm, Field } from "redux-form";
 import DetailField from "./DetailField";
 
 class DetailsFieldsCharacter extends Component {
+
 	componentWillMount(){
 		const { handleSubmit, getHandleSubmit } = this.props;
 		getHandleSubmit(handleSubmit);
@@ -32,7 +33,6 @@ class DetailsFieldsCharacter extends Component {
 						component={DetailField}
 						type="radio"
 						display="horizontal"
-						checked
 					/>
 
 					<Field

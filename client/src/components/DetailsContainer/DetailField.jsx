@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles/DetailField.css";
 
-const CustomField = props => {
+const DetailField = props => {
 	const {
 		headerText,
 		id,
@@ -19,12 +19,9 @@ const CustomField = props => {
 
 	const { touched, error } = meta;
 
-	// let defaultChecked;
-	// if(!touched && checked){
-	// 	defaultChecked = checked;
-	// }
-	// console.log(props)
-	let fieldElem = <input type={type} id={id} name={name} {...input} />;
+	let fieldElem = <input type={type} id={id} name={name} {...input} 
+	/>;
+
 	if (type === "textarea") {
 		fieldElem = <textarea id={id} name={name} cols={cols} rows={rows} {...input} />;
 	}
@@ -52,4 +49,4 @@ const CustomField = props => {
 	);
 };
 
-export default CustomField;
+export default DetailField;

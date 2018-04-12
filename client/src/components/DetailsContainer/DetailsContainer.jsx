@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
 import _ from "lodash";
+import update from "immutability-helper";
 
 import ContainerHeader from "../ContainerHeader";
 import ImageSelector from "../ImageEditor/ImageSelector";
@@ -10,7 +11,6 @@ import DetailsFieldsPhase from "./DetailsFieldsPhase";
 import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 import DetailsFieldsScene from "./DetailsFieldsScene";
 
-// import uploadImage from "../utils/uploadImage";
 import { saveDetails } from "../../actions/actionCreators";
 
 import "./styles/DetailsContainer.css";
@@ -70,8 +70,6 @@ class DetailsContainer extends Component {
 		const { imageData } = this.state;
 
 		const { type, id } = this.props.match.params;
-		// const { name, summary } = formValues;
-		// console.log(formValues)
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
 		this.props.saveDetails({
@@ -102,10 +100,29 @@ class DetailsContainer extends Component {
 		// 	});
 	};
 
+	getInitialValues(){
+		const { type } = this.props.match.params;
+		let { assetData } = this.props;
+		let initialValues = Object.assign({}, assetData);
+
+		if(type === "character"){
+			if(!assetData || !assetData.gender){
+				initialValues.gender = "male"
+			}
+		}
+		else if(type === "scene"){
+			if(!assetData || !assetData.int_ext){
+				initialValues.int_ext = "int"
+			}
+		}
+
+		return initialValues;		
+	}
+
 	render() {
 		const { type, operation } = this.props.match.params;
-		const { assetData } = this.props;
 		const { handleSubmit } = this.state;
+		const initialValues = this.getInitialValues();
 
 		const DetailFields = detailFieldsTypes[type];
 
@@ -118,7 +135,7 @@ class DetailsContainer extends Component {
 						<form onSubmit={this.handleSubmitForm}>
 							<DetailFields
 								getHandleSubmit={this.getHandleSubmit}
-								initialValues={assetData}
+								initialValues={initialValues}
 							/>
 
 							<fieldset>
@@ -140,7 +157,7 @@ class DetailsContainer extends Component {
 									>
 										save
 									</button>
-									
+
 									<Link className="btn btn-danger" to="/">
 										cancel
 									</Link>
@@ -198,8 +215,6 @@ function mapStateToProps({ assetsData: { data } }, props) {
 
 	let assetData;
 	if (operation === "edit" && id && data[id]) {
-		// console.log(operation, id, data[id])
-		// const { name, imageData, summary } = data[id];
 		assetData = data[id];
 	}
 
