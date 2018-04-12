@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { func, bool } from "prop-types";
 
 import DetailField from "./DetailField";
 
 class DetailsFieldsPhase extends Component {
-	componentWillMount(){
-		const { handleSubmit, reset, getReduxFormFunctions } = this.props;
-		getReduxFormFunctions({ handleSubmit, reset });
+	componentWillReceiveProps(nextProps) {
+		// console.log(nextProps)
+		const { handleSubmit, reset, getReduxFormFunctions, pristine } = nextProps;
+		getReduxFormFunctions({ handleSubmit, reset, pristine });
 	}
 	
 	render(){
@@ -38,6 +40,13 @@ class DetailsFieldsPhase extends Component {
 			</div>
 		);
 	}
+};
+
+DetailsFieldsPhase.propTypes = {
+	handleSubmit: func.isRequired,
+	reset: func.isRequired,
+	getReduxFormFunctions: func.isRequired,
+	pristine: bool.isRequired
 };
 
 function validate(values) {

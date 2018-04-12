@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { string, shape, number, func } from "prop-types";
 import { connect } from "react-redux";
-import _ from "lodash";
-import update from "immutability-helper";
 
 import ContainerHeader from "../ContainerHeader";
 import ImageSelector from "../ImageEditor/ImageSelector";
@@ -31,7 +29,8 @@ class DetailsContainer extends Component {
 				// console.log("I am handleSubmit, hohoho");
 				return value;
 			},
-			submitting: false
+			submitting: false,
+			changed: false
 		};
 
 		const { assetData } = props;
@@ -50,17 +49,18 @@ class DetailsContainer extends Component {
 		}
 	}
 
-	getReduxFormFunctions = ({ handleSubmit, reset }) => {
-		// console.log(handleSubmit, reset);
-		this.setState({ handleSubmit, reset });
+	getReduxFormFunctions = ({ handleSubmit, reset, pristine }) => {
+		// console.log(pristine);
+		const changed = pristine ? this.state.changed : true;
+		this.setState({ handleSubmit, reset, changed });
 	};
 
 	setImageData = newImageData => {
 		const oldImageData = this.state.imageData || {};
-		this.setState({ imageData: { ...oldImageData, ...newImageData } });
+		this.setState({ imageData: { ...oldImageData, ...newImageData }, changed: true });
 	};
 
-	handleSubmitForm = formValues => {
+	handleSubmitForm = () => {
 		// event.preventDefault();
 		console.log("vahram, DetailsContainer form just got submitted, figure why. It shouldn't");
 	};
@@ -106,19 +106,20 @@ class DetailsContainer extends Component {
 	handleResetDetails = () => {
 		const { reset } = this.state;
 		reset();
+
 		const { assetData } = this.props;
-		let imageData = null;
+		let newImageData = null;
 		// console.log("assetData: ", assetData);
 		if (assetData && assetData.imageData) {
-			imageData = assetData.imageData;
+			newImageData = assetData.imageData;
 		}
-		this.setState({ imageData });
+		this.setState({ imageData: newImageData, changed: false });
 	}
 
 	getInitialValues() {
 		const { type } = this.props.match.params;
-		let { assetData } = this.props;
-		let initialValues = Object.assign({}, assetData);
+		const { assetData } = this.props;
+		const initialValues = Object.assign({}, assetData);
 
 		if (type === "character") {
 			if (!assetData || !assetData.gender) {
@@ -134,11 +135,14 @@ class DetailsContainer extends Component {
 	}
 
 	render() {
+		// console.log("rendering DetailsContainer")
 		const { type, operation } = this.props.match.params;
-		const { handleSubmit, reset } = this.state;
+		const { handleSubmit } = this.state;
 		const initialValues = this.getInitialValues();
 
 		const DetailFields = detailFieldsTypes[type];
+
+		// console.log(this.state.submitting || this.state.changed)
 
 		return (
 			<div className="main">
@@ -181,7 +185,7 @@ class DetailsContainer extends Component {
 										className="btn"
 										onClick={this.handleResetDetails}
 										value="reset"
-										// disabled
+										disabled = {this.state.submitting || !this.state.changed}
 									/>
 								</div>
 							</fieldset>
@@ -240,4 +244,5 @@ function mapStateToProps({ assetsData: { data } }, props) {
 		assetData
 	};
 }
+
 export default connect(mapStateToProps, { saveDetails })(DetailsContainer);

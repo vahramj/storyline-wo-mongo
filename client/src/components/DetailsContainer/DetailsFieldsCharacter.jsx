@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { func, bool } from "prop-types";
 
 import DetailField from "./DetailField";
 
 class DetailsFieldsCharacter extends Component {
-
-	componentWillMount(){
-		const { handleSubmit, reset, getReduxFormFunctions } = this.props;
-		getReduxFormFunctions({ handleSubmit, reset });
+	// componentWillMount(){
+	// 	const { handleSubmit, reset, getReduxFormFunctions, pristine } = this.props;
+	// 	getReduxFormFunctions({ handleSubmit, reset, pristine });
+	// }
+	componentWillReceiveProps(nextProps) {
+		const { handleSubmit, reset, getReduxFormFunctions, pristine } = nextProps;
+		if(pristine !== this.props.pristine){
+			getReduxFormFunctions({ handleSubmit, reset, pristine });
+		}
 	}
-	
-	render(){	
+
+	render() {
+		// console.log("rendering")
 		return (
 			<div>
-				<fieldset >
+				<fieldset>
 					<Field
 						headerText="Character name"
 						name="name"
@@ -45,7 +52,7 @@ class DetailsFieldsCharacter extends Component {
 						display="horizontal"
 					/>
 
-					<Field 
+					<Field
 						headerText="Other"
 						name="gender"
 						id="other"
@@ -56,7 +63,7 @@ class DetailsFieldsCharacter extends Component {
 					/>
 				</fieldset>
 
-				<fieldset >
+				<fieldset>
 					<Field
 						headerText="Age"
 						name="age"
@@ -67,7 +74,7 @@ class DetailsFieldsCharacter extends Component {
 					/>
 				</fieldset>
 
-				<fieldset >
+				<fieldset>
 					<Field
 						headerText="Race/ethnicity"
 						name="race"
@@ -92,22 +99,28 @@ class DetailsFieldsCharacter extends Component {
 			</div>
 		);
 	}
+}
+
+DetailsFieldsCharacter.propTypes = {
+	handleSubmit: func.isRequired,
+	reset: func.isRequired,
+	getReduxFormFunctions: func.isRequired,
+	pristine: bool.isRequired
 };
 
 function validate(values) {
 	const errors = {};
-	if ( !values.name ) {
+	if (!values.name) {
 		errors.name = "Please provide name for the character";
 	}
 
-	if( !values.age ) {
+	if (!values.age) {
 		errors.age = "Please provide age description for the character";
 	}
 
-	if( !values.race ){
-		errors.race = "Please provide race or ethnicity description for the character"
+	if (!values.race) {
+		errors.race = "Please provide race or ethnicity description for the character";
 	}
-
 
 	return errors;
 }
@@ -115,6 +128,6 @@ function validate(values) {
 const reduxFormOptions = {
 	validate,
 	form: "characterForm"
-}
+};
 
 export default reduxForm(reduxFormOptions)(DetailsFieldsCharacter);
