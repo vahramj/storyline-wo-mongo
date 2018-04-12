@@ -116,8 +116,8 @@ class ImageSelector extends Component {
 	// ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║       ██╔══██║██║  ██║██║     ╚════██║
 	// ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║       ██║  ██║██████╔╝███████╗███████║
 	// ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
-	handleEditClick = event => {
-		event.preventDefault();
+	handleEditClick = (event) => {
+		// event.preventDefault();
 		this.showImageEditor();
 	};
 
@@ -142,9 +142,7 @@ class ImageSelector extends Component {
 					{this.renderImage()}
 				</Dropzone>
 
-				<button className="btn" onClick={this.handleEditClick}>
-					edit
-				</button>
+				<input type="button" value="edit" className="btn" onClick={this.handleEditClick}/>
 
 				<Modal show={this.state.imageEditorShown}>
 					<ImageEditorContainer

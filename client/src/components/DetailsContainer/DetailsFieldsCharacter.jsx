@@ -6,8 +6,8 @@ import DetailField from "./DetailField";
 class DetailsFieldsCharacter extends Component {
 
 	componentWillMount(){
-		const { handleSubmit, getHandleSubmit } = this.props;
-		getHandleSubmit(handleSubmit);
+		const { handleSubmit, reset, getReduxFormFunctions } = this.props;
+		getReduxFormFunctions({ handleSubmit, reset });
 	}
 	
 	render(){	

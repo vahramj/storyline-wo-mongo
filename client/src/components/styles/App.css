@@ -58,7 +58,7 @@ input:focus{
 }
 
 .btn{
-	background-color: buttonface;
+	background-color: white;
 	border: none;
 	border-radius: 4px;
 	font-size: 14px;
@@ -66,6 +66,13 @@ input:focus{
 	font-weight: lighter;
 	color: black;
 	padding: 6px 10px;
+}
+
+.btn:hover{
+	cursor: pointer;
+}
+.btn:active{
+	box-shadow: 0px 0px 10px 2px rgb(150,190,255);
 }
 
 .btn-primary{

@@ -5,8 +5,8 @@ import DetailField from "./DetailField";
 
 class DetailsFieldsPhase extends Component {
 	componentWillMount(){
-		const { handleSubmit, getHandleSubmit } = this.props;
-		getHandleSubmit(handleSubmit);
+		const { handleSubmit, reset, getReduxFormFunctions } = this.props;
+		getReduxFormFunctions({ handleSubmit, reset });
 	}
 	
 	render(){

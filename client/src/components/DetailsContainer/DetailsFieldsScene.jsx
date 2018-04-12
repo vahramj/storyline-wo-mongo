@@ -5,8 +5,8 @@ import DetailField from "./DetailField";
 
 class DetailsFieldsScene extends Component {
 	componentWillMount(){
-		const { handleSubmit, getHandleSubmit } = this.props;
-		getHandleSubmit(handleSubmit);
+		const { handleSubmit, reset, getReduxFormFunctions } = this.props;
+		getReduxFormFunctions({ handleSubmit, reset });
 	}
 	
 	render(){	
@@ -93,7 +93,7 @@ function validate(values) {
 		errors.location = "Please specify the location of the scene";
 	}
 	if(!values.time) {
-		errors.location = "Please specify the time when the scene takes place";
+		errors.time = "Please specify the time when the scene takes place";
 	}
 	return errors;
 }

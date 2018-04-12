@@ -32,7 +32,7 @@ class DetailsContainer extends Component {
 				return value;
 			}
 		};
-	
+
 		const { assetData } = props;
 		// console.log("assetData: ", assetData);
 		if (assetData && assetData.imageData) {
@@ -49,8 +49,9 @@ class DetailsContainer extends Component {
 		}
 	}
 
-	getHandleSubmit = handleSubmit => {
-		this.setState({ handleSubmit });
+	getReduxFormFunctions = ({ handleSubmit, reset }) => {
+		console.log(handleSubmit, reset);
+		this.setState({ handleSubmit, reset });
 	};
 
 	setImageData = newImageData => {
@@ -100,28 +101,27 @@ class DetailsContainer extends Component {
 		// 	});
 	};
 
-	getInitialValues(){
+	getInitialValues() {
 		const { type } = this.props.match.params;
 		let { assetData } = this.props;
 		let initialValues = Object.assign({}, assetData);
 
-		if(type === "character"){
-			if(!assetData || !assetData.gender){
-				initialValues.gender = "male"
+		if (type === "character") {
+			if (!assetData || !assetData.gender) {
+				initialValues.gender = "male";
 			}
-		}
-		else if(type === "scene"){
-			if(!assetData || !assetData.int_ext){
-				initialValues.int_ext = "int"
+		} else if (type === "scene") {
+			if (!assetData || !assetData.int_ext) {
+				initialValues.int_ext = "int";
 			}
 		}
 
-		return initialValues;		
+		return initialValues;
 	}
 
 	render() {
 		const { type, operation } = this.props.match.params;
-		const { handleSubmit } = this.state;
+		const { handleSubmit, reset } = this.state;
 		const initialValues = this.getInitialValues();
 
 		const DetailFields = detailFieldsTypes[type];
@@ -134,7 +134,7 @@ class DetailsContainer extends Component {
 					<div className="container-body">
 						<form onSubmit={this.handleSubmitForm}>
 							<DetailFields
-								getHandleSubmit={this.getHandleSubmit}
+								getReduxFormFunctions={this.getReduxFormFunctions}
 								initialValues={initialValues}
 							/>
 
@@ -151,20 +151,23 @@ class DetailsContainer extends Component {
 
 							<fieldset>
 								<div className="btns">
-									<button
+									<input
+										type="button"
 										className="btn btn-primary"
-										onClick = { handleSubmit(this.handleSaveDetails) }
-									>
-										save
-									</button>
+										onClick={handleSubmit(this.handleSaveDetails)}
+										value="save"
+									/>
 
 									<Link className="btn btn-danger" to="/">
 										cancel
 									</Link>
 
-									<button className="btn" disabled>
-										reset
-									</button>
+									<input
+										type="button"
+										className="btn"
+										onClick={reset}
+										value="reset"
+									/>
 								</div>
 							</fieldset>
 						</form>
