@@ -19,7 +19,7 @@ const DetailField = props => {
 
 	const { touched, error } = meta;
 
-	let fieldElem = <input type={type} id={id} {...input} />;
+	let fieldElem = <input type={type} id={id} {...input} autoComplete="off" />;
 
 	if (type === "textarea") {
 		fieldElem = <textarea id={id} cols={cols} rows={rows} {...input} />;

@@ -19,16 +19,18 @@
 .detail-container form {
 }
 
-.detail-container fieldset {
+.detail-container .fieldset {
 	/*border: 1px black solid;*/
 	/*padding: 10px;*/
 	margin: 10px 0;
 }
 
-.detail-container fieldset h3 {
-	/*margin: 10px 0;*/
-	margin-bottom: 6px;
+.detail-container .fieldset h3 {
 	display: inline-block;
+}
+
+.detail-container .fieldset div {
+	margin-bottom: 6px;
 }
 
 .detail-container .btn {

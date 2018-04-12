@@ -5,10 +5,6 @@ import { func, bool } from "prop-types";
 import DetailField from "./DetailField";
 
 class DetailsFieldsCharacter extends Component {
-	// componentWillMount(){
-	// 	const { handleSubmit, reset, getReduxFormFunctions, pristine } = this.props;
-	// 	getReduxFormFunctions({ handleSubmit, reset, pristine });
-	// }
 	componentWillReceiveProps(nextProps) {
 		const { handleSubmit, reset, getReduxFormFunctions, pristine } = nextProps;
 		if(pristine !== this.props.pristine){
@@ -20,7 +16,7 @@ class DetailsFieldsCharacter extends Component {
 		// console.log("rendering")
 		return (
 			<div>
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Character name"
 						name="name"
@@ -29,9 +25,9 @@ class DetailsFieldsCharacter extends Component {
 						type="text"
 						required
 					/>
-				</fieldset>
+				</div>
 
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Male"
 						name="gender"
@@ -63,16 +59,17 @@ class DetailsFieldsCharacter extends Component {
 					/>
 
 					<Field
-						// headerText="otherGender"
-						name="otherGender"
-						id="otherGender"
+						// headerText="Another Gender"
+						name="anotherGender"
+						id="anotherGender"
 						component={DetailField}
 						type="text"
 						display="horizontal"
 					/>
-				</fieldset>
 
-				<fieldset>
+				</div>
+				
+				<div className="fieldset">
 					<Field
 						headerText="Age"
 						name="age"
@@ -81,9 +78,9 @@ class DetailsFieldsCharacter extends Component {
 						type="text"
 						required
 					/>
-				</fieldset>
+				</div>
 
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Race/ethnicity"
 						name="race"
@@ -92,9 +89,9 @@ class DetailsFieldsCharacter extends Component {
 						type="text"
 						required
 					/>
-				</fieldset>
+				</div>
 
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Description"
 						name="description"
@@ -104,7 +101,7 @@ class DetailsFieldsCharacter extends Component {
 						component={DetailField}
 						type="textarea"
 					/>
-				</fieldset>
+				</div>
 			</div>
 		);
 	}
@@ -129,6 +126,10 @@ function validate(values) {
 
 	if (!values.race) {
 		errors.race = "Please provide race or ethnicity description for the character";
+	}
+	if(values.gender === "other" && !values.anotherGender ){
+		console.log(values.gender, values.anotherGender);
+		errors.anotherGender = "Please specify gender";
 	}
 
 	return errors;

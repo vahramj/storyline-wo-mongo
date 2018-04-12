@@ -71,15 +71,22 @@ class DetailsContainer extends Component {
 		this.setState({submitting: true})
 
 		const { imageData } = this.state;
-
 		const { type, id } = this.props.match.params;
+
+		const relevantFormValues = Object.assign({}, formValues);
+		if(relevantFormValues.gender === "other"){
+			relevantFormValues.gender = relevantFormValues.anotherGender;
+		}
+		delete relevantFormValues.anotherGender;
+
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
+		console.log("formValues: ", formValues, "relevantFormValues: ", relevantFormValues);
 		this.props.saveDetails({
 			id,
 			type,
 			imageData,
-			...formValues
+			...relevantFormValues
 		});
 
 		this.props.history.push("/");
@@ -124,6 +131,10 @@ class DetailsContainer extends Component {
 		if (type === "character") {
 			if (!assetData || !assetData.gender) {
 				initialValues.gender = "male";
+			}
+			if (assetData && assetData.gender !== "male" && assetData.gender !== "female") {
+				initialValues.gender = "other";
+				initialValues.anotherGender = assetData.gender;
 			}
 		} else if (type === "scene") {
 			if (!assetData || !assetData.int_ext) {
