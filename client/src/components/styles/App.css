@@ -1,3 +1,7 @@
+#app {
+	position: relative;
+}
+
 #main-header {
 	background: rgb(120, 160, 160);
 	/*background: rgb(120, 160, 0);*/

@@ -136,7 +136,7 @@ class DetailsContainer extends Component {
 
 		return (
 			<div className="main">
-				<div className="detail-container">
+				<div className="details-container">
 					<ContainerHeader headerText={`${operation} ${type}`} />
 
 					<div className="container-body">
