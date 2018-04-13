@@ -83,6 +83,11 @@ class DetailsContainer extends Component {
 		}
 		delete relevantFormValues.anotherGender;
 
+		if(relevantFormValues.race === "other"){
+			relevantFormValues.race = relevantFormValues.anotherRace;
+		}
+		delete relevantFormValues.anotherRace;
+
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
 		// console.log("formValues: ", formValues, "relevantFormValues: ", relevantFormValues);

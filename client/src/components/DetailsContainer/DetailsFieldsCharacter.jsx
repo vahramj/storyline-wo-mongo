@@ -13,7 +13,7 @@ class DetailsFieldsCharacter extends Component {
 	}
 
 	render() {
-		const { genderValue } = this.props;
+		const { genderValue, raceValue } = this.props;
 		return (
 			<div>
 				<div className="fieldset">
@@ -87,9 +87,26 @@ class DetailsFieldsCharacter extends Component {
 						name="race"
 						id="race"
 						component={DetailField}
-						type="text"
+						type="select"
 						required
+						display="horizontal"
+					>
+						<option value="white"> white </option>
+						<option value="black"> black </option>
+						<option value="hispanic"> hispanic </option>
+						<option value="asian"> asian </option>
+						<option value="other"> other </option>
+					</Field>
+
+					<Field
+						name="anotherRace"
+						id="anotherRace"
+						component={DetailField}
+						type="text"
+						display="horizontal"
+						disabled = { !(raceValue === "other") }
 					/>
+
 				</div>
 
 				<div className="fieldset">
@@ -113,15 +130,18 @@ DetailsFieldsCharacter.propTypes = {
 	reset: func.isRequired,
 	getReduxFormFunctions: func.isRequired,
 	pristine: bool.isRequired,
-	genderValue: string
+	genderValue: string,
+	raceValue: string,
 };
 
 DetailsFieldsCharacter.defaultProps = {
-	genderValue: ""
+	genderValue: "",
+	raceValue: ""
 }
 
 function validate(values) {
 	const errors = {};
+	// console.log("values: ", values)
 	if (!values.name) {
 		errors.name = "Please provide name for the character";
 	}
@@ -150,7 +170,9 @@ const selector = formValueSelector("characterForm");
 
 function mapStateToProps(state){
 	const genderValue = selector(state, "gender");
-	return { genderValue }
+	const raceValue = selector(state, "race");
+	// console.log("raceValue: ", raceValue)
+	return { genderValue, raceValue }
 }
 
 const decorator = _.flowRight([

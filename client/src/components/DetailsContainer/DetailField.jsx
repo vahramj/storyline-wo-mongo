@@ -1,5 +1,5 @@
 import React from "react";
-import { string, bool, shape } from "prop-types";
+import { string, bool, shape, oneOfType, arrayOf, element } from "prop-types";
 
 import "./styles/DetailField.css";
 
@@ -14,16 +14,20 @@ const DetailField = props => {
 		display = "vertical",
 		required,
 		disabled,
-		meta
+		meta,
+		children
 	} = props;
 	// console.log(props)
 
 	const { touched, error } = meta;
 
-	let fieldElem = <input type={type} id={id} {...input} autoComplete="off" disabled={disabled} />;
+	let fieldElem = <input type={type} id={id} {...input} disabled={disabled} />;
 
 	if (type === "textarea") {
 		fieldElem = <textarea id={id} cols={cols} rows={rows} {...input} />;
+	}
+	else if(type === "select"){
+		fieldElem = <select id={id} {...input}> {children} </select>
 	}
 
 	let requiredMark;
@@ -65,6 +69,10 @@ DetailField.propTypes = {
 	display: string,
 	required: bool,
 	disabled: bool,
+	children: oneOfType([
+			arrayOf(element),
+			element
+		])
 }
 
 DetailField.defaultProps = {
@@ -73,7 +81,8 @@ DetailField.defaultProps = {
 	rows: "10",
 	display: "vertical",
 	required: false,
-	disabled: false
+	disabled: false,
+	children: null
 }
 
 export default DetailField;
