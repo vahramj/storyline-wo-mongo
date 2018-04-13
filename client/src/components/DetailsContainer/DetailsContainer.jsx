@@ -19,6 +19,12 @@ const detailFieldsTypes = {
 	scene: DetailsFieldsScene
 };
 
+const assetDataFields = {
+	phase: ["name", "summary"],
+	character: ["name", "gender", "age", "race", "description"],
+	scene: ["scene", "int_ext", "location", "time", "summary"]
+};
+
 class DetailsContainer extends Component {
 	constructor(props) {
 		super(props);
@@ -68,6 +74,8 @@ class DetailsContainer extends Component {
 	handleSaveDetails = formValues => {
 		// event.preventDefault();
 		console.log("saving details");
+		// console.log("formValues: ", formValues);
+		
 		this.setState({submitting: true})
 
 		const { imageData } = this.state;
@@ -81,12 +89,12 @@ class DetailsContainer extends Component {
 
 		// upload image to claudinary
 		// save the resulting url & display details to asset data
-		console.log("formValues: ", formValues, "relevantFormValues: ", relevantFormValues);
+		// console.log("formValues: ", formValues, "relevantFormValues: ", relevantFormValues);
 		this.props.saveDetails({
 			id,
 			type,
 			imageData,
-			...relevantFormValues
+			...relevantFormValues,
 		});
 
 		this.props.history.push("/");
@@ -126,18 +134,29 @@ class DetailsContainer extends Component {
 	getInitialValues() {
 		const { type } = this.props.match.params;
 		const { assetData } = this.props;
-		const initialValues = Object.assign({}, assetData);
+		const initialValues = {};
+
+
+		if(assetData){
+			assetDataFields[type].forEach(fieldName => {
+				const fieldValue = assetData[fieldName];
+				if(fieldValue){
+					initialValues[fieldName] = fieldValue
+				}
+			});
+		}
 
 		if (type === "character") {
-			if (!assetData || !assetData.gender) {
+			if(!initialValues.gender){
 				initialValues.gender = "male";
 			}
-			if (assetData && assetData.gender !== "male" && assetData.gender !== "female") {
+			else if (initialValues.gender !== "male" && initialValues.gender !== "female") {
 				initialValues.gender = "other";
 				initialValues.anotherGender = assetData.gender;
-			}
-		} else if (type === "scene") {
-			if (!assetData || !assetData.int_ext) {
+			}				
+		}
+		else if (type === "scene") {
+			if (!initialValues.int_ext) {
 				initialValues.int_ext = "int";
 			}
 		}
@@ -153,7 +172,7 @@ class DetailsContainer extends Component {
 
 		const DetailFields = detailFieldsTypes[type];
 
-		// console.log(this.state.submitting || this.state.changed)
+		// console.log("initialValues: ", initialValues)
 
 		return (
 			<div className="main">

@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-import { func, bool } from "prop-types";
+import { reduxForm, Field, formValueSelector } from "redux-form";
+import { connect } from "react-redux";
+import { func, bool, string } from "prop-types";
+import _ from "lodash";
 
 import DetailField from "./DetailField";
 
 class DetailsFieldsCharacter extends Component {
 	componentWillReceiveProps(nextProps) {
 		const { handleSubmit, reset, getReduxFormFunctions, pristine } = nextProps;
-		if(pristine !== this.props.pristine){
-			getReduxFormFunctions({ handleSubmit, reset, pristine });
-		}
+		getReduxFormFunctions({ handleSubmit, reset, pristine });
 	}
 
 	render() {
-		// console.log("rendering")
+		const { genderValue } = this.props;
 		return (
 			<div>
 				<div className="fieldset">
@@ -65,6 +65,7 @@ class DetailsFieldsCharacter extends Component {
 						component={DetailField}
 						type="text"
 						display="horizontal"
+						disabled = { !(genderValue === "other") }
 					/>
 
 				</div>
@@ -111,8 +112,13 @@ DetailsFieldsCharacter.propTypes = {
 	handleSubmit: func.isRequired,
 	reset: func.isRequired,
 	getReduxFormFunctions: func.isRequired,
-	pristine: bool.isRequired
+	pristine: bool.isRequired,
+	genderValue: string
 };
+
+DetailsFieldsCharacter.defaultProps = {
+	genderValue: ""
+}
 
 function validate(values) {
 	const errors = {};
@@ -128,7 +134,7 @@ function validate(values) {
 		errors.race = "Please provide race or ethnicity description for the character";
 	}
 	if(values.gender === "other" && !values.anotherGender ){
-		console.log(values.gender, values.anotherGender);
+		// console.log(values.gender, values.anotherGender);
 		errors.anotherGender = "Please specify gender";
 	}
 
@@ -140,4 +146,16 @@ const reduxFormOptions = {
 	form: "characterForm"
 };
 
-export default reduxForm(reduxFormOptions)(DetailsFieldsCharacter);
+const selector = formValueSelector("characterForm");
+
+function mapStateToProps(state){
+	const genderValue = selector(state, "gender");
+	return { genderValue }
+}
+
+const decorator = _.flowRight([
+	reduxForm(reduxFormOptions),
+	connect(mapStateToProps)
+]);
+
+export default decorator(DetailsFieldsCharacter);

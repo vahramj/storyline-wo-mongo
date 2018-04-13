@@ -13,13 +13,14 @@ const DetailField = props => {
 		rows,
 		display = "vertical",
 		required,
+		disabled,
 		meta
 	} = props;
 	// console.log(props)
 
 	const { touched, error } = meta;
 
-	let fieldElem = <input type={type} id={id} {...input} autoComplete="off" />;
+	let fieldElem = <input type={type} id={id} {...input} autoComplete="off" disabled={disabled} />;
 
 	if (type === "textarea") {
 		fieldElem = <textarea id={id} cols={cols} rows={rows} {...input} />;
@@ -63,6 +64,7 @@ DetailField.propTypes = {
 	rows: string,
 	display: string,
 	required: bool,
+	disabled: bool,
 }
 
 DetailField.defaultProps = {
@@ -71,6 +73,7 @@ DetailField.defaultProps = {
 	rows: "10",
 	display: "vertical",
 	required: false,
+	disabled: false
 }
 
 export default DetailField;

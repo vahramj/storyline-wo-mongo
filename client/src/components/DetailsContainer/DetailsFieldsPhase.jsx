@@ -14,7 +14,7 @@ class DetailsFieldsPhase extends Component {
 	render(){
 		return (
 			<div>
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Phase name"
 						name="name"
@@ -23,9 +23,9 @@ class DetailsFieldsPhase extends Component {
 						type="text"
 						required
 					/>
-				</fieldset>
+				</div>
 
-				<fieldset>
+				<div className="fieldset">
 					<Field
 						headerText="Summary"
 						name="summary"
@@ -36,7 +36,7 @@ class DetailsFieldsPhase extends Component {
 						type="textarea"
 						required
 					/>
-				</fieldset>
+				</div>
 			</div>
 		);
 	}
