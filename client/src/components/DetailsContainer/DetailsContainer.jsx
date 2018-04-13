@@ -10,7 +10,7 @@ import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 import DetailsFieldsScene from "./DetailsFieldsScene";
 
 import { saveDetails } from "../../actions/actionCreators";
-import { getInitialValues } from "../../utils/formHelpers";
+import { getInitialValues, getFinalValues } from "../../utils/formHelpers";
 
 import "./styles/DetailsContainer.css";
 
@@ -77,16 +77,7 @@ class DetailsContainer extends Component {
 		const { imageData } = this.state;
 		const { type, id } = this.props.match.params;
 
-		const relevantFormValues = Object.assign({}, formValues);
-		if(relevantFormValues.gender === "other"){
-			relevantFormValues.gender = relevantFormValues.anotherGender;
-		}
-		delete relevantFormValues.anotherGender;
-
-		if(relevantFormValues.race === "other"){
-			relevantFormValues.race = relevantFormValues.anotherRace;
-		}
-		delete relevantFormValues.anotherRace;
+		const relevantFormValues = getFinalValues(formValues);
 
 		// upload image to claudinary
 		// save the resulting url & display details to asset data

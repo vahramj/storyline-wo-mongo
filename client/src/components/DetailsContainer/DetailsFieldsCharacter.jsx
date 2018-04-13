@@ -150,9 +150,11 @@ function validate(values) {
 		errors.age = "Please provide age description for the character";
 	}
 
-	if (!values.race) {
-		errors.race = "Please provide race or ethnicity description for the character";
+	if(values.race === "other" && !values.anotherRace ){
+		// console.log(values.gender, values.anotherGender);
+		errors.anotherRace = "Please specify race/ethnicity";
 	}
+
 	if(values.gender === "other" && !values.anotherGender ){
 		// console.log(values.gender, values.anotherGender);
 		errors.anotherGender = "Please specify gender";

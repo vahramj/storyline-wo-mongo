@@ -52,4 +52,17 @@ export function getInitialValues(assetData, type) {
 	return initialValues;
 }
 
-export const temp = "hello";
+export function getFinalValues(formValues){
+	const relevantFormValues = Object.assign({}, formValues);
+	if(relevantFormValues.gender === "other"){
+		relevantFormValues.gender = relevantFormValues.anotherGender;
+	}
+	delete relevantFormValues.anotherGender;
+
+	if(relevantFormValues.race === "other"){
+		relevantFormValues.race = relevantFormValues.anotherRace;
+	}
+	delete relevantFormValues.anotherRace;
+
+	return relevantFormValues;
+}
