@@ -177,12 +177,14 @@ function assetsDataReducer(state = initialState, action) {
 			// generate new id
 			const newAssetId = makeUniqId();
 			// generate new asset
+			console.log("newAssetId: ", newAssetId)
 			const newAsset = {
+				...action.payload,
 				id: newAssetId,
 				parent: null,
 				children: [],
-				...action.payload,
 			}
+			console.log("newAsset: ", newAsset)
 			// add asset to assetsData
 			const newData = update(state, {
 				data: {

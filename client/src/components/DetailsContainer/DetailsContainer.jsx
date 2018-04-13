@@ -10,6 +10,7 @@ import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 import DetailsFieldsScene from "./DetailsFieldsScene";
 
 import { saveDetails } from "../../actions/actionCreators";
+import { getInitialValues } from "../../utils/formHelpers";
 
 import "./styles/DetailsContainer.css";
 
@@ -19,11 +20,6 @@ const detailFieldsTypes = {
 	scene: DetailsFieldsScene
 };
 
-const assetDataFields = {
-	phase: ["name", "summary"],
-	character: ["name", "gender", "age", "race", "description"],
-	scene: ["scene", "int_ext", "location", "time", "summary"]
-};
 
 class DetailsContainer extends Component {
 	constructor(props) {
@@ -131,44 +127,12 @@ class DetailsContainer extends Component {
 		this.setState({ imageData: newImageData, changed: false });
 	}
 
-	getInitialValues() {
-		const { type } = this.props.match.params;
-		const { assetData } = this.props;
-		const initialValues = {};
-
-
-		if(assetData){
-			assetDataFields[type].forEach(fieldName => {
-				const fieldValue = assetData[fieldName];
-				if(fieldValue){
-					initialValues[fieldName] = fieldValue
-				}
-			});
-		}
-
-		if (type === "character") {
-			if(!initialValues.gender){
-				initialValues.gender = "male";
-			}
-			else if (initialValues.gender !== "male" && initialValues.gender !== "female") {
-				initialValues.gender = "other";
-				initialValues.anotherGender = assetData.gender;
-			}				
-		}
-		else if (type === "scene") {
-			if (!initialValues.int_ext) {
-				initialValues.int_ext = "int";
-			}
-		}
-
-		return initialValues;
-	}
-
 	render() {
 		// console.log("rendering DetailsContainer")
 		const { type, operation } = this.props.match.params;
+		const { assetData } = this.props;
 		const { handleSubmit } = this.state;
-		const initialValues = this.getInitialValues();
+		const initialValues = getInitialValues(assetData, type);
 
 		const DetailFields = detailFieldsTypes[type];
 
