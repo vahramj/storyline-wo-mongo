@@ -39,6 +39,10 @@ module.exports = {
 		// publicPath: "/static/",
 		// contentBase: "./",
 	},
+	stats: {
+		children: false,
+		modules: false
+	},
 	plugins: [ 
 		new ExtractTextPlugin("styles.css")
 	],
