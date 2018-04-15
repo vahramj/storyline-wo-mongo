@@ -4,8 +4,9 @@
   "description": "interactive up for writng stories",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "dev": "webpack-dev-server",
+    "serve": "node server/server.js",
     "watch": "npm run build -- --watch",
     "lint": "eslint \"src/**/*.{js,jsx}\""
   },
@@ -21,6 +22,7 @@
   "license": "SEE LICENSE IN LICNESE.md",
   "repository": "https://github.com/vahramj/storyline-maker",
   "dependencies": {
+    "express": "^4.16.3",
     "immutability-helper": "^2.6.5",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.0",

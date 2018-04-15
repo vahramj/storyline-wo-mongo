@@ -2,7 +2,9 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	devtool: "cheap-module-eval-source-map",
+	devtool: "source-map",
+	// devtool: "cheap-module-eval-source-map",
+
 	// "babel-plyfill" is for async/await support
 	entry: ["babel-polyfill", "./src/index.jsx"],
 	output: {
