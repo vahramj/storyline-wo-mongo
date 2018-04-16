@@ -1,0 +1,22 @@
+#timeline-container {
+	position: relative;
+	display: flex;
+	/*height: 180px;*/
+	min-width: 620px;
+	margin-top: 35px;
+}
+
+/*header*/
+#timeline-container .container-header h2{
+	color: rgb(253, 144, 105);
+}
+
+#timeline-container .container-body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+
+
+

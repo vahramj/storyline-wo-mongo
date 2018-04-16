@@ -1,0 +1,67 @@
+.asset-container {
+	display: flex;
+	
+	width: 350px;
+	height: 295px;
+	/*this min height is for safari*/
+	min-width: 190px;
+
+	margin-right: 25px;
+	
+	background: rgb(234,234,234);
+}
+
+.asset-container:last-of-type{
+	margin-right: 0;
+}
+
+/* body */
+.asset-container .container-body {
+	display: flex;
+	flex-direction: column;
+
+	flex-grow: 1;
+	padding: 8px 15px;
+	overflow: hidden;
+}
+
+.asset-container .search-bg-fader {
+	/*min-height is for safari*/
+	min-height: 20px;
+	margin: 0 -15px;
+	padding: 0 15px;
+	box-shadow: 0px 10px 29px 8px rgb(234,234,234);
+	z-index: 3;
+	position: relative;	
+}
+
+.asset-container .container-body input{
+	box-sizing: border-box;
+	width: 100%;
+	height: 20px;
+	flex-shrink: 0;
+
+	border-radius: 4%/50%;
+	border: none;
+
+	padding: 0 10px;
+}
+
+.asset-container .container-body input::placeholder{
+	/* centers the search placeholder */
+	text-align: center;
+}
+
+.asset-container .cancel-icon {
+	position: absolute;
+	right: 17px;
+	top: 1px;
+	font-size: 19px;
+	color: rgb(78,79,81);
+}
+
+.asset-container .cancel-icon:hover {
+	cursor: pointer;
+	font-size: 21px;
+	top: 0px;
+}

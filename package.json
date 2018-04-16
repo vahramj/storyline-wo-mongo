@@ -4,9 +4,11 @@
   "description": "interactive up for writng stories",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build && npm run serve",
     "build": "webpack -p",
-    "dev": "webpack-dev-server",
     "serve": "node server/server.js",
+    "dev": "webpack-dev-server",
+    "server-dev": "nodemon server/server.js",
     "watch": "npm run build -- --watch",
     "lint": "eslint \"src/**/*.{js,jsx}\""
   },

@@ -1,0 +1,44 @@
+.asset {
+	position: relative;
+	cursor: move;
+}
+
+.asset.onTimeline {
+	box-shadow: 0 0 0 3px rgb(150,130,90);
+}
+
+.asset.selected {
+	box-shadow: 0 0 0 3px green;
+}
+
+.asset .hover-tint{
+	z-index: 2;
+}
+
+.asset .edit-icon{
+	position: absolute;
+}
+
+.asset .delete-icon{
+	position: absolute;
+}
+
+.asset .edit-icon:hover, .asset .delete-icon:hover{
+	cursor: pointer;
+}
+
+/* asset base */
+.asset-base{
+}
+
+.asset-base span {
+	display: block;
+	padding: 7px 5px 5px 5px;
+
+	font-family: 'Quicksand', sans-serif;
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+
+

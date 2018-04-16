@@ -1,0 +1,29 @@
+#image-editor-controls {
+/*	padding: 10px;*/
+}
+
+#image-editor-controls label {
+	/*margin-right: 10px;*/
+	font-weight: bold;
+	white-space: nowrap;
+}
+#image-editor-controls input[type=number]{
+	width: 40px;
+	height: 25px;
+	font-size: 10pt;
+}
+
+#image-editor-controls fieldset{
+	margin-bottom: 10px;
+}
+
+.slider-input label{
+	/*float: right;*/
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+#lock-edit-image-scale{
+	margin-bottom: 5px;
+}

@@ -6,11 +6,11 @@ module.exports = {
 	// devtool: "cheap-module-eval-source-map",
 
 	// "babel-plyfill" is for async/await support
-	entry: ["babel-polyfill", "./src/index.jsx"],
+	entry: ["babel-polyfill", "./client/src/index.jsx"],
 	output: {
-		path: path.join(__dirname, "static"),
+		path: path.join(__dirname, "client/static"),
 		filename: "bundle.js",
-		publicPath: "/static/"
+		publicPath: "/client/static/"
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".json"]
