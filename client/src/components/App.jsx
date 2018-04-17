@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import rootReducer from "../reducers/rootReducer";
 import CustomDragLayer from "./CustomDragLayer";
 // import Main from "./Main";
-import ContainerHolder from "./ContainerHolder";
+import TimelineView from "./TimelineView";
 import DetailsContainer from "./DetailsContainer/DetailsContainer";
 
 
@@ -28,6 +28,8 @@ const store = createStore(rootReducer,
 );
 /* eslint-enable */
 
+// console.log("hello")
+
 class App extends Component {
 	componentDidMount(){
 
@@ -42,7 +44,7 @@ class App extends Component {
 						</header>
 						<Switch>
 							<Route path="/:operation/:type/:id?" component={ DetailsContainer } />
-							<Route path="/" component={ ContainerHolder } />
+							<Route path="/" component={ TimelineView } />
 						</Switch>
 						<CustomDragLayer /> 
 					</div>

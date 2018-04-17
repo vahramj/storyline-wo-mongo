@@ -8,9 +8,9 @@ module.exports = {
 	// "babel-plyfill" is for async/await support
 	entry: ["babel-polyfill", "./client/src/index.jsx"],
 	output: {
-		path: path.join(__dirname, "client/static"),
+		path: path.join(__dirname, "/client/static"),
 		filename: "bundle.js",
-		publicPath: "/client/static/"
+		// publicPath: "/static/"
 	},
 	resolve: {
 		extensions: [".js", ".jsx", ".json"]
@@ -34,10 +34,14 @@ module.exports = {
 		]
 	},
 	devServer: {
-		// inline: false
+		// inline: false,
 		historyApiFallback: true,
-		// publicPath: "/static/",
-		// contentBase: "./",
+		contentBase: path.join(__dirname, "client"),
+		publicPath: "/static/",
+		stats: {
+			children: false,
+			modules: false
+		},
 	},
 	stats: {
 		children: false,

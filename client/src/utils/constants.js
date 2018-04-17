@@ -1,3 +1,5 @@
+export const ROOT_URL = "localhost:3000";
+
 export const actionTypes = {
 	SELECT_ASSET: "SELECT_ASSET",
 
@@ -554,4 +556,5 @@ const characterData = {
 	}
 };
 export const initialData = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
+
 // const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);

@@ -34,7 +34,19 @@ const {
 } = actionTypes;
 
 const initialState = {
-	data: getData(),
+	data: {
+		tmln_01: {
+			id: "tmln_01",
+			name: "first draft",
+			type: "timeline",
+			width: 0,
+			position: 0,
+			defaultWidth: true,
+			parent: null,
+			children: [],
+			imageData: null
+		}
+	},
 	selectedAssetId: null,
 	insertIndicator: {
 		targetId: null,
@@ -43,6 +55,7 @@ const initialState = {
 	frameRequestors: {}
 };
 
+	// console.log("hello")
 function assetsDataReducer(state = initialState, action) {
 	switch (action.type) {
 		case SELECT_ASSET: {

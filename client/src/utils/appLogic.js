@@ -1,6 +1,8 @@
 import update from "immutability-helper";
 
-import { assetTypeHierarchy, headWidthList, initialWidthList, initialData } from "./constants";
+import { assetTypeHierarchy, headWidthList, initialWidthList, 
+	initialData
+	 } from "./constants";
 
 function getPushAmount(asset, rightNeighbour) {
 	const headWidth = headWidthList[asset.type];
@@ -412,5 +414,5 @@ export function isTermInAsset(term, asset){
 // }
 
 export function getData() {
-	return initialData;
+	return initialData;;
 }
