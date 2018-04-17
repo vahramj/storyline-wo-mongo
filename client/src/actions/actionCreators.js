@@ -1,4 +1,6 @@
-import { actionTypes } from "../utils/constants";
+import axios from "axios";
+
+import { actionTypes, ROOT_URL } from "../utils/constants";
 
 const {
 	SELECT_ASSET,
@@ -13,7 +15,8 @@ const {
 	SET_FRAME_REQUESTOR,
 	SET_SEARCH_TERM,
 	SAVE_ASSET_DETAILS,
-	DELETE_ASSET
+	DELETE_ASSET,
+	FETCH_ASSETS
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -147,5 +150,15 @@ export function deleteAsset(assetId){
 	return {
 		type: DELETE_ASSET,
 		payload: {assetId}
+	}
+}
+
+export function fetchAssetsData(assetsData){
+	// console.log("fetched assetsData: ", assetsData)
+	const request = axios.get(`${ROOT_URL}/data/allAssets`);
+
+	return {
+		type: FETCH_ASSETS,
+		payload: request
 	}
 }

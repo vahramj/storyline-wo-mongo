@@ -42,6 +42,7 @@ module.exports = {
 			children: false,
 			modules: false
 		},
+		port: 9000
 	},
 	stats: {
 		children: false,

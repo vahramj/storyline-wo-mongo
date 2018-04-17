@@ -24,6 +24,8 @@
   "license": "SEE LICENSE IN LICNESE.md",
   "repository": "https://github.com/vahramj/storyline-maker",
   "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "immutability-helper": "^2.6.5",
     "lodash": "^4.17.5",
@@ -37,6 +39,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
+    "redux-promise": "^0.5.3",
     "sha1": "^1.1.1",
     "superagent": "^3.8.2",
     "uniqid": "^4.1.1"

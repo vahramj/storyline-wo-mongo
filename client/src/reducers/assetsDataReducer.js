@@ -30,7 +30,8 @@ const {
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
 	SAVE_ASSET_DETAILS,
-	DELETE_ASSET
+	DELETE_ASSET,
+	FETCH_ASSETS
 } = actionTypes;
 
 const initialState = {
@@ -55,9 +56,22 @@ const initialState = {
 	frameRequestors: {}
 };
 
-	// console.log("hello")
+// console.log("hello")
 function assetsDataReducer(state = initialState, action) {
 	switch (action.type) {
+		case FETCH_ASSETS: {
+			const request = action.payload;
+			// console.log("data: ", data);
+			request
+				.then(res => {
+					console.log(res.data);
+					return { ...state, data }
+				})
+				.catch(err => {
+					console.log(err)
+				});
+		}
+
 		case SELECT_ASSET: {
 			const { assetId } = action.payload;
 			const selectedAssetId = selectAsset(assetId, state.data);

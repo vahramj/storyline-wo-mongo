@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"TimelineA",
+				"TimelineAssetElem"
+			],
+			[
+				"def",
+				"defaultTimelineAsset"
+			],
+			[
+				"defa",
+				"defaultTimeline"
+			],
+			[
+				"con",
+				"contentBase"
+			],
+			[
 				"c",
 				"component"
 			],
@@ -348,14 +364,6 @@
 				"defaultWidth"
 			],
 			[
-				"defa",
-				"defaultWidth"
-			],
-			[
-				"def",
-				"defaultWidth"
-			],
-			[
 				"selece",
 				"selectedAssetId"
 			],
@@ -506,69 +514,65 @@
 			[
 				"he",
 				"headWidth"
-			],
-			[
-				"set",
-				"setDefaultWidth"
-			],
-			[
-				"onclick",
-				"onClickHandler"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/utils/appLogic.js",
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
 			"settings":
 			{
-				"buffer_size": 10727,
+				"buffer_size": 10275,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
+			"settings":
+			{
+				"buffer_size": 26034,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/server realated/express/misc express notes.js",
 			"settings":
 			{
-				"buffer_size": 65911,
-				"encoding": "UTF-8",
+				"buffer_size": 11421,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_react w redux_udemy.js",
+			"file": "/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/index.js",
 			"settings":
 			{
-				"buffer_size": 16396,
-				"encoding": "UTF-8",
+				"buffer_size": 980,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/index.jsx",
+			"file": "/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
 			"settings":
 			{
-				"buffer_size": 210,
-				"encoding": "UTF-8",
+				"buffer_size": 1010,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/components/App.jsx",
+			"file": "client/src/reducers/assetsDataReducer.js",
 			"settings":
 			{
-				"buffer_size": 1517,
-				"encoding": "UTF-8",
+				"buffer_size": 5429,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/components/DetailContainer.jsx",
+			"file": "client/src/components/TimelineView.jsx",
 			"settings":
 			{
-				"buffer_size": 468,
+				"buffer_size": 3014,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -732,20 +736,46 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/vahramjacobs/Desktop/dev/udemy",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app",
 		"/Current projects/storylilneMaker",
 		"/Current projects/storylilneMaker/dev",
 		"/Current projects/storylilneMaker/dev/client",
 		"/Current projects/storylilneMaker/dev/client/src",
-		"/Current projects/storylilneMaker/dev/client/src/actions",
-		"/Current projects/storylilneMaker/dev/client/src/reducers",
-		"/Current projects/storylilneMaker/dev/client/src/utils"
+		"/Current projects/storylilneMaker/dev/client/src/components",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset",
+		"/Current projects/storylilneMaker/dev/client/src/utils",
+		"/Current projects/storylilneMaker/dev/server"
 	],
 	"file_history":
 	[
+		"/Current projects/storylilneMaker/dev/client/src/utils/constants.js",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/actionCreators.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/Timeline.jsx",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
+		"/Current projects/storylilneMaker/dev/webpack.config.js",
+		"/Current projects/storylilneMaker/dev/client/index.html",
+		"/Current projects/storylilneMaker/dev/src/components/App.jsx",
+		"/Current projects/storylilneMaker/dev/index.html",
+		"/Current projects/storylilneMaker/dev/client/src/components/App.jsx",
+		"/Current projects/storylilneMaker/dev/server/app.js",
+		"/Current projects/storylilneMaker/dev/client/src/components/TimelineView.jsx",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/assetsDataReducer.js",
+		"/Current projects/storylilneMaker/dev/client/src/reducers/rootReducer.js",
+		"/Current projects/storylilneMaker/dev/client/src/utils/appLogic.js",
+		"/Current projects/storylilneMaker/dev/server/utils/data.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/webpack 2/_completed (WebpackCasts)/WebpackProject/src/router.js",
+		"/Current projects/storylilneMaker/dev/.gitignore",
+		"/Current projects/storylilneMaker/dev/server/server.js",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/server realated/node notes by A Mead - udemy.js",
+		"/Current projects/storylilneMaker/dev/package.json",
+		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/webpack.config.js",
+		"/Current projects/storylilneMaker/dev/server/config/config.js",
+		"/Current projects/storylilneMaker/dev/server/config/config.json",
+		"/Users/vahramjacobs/Desktop/dev/udemy/node - aMead/node-todo-api/server/config/app.js",
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/webpack 2/_completed (WebpackCasts)/WebpackProject/package.json",
+		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_react w redux_udemy.js",
+		"/Current projects/storylilneMaker/dev/src/index.jsx",
+		"/Current projects/storylilneMaker/dev/src/utils/appLogic.js",
+		"/Current projects/storylilneMaker/dev/src/components/DetailContainer.jsx",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/webpack.config.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/DetailContainer.css",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineContainer.jsx",
@@ -764,22 +794,17 @@
 		"/Current projects/storylilneMaker/dev/client/src/styles/index.css",
 		"/Current projects/storylilneMaker/dev/client/src/styles/reset.css",
 		"/Current projects/storylilneMaker/dev/client/src/components/AssetCollection.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/utils/constants.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Search.jsx",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Header.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/rootReducer.js",
 		"/Current projects/storylilneMaker/dev/client/src/utils/renderHelpers.js",
 		"/Current projects/storylilneMaker/dev/client/src/reducers/searchTermReducer.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/reducers.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/Asset.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/assetsDataReducer.js",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Landing.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetRedux.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetBase.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/Timeline.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/AssetBase.jsx",
 		"/Users/vahramjacobs/Desktop/dev/FrtMstrs/Complete Intro To React -Bian Holt- v3/practice files/js/Details.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/components/App.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/CustomDragLayer.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAsset.jsx",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAsset/TimelineAssetDnD.jsx",
@@ -817,12 +842,10 @@
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/TimelineBody.css",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/04 Sortable/Simple/Container.js",
 		"/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
-		"/Current projects/storylilneMaker/dev/client/src/utils/appLogic.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/TimelineAssetTail.js",
 		"/Current projects/storylilneMaker/dev/client/src/components/styles/Timeline.css",
 		"/Current projects/storylilneMaker/dev/client/src/constants.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/03 Nesting/Drop Targets/Dustbin.js",
-		"/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Naive/Box.js",
 		"/Users/vahramjacobs/Desktop/dev/misc-studies/react-dnd/react-dnd-examples/examples/02 Drag Around/Naive/Container.js",
 		"/Users/vahramjacobs/Library/Application Support/Sublime Text 3/Packages/User/JsPrettier.sublime-settings",
@@ -851,29 +874,7 @@
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
 		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/components/posts_new.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/index.js",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/reducer_select_asset.js",
-		"/Current projects/storylilneMaker/dev/client/src/components/Toolbox.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/reducerTypes.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/reducers/index.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/reducers/reducer_active_book.js",
-		"/Current projects/storylilneMaker/dev/client/src/reducers/index.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/index.js",
-		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_bookList app/src/containers/book_list.js",
-		"/Current projects/storylilneMaker/dev/client/src/App.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/TimelineBody.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/Timeline.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/appLogic.js",
-		"/Current projects/storylilneMaker/dev/client/src/TimelineAsset.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/styles/AssetContainer.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/TimelineContainer.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/Timeline.css",
-		"/Current projects/storylilneMaker/dev/client/src/styles/TimelineAsset.css",
-		"/Current projects/storylilneMaker/dev/client/src/TimelineAssetBody.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/TimelineContainer.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/AssetContainer.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/AssetCollection.jsx",
-		"/Current projects/storylilneMaker/dev/client/src/Asset.jsx"
+		"/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/index.js"
 	],
 	"find":
 	{
@@ -891,6 +892,41 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"TimelineView",
+			"removeAssetFromParent",
+			"props",
+			" =",
+			"TimelineAssetElem",
+			"defaultTimeline",
+			"data",
+			"getData",
+			"webpack",
+			"publicPath",
+			"client",
+			"false",
+			"data",
+			"getData",
+			"ContainerHolder",
+			"TimelineView",
+			"ContainerHolder",
+			"contentBase",
+			"historyApiFallback",
+			"devServer",
+			"historyApiFallback",
+			"publicPath",
+			"devServer",
+			"webpack",
+			"content",
+			"contentBase",
+			"8080",
+			"getData",
+			"initialData",
+			"export",
+			"cachedAssets",
+			"none",
+			"default",
+			"production",
+			"cheap",
 			"label",
 			"timeline",
 			"AssetDetails",
@@ -983,42 +1019,7 @@
 			"this",
 			"base",
 			"this",
-			"assetData",
-			"type",
-			"base",
-			"asset",
-			"id",
-			"AssetDecorative",
-			"assetData",
-			"asset",
-			"Asset",
-			"Asset ",
-			"Asset",
-			"containerAssetAttributes",
-			"Asset",
-			"getEmptyImage",
-			"Knight",
-			"KNIGHT",
-			"Knight",
-			"NoRequestors",
-			"nextNoRequestors",
-			"NoReqs",
-			"nextNoReqs",
-			"next",
-			"reduxOptions",
-			"type",
-			"name",
-			"id",
-			"SET_REQUESTED_FRAME",
-			"setFrameRequestor",
-			"addFrameRequestor",
-			"setRequestedFrame",
-			"requestedFrame",
-			"assetId",
-			"monitor.canDrop()",
-			"requestedFrame",
-			"resizeElem",
-			"SET_REQUEST_FRAME"
+			"assetData"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1036,40 +1037,95 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/utils/appLogic.js",
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/deployment/git/git notes.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10727,
+						"buffer_size": 10275,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10723,
-								10723
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"SL.103.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"SL.14.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"SL.16.region_keys":
+							"SL.35.region_keys":
 							[
 							],
-							"SL.28.region_keys":
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/tools/webpack notes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 26034,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17777,
+								17779
+							]
+						],
+						"settings":
+						{
+							"SL.36.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7659.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/server realated/express/misc express notes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11421,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"SL.104.region_keys":
 							[
 							],
 							"git_gutter_is_enabled": true,
@@ -1084,151 +1140,31 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_complete_intro_to_react_FrtMstrs.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 65911,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								22882,
-								22895
-							]
-						],
-						"settings":
-						{
-							"SL.138.region_keys":
-							[
-							],
-							"SL.17.region_keys":
-							[
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/vahramjacobs/Desktop/dev/_Notes/frameworks/react/notes_react w redux_udemy.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16396,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13190,
-								13190
-							]
-						],
-						"settings":
-						{
-							"SL.49.region_keys":
-							[
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5312.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "src/index.jsx",
+					"file": "/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 210,
+						"buffer_size": 980,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								158,
-								158
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"SL.16.region_keys":
+							"SL.364.region_keys":
 							[
-							],
-							"SL.160.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"SL.18.region_keys":
-							[
-							],
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/components/App.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1517,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								390,
-								390
-							]
-						],
-						"settings":
-						{
-							"SL.118.region_keys":
-							[
-								"sublime_linter.protected_regions",
-								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot",
-								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32"
-							],
-							"SL.17.region_keys":
-							[
-								"sublime_linter.protected_regions",
-								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32",
-								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot"
-							],
-							"SL.19.region_keys":
-							[
-								"sublime_linter.protected_regions"
 							],
 							"git_gutter_is_enabled": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1238,41 +1174,102 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "src/components/DetailContainer.jsx",
+					"buffer": 4,
+					"file": "/Users/vahramjacobs/Desktop/dev/udemy/before individuals repos/modern react w redux/v_blogpost app/src/actions/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 468,
+						"buffer_size": 1010,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								347,
-								333
+								330,
+								335
 							]
 						],
 						"settings":
 						{
-							"SL.18.region_keys":
+							"SL.361.region_keys":
 							[
-								"sublime_linter.protected_regions",
-								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32",
-								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot"
-							],
-							"SL.20.region_keys":
-							[
-								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot",
-								"sublime_linter.protected_regions",
-								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32"
 							],
 							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "client/src/reducers/assetsDataReducer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								895,
+								895
+							]
+						],
+						"settings":
+						{
+							"SL.291.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1059.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "client/src/components/TimelineView.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3014,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1533,
+								1533
+							]
+						],
+						"settings":
+						{
+							"SL.313.region_keys":
+							[
+								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32",
+								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot",
+								"sublime_linter.protected_regions"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 682.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

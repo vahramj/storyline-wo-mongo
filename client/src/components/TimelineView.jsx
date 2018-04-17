@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { func } from "prop-types";
 import { DropTarget } from "react-dnd";
@@ -9,7 +9,7 @@ import TimelineContainer from "./TimelineContainer";
 
 import "./styles/TimelineView.css";
 
-import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
+import { deSelectAsset, removeAssetFromParent, fetchAssetsData } from "../actions/actionCreators";
 import { dndTypes } from "../utils/constants";
 
 
@@ -46,20 +46,26 @@ const collectDnD = (connectDnD, monitor) => {
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 
-const TimelineView = (props) => {
-	// console.log("isOver :", props.isOver);
-	return (
-		props.connectDropTarget(
-			<div className="main" role="none" onClick={props.deSelectAsset}>
-				<div id="asset-containers">
-					<AssetContainer type="phase" />
-					<AssetContainer type="scene" />
-					<AssetContainer type="character" />
+class TimelineView extends Component {
+	componentDidMount(){
+		// const { fetchAssetsData } = this.props;
+		this.props.fetchAssetsData();
+	}
+
+	render(){
+		return (
+			this.props.connectDropTarget(
+				<div className="main" role="none" onClick={this.props.deSelectAsset}>
+					<div id="asset-containers">
+						<AssetContainer type="phase" />
+						<AssetContainer type="scene" />
+						<AssetContainer type="character" />
+					</div>
+					<TimelineContainer />
 				</div>
-				<TimelineContainer />
-			</div>
-		)
-	);
+			)
+		);
+	}
 };
 
 // ██████╗ ██████╗  ██████╗ ██████╗    ████████╗██╗   ██╗██████╗ ███████╗███████╗
@@ -72,7 +78,8 @@ const TimelineView = (props) => {
 TimelineView.propTypes = {
 	deSelectAsset: func.isRequired,
 	connectDropTarget: func.isRequired,
-	removeAssetFromParent: func.isRequired
+	removeAssetFromParent: func.isRequired,
+	fetchAssetsData: func.isRequired
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
@@ -81,7 +88,7 @@ TimelineView.propTypes = {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { deSelectAsset, removeAssetFromParent };
+const actions = { deSelectAsset, removeAssetFromParent, fetchAssetsData };
 
 const decorator = _.flowRight([
 	connect(null, actions),

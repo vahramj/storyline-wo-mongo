@@ -1,4 +1,4 @@
-export const ROOT_URL = "localhost:3000";
+export const ROOT_URL = "http://localhost:3000";
 
 export const actionTypes = {
 	SELECT_ASSET: "SELECT_ASSET",
@@ -25,7 +25,9 @@ export const actionTypes = {
 
 	SAVE_ASSET_DETAILS: "SAVE_ASSET_DETAILS",
 
-	DELETE_ASSET: "DELETE_ASSET"
+	DELETE_ASSET: "DELETE_ASSET",
+
+	FETCH_ASSETS: "FETCH_ASSETS"
 };
 
 export const dndTypes = {
