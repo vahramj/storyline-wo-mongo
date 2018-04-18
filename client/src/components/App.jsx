@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import rootReducer from "../reducers/rootReducer";
 import CustomDragLayer from "./CustomDragLayer";
 // import Main from "./Main";
 import TimelineView from "./TimelineView";
 import DetailsContainer from "./DetailsContainer/DetailsContainer";
 
+import store from "../reducers/store";
 
 import "./styles/App.css";
 
@@ -21,12 +20,6 @@ import "./styles/App.css";
 // ██╔══██╗██╔══╝  ██╔══██║██║        ██║   
 // ██║  ██║███████╗██║  ██║╚██████╗   ██║   
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   
-
-/* eslint-disable no-underscore-dangle */
-const store = createStore(rootReducer, 
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-/* eslint-enable */
 
 // console.log("hello")
 

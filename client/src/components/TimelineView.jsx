@@ -48,7 +48,6 @@ const collectDnD = (connectDnD, monitor) => {
 
 class TimelineView extends Component {
 	componentDidMount(){
-		// const { fetchAssetsData } = this.props;
 		this.props.fetchAssetsData();
 	}
 

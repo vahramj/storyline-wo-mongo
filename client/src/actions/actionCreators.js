@@ -153,12 +153,21 @@ export function deleteAsset(assetId){
 	}
 }
 
-export function fetchAssetsData(assetsData){
+export function fetchAssetsData(){
 	// console.log("fetched assetsData: ", assetsData)
 	const request = axios.get(`${ROOT_URL}/data/allAssets`);
 
-	return {
-		type: FETCH_ASSETS,
-		payload: request
+	return function _dispatcher_(dispatch){
+		request
+			.then( function _dispatchAssetsData_(res){
+				dispatch ({
+					type: FETCH_ASSETS,
+					payload: res.data
+				});
+			})
+			.catch( function _handleFetchFailur_(err){
+				console.log("problem while fetching data: ", err)
+			})
 	}
 }
+

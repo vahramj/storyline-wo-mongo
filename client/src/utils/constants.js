@@ -557,6 +557,6 @@ const characterData = {
 		}
 	}
 };
-export const initialData = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
+ // const initialData = { ...timelineData, ...phaseData, ...characterData, ...sceneData };
 
 // const data = Object.assign({}, timelineData, phaseData, characterData, sceneData);

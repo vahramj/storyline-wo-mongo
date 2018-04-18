@@ -413,6 +413,6 @@ export function isTermInAsset(term, asset){
 // 	return data;
 // }
 
-export function getData() {
-	return initialData;;
-}
+// export function getData() {
+// 	return initialData;;
+// }

@@ -2,7 +2,7 @@ import update from "immutability-helper";
 import makeUniqId from "uniqid";
 
 import {
-	getData,
+	// getData,
 	selectAsset,
 	insertAsset,
 	removeAssetFromParent,
@@ -60,16 +60,9 @@ const initialState = {
 function assetsDataReducer(state = initialState, action) {
 	switch (action.type) {
 		case FETCH_ASSETS: {
-			const request = action.payload;
+			const data = action.payload;
 			// console.log("data: ", data);
-			request
-				.then(res => {
-					console.log(res.data);
-					return { ...state, data }
-				})
-				.catch(err => {
-					console.log(err)
-				});
+			return { ...state, data }
 		}
 
 		case SELECT_ASSET: {
