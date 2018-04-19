@@ -182,40 +182,53 @@ function assetsDataReducer(state = initialState, action) {
 		}
 
 		case SAVE_ASSET_DETAILS: {
-			const { id } = action.payload;
+			// const { id } = action.payload;
 			// console.log("action.payload: ", action.payload);
 			
-			if(id){
-				const newData = update(state, {
-					data: {
-						[id]: {
-							$merge: { ...action.payload, id }
-						}
-					}
-				});
-				// console.log("updated asset: ", newData.data[id]);
-				return newData
-			}
-			// generate new id
-			const newAssetId = makeUniqId();
-			// generate new asset
-			console.log("newAssetId: ", newAssetId)
-			const newAsset = {
-				...action.payload,
-				id: newAssetId,
-				parent: null,
-				children: [],
-			}
-			console.log("newAsset: ", newAsset)
-			// add asset to assetsData
-			const newData = update(state, {
+			// if(id){
+			// 	const newData = update(state, {
+			// 		data: {
+			// 			[id]: {
+			// 				$merge: { ...action.payload, id }
+			// 			}
+			// 		}
+			// 	});
+			// 	// console.log("updated asset: ", newData.data[id]);
+			// 	return newData
+			// }
+
+			// // generate new id
+			// const newAssetId = makeUniqId();
+			// // generate new asset
+			// console.log("newAssetId: ", newAssetId)
+			// const newAsset = {
+			// 	...action.payload,
+			// 	id: newAssetId,
+			// 	parent: null,
+			// 	children: [],
+			// }
+			// console.log("newAsset: ", newAsset)
+			// const newData = update(state, {
+			// 	data: {
+			// 		[newAssetId]: {
+			// 			$set: newAsset
+			// 		}
+			// 	}
+			// });
+			// return newData;
+
+			const assetData = action.payload;
+			const {id} = assetData;
+			console.log(assetData)
+			const newState = update(state, {
 				data: {
-					[newAssetId]: {
-						$set: newAsset
+					[id]: {
+						$set: assetData
 					}
 				}
 			});
-			return newData;
+			// console.log(newState)
+			return newState;
 		}
 
 		case DELETE_ASSET: {

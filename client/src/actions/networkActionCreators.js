@@ -11,7 +11,7 @@ const {
 
 export function fetchAssetsData(){
 	// console.log("fetched assetsData: ", assetsData)
-	const request = axios.get(`${ROOT_URL}/data/allAssets`);
+	const request = axios.get(`${ROOT_URL}/assets`);
 
 	return function _dispatcher_(dispatch){
 		request
@@ -31,12 +31,12 @@ export function persistAllAssets(newData, oldData){
 	const { dispatch } = store;
 	// make api post request w data
 	// console.log("persisting data: ", data);
-	const request = axios.post(`${ROOT_URL}/data/update`, newData);
+	const request = axios.post(`${ROOT_URL}/assets/update`, newData);
 	request
-		.then( function _handleDataUpdateSuccess_(res) {
+		.then( function _handleAllAssetsUpdateSuccess_(res) {
 			console.log("persisited: ", res.data);
 		})
-		.catch( function _handleDataUpdateFailur_(err) {
+		.catch( function _handleAllAssetsUpdateFailur_(err) {
 			console.log("couldn't persist: ", err.response.data );
 			dispatch({
 				type: SET_ASSETS,
@@ -47,9 +47,19 @@ export function persistAllAssets(newData, oldData){
 
 export function saveDetails(assetDetails){
 	// console.log("assetDetails: ", assetDetails);
-	return {
-		type: SAVE_ASSET_DETAILS,
-		payload: assetDetails
+	return function _dispatcher_(dispatch){
+		axios.post(`${ROOT_URL}/assets/save`, assetDetails)
+			.then(function _handleSaveAssetSuccess_(res){
+				const assetData = res.data;
+				// console.log(assetData)
+				dispatch({
+					type: SAVE_ASSET_DETAILS,
+					payload: assetData
+				});
+			})
+			.catch(function _handleSaveAssetFailur_(err){
+				console.log("couldn't save asset: ", err.response.data)
+			})
 	}
 }
 
