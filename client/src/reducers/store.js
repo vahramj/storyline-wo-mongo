@@ -4,7 +4,8 @@ import thunk from "redux-thunk";
 import rootReducer from "./rootReducer";
 
 /* eslint-disable no-underscore-dangle */
-// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+// const store = createStore(rootReducer, applyMiddleware(thunk));
 const store = createStore(rootReducer, 
 	compose(
 		applyMiddleware(thunk),

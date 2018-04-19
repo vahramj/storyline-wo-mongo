@@ -9,7 +9,8 @@ import TimelineContainer from "./TimelineContainer";
 
 import "./styles/TimelineView.css";
 
-import { deSelectAsset, removeAssetFromParent, fetchAssetsData } from "../actions/actionCreators";
+import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
+import { fetchAssetsData } from "../actions/networkActionCreators";
 import { dndTypes } from "../utils/constants";
 
 

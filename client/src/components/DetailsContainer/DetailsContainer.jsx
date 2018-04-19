@@ -9,7 +9,7 @@ import DetailsFieldsPhase from "./DetailsFieldsPhase";
 import DetailsFieldsCharacter from "./DetailsFieldsCharacter";
 import DetailsFieldsScene from "./DetailsFieldsScene";
 
-import { saveDetails } from "../../actions/actionCreators";
+import { saveDetails } from "../../actions/networkActionCreators";
 import { getInitialValues, getFinalValues } from "../../utils/formHelpers";
 
 import "./styles/DetailsContainer.css";

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import AssetBase from "./AssetBase";
-import { selectAsset, deleteAsset } from "../actions/actionCreators";
+import { selectAsset } from "../actions/actionCreators";
+import { deleteAsset } from "../actions/networkActionCreators";
 import { dndTypes } from "../utils/constants";
 
 import "./styles/Asset.css";

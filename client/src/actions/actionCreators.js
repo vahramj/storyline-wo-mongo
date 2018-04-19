@@ -1,6 +1,4 @@
-import axios from "axios";
-
-import { actionTypes, ROOT_URL } from "../utils/constants";
+import { actionTypes } from "../utils/constants";
 
 const {
 	SELECT_ASSET,
@@ -14,9 +12,6 @@ const {
 	RESIZE_ASSET_TO_POSITION,
 	SET_FRAME_REQUESTOR,
 	SET_SEARCH_TERM,
-	SAVE_ASSET_DETAILS,
-	DELETE_ASSET,
-	FETCH_ASSETS
 } = actionTypes;
 
 export function selectAsset(assetId) {
@@ -137,37 +132,4 @@ export function setSearchTerm(term, searchType){
 	}
 }
 
-export function saveDetails(assetDetails){
-	// console.log("assetDetails: ", assetDetails);
-	return {
-		type: SAVE_ASSET_DETAILS,
-		payload: assetDetails
-	}
-}
-
-export function deleteAsset(assetId){
-	// console.log(`deleting asset ${assetId}`);
-	return {
-		type: DELETE_ASSET,
-		payload: {assetId}
-	}
-}
-
-export function fetchAssetsData(){
-	// console.log("fetched assetsData: ", assetsData)
-	const request = axios.get(`${ROOT_URL}/data/allAssets`);
-
-	return function _dispatcher_(dispatch){
-		request
-			.then( function _dispatchAssetsData_(res){
-				dispatch ({
-					type: FETCH_ASSETS,
-					payload: res.data
-				});
-			})
-			.catch( function _handleFetchFailur_(err){
-				console.log("problem while fetching data: ", err)
-			})
-	}
-}
 

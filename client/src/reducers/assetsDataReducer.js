@@ -16,6 +16,8 @@ import {
 
 import { actionTypes } from "../utils/constants";
 
+import { persistAllAssets } from "../actions/networkActionCreators";
+
 // console.log("inside assetsDataReducer");
 
 const {
@@ -31,7 +33,7 @@ const {
 	SET_FRAME_REQUESTOR,
 	SAVE_ASSET_DETAILS,
 	DELETE_ASSET,
-	FETCH_ASSETS
+	SET_ASSETS
 } = actionTypes;
 
 const initialState = {
@@ -59,7 +61,7 @@ const initialState = {
 // console.log("hello")
 function assetsDataReducer(state = initialState, action) {
 	switch (action.type) {
-		case FETCH_ASSETS: {
+		case SET_ASSETS: {
 			const data = action.payload;
 			// console.log("data: ", data);
 			return { ...state, data }
@@ -97,15 +99,15 @@ function assetsDataReducer(state = initialState, action) {
 		case DROP_ASSET: {
 			// console.log("asset is being dropped");
 			const { sourceId, targetId, dropPosition } = action.payload;
-			let { data } = state;
-
-			data = insertAsset({
+			const { data: oldData } = state;
+			const newData = insertAsset({
 				sourceId,
 				targetId,
-				data,
+				data: oldData,
 				position: dropPosition,
 			});
-			return { ...state, data };
+			persistAllAssets(newData, oldData);
+			return { ...state, data: newData };
 		}
 
 		case REMOVE_ASSET_FROM_PARENT: {

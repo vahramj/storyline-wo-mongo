@@ -189,7 +189,7 @@ function insertAssetIntoSiblings(assetOrig, siblingArrOrig) {
 	let siblingArr = [...siblingArrOrig];
 
 	if (siblingArr.length === 0) {
-		console.log("first asset");
+		// console.log("first asset");
 		siblingArr.push(asset);
 
 		return siblingArr;
@@ -346,7 +346,7 @@ export function insertAsset({ sourceId, targetId, position, data: dataOrig }) {
 	const source = data[sourceId];
 	const target = data[targetId];
 
-	console.log("source: ", source, "\ntarget: ", target, "\nposition: ", position);
+	// console.log("source: ", source, "\ntarget: ", target, "\nposition: ", position);
 
 	const legalCheck = isInsertLegal(source.type, target.type);
 	if (!legalCheck.result) {
