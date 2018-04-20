@@ -48,18 +48,29 @@ class Thumbnail extends PureComponent{
 	// };
 	constructor(props){
 		super(props);
+		const { imageData } = props;
+		let imageSrc = defaultImages[props.type];
+		let imageStyle = {};
+
+		if(imageData && imageData.imageUrl){
+			imageSrc = imageData.imageUrl;
+		}
+		if(imageData && imageData.imageDisplayData){
+			imageStyle = getImageStyle(imageData.imageDisplayData);
+		}
+
 		this.state = {
-			imageStyle: {},
-			imageSrc: defaultImages[props.type]
+			imageSrc,
+			imageStyle
 		}
 	}
-
-	setupImage = (imageData) => {
+	
+	checkBrokenImageUrl = (imageData) => {
 		const component = this;
 		const { type } = this.props;
 
-		console.log("propImageDAta", imageData)
-		if( imageData && imageData.imageUrl){
+		// console.log("propImageData", imageData)
+		if( imageData && imageData.imageUrl ){
 			testImageUrl(imageData.imageUrl)
 				.then(function _goodImageUrl_(){
 					const newState = {};
@@ -67,25 +78,10 @@ class Thumbnail extends PureComponent{
 
 					if(imageData.imageDisplayData){
 
-						// const {
-						// 	imageMoveX,
-						// 	imageMoveY,
-						// 	imageScaleX,
-						// 	imageScaleY,
-						// 	rotation
-						// } = imageData.imageDisplayData;
-
-						// const imageStyle = {
-						// 	transform: `
-						// 				translate(${imageMoveX}px, ${imageMoveY}px) 
-						// 				rotate(${rotation}deg)
-						// 				scale(${imageScaleX}, ${imageScaleY}) 
-						// 	`
-						// };
 						newState.imageStyle = getImageStyle(imageData.imageDisplayData);
 
-						console.log("propUrl", imageData.imageUrl)
-						console.log("newStateUrl", newState.imageSrc)
+						// console.log("propUrl", imageData.imageUrl)
+						// console.log("newStateUrl", newState.imageSrc)
 						component.setState(newState);
 					}
 				})
@@ -95,37 +91,30 @@ class Thumbnail extends PureComponent{
 						imageStyle: {},
 						imageSrc: defaultImages[type]
 					}
-					console.log("propUrl", imageData.imageUrl)
-					console.log("newStateUrl", newState.imageSrc)
+					// console.log("propUrl", imageData.imageUrl)
+					// console.log("newStateUrl", newState.imageSrc)
 					component.setState(newState);
 				})
 		}
-
 	}
-	
+
 	componentDidMount(){
 		const { imageData } = this.props;
-		this.setupImage(imageData);
+		this.checkBrokenImageUrl(imageData);
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log("hellow from componentWillReceiveProps", this.props)
+		// console.log("hellow from componentWillReceiveProps", this.props)
 		const nextImageData = nextProps.imageData;
 		const currImageData = this.props.imageData;
-		if(nextImageData && (!currImageData || nextImageData.imageUrl !== currImageData.imageUrl) ){
-			// console.log(imageData, this.state);
-			// console.log(imageData.imageUrl !== this.state.imageSrc);
-			this.setupImage(nextImageData);		
+		if( nextImageData && !currImageData || nextImageData.imageUrl !== currImageData.imageUrl ){
+			this.checkBrokenImageUrl(nextImageData);
 		}
 		else if( nextImageData && !shallowEqual(nextImageData.imageDisplayData, currImageData.imageDisplayData) ){
 			const imageStyle = getImageStyle(nextImageData.imageDisplayData);
 			this.setState({ imageStyle });
 		}
 	}
-
-	// componentWillMount(){
-	// 	console.log("hello from componentWillMount")
-	// }
 
 	render(){
 		const { imageStyle, imageSrc } = this.state;
