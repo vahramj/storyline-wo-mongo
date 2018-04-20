@@ -10,7 +10,7 @@ const {
 } = actionTypes;
 
 export function fetchAssetsData(){
-	// console.log("fetched assetsData: ", assetsData)
+	// console.log("fetching assetsData: ")
 	const request = axios.get(`${ROOT_URL}/assets`);
 
 	return function _dispatcher_(dispatch){

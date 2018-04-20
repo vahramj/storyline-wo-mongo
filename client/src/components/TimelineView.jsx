@@ -10,7 +10,6 @@ import TimelineContainer from "./TimelineContainer";
 import "./styles/TimelineView.css";
 
 import { deSelectAsset, removeAssetFromParent } from "../actions/actionCreators";
-import { fetchAssetsData } from "../actions/networkActionCreators";
 import { dndTypes } from "../utils/constants";
 
 
@@ -48,9 +47,6 @@ const collectDnD = (connectDnD, monitor) => {
 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝
 
 class TimelineView extends Component {
-	componentDidMount(){
-		this.props.fetchAssetsData();
-	}
 
 	render(){
 		return (
@@ -79,7 +75,6 @@ TimelineView.propTypes = {
 	deSelectAsset: func.isRequired,
 	connectDropTarget: func.isRequired,
 	removeAssetFromParent: func.isRequired,
-	fetchAssetsData: func.isRequired
 };
 
 // ██████╗ ███████╗██████╗ ██╗   ██╗██╗  ██╗
@@ -88,7 +83,7 @@ TimelineView.propTypes = {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { deSelectAsset, removeAssetFromParent, fetchAssetsData };
+const actions = { deSelectAsset, removeAssetFromParent };
 
 const decorator = _.flowRight([
 	connect(null, actions),

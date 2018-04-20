@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import CustomDragLayer from "./CustomDragLayer";
-// import Main from "./Main";
-import TimelineView from "./TimelineView";
-import DetailsContainer from "./DetailsContainer/DetailsContainer";
+// import TimelineView from "./TimelineView";
+// import DetailsContainer from "./DetailsContainer/DetailsContainer";
+import Project from "./Project";
 
 import store from "../reducers/store";
 
@@ -35,10 +35,7 @@ class App extends Component {
 						<header id="main-header">
 							<h1>Storyline Maker</h1>
 						</header>
-						<Switch>
-							<Route path="/:operation/:type/:id?" component={ DetailsContainer } />
-							<Route path="/" component={ TimelineView } />
-						</Switch>
+						<Project />
 						<CustomDragLayer /> 
 					</div>
 				</Provider>
