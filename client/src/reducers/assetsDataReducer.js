@@ -219,7 +219,7 @@ function assetsDataReducer(state = initialState, action) {
 
 			const assetData = action.payload;
 			const {id} = assetData;
-			console.log(assetData)
+			// console.log(assetData)
 			const newState = update(state, {
 				data: {
 					[id]: {

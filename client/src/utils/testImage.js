@@ -4,10 +4,10 @@ function testImageUrl(imageUrl, timeoutT = 5000){
 	return new Promise( function _promiseExecutor_(resolve, reject){
 		const timeoutRef = setTimeout(function _handleTimeout_(){
 			img.src = "//!!!!/test.jpg";
-			reject(Error("timeout"));
+			reject(Error("timeout while loading the image"));
 		}, timeoutT);
 		img.onerror = function _handleImageLoadError_(){
-			reject(Error("error"));
+			reject(Error(`broken image url: ${imageUrl}`));
 			clearTimeout(timeoutRef);
 		}
 		img.onload = function _handleImageLoadSuccess_(){
