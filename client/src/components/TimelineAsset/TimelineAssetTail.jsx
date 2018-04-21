@@ -16,7 +16,7 @@ const spec = {
 		return {ownerId, ownerElem};
 	},
 	endDrag(props){
-		console.log("tail drag is over");
+		// console.log("tail drag is over");
 		props.persistAllAssets()
 	}
 };

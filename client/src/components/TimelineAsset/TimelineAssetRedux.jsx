@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import TimelineAssetDnD from "./TimelineAssetDnD";
+import { persistAllAssets } from "../../actions/networkActionCreators";
 import {
 	handleTimelineClick,
 	handleDropAsset,
@@ -10,6 +11,7 @@ import {
 	resizeAssetToPosition,
 	setFrameRequestor
 } from "../../actions/actionCreators";
+
 import shallowEqual from "../../utils/shallowEqual";
 
 const actions = {
@@ -19,7 +21,8 @@ const actions = {
 	calcInsertPosition,
 	hideInsertPosition,
 	resizeAssetToPosition,
-	setFrameRequestor
+	setFrameRequestor,
+	persistAllAssets
 };
 
 // const options = {

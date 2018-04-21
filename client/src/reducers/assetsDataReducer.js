@@ -97,7 +97,7 @@ function assetsDataReducer(state = initialState, action) {
 		}
 
 		case DROP_ASSET: {
-			// console.log("asset is being dropped");
+			// console.log("asset is being dropped in reducer");
 			const { sourceId, targetId, dropPosition } = action.payload;
 			const { data: oldData } = state;
 			const newData = insertAsset({
@@ -106,7 +106,6 @@ function assetsDataReducer(state = initialState, action) {
 				data: oldData,
 				position: dropPosition,
 			});
-			persistAllAssets(newData, oldData);
 			return { ...state, data: newData };
 		}
 

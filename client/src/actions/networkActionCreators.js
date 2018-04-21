@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { actionTypes, ROOT_URL } from "../utils/constants";
-import store from "../reducers/store";
 
 const {
 	SET_ASSETS, 
@@ -27,32 +26,25 @@ export function fetchAssetsData(){
 	}
 }
 
-export function persistAllAssets(newData){
-	const { dispatch, getState } = store;
-	let currData;
-	if(!newData){
-		currData = getState().assetsData.data
-		console.log("currData: ", currData)
-	}
-	else {
-		currData = newData;
-	}
-	// make api post request w data
-	// console.log("persisting data: ", data);
-	const request = axios.post(`${ROOT_URL}/assets/update`, currData);
-	request
-		.then( function _handleAllAssetsUpdateSuccess_(res) {
-			console.log("persisited: ", res.data);
-		})
-		.catch( function _handleAllAssetsUpdateFailur_(err) {
-			console.log("couldn't persist: ", err.response.data.message );
-			const { oldData } = err.response.data;
-			dispatch({
-				type: SET_ASSETS,
-				payload: oldData
+export function persistAllAssets(){
+	return function _dispatcher_(dispatch, getState){
+		const newData = getState().assetsData.data
+		// console.log("newData: ", newData)
+		// console.log("persisting data: ", newData);
+		const request = axios.post(`${ROOT_URL}/assets/update`, newData);
+		request
+			.then( function _handleAllAssetsUpdateSuccess_(res) {
+				// console.log("persisited: ", newData);
+			})
+			.catch( function _handleAllAssetsUpdateFailur_(err) {
+				console.log("couldn't persist: ", err.response.data.message );
+				const { oldData } = err.response.data;
+				dispatch({
+					type: SET_ASSETS,
+					payload: oldData
+				});
 			});
-		});
-	return {type: ""}
+	}
 }
 
 export function saveDetails(assetDetails){

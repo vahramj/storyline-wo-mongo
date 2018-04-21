@@ -7,7 +7,7 @@ import _ from "lodash";
 
 import AssetBase from "./AssetBase";
 import { selectAsset } from "../actions/actionCreators";
-import { deleteAsset } from "../actions/networkActionCreators";
+import { deleteAsset, persistAllAssets } from "../actions/networkActionCreators";
 import { dndTypes } from "../utils/constants";
 
 import "./styles/Asset.css";
@@ -27,6 +27,10 @@ const AssetSourceSpec = {
 		// console.log(props);
 		const { assetId, type } = props;
 		return { assetId, type };
+	},
+	endDrag(props) {
+		// console.log("asset drag is over");
+		props.persistAllAssets();
 	}
 };
 
@@ -182,7 +186,7 @@ Asset.defaultProps = {
 // ██╔══██╗██╔══╝  ██║  ██║██║   ██║ ██╔██╗
 // ██║  ██║███████╗██████╔╝╚██████╔╝██╔╝ ██╗
 // ╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-const actions = { selectAsset, deleteAsset };
+const actions = { selectAsset, deleteAsset, persistAllAssets };
 
 function mapStateToProps({ assetsData }, { assetId }) {
 	// console.log(assetsData);

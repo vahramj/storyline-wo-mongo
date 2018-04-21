@@ -9,6 +9,10 @@ export const dragSpec = {
 		props.selectAsset(assetId);
 		// console.log("beginDrag: ", assetId);
 		return { assetId, type };
+	},
+	endDrag(props){
+		// console.log("timeline asset drag is over");
+		props.persistAllAssets()
 	}
 };
 
@@ -33,7 +37,7 @@ export const dropSpec = {
 			dropPosition,
 			dropElem
 		};
-
+		// console.log("dropped timeline asset");
 		props.handleDropAsset(params);
 		props.hideInsertPosition();
 	},

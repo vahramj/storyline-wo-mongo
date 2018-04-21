@@ -10,7 +10,7 @@ import "./styles/TimelineAsset.css";
 
 const TimelineAsset = props => {
 	const {childAssets, width, insertPosition, type} = props;
-
+	// console.log("rendering timeline asset")
 	function renderHead(){
 		const { assetId } = props;
 		let headElem = (
@@ -71,7 +71,7 @@ TimelineAsset.propTypes = {
 		})
 	).isRequired,
 	insertPosition: number,
-	getOwnerElem: func
+	getOwnerElem: func,
 };
 
 TimelineAsset.defaultProps = {
