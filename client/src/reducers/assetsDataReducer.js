@@ -232,20 +232,26 @@ function assetsDataReducer(state = initialState, action) {
 		}
 
 		case DELETE_ASSET: {
-			const { assetId } = action.payload;
+			const { id: assetId, affectedAssets } = action.payload;
 			
 			const { data } = state;
-			const newData = Object.assign( {}, data );
+			let newData = Object.assign( {}, data );
+
+			newData = update(newData, {
+				$merge: affectedAssets
+			});
 			delete newData[assetId];
 
+			console.log("newData: ", newData)
 			const newState = update(state, {
 				data: {
 					$set: newData
 				}
 			});
 
-			return newState;
+			delete newState.data[assetId];
 
+			return newState;
 		}
 
 		default:

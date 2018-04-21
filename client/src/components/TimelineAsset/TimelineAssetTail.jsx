@@ -1,9 +1,11 @@
 import React from "react";
 import { string, bool, func } from "prop-types";
 import { DragSource } from "react-dnd";
+import { connect } from "react-redux";
 import _ from "lodash";
 
 import { dndTypes } from "../../utils/constants";
+import { persistAllAssets } from "../../actions/networkActionCreators";
 
 const spec = {
 	beginDrag(props){
@@ -12,6 +14,10 @@ const spec = {
 		const ownerElem = getOwnerElem();
 		// console.log(props, ownerElem);
 		return {ownerId, ownerElem};
+	},
+	endDrag(props){
+		console.log("tail drag is over");
+		props.persistAllAssets()
 	}
 };
 
@@ -52,6 +58,7 @@ TimelineAssetTail.defaultProps = {
 };
 
 const decorator = _.flowRight([
+	connect(null, {persistAllAssets}),
 	DragSource(dndTypes.TAIL, spec, collect)
 ]);
 export default decorator(TimelineAssetTail);

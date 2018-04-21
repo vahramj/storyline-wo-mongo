@@ -27,22 +27,32 @@ export function fetchAssetsData(){
 	}
 }
 
-export function persistAllAssets(newData, oldData){
-	const { dispatch } = store;
+export function persistAllAssets(newData){
+	const { dispatch, getState } = store;
+	let currData;
+	if(!newData){
+		currData = getState().assetsData.data
+		console.log("currData: ", currData)
+	}
+	else {
+		currData = newData;
+	}
 	// make api post request w data
 	// console.log("persisting data: ", data);
-	const request = axios.post(`${ROOT_URL}/assets/update`, newData);
+	const request = axios.post(`${ROOT_URL}/assets/update`, currData);
 	request
 		.then( function _handleAllAssetsUpdateSuccess_(res) {
 			console.log("persisited: ", res.data);
 		})
 		.catch( function _handleAllAssetsUpdateFailur_(err) {
-			console.log("couldn't persist: ", err.response.data );
+			console.log("couldn't persist: ", err.response.data.message );
+			const { oldData } = err.response.data;
 			dispatch({
 				type: SET_ASSETS,
 				payload: oldData
 			});
 		});
+	return {type: ""}
 }
 
 export function saveDetails(assetDetails){
@@ -65,8 +75,22 @@ export function saveDetails(assetDetails){
 
 export function deleteAsset(assetId){
 	// console.log(`deleting asset ${assetId}`);
-	return {
-		type: DELETE_ASSET,
-		payload: {assetId}
+	return function _dispatcher_(dispatch){
+		// axios.delete(`${ROOT_URL}/assets/delete`, {body: {assetId}})
+		axios({
+			method: "delete",
+			url: `${ROOT_URL}/assets/delete`, 
+			data: {id: assetId}
+		})
+			.then(function _handleDeleteAssetSuccess_(res){
+				// console.log("deleted asset: ", res.data);
+				dispatch({
+					type: DELETE_ASSET,
+					payload: res.data
+				});
+			})
+			.catch(function _handleDeleteAssetFail_(err){
+				console.log("server had a problem with deleting the file: ", err.response.data)
+			})
 	}
 }
