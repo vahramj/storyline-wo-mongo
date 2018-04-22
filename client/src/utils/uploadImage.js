@@ -4,7 +4,7 @@ import request from "superagent";
 // vahram, when all is working try this with axios
 // vahram, when all is working try this w/ regular file loader
 async function uploadFile (file) {
-	console.log(file);
+	console.log("file: ", file);
 
 	const image = file;
 

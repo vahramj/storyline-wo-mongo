@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { actionTypes, ROOT_URL } from "../utils/constants";
+import uploadImage from "../utils/uploadImage";
 
 const {
 	SET_ASSETS, 
@@ -48,20 +49,61 @@ export function persistAllAssets(){
 }
 
 export function saveDetails(assetDetails){
-	// console.log("assetDetails: ", assetDetails);
-	return function _dispatcher_(dispatch){
-		axios.post(`${ROOT_URL}/assets/save`, assetDetails)
-			.then(function _handleSaveAssetSuccess_(res){
-				const assetData = res.data;
-				// console.log(assetData)
-				dispatch({
-					type: SAVE_ASSET_DETAILS,
-					payload: assetData
-				});
-			})
-			.catch(function _handleSaveAssetFailur_(err){
-				console.log("couldn't save asset: ", err.response.data)
-			})
+	console.log("assetDetails: ", assetDetails);
+	// persist the file to cloudinary then use the returned url
+	return async function _dispatcher_(dispatch){
+		// let promChain = Promise.resolve();
+
+		// if(assetDetails.imageData && assetDetails.imageData.imageFile){
+		// 	promChain = uploadImage(assetDetails.imageData.imageFile)
+		// }
+
+		// promChain
+		// 	.then(function _sendSaveRequest_(url){
+		// 		const updatedAssetDetails = Object.assign({}, assetDetails);
+		// 		if(url){
+		// 			updatedAssetDetails.imageData.imageUrl = url;
+		// 			delete updatedAssetDetails.imageData.imageFile
+		// 			// console.log("updatedAssetDetails: ", updatedAssetDetails);
+		// 		}
+		// 		return axios.post(`${ROOT_URL}/assets/save`, updatedAssetDetails)
+		// 	})
+		// 	.then(function _handleSaveAssetSuccess_(res){
+		// 		const assetData = res.data;
+		// 		// console.log(assetData)
+		// 		dispatch({
+		// 			type: SAVE_ASSET_DETAILS,
+		// 			payload: assetData
+		// 		});
+		// 	})
+		// 	.catch(function _handleSaveAssetFailur_(err){
+		// 		console.log("couldn't save asset: ", err.response.data)
+		// 	})
+
+		try {
+			const updatedAssetDetails = Object.assign({}, assetDetails);
+
+			if(assetDetails.imageData && assetDetails.imageData.imageFile){
+
+				const url = await uploadImage(assetDetails.imageData.imageFile);
+
+				updatedAssetDetails.imageData.imageUrl = url;
+				delete updatedAssetDetails.imageData.imageFile
+				// console.log("updatedAssetDetails: ", updatedAssetDetails);
+			}
+
+			const res = await axios.post(`${ROOT_URL}/assets/save`, updatedAssetDetails);
+			
+			const assetData = res.data;
+			// console.log(assetData)
+			dispatch({
+				type: SAVE_ASSET_DETAILS,
+				payload: assetData
+			});
+		}
+		catch(err){
+			console.log("couldn't save asset: ", err.response.data)
+		}
 	}
 }
 

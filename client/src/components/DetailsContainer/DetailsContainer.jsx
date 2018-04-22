@@ -58,6 +58,7 @@ class DetailsContainer extends Component {
 	};
 
 	setImageData = newImageData => {
+		// console.log(newImageData)
 		const oldImageData = this.state.imageData || {};
 		this.setState({ imageData: { ...oldImageData, ...newImageData }, changed: true });
 	};

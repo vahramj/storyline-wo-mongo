@@ -58,9 +58,9 @@ app.post("/assets/save", function _saveAsset_(req, res) {
 			children: []
 		};
 	}
-	console.log(data);
+	// console.log(data);
 	data[id] = assetData;
-	console.log(data);
+	// console.log(data);
 
 	res.send(assetData);
 });
