@@ -87,12 +87,18 @@ export function saveDetails(assetDetails){
 
 				const url = await uploadImage(assetDetails.imageData.imageFile);
 
-				updatedAssetDetails.imageData.imageUrl = url;
-				delete updatedAssetDetails.imageData.imageFile
+				if(url){
+					updatedAssetDetails.imageData.imageUrl = url;
+					delete updatedAssetDetails.imageData.imageFile;
+				}
+				else {
+					updatedAssetDetails.imageData = null; 
+				}
 				// console.log("updatedAssetDetails: ", updatedAssetDetails);
 			}
 
 			const res = await axios.post(`${ROOT_URL}/assets/save`, updatedAssetDetails);
+
 			
 			const assetData = res.data;
 			// console.log(assetData)

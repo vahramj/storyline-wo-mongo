@@ -15,6 +15,10 @@ const defaultImages = {
 };
 
 function getImageStyle(imageDisplayData){
+	if(!imageDisplayData){
+		return {}
+	}
+
 	const {
 		imageMoveX,
 		imageMoveY,
@@ -67,35 +71,34 @@ class Thumbnail extends PureComponent{
 	
 	checkBrokenImageUrl = (imageData) => {
 		const component = this;
-		const { type } = this.props;
-
+		
 		// console.log("propImageData", imageData)
 		if( imageData && imageData.imageUrl ){
 			testImageUrl(imageData.imageUrl)
 				.then(function _goodImageUrl_(){
-					const newState = {};
-					newState.imageSrc = imageData.imageUrl;	
-
-					if(imageData.imageDisplayData){
-
-						newState.imageStyle = getImageStyle(imageData.imageDisplayData);
-
-						// console.log("propUrl", imageData.imageUrl)
-						// console.log("newStateUrl", newState.imageSrc)
-						component.setState(newState);
-					}
+					component.setupImageState(imageData);
 				})
 				.catch(function _badImageUrl_(err){
 					console.log("error setting up image:", err.message);
-					const newState = {
-						imageStyle: {},
-						imageSrc: defaultImages[type]
-					}
-					// console.log("propUrl", imageData.imageUrl)
-					// console.log("newStateUrl", newState.imageSrc)
-					component.setState(newState);
+					component.setupImageState();
 				})
 		}
+	}
+	
+	setupImageState = (imageData) => {
+		const { type } = this.props;
+		const imageState = {
+			imageStyle: {},
+			imageSrc: defaultImages[type]
+		}
+		if(imageData && imageData.imageUrl){
+			imageState.imageSrc = imageData.imageUrl;	
+			
+		}
+		if(imageData && imageData.imageDisplayData){
+			imageState.imageStyle = getImageStyle(imageData.imageDisplayData);
+		}
+		this.setState(imageState);
 	}
 
 	componentDidMount(){
@@ -107,12 +110,16 @@ class Thumbnail extends PureComponent{
 		// console.log("hellow from componentWillReceiveProps", this.props)
 		const nextImageData = nextProps.imageData;
 		const currImageData = this.props.imageData;
-		if( nextImageData && !currImageData || nextImageData.imageUrl !== currImageData.imageUrl ){
+		if(currImageData && !nextImageData){
+			this.setupImageState()
+		}
+		else if( nextImageData && (!currImageData || nextImageData.imageUrl !== currImageData.imageUrl) ){
 			this.checkBrokenImageUrl(nextImageData);
 		}
 		else if( nextImageData && !shallowEqual(nextImageData.imageDisplayData, currImageData.imageDisplayData) ){
-			const imageStyle = getImageStyle(nextImageData.imageDisplayData);
-			this.setState({ imageStyle });
+			// const imageStyle = getImageStyle(nextImageData.imageDisplayData);
+			// this.setState({ imageStyle });
+			this.setupImageState( nextImageData );
 		}
 	}
 
