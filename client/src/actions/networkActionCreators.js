@@ -85,10 +85,12 @@ export function saveDetails(assetDetails){
 
 			if(assetDetails.imageData && assetDetails.imageData.imageFile){
 
-				const url = await uploadImage(assetDetails.imageData.imageFile);
+				const uploadedImageInfo = await uploadImage(assetDetails.imageData.imageFile);
 
-				if(url){
-					updatedAssetDetails.imageData.imageUrl = url;
+				if(uploadedImageInfo){
+					const { imageUrl, imageId } = uploadedImageInfo;
+					updatedAssetDetails.imageData.imageUrl = imageUrl;
+					updatedAssetDetails.imageData.imageId = imageId;
 					delete updatedAssetDetails.imageData.imageFile;
 				}
 				else {

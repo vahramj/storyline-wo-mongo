@@ -4,7 +4,7 @@ async function uploadFile (imageFile) {
 	// console.log("file: ", imageFile);
 
 	const cloudName = "cldimgs";
-	const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+	const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
 	const timestamp = Date.now() / 1000;
 	const uploadPreset = "affevzry";
@@ -24,8 +24,12 @@ async function uploadFile (imageFile) {
 			}
 		};
 
-		const reqResult = await axios.post(url, formData, config);
-		return reqResult.data.secure_url;
+		const reqResult = await axios.post(uploadUrl, formData, config);
+		const { secure_url: imageUrl, public_id: imageId } = reqResult.data;
+		return {
+			imageUrl,
+			imageId
+		};
 	}
 	catch(err){
 		console.log(err);

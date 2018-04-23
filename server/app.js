@@ -2,8 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const makeUniqId = require("uniqid");
+const cloudinary = require("cloudinary");
 
 let data = require("./utils/data.js");
+
+cloudinary.config({
+	cloud_name: "cldimgs",
+	api_key: process.env.cloudinaryKey,
+	api_secret: process.env.cloudinarySecret
+});
 
 const app = express();
 
@@ -45,6 +52,17 @@ app.post("/assets/save", function _saveAsset_(req, res) {
 	let { id } = assetData;
 
 	if (id && id in data) {
+		const { imageId } = data[id].imageData;
+		if(imageId && assetData.imageData && assetData.imageData.imageUrl){
+			// delete image from cloudinary
+			cloudinary.v2.uploader.destroy(imageId, function _afterImageDeleted_(err, result){
+				if(err){
+					console.log(err);
+					return;
+				}
+				console.log(result);
+			})
+		}
 		assetData = {
 			...data[id],
 			...assetData

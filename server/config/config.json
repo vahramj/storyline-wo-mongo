@@ -1,6 +1,8 @@
 {
 	"developement": {
-		"PORT":3000
+		"PORT":3000,
+		"cloudinaryKey": "295886862954169",
+		"cloudinarySecret": "1IA49RibTzlQ-NmpNFt9i7LYVz0"
 	},
 	"test": {
 		"PORT": 3000
