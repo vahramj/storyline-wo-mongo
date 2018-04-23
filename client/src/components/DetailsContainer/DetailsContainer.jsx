@@ -43,11 +43,11 @@ class DetailsContainer extends Component {
 	}
 
 	componentDidMount() {
-		const { operation, type } = this.props.match.params;
+		const { operation } = this.props.match.params;
 		const { assetData } = this.props;
 		// vahram, optimize this to use location === "edit" rather than operation
 		if (operation === "edit" && !assetData) {
-			this.props.history.push(`/add/${type}`);
+			this.props.history.push(`/`);
 		}
 	}
 

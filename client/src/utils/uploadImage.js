@@ -18,7 +18,13 @@ async function uploadFile (imageFile) {
 
 	// **** with axios
 	try {
-		const reqResult = await axios.post(url, formData);
+		const config = {
+			onUploadProgress(eventProgress){
+				console.log( "progress: ", Math.round(eventProgress.loaded/eventProgress.total* 100) )
+			}
+		};
+
+		const reqResult = await axios.post(url, formData, config);
 		return reqResult.data.secure_url;
 	}
 	catch(err){

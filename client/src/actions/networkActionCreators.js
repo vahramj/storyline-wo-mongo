@@ -98,18 +98,6 @@ export function saveDetails(assetDetails){
 			}
 
 			const res = await axios.post(`${ROOT_URL}/assets/save`, updatedAssetDetails);
-			// const res = await axios({
-			// 	method: "post",
-			// 	url: `${ROOT_URL}/assets/save`,
-			// 	data: updatedAssetDetails,
-			// 	onUploadProgress(progressEvent) {
-			// 		// Do whatever you want with the native progress event
-			// 		// console.log('progressEvent', progressEvent);
-			// 		var progress = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-			// 		console.log("progress: ", progress);
-			// 	}
-			// });
-
 			
 			const assetData = res.data;
 			// console.log(assetData)
