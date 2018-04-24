@@ -52,22 +52,26 @@ app.post("/assets/save", function _saveAsset_(req, res) {
 	let { id } = assetData;
 
 	if (id && id in data) {
-		const { imageId } = data[id].imageData;
-		if(imageId && assetData.imageData && assetData.imageData.imageUrl){
+		const { imageData: oldImageData } = data[id];
+		if(oldImageData 
+			&& oldImageData.imageId 
+			&& assetData.imageData 
+			&& (!assetData.imageData.imageId || assetData.imageData.imageId !== oldImageData.imageId) ){
+			const { imageId: oldImageId } = oldImageData;
 			// delete image from cloudinary
-			cloudinary.v2.uploader.destroy(imageId, function _afterImageDeleted_(err, result){
+			cloudinary.v2.uploader.destroy(oldImageId, function _afterImageDeleted_(err, result){
 				if(err){
 					console.log(err);
 					return;
 				}
-				console.log(result);
-			})
+				console.log("deleted image from cloudinary: ", result);
+			});
 		}
 		assetData = {
 			...data[id],
 			...assetData
 		};
-	} else {
+	} else if(!id) {
 		id = makeUniqId();
 		assetData = {
 			...assetData,
@@ -103,6 +107,16 @@ app.delete("/assets/delete", function _deleteAsset_(req, res) {
 		asset.children.forEach(childRef => {
 			data[childRef.id].parent = null;
 			affectedAssets[childRef.id] = data[childRef.id];
+		});
+	}
+	if(asset.imageData && asset.imageData.imageId){
+		const { imageId } = asset.imageData;
+		cloudinary.v2.uploader.destroy(imageId, function _afterImageDeleted_(err, result){
+			if(err){
+				console.log(err);
+				return;
+			}
+			console.log("deleted image from cloudinary: ", result);
 		});
 	}
 	delete data[id];

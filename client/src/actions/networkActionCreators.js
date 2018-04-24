@@ -96,9 +96,9 @@ export function saveDetails(assetDetails){
 				else {
 					updatedAssetDetails.imageData = null; 
 				}
-				// console.log("updatedAssetDetails: ", updatedAssetDetails);
 			}
 
+			console.log("updatedAssetDetails: ", updatedAssetDetails);
 			const res = await axios.post(`${ROOT_URL}/assets/save`, updatedAssetDetails);
 			
 			const assetData = res.data;

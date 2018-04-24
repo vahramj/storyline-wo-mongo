@@ -8,7 +8,7 @@
     "build": "webpack -p",
     "serve": "node server/server.js",
     "dev": "webpack-dev-server",
-    "server-dev": "nodemon server/server.js",
+    "api-server": "nodemon server/server.js",
     "watch": "npm run build -- --watch",
     "lint": "eslint \"src/**/*.{js,jsx}\""
   },

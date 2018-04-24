@@ -22,6 +22,7 @@ const timelineData = {
 const phaseData = {
 	phs_01: {
 		id: "phs_01",
+		// imageId: "someCludinaryId",
 		name: "opeining image",
 		type: "phase",
 		width: 250,
