@@ -1,7 +1,7 @@
 **/static/bundle.js
+**/static/bundle.js.*
 **/static/styles.css
 node_modules/
 .DS_Store
 .eslintcache
 config.json
-bundle.js.map
